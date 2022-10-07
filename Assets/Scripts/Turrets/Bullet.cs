@@ -5,12 +5,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 50f;
+    
     private Transform Target;
+    //public Transform parent;
+    
     public GameObject impact_effect;
 
-
-
-
+    
+    
     public void Chase (Transform _Target)
     {
         Target = _Target;
