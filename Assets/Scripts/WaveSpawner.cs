@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using System.Threading;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -9,12 +12,14 @@ public class WaveSpawner : MonoBehaviour
     
     public float timeBetweenWaves = 5f;
     public float individualSpawnDelay = 0.5f;
-    private float countdown = 0.5f;
+    private float countdown = 0f;
 
     public int waveMax = 1;
     private int waveIndex = 0;
+
+    public Text waveCountdownText;
     
-    private void Update()
+    void Update()
     {
         //Debug.Log(countdown);
         countdown -= Time.deltaTime;
@@ -23,6 +28,7 @@ public class WaveSpawner : MonoBehaviour
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }
+        waveCountdownText.text = Mathf.RoundToInt(countdown).ToString();
     }
     //Spawns each wave with delay between individual enemies
     IEnumerator SpawnWave()
