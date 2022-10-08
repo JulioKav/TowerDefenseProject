@@ -43,6 +43,8 @@ public class Bullet : MonoBehaviour
 
     }
 
+    
+
     void hit_target()
     {
         GameObject effect_instance = (GameObject) Instantiate(impact_effect, transform.position, transform.rotation);

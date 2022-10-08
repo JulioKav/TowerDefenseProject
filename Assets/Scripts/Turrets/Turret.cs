@@ -18,7 +18,8 @@ public class Turret : MonoBehaviour
     public float turn_speed = 5f;
     public GameObject bulletprefab;
     public Transform firepoint;
-    
+
+   
     // USE THIS WHEN YOU HAVE ASSETS, NAMELY A PART OF TURRET YOU WANT TO ROTATE NOT WHOLE THING
     public Transform part_to_rotate;
 
@@ -38,16 +39,16 @@ public class Turret : MonoBehaviour
     }
 
     // Looks for closest target
-    void Target_Search ()
+    void Target_Search()
     {   //Creates an array of Target Enemies with tag "Enemy".
         GameObject[] Targets = GameObject.FindGameObjectsWithTag(Enemy);
-        
+
         float smallest_distance = Mathf.Infinity;
 
         GameObject closest_enemy = null;
 
         //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
-        foreach(GameObject enemy in Targets)
+        foreach (GameObject enemy in Targets)
         {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -78,16 +79,16 @@ public class Turret : MonoBehaviour
             return;
 
 
-        
+
         //Make turret face direction of target (enemy)
         Vector3 direction = Target.position - transform.position;
         Quaternion look_at_target = Quaternion.LookRotation(direction);
-        Vector3 look_at_target_euler = Quaternion.Lerp(transform.rotation,look_at_target, Time.deltaTime * turn_speed).eulerAngles;
+        Vector3 look_at_target_euler = Quaternion.Lerp(transform.rotation, look_at_target, Time.deltaTime * turn_speed).eulerAngles;
 
-        transform.rotation = Quaternion.Euler (0f, look_at_target_euler.y, 0f);
+        //transform.rotation = Quaternion.Euler (0f, look_at_target_euler.y, 0f);
         // WITH ASSET INCLUDE BELOW
         //Chance there may be 90degree offset
-        //partToRotate.rotation = Quaternion.Euler (0f, look_at_target_euler.y, 0f);
+        part_to_rotate.rotation = Quaternion.Euler(0f, look_at_target_euler.y, 0f);
 
         if (attack_countdown <= 0f)
         {
@@ -99,18 +100,26 @@ public class Turret : MonoBehaviour
 
     }
 
+
+
+
     void shoot()
     {
-       GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
-       Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+
+        GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
 
         if (bullet != null)
         {
             bullet.Chase(Target);
         }
 
-
+         
     }
 
+
 }
+
 
