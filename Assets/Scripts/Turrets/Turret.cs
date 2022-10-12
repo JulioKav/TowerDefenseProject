@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform Target;
+    private Transform target;
+    private Enemy targetEnemy;
 
     [Header("Turret Stats")]
 
@@ -41,14 +42,14 @@ public class Turret : MonoBehaviour
     // Looks for closest target
     void Target_Search()
     {   //Creates an array of Target Enemies with tag "Enemy".
-        GameObject[] Targets = GameObject.FindGameObjectsWithTag(Enemy);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Enemy);
 
         float smallest_distance = Mathf.Infinity;
 
         GameObject closest_enemy = null;
 
         //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
-        foreach (GameObject enemy in Targets)
+        foreach (GameObject enemy in enemies)
         {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -64,26 +65,28 @@ public class Turret : MonoBehaviour
         // If the enemy is in attack range, it becomes target.
         if (closest_enemy != null && smallest_distance <= attack_range)
         {
-            Target = closest_enemy.transform;
+            target = closest_enemy.transform;
         }
         else
         {
-            Target = null;
+            target = null;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Target == null)
+        if (target == null)
+        {
             return;
-
+        }
 
 
         //Make turret face direction of target (enemy)
-        Vector3 direction = Target.position - transform.position;
+        Vector3 direction = target.position - transform.position;
         Quaternion look_at_target = Quaternion.LookRotation(direction);
         Vector3 look_at_target_euler = Quaternion.Lerp(transform.rotation, look_at_target, Time.deltaTime * turn_speed).eulerAngles;
+
 
         //transform.rotation = Quaternion.Euler (0f, look_at_target_euler.y, 0f);
         // WITH ASSET INCLUDE BELOW
@@ -102,7 +105,6 @@ public class Turret : MonoBehaviour
 
 
 
-
     void shoot()
     {
 
@@ -113,7 +115,7 @@ public class Turret : MonoBehaviour
 
         if (bullet != null)
         {
-            bullet.Chase(Target);
+            bullet.Chase(target);
         }
 
          

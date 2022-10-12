@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4015ff2e39465f84e99db256c2b30734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  parent: {fileID: 0}
+  speed: 10
+  explosion_radius: 5
   impact_effect: {fileID: 5793143773966844333, guid: 0a24167cb056a4c48b30d1f152bb8722, type: 3}
