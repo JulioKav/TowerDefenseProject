@@ -29,6 +29,7 @@ public class WaveSpawner : MonoBehaviour
             countdown = timeBetweenWaves;
         }
         waveCountdownText.text = Mathf.RoundToInt(countdown).ToString();
+
     }
     //Spawns each wave with delay between individual enemies
     IEnumerator SpawnWave()
