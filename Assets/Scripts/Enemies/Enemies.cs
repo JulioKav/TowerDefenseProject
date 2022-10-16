@@ -10,6 +10,13 @@ public class Enemies : MonoBehaviour
     protected float _attack;
     protected float _range;
     protected Transform _target;
+
+    enum subtype
+    {
+        Physical,
+        Mechanic,
+        Magic,
+    };
     
     private int wavepointIndex = 0;
     
@@ -38,5 +45,20 @@ public class Enemies : MonoBehaviour
         }
         wavepointIndex++;
         _target = Waypoints.points[wavepointIndex];
+    }
+    
+    public void TakeDamage(int amountOfDamage)
+    {
+        _health -= amountOfDamage;
+
+        if (_health <= 0)
+        {//could place death animation here
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 
     public GameObject impact_effect;
 
+    public int damage = 50;
 
 
     public void Chase(Transform _target)
@@ -82,7 +83,13 @@ public class Bullet : MonoBehaviour
     
     void Damage (Transform Enemy)
     {
-        Destroy(Enemy.gameObject);
+        // retrieves script aspect of enemy
+        Enemies enemy_component =  Enemy.GetComponent<Enemies>();
+
+        if (enemy_component != null)
+        {
+            enemy_component.TakeDamage(damage);
+        }
     }
 
     private void OnDrawGizmosSelected()
