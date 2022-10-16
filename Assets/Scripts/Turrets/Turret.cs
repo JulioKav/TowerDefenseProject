@@ -140,6 +140,18 @@ public class Turret : MonoBehaviour
         }
     }
 
+    public void HealDamage(int amountOfDamage)
+    {
+        _health += amountOfDamage;
+
+        healthBar.fillAmount = _health / _maxHealth;
+
+        if (_health <= 0)
+        {//could place death animation here
+            Die();
+        }
+    }
+
     void Die()
     {
         Destroy(gameObject);
