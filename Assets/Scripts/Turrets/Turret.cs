@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
     private Transform target;
     private Enemy targetEnemy;
+    
+    [Header("Unity Stuff")] 
+    public Image healthBar;
 
     [Header("Turret Stats")]
 
@@ -13,6 +17,7 @@ public class Turret : MonoBehaviour
     public float attack_speed = 1f;
     private float attack_countdown = 0f;
     public float _health = 100;
+    public float _maxHealth = 100;
 
     [Header("Unity Required Stuff")]
 
@@ -122,12 +127,12 @@ public class Turret : MonoBehaviour
 
 
     }
-
-    //Turret health/death
-
+    
     public void TakeDamage(int amountOfDamage)
     {
         _health -= amountOfDamage;
+
+        healthBar.fillAmount = _health / _maxHealth;
 
         if (_health <= 0)
         {//could place death animation here
@@ -139,10 +144,6 @@ public class Turret : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
-    
-
 }
 
 

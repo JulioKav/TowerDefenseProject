@@ -10,13 +10,6 @@ public class Enemies : MonoBehaviour
     protected float _range;
     protected Transform _target;
     
-
-
- 
-
-
-
-
     [Header("Unity Stuff")] 
     public Image healthBar;
 
@@ -43,9 +36,6 @@ public class Enemies : MonoBehaviour
         {
             GetNextWaypoint();
         }
-
-        
-
     }
 
     
