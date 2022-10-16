@@ -58,3 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# VS Code
+.vsconfig
+.vscode
+
+# Mac OS
+.DS_Store
