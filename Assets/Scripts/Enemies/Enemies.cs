@@ -59,13 +59,7 @@ public class Enemies : MonoBehaviour
             return;
         }
         wavepointIndex++;
-
-        
-            _target = Waypoints.points[wavepointIndex];
-        
-
-        
-
+        _target = Waypoints.points[wavepointIndex];
     }
 
 

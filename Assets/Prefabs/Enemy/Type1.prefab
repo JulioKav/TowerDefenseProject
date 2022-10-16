@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 744645843}
   - component: {fileID: 744645842}
   - component: {fileID: 744645841}
-  - component: {fileID: 2063318037831205883}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -134,22 +133,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!54 &2063318037831205883
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744645840}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1 &953694368
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 953694369}
   - component: {fileID: 953694371}
-  - component: {fileID: 953694370}
+  - component: {fileID: 7705250150219191229}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -196,7 +179,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953694368}
   m_CullTransparentMesh: 1
---- !u!114 &953694370
+--- !u!114 &7705250150219191229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,24 +188,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 953694368}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.047049522, g: 0, b: 1, a: 0.83137256}
+  m_Color: {r: 0.028044224, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_Sprite: {fileID: 21300000, guid: f33614c720ec26e3babd3bea73c8fb3c, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1871946095
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +319,7 @@ Transform:
   - {fileID: 744645844}
   - {fileID: 201284266}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7310184708193010148
 MeshFilter:
@@ -411,8 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  attack_range: 1
-  enemy_attack_dmg: 0
+  healthBar: {fileID: 7705250150219191229}
 --- !u!114 &-6655786311451173978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +414,7 @@ MonoBehaviour:
   attack_speed: 1
   _health: 100
   Enemy: Tower
-  turn_speed: 5
+  turn_speed: 0
   bulletprefab: {fileID: 3795423907188121459, guid: f6bc9e14f4ce1304a9a79ca97919e7a5, type: 3}
   firepoint: {fileID: 201284266}
   part_to_rotate: {fileID: 8681798273466170120}
