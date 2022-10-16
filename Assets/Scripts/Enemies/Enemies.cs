@@ -9,6 +9,13 @@ public class Enemies : MonoBehaviour
     protected float _attack;
     protected float _range;
     protected Transform _target;
+    
+
+
+ 
+
+
+
 
     [Header("Unity Stuff")] 
     public Image healthBar;
@@ -36,7 +43,13 @@ public class Enemies : MonoBehaviour
         {
             GetNextWaypoint();
         }
+
+        
+
     }
+
+    
+
 
     void GetNextWaypoint()
     {
@@ -46,9 +59,18 @@ public class Enemies : MonoBehaviour
             return;
         }
         wavepointIndex++;
-        _target = Waypoints.points[wavepointIndex];
+
+        
+            _target = Waypoints.points[wavepointIndex];
+        
+
+        
+
     }
-    
+
+
+    //Enemy death/damage taken
+
     public void TakeDamage(int amountOfDamage)
     {
         _health -= amountOfDamage;
@@ -65,4 +87,29 @@ public class Enemies : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

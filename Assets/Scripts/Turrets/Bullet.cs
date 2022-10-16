@@ -60,7 +60,8 @@ public class Bullet : MonoBehaviour
             Explode();
         } else
         {
-            Damage(target);
+            Damage_enemy(target);
+            Damage_tower(target);
         }
 
 
@@ -75,13 +76,18 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                Damage(collider.transform);
+                Damage_enemy(collider.transform);
+            }
+
+            if (collider.tag == "Tower")
+            {
+                Damage_tower(collider.transform);
             }
         }
 
     }    
     
-    void Damage (Transform Enemy)
+    void Damage_enemy (Transform Enemy)
     {
         // retrieves script aspect of enemy
         Enemies enemy_component =  Enemy.GetComponent<Enemies>();
@@ -89,6 +95,17 @@ public class Bullet : MonoBehaviour
         if (enemy_component != null)
         {
             enemy_component.TakeDamage(damage);
+        }
+    }
+
+    void Damage_tower(Transform Tower)
+    {
+        // retrieves script aspect of enemy
+        Turret turret_component = Tower.GetComponent<Turret>();
+
+        if (turret_component != null)
+        {
+            turret_component.TakeDamage(damage);
         }
     }
 
