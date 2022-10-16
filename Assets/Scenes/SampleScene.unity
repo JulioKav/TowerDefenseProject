@@ -1716,7 +1716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355895098229146683, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: 1.50003
       objectReference: {fileID: 0}
     - target: {fileID: 5355895098229146683, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13793,6 +13793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999873657}
   - component: {fileID: 1999873656}
+  - component: {fileID: 1999873658}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -13834,6 +13835,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999873658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999873655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ced7c809df47164aa868792eb4d207f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2009552422
 PrefabInstance:
   m_ObjectHideFlags: 0
