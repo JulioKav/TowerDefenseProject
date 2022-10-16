@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour
     public float attack_range;
     public float attack_speed = 1f;
     private float attack_countdown = 0f;
+    public float _health = 100;
 
     [Header("Unity Required Stuff")]
 
@@ -20,7 +21,7 @@ public class Turret : MonoBehaviour
     public GameObject bulletprefab;
     public Transform firepoint;
 
-   
+
     // USE THIS WHEN YOU HAVE ASSETS, NAMELY A PART OF TURRET YOU WANT TO ROTATE NOT WHOLE THING
     public Transform part_to_rotate;
 
@@ -101,6 +102,7 @@ public class Turret : MonoBehaviour
 
         attack_countdown -= Time.deltaTime;
 
+       
     }
 
 
@@ -118,9 +120,28 @@ public class Turret : MonoBehaviour
             bullet.Chase(target);
         }
 
-         
+
     }
 
+    //Turret health/death
+
+    public void TakeDamage(int amountOfDamage)
+    {
+        _health -= amountOfDamage;
+
+        if (_health <= 0)
+        {//could place death animation here
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+
+    
 
 }
 
