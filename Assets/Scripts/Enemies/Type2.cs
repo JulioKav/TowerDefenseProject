@@ -7,7 +7,8 @@ public class Type2 : Enemies
     // Start is called before the first frame update
     void Start()
     {
-        _health = 150;
+        _maxHealth = 150;
+        _health = _maxHealth;
         _attack = 5;
         _range = 10;
         base.Start();

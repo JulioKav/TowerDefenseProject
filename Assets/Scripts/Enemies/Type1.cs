@@ -7,7 +7,8 @@ public class Type1 : Enemies
 {
     void Start()
     {
-        _health = 100;
+        _maxHealth = 100;
+        _health = _maxHealth;
         _attack = 5;
         _range = 10;
         base.Start();

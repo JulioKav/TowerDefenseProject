@@ -1,15 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemies : MonoBehaviour
 {
     public float speed = 4.0f;
+    protected float _maxHealth;
     protected float _health;
     protected float _attack;
     protected float _range;
     protected Transform _target;
+
+    [Header("Unity Stuff")] 
+    public Image healthBar;
 
     enum subtype
     {
@@ -50,6 +52,8 @@ public class Enemies : MonoBehaviour
     public void TakeDamage(int amountOfDamage)
     {
         _health -= amountOfDamage;
+
+        healthBar.fillAmount = _health / _maxHealth;
 
         if (_health <= 0)
         {//could place death animation here
