@@ -5,22 +5,25 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
-    public float speed = 10f;
-
-    private Transform target;
+    public float speed = 4.0f;
+    protected float _health;
+    protected float _attack;
+    protected float _range;
+    protected Transform _target;
+    
     private int wavepointIndex = 0;
-
-    void Start()
+    
+    protected void Start()
     {
-        target = Waypoints.points[0];
+        _target = Waypoints.points[0];
     }
 
-    private void Update()
+    protected void Update()
     {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction = _target.position - transform.position;
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, _target.position) <= 0.2f)
         {
             GetNextWaypoint();
         }
@@ -33,8 +36,7 @@ public class Enemies : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
         wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
+        _target = Waypoints.points[wavepointIndex];
     }
 }

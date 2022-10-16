@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
 using System.Collections;
-using System.Threading;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public Transform[] enemyPrefab;
     public Transform spawnPoint;
     public Transform parent;
+
+    
     
     public float timeBetweenWaves = 5f;
     public float individualSpawnDelay = 0.5f;
@@ -44,6 +46,7 @@ public class WaveSpawner : MonoBehaviour
     //Spawns an enemy
     void SpawnEnemy()
     {
-         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation, parent);
+         Debug.Log(Random.Range(0, 2));
+         Instantiate(enemyPrefab[Random.Range(0,2)], spawnPoint.position, spawnPoint.rotation, parent);
     }
 }
