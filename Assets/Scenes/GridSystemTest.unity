@@ -854,12 +854,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999873655}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd75fdc3c403cd1129977eb3e9875275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8681798273466170120, guid: a16aac5791c8478f88758cf03f9746ab, type: 3}
+  enemyPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoint: {fileID: 0}
   parent: {fileID: 580037962}
   timeBetweenWaves: 4
