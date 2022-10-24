@@ -9,7 +9,9 @@ public class SkillTreeToggle : MonoBehaviour
         skillTree.SetActive(false);
     }
 
-    public void ToggleSkillTree() {
+    public void ToggleSkillTree()
+    {
         skillTree.SetActive(!skillTree.activeSelf);
     }
+
 }
