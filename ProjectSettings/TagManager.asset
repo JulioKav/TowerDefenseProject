@@ -8,6 +8,8 @@ TagManager:
   - Castle
   - enemyBug
   - Friendly
+  - Skill
+  - SkillBranch
   layers:
   - Default
   - TransparentFX
