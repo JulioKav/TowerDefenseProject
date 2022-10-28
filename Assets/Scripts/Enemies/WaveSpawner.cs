@@ -1,50 +1,57 @@
-using System;
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
     public Transform[] enemyPrefab;
     public Transform spawnPoint;
     public Transform parent;
-    
-    public float timeBetweenWaves = 5f;
+
     public float individualSpawnDelay = 0.5f;
-    private float countdown = 0f;
 
-    public int waveMax = 1;
-    private int waveIndex = 0;
+    public EnemyWave[] waves;
 
-    public Text waveCountdownText;
-    
-    void Update()
+    private int waveCurrentIndex;
+    private int waveGlobalIndex;
+
+    void Start()
     {
-        //Debug.Log(countdown);
-        countdown -= Time.deltaTime;
-        if (countdown <= 0 && waveIndex <= waveMax)
+        for(int i = 0; i < 10; i++)
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            if(i % 2 == 0)
+            {
+                waves[0].AddEnemy(enemyPrefab[0]); 
+            }
+            else
+            {
+                waves[0].AddEnemy(enemyPrefab[1]);
+            }
         }
-        waveCountdownText.text = Mathf.RoundToInt(countdown).ToString();
-
     }
-    //Spawns each wave with delay between individual enemies
-    IEnumerator SpawnWave()
+
+    public void ButtonInput()
     {
-        for (int i = 0; i < waveIndex; i++)
+        StartCoroutine(StartWave());
+    }
+
+    public IEnumerator StartWave()
+    {
+        for (int i = 0; i < waves[0].enemyWave.Count; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(individualSpawnDelay);
+            waveCurrentIndex++;
+            if(waveCurrentIndex == waves[waveGlobalIndex].enemyWave.Count)
+            {
+                waveCurrentIndex = 0;
+                waveGlobalIndex++;
+            }
         }
-        waveIndex++;
     }
-    //Spawns an enemy
+
     void SpawnEnemy()
     {
-         Debug.Log(Random.Range(0, 2));
-         Instantiate(enemyPrefab[Random.Range(0,2)], spawnPoint.position, spawnPoint.rotation, parent);
+        Instantiate(waves[waveGlobalIndex].enemyWave[waveCurrentIndex], spawnPoint.position, spawnPoint.rotation, parent);
     }
 }
