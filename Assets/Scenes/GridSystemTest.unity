@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 580037962}
   m_Layer: 0
   m_Name: Enemies
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,7 +859,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd75fdc3c403cd1129977eb3e9875275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8681798273466170120, guid: a16aac5791c8478f88758cf03f9746ab, type: 3}
+  enemyPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoint: {fileID: 0}
   parent: {fileID: 580037962}
   timeBetweenWaves: 4
