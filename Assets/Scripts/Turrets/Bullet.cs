@@ -59,32 +59,34 @@ public class Bullet : MonoBehaviour
         {
             Explode();
         } else
-        {
-            if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
+        { if (target.tag == "Enemy")
             {
-                Magic_damage(target);
-            }
-            else
+                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
+                {
+                    Magic_damage(target);
+                }
+                else
 
                 if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
-            {
-                Physical_damage(target);
-            }
-            else
+                {
+                    Physical_damage(target);
+                }
+                else
 
                 if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
-            {
-                Imaginary_damage(target);
-            }
-            else
+                {
+                    Imaginary_damage(target);
+                }
+                else
 
                 if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-            {
-                Mechanical_damage(target);
+                {
+                    Mechanical_damage(target);
+                }
+                else
+                    Damage_enemy(target);
+                Damage_tower(target);
             }
-            else
-                Damage_enemy(target);
-            Damage_tower(target);
         }
 
 
@@ -101,21 +103,21 @@ public class Bullet : MonoBehaviour
             {
                 if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-                    Magic_damage(target);
+                    Magic_damage(collider.transform);
                 }
-
-                else if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
+                
+                if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
                 {
-                    Physical_damage(target);
+                    Physical_damage(collider.transform);
                 }
 
                 else if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
-                    Imaginary_damage(target);
+                    Imaginary_damage(collider.transform);
                 }
                 else if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
-                    Mechanical_damage(target);
+                    Mechanical_damage(collider.transform);
                 }
                 else
                     Damage_enemy(collider.transform);

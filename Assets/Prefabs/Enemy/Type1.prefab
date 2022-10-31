@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 8201778726878291187}
   - component: {fileID: -8237519863341139339}
   - component: {fileID: -6655786311451173978}
-  - component: {fileID: -2767777132542104434}
+  - component: {fileID: -5173372689949398686}
   m_Layer: 0
   m_Name: Type1
   m_TagString: Enemy
@@ -421,7 +421,7 @@ MonoBehaviour:
   bulletprefab: {fileID: 3795423907188121459, guid: f6bc9e14f4ce1304a9a79ca97919e7a5, type: 3}
   firepoint: {fileID: 201284266}
   part_to_rotate: {fileID: 8681798273466170120}
---- !u!114 &-2767777132542104434
+--- !u!114 &-5173372689949398686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -433,4 +433,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01082fc178f46441a5c0c85867c7b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  tags:
+  - Enemy

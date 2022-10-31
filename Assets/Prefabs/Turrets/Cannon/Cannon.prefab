@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 6181721130136070613}
   - component: {fileID: 4193301359853601190}
   - component: {fileID: 1541661487}
-  - component: {fileID: -6901866524732246281}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Tower
@@ -613,20 +612,6 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 2}
---- !u!114 &-6901866524732246281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6810060772655838063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01082fc178f46441a5c0c85867c7b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags:
-  - Enemy
 --- !u!1 &6988021439278284862
 GameObject:
   m_ObjectHideFlags: 0
