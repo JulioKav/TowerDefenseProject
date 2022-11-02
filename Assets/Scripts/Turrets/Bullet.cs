@@ -59,9 +59,34 @@ public class Bullet : MonoBehaviour
         {
             Explode();
         } else
-        {
-            Damage_enemy(target);
-            Damage_tower(target);
+        { if (target.tag == "Enemy")
+            {
+                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
+                {
+                    Magic_damage(target);
+                }
+                else
+
+                if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
+                {
+                    Physical_damage(target);
+                }
+                else
+
+                if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
+                {
+                    Imaginary_damage(target);
+                }
+                else
+
+                if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    Mechanical_damage(target);
+                }
+                else
+                    Damage_enemy(target);
+                Damage_tower(target);
+            }
         }
 
 
@@ -76,8 +101,29 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                Damage_enemy(collider.transform);
+                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
+                {
+                    Magic_damage(collider.transform);
+                }
+                
+                if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
+                {
+                    Physical_damage(collider.transform);
+                }
+
+                else if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
+                {
+                    Imaginary_damage(collider.transform);
+                }
+                else if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    Mechanical_damage(collider.transform);
+                }
+                else
+                    Damage_enemy(collider.transform);
             }
+
+            
 
             if (collider.tag == "Tower")
             {
@@ -92,8 +138,11 @@ public class Bullet : MonoBehaviour
         // retrieves script aspect of enemy
         Enemies enemy_component =  Enemy.GetComponent<Enemies>();
 
+        
+
         if (enemy_component != null)
         {
+            
             enemy_component.TakeDamage(damage);
         }
     }
@@ -106,6 +155,62 @@ public class Bullet : MonoBehaviour
         if (turret_component != null)
         {
             turret_component.TakeDamage(damage);
+        }
+    }
+
+    void Magic_damage(Transform Enemy)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+
+
+
+        if (enemy_component != null)
+        {
+
+            enemy_component.TakeDamage(damage*3);
+        }
+    }
+
+    void Physical_damage(Transform Enemy)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+
+
+
+        if (enemy_component != null)
+        {
+
+            enemy_component.TakeDamage(damage * 3);
+        }
+    }
+
+    void Imaginary_damage(Transform Enemy)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+
+
+
+        if (enemy_component != null)
+        {
+
+            enemy_component.TakeDamage(damage * 3);
+        }
+    }
+
+    void Mechanical_damage(Transform Enemy)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+
+
+
+        if (enemy_component != null)
+        {
+
+            enemy_component.TakeDamage(damage * 3);
         }
     }
 

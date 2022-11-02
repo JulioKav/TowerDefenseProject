@@ -1,50 +1,92 @@
-using System;
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
     public Transform[] enemyPrefab;
     public Transform spawnPoint;
     public Transform parent;
-    
-    public float timeBetweenWaves = 5f;
+
     public float individualSpawnDelay = 0.5f;
-    private float countdown = 0f;
 
-    public int waveMax = 1;
-    private int waveIndex = 0;
+    public EnemyWave[] waves;
 
-    public Text waveCountdownText;
-    
-    void Update()
+    public TMPro.TMP_Text waveSpawningCheck;
+    public TMPro.TMP_Text waveCount;
+
+    private int waveCurrentIndex;
+    private int waveGlobalIndex;
+
+    bool waveOnGoing = false;
+
+    void Start()
     {
-        //Debug.Log(countdown);
-        countdown -= Time.deltaTime;
-        if (countdown <= 0 && waveIndex <= waveMax)
+        // Wave 1
+        for(int i = 0; i < 4; i++)
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            if(i % 2 == 0)
+            {
+                waves[0].AddEnemy(enemyPrefab[0]); 
+            }
+            else
+            {
+                waves[0].AddEnemy(enemyPrefab[1]);
+            }
         }
-        waveCountdownText.text = Mathf.RoundToInt(countdown).ToString();
+        // Wave 2
+        for (int i = 0; i < 8; i++)
+        {
+            if (i % 2 == 0)
+            {
+                waves[0].AddEnemy(enemyPrefab[0]);
+            }
+            else
+            {
+                waves[0].AddEnemy(enemyPrefab[1]);
+            }
+        }
 
     }
-    //Spawns each wave with delay between individual enemies
-    IEnumerator SpawnWave()
+
+    private void Update()
     {
-        for (int i = 0; i < waveIndex; i++)
+        if(waveOnGoing)
         {
+            waveSpawningCheck.text = "Wave Spawning";
+        }
+        else
+        {
+            waveSpawningCheck.text = "Wave Not Spawning";
+        }
+    }
+
+    public void ButtonInput()
+    {
+        if (waveOnGoing) return;
+        StartCoroutine(StartWave());
+    }
+
+    public IEnumerator StartWave()
+    {
+        for (int i = 0; i < waves[0].enemyWave.Count; i++)
+        {
+            waveOnGoing = true;
+            waveCount.text = "Wave: "+(waveGlobalIndex+1);
             SpawnEnemy();
             yield return new WaitForSeconds(individualSpawnDelay);
+            waveCurrentIndex++;
+            if(waveCurrentIndex == waves[waveGlobalIndex].enemyWave.Count)
+            {
+                waveOnGoing = false;
+                waveCurrentIndex = 0;
+                waveGlobalIndex++;             
+            }
         }
-        waveIndex++;
     }
-    //Spawns an enemy
     void SpawnEnemy()
     {
-         Debug.Log(Random.Range(0, 2));
-         Instantiate(enemyPrefab[Random.Range(0,2)], spawnPoint.position, spawnPoint.rotation, parent);
+        Instantiate(waves[waveGlobalIndex].enemyWave[waveCurrentIndex], spawnPoint.position, spawnPoint.rotation, parent);
     }
 }
