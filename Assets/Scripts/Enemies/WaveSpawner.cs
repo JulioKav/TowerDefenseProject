@@ -24,11 +24,11 @@ public class WaveSpawner : MonoBehaviour
     void Start()
     {
         // Wave 1
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if(i % 2 == 0)
+            if (i % 2 == 0)
             {
-                waves[0].AddEnemy(enemyPrefab[0]); 
+                waves[0].AddEnemy(enemyPrefab[0]);
             }
             else
             {
@@ -52,7 +52,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(waveOnGoing)
+        return;
+        if (waveOnGoing)
         {
             waveSpawningCheck.text = "Wave Spawning";
         }
@@ -73,15 +74,15 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waves[0].enemyWave.Count; i++)
         {
             waveOnGoing = true;
-            waveCount.text = "Wave: "+(waveGlobalIndex+1);
+            waveCount.text = "Wave: " + (waveGlobalIndex + 1);
             SpawnEnemy();
             yield return new WaitForSeconds(individualSpawnDelay);
             waveCurrentIndex++;
-            if(waveCurrentIndex == waves[waveGlobalIndex].enemyWave.Count)
+            if (waveCurrentIndex == waves[waveGlobalIndex].enemyWave.Count)
             {
                 waveOnGoing = false;
                 waveCurrentIndex = 0;
-                waveGlobalIndex++;             
+                waveGlobalIndex++;
             }
         }
     }
