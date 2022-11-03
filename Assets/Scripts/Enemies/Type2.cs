@@ -5,7 +5,7 @@ using UnityEngine;
 public class Type2 : Enemies
 {
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         _maxHealth = 150;
         _health = _maxHealth;
@@ -15,7 +15,7 @@ public class Type2 : Enemies
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         base.Update();
     }

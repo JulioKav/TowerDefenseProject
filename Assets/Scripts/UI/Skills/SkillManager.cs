@@ -79,20 +79,20 @@ public class SkillManager : MonoBehaviour
         foreach (Transform branchT in transform)
         {
             if (branchT.tag != "SkillBranch") continue;
-            int classIdx = -1;
+            int bId = -1;
             switch (branchT.name)
             {
                 case "Physical":
-                    classIdx = (int)SkillClass.PHYSICAL;
+                    bId = (int)SkillClass.PHYSICAL;
                     break;
                 case "Magic":
-                    classIdx = (int)SkillClass.MAGIC;
+                    bId = (int)SkillClass.MAGIC;
                     break;
                 case "Imaginary":
-                    classIdx = (int)SkillClass.IMAGINARY;
+                    bId = (int)SkillClass.IMAGINARY;
                     break;
                 case "Mechanic":
-                    classIdx = (int)SkillClass.MECHANIC;
+                    bId = (int)SkillClass.MECHANIC;
                     break;
                 default:
                     break;
@@ -101,24 +101,27 @@ public class SkillManager : MonoBehaviour
             foreach (Transform skillT in branchT)
             {
                 if (skillT.tag != "Skill") continue;
-                int skillIdx = int.Parse(skillT.name.Substring(5)) - 1;
+                int sId = int.Parse(skillT.name.Substring(5)) - 1;
+                bool unlockable = sId == 0;
                 Button skillBtn = skillT.GetComponent<Button>();
-                branches[classIdx].skills[skillIdx] = new Skill((SkillClass)classIdx, skillIdx, skillIdx == 0, skillBtn, cost);
-                branches[classIdx].skills[skillIdx].button.onClick.AddListener(() => TryUnlockSkill(branches[classIdx].skills[skillIdx]));
+                branches[bId].skills[sId] = new Skill((SkillClass)bId, sId, unlockable, skillBtn, cost);
+                branches[bId].skills[sId].button.onClick.AddListener(() => TryUnlockSkill(branches[bId].skills[sId]));
+                skillBtn.GetComponentInChildren<TextMeshProUGUI>().text += "\n" + cost + "SP";
                 // TODO: This is prototype code, remove later
-                if (classIdx > 0 && skillIdx == 0)
+                if (bId > 0 && sId == 0)
                 {
-                    branches[classIdx].completed = true;
-                    branches[classIdx].skills[skillIdx].unlockable = false;
+                    branches[bId].completed = true;
+                    branches[bId].skills[sId].unlockable = false;
                 }
                 // TODO This is normal code again, dont delete
-                UpdateButtonAppearance(branches[classIdx].skills[skillIdx]);
+                UpdateButtonAppearance(branches[bId].skills[sId]);
                 cost += COST_PER_LEVEL;
             }
         }
 
         finalSkill = new Skill(SkillClass.FINAL, -1, false, finalSkillBtn, FINAL_SKILL_COST);
         finalSkill.button.onClick.AddListener(() => TryUnlockSkill(finalSkill));
+        finalSkill.button.GetComponentInChildren<TextMeshProUGUI>().text += "\n" + FINAL_SKILL_COST + "SP";
     }
 
     void TryUnlockSkill(Skill skill)

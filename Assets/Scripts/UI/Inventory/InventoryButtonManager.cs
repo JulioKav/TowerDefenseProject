@@ -11,11 +11,13 @@ public class InventoryButtonManager : MonoBehaviour
     public GameObject inventoryText;
 
     public Material ghostTowerMat;
+    Plane plane;
 
     // Start is called before the first frame update
     void Start()
     {
         selectedTower = null;
+        plane = new Plane(Vector3.up, Vector3.zero);
     }
 
     // Update is called once per frame
@@ -47,7 +49,6 @@ public class InventoryButtonManager : MonoBehaviour
             {
                 ghostTowerMat.color = new Color(185 / 255f, 40 / 255f, 40 / 255f, 185 / 255f);
                 // From https://answers.unity.com/questions/750801/get-world-position-of-mouse-click-with-z-equals-to.html
-                var plane = new Plane(Vector3.up, Vector3.zero);
                 float distance;
                 plane.Raycast(ray, out distance);
                 selectedTower.transform.position = ray.GetPoint(distance);

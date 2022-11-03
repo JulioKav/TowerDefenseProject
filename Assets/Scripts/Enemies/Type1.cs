@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Type1 : Enemies
 {
-    void Start()
+    new void Start()
     {
         _maxHealth = 100;
         _health = _maxHealth;
@@ -13,8 +13,8 @@ public class Type1 : Enemies
         _range = 10;
         base.Start();
     }
-    
-    void Update()
+
+    new void Update()
     {
         base.Update();
     }

@@ -52,7 +52,6 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        return;
         if (waveOnGoing)
         {
             waveSpawningCheck.text = "Wave Spawning";
