@@ -6,6 +6,7 @@ public class SkillTreeToggle : MonoBehaviour
 
     // Game objects to hide when skill tree is open
     public GameObject inventory;
+    public GameObject background;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class SkillTreeToggle : MonoBehaviour
         bool enabled = skillTree.activeSelf;
         skillTree.SetActive(!enabled);
         // toggle other UI elements
+        background.SetActive(!enabled);
         inventory.SetActive(enabled);
     }
 

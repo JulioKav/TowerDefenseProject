@@ -162,14 +162,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3853214951372589856, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853214951372589856, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleSkillTree
-      objectReference: {fileID: 0}
     - target: {fileID: 3853214951749332939, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -852,7 +844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1826954644
 MonoBehaviour:
   m_ObjectHideFlags: 0
