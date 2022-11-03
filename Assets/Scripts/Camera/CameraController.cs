@@ -8,7 +8,9 @@ public class CameraController : MonoBehaviour
     public float panBorderThickness = 10f;
 
     private bool doMovement = true;
-    
+
+    private bool movementWithMouse = false;
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -16,21 +18,21 @@ public class CameraController : MonoBehaviour
             doMovement = !doMovement;
         }
 
-        if (!doMovement){return;}
-        
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        if (!doMovement) { return; }
+
+        if (Input.GetKey("w") || movementWithMouse && Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime);
         }
-        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
+        if (Input.GetKey("s") || movementWithMouse && Input.mousePosition.y <= panBorderThickness)
         {
             transform.Translate(Vector3.back * panSpeed * Time.deltaTime);
         }
-        if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
+        if (Input.GetKey("d") || movementWithMouse && Input.mousePosition.x >= Screen.width - panBorderThickness)
         {
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime);
         }
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
+        if (Input.GetKey("a") || movementWithMouse && Input.mousePosition.x <= panBorderThickness)
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime);
         }
