@@ -7,7 +7,7 @@ public class SkillManager : MonoBehaviour
 {
 
     #region Structures & Helpers
-    enum SkillClass
+    public enum SkillClass
     {
         PHYSICAL, MAGIC, IMAGINARY, MECHANIC, FINAL
     }
@@ -54,6 +54,9 @@ public class SkillManager : MonoBehaviour
 
     private LinkedList<Skill> unlockOrder;
 
+    public MageSpawner mageSpawner;
+    Mage[] mages;
+
     public int skillPoints = 50;
 
     const int BASE_COST = 50;
@@ -67,6 +70,7 @@ public class SkillManager : MonoBehaviour
     {
         InitBranches();
         unlockOrder = new LinkedList<Skill>();
+        mages = new Mage[4];
     }
 
     void InitBranches()
@@ -124,6 +128,17 @@ public class SkillManager : MonoBehaviour
         finalSkill.button.GetComponentInChildren<TextMeshProUGUI>().text += "\n" + FINAL_SKILL_COST + "SP";
     }
 
+    void UnlockMage(SkillClass skillClass)
+    {
+        mages[(int)skillClass] = mageSpawner.SpawnMage(skillClass).GetComponent<Mage>();
+    }
+
+    void LockMage(SkillClass skillClass)
+    {
+        mageSpawner.DespawnMage(skillClass);
+        mages[(int)skillClass] = null;
+    }
+
     void TryUnlockSkill(Skill skill)
     {
         // TODO: check if enough Skill Points are available to unlock skill
@@ -140,6 +155,9 @@ public class SkillManager : MonoBehaviour
                 endGameText.text = "YOU WIN!";
                 return;
             }
+            // Spawn mage if first skill
+            if (skill.skillIdx == 0) UnlockMage(skill.skillClass);
+            else mages[(int)skill.skillClass].UnlockSkill(skill.skillIdx - 1);
             // See if that makes the next skill unlockable
             SkillBranch branch = branches[(int)skill.skillClass];
             int nextSkillIdx = skill.skillIdx + 1;
@@ -166,6 +184,9 @@ public class SkillManager : MonoBehaviour
         skill.unlocked = false;
         skill.unlockable = true;
         UpdateButtonAppearance(skill);
+        // Despawn mage if it was first skill
+        if (skill.skillIdx == 0) LockMage(skill.skillClass);
+        else mages[(int)skill.skillClass].LockSkill(skill.skillIdx - 1);
         int sId = skill.skillIdx;
         if (sId < branches[bId].skills.Length - 1)
         {
