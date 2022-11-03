@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2595967742129454547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8110310655498945541}
+  - component: {fileID: 3914943044963895753}
+  - component: {fileID: 1909786317730314096}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8110310655498945541
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595967742129454547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5175930830943586198}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 75, y: 75}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3914943044963895753
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595967742129454547}
+  m_CullTransparentMesh: 1
+--- !u!114 &1909786317730314096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595967742129454547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.42745098}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 53a4a17902dfd4609860bdc981bb78de, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2830731787547713077
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,7 +3273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3853214951296185280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3361,6 +3437,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3853214951372589887}
         m_TargetAssemblyTypeName: SkillTreeToggle, Assembly-CSharp
+        m_MethodName: ToggleOtherUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3853214951372589887}
+        m_TargetAssemblyTypeName: SkillTreeToggle, Assembly-CSharp
         m_MethodName: ToggleSkillTree
         m_Mode: 1
         m_Arguments:
@@ -3384,6 +3472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillTree: {fileID: 3853214951296185283}
+  inventory: {fileID: 2830731787547713077}
 --- !u!1 &3853214951385345919
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,6 +6342,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8110310655498945541}
   - {fileID: 5583371131367676819}
   m_Father: {fileID: 4336721945009939482}
   m_RootOrder: -1
@@ -6346,7 +6436,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7006911654937916975}
         m_TargetAssemblyTypeName: InventoryButtonManager, Assembly-CSharp
-        m_MethodName: SpawnTower
+        m_MethodName: HoverTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6368,7 +6458,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06e6accfbc6d4632bb85e09eb534c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 6810060772655838063, guid: 206d1b95137613644ba5eb0fb3c1d63d, type: 3}
+  tower: {fileID: 6810060772655838063, guid: 1133ad82e8eb546bea87a450c8438a24, type: 3}
+  inventoryFrame: {fileID: 2595967742129454547}
+  inventoryText: {fileID: 6538553305300942890}
 --- !u!1 &6538553305300942890
 GameObject:
   m_ObjectHideFlags: 0

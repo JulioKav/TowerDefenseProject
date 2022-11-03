@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class InventoryButtonManager : MonoBehaviour
@@ -5,6 +6,9 @@ public class InventoryButtonManager : MonoBehaviour
 
     public GameObject tower;
     GameObject selectedTower;
+
+    public GameObject inventoryFrame;
+    public GameObject inventoryText;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +24,43 @@ public class InventoryButtonManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // TODO: Make ray only collide with terrain
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("PlacableTerrain")))
             {
-                selectedTower.transform.position = hit.point;
-                Debug.Log(hit.point);
+                {
+                    Vector3 pos = hit.transform.position;
+                    pos.y += 0.25f;
+                    selectedTower.transform.position = pos;
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        DeselectTower();
+                        GameObject originalPrefab = tower.GetComponent<TowerModelInfo>().originalPrefab;
+                        hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab);
+                    }
+                }
             }
         }
     }
 
-    public void SpawnTower()
+    void OnDisable()
+    {
+        DeselectTower();
+    }
+
+    public void HoverTower()
+    {
+        if (selectedTower) DeselectTower();
+        else SelectTower();
+    }
+
+    public void DeselectTower()
+    {
+        Destroy(selectedTower);
+        inventoryFrame.SetActive(false);
+    }
+
+    private void SelectTower()
     {
         selectedTower = Instantiate(tower, new Vector3(0, 0, 0), Quaternion.identity);
-        // TODO: remove turret script properly - maybe second prefab without scripts
-        Destroy(selectedTower.GetComponent<Turret>());
+        inventoryFrame.SetActive(true);
     }
 }
