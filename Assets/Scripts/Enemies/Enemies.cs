@@ -69,6 +69,10 @@ public class Enemies : MonoBehaviour
 
     void Die()
     {
+        
+        SkillManager skillpoints_on_death = gameObject.GetComponent<SkillManager>();
+
+        skillpoints_on_death.AddSkillPoints(50);
         Destroy(gameObject);
     }
 
