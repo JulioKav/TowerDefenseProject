@@ -32,12 +32,13 @@ public class Bullet : MonoBehaviour
         Vector3 direction = target.position - transform.position;
         float distance_per_frame = speed * Time.deltaTime;
 
+        // if the bullet slows, it calls that it has hit target
         if (direction.magnitude <= distance_per_frame)
         {
             hit_target();
             return;
         }
-
+        //bullet follows target
         transform.Translate(direction.normalized * distance_per_frame, Space.World);
         transform.LookAt(target);
 
@@ -47,7 +48,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-
+    // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
@@ -96,6 +97,7 @@ public class Bullet : MonoBehaviour
 
     }
 
+    // checks tags in a collider list in a sphere around explosion point, then deals dmg to all injured enemies
     void Explode()
     {
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
@@ -134,7 +136,7 @@ public class Bullet : MonoBehaviour
         }
 
     }
-
+    // updates enemy hp with dmg
     void Damage_enemy(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -149,6 +151,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    // updates tower hp with dmg
     void Damage_tower(Transform Tower)
     {
         // retrieves script aspect of enemy
@@ -160,6 +163,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    // specific type dmg
     void Magic_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -173,7 +177,7 @@ public class Bullet : MonoBehaviour
             enemy_component.TakeDamage(damage * 3);
         }
     }
-
+    // specific type dmg
     void Physical_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -187,7 +191,7 @@ public class Bullet : MonoBehaviour
             enemy_component.TakeDamage(damage * 3);
         }
     }
-
+    // specific type dmg
     void Imaginary_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -201,7 +205,7 @@ public class Bullet : MonoBehaviour
             enemy_component.TakeDamage(damage * 3);
         }
     }
-
+    // specific type dmg
     void Mechanical_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -215,7 +219,7 @@ public class Bullet : MonoBehaviour
             enemy_component.TakeDamage(damage * 3);
         }
     }
-
+    //visual explosion range
     private void OnDrawGizmosSelected()
     {
 
