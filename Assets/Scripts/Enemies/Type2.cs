@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Type2 : Enemies
 {
-    // Start is called before the first frame update
     new void Start()
     {
+        // Enemy attributes
         base.Start();
         _maxHealth = 150;
         _health = _maxHealth;
@@ -14,7 +14,6 @@ public class Type2 : Enemies
         _range = 10;
     }
 
-    // Update is called once per frame
     new void Update()
     {
         base.Update();

@@ -7,6 +7,7 @@ public class Type1 : Enemies
 {
     new void Start()
     {
+        // Enemy Attributes
         base.Start();
         _maxHealth = 100;
         _health = _maxHealth;

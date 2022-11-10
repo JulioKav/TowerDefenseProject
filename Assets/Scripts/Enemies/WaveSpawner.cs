@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-    // GameObjects
     public Transform[] enemyPrefab;
     GameObject[] spawnPoints;
     public Transform parent;
@@ -13,8 +12,6 @@ public class WaveSpawner : MonoBehaviour
     public float individualSpawnDelay = 0.5f;
 
     public List<Transform>[] waves;
-
-
     int currentWaveId;
     Transform[] currentWave;
     [HideInInspector]
@@ -38,6 +35,7 @@ public class WaveSpawner : MonoBehaviour
     {
     }
 
+    // Populates the wave with enemy prefabs
     void PopulateWave()
     {
         // Wave 1
@@ -61,6 +59,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void ButtonInput()
     {
+        // Spawns waves depending on wave index
         if (currentWave != null) return;
         switch (currentWaveId)
         {
@@ -92,7 +91,6 @@ public class WaveSpawner : MonoBehaviour
         currentWave = new Transform[waves[waveId].Count];
         for (int i = 0; i < waves[waveId].Count; i++)
         {
-            // waveCount.text = "Wave: " + (waveGlobalIndex + 1);
             var enemy = SpawnEnemy(waves[waveId][i].gameObject, spawnPointId);
             currentWave[i] = enemy.transform;
             yield return new WaitForSeconds(individualSpawnDelay);
@@ -100,6 +98,7 @@ public class WaveSpawner : MonoBehaviour
     }
     GameObject SpawnEnemy(GameObject enemyGO, int spawnPointId)
     {
+        // Create enemy objects at designated spawnpoints 
         var enemy = Instantiate(enemyGO,
                                 spawnPoints[spawnPointId].transform.position,
                                 spawnPoints[spawnPointId].transform.rotation, parent)
