@@ -8,11 +8,12 @@ public class Healer : MonoBehaviour
     public int heal_amount = 50;
     private string Allies = "Tower";
     public float heal_range;
+    public float heal_speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("heal", 0f, 1f);
+        InvokeRepeating("heal", 0f, heal_speed);
     }
 
     // Update is called once per frame
