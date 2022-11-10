@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8875824785813524639
+--- !u!1 &5287857317809669664
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4127394741029171689}
-  - component: {fileID: 4286140984695443548}
-  - component: {fileID: 4637372779916342434}
-  - component: {fileID: 6167103369653012489}
-  - component: {fileID: 1370946211988204854}
+  - component: {fileID: 4166573447588151398}
+  - component: {fileID: 7965983630693373362}
+  - component: {fileID: 3027923709913249257}
+  - component: {fileID: 31117462049982906}
   m_Layer: 0
-  m_Name: ProtoMageProjectile
+  m_Name: HealerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4127394741029171689
+--- !u!4 &4166573447588151398
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875824785813524639}
+  m_GameObject: {fileID: 5287857317809669664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.526, y: 1.364, z: 0.107}
-  m_LocalScale: {x: 0.28026482, y: 0.28026482, z: 0.28026482}
+  m_LocalPosition: {x: 4.83, y: 2.27, z: 0}
+  m_LocalScale: {x: 0.61109, y: 0.61109, z: 0.61109}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4286140984695443548
+--- !u!33 &7965983630693373362
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875824785813524639}
+  m_GameObject: {fileID: 5287857317809669664}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4637372779916342434
+--- !u!23 &3027923709913249257
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875824785813524639}
+  m_GameObject: {fileID: 5287857317809669664}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03aa936498a271f4db1af5cee7bd1a9c, type: 2}
+  - {fileID: 2100000, guid: f93a6ad0efc1aa744aaa18a9a630d2a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,32 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6167103369653012489
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875824785813524639}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1370946211988204854
+--- !u!114 &31117462049982906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8875824785813524639}
+  m_GameObject: {fileID: 5287857317809669664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4015ff2e39465f84e99db256c2b30734, type: 3}
+  m_Script: {fileID: 11500000, guid: b86787073cfcc40c59fa5645eaa52300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  explosion_radius: 1
-  impact_effect: {fileID: 4825178348198417852, guid: 1f961fa31bbc54537b58486c2c0eff15, type: 3}
-  damage: 50
+  originalPrefab: {fileID: 5287857317809669664, guid: 1d267898ee81a4b4692fbc447bcfff1e, type: 3}
