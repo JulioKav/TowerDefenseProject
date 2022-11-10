@@ -11,82 +11,126 @@ public class WaveSpawner : MonoBehaviour
 
     public float individualSpawnDelay = 0.5f;
 
-    public EnemyWave[] waves;
+    public List<Transform>[] waves;
 
     public TMPro.TMP_Text waveSpawningCheck;
     public TMPro.TMP_Text waveCount;
 
-    private int waveCurrentIndex;
-    private int waveGlobalIndex;
+    int currentWaveId;
+    Transform[] currentWave;
+    [HideInInspector]
+    public bool waveOnGoing;
 
-    bool waveOnGoing = false;
+    [HideInInspector]
+    public delegate void RoundEndEvent();
+    [HideInInspector]
+    public static event RoundEndEvent OnRoundEnd;
 
     void Start()
     {
+        waves = new List<Transform>[4];
         PopulateWave();
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        waveOnGoing = false;
+        currentWave = null;
     }
 
     private void Update()
     {
-        // if (waveOnGoing)
-        // {
-        //     waveSpawningCheck.text = "Wave Spawning";
-        // }
-        // else
-        // {
-        //     waveSpawningCheck.text = "Wave Not Spawning";
-        // }
     }
 
     void PopulateWave()
     {
         // Wave 1
-        for (int i = 0; i < 4; i++)
+        for (int wave = 0; wave < 4; wave++)
         {
-            if (i % 2 == 0)
+            waves[wave] = new List<Transform>();
+            for (int i = 0; i < Mathf.Pow(2, wave + 2); i++)
             {
-                waves[0].AddEnemy(enemyPrefab[0]);
-            }
-            else
-            {
-                waves[0].AddEnemy(enemyPrefab[1]);
+                if (i % 2 == 0)
+                {
+                    waves[wave].Add(enemyPrefab[0]);
+                }
+                else
+                {
+                    waves[wave].Add(enemyPrefab[1]);
+                }
             }
         }
+
     }
 
     public void ButtonInput()
     {
-        if (waveOnGoing) return;
-        StartCoroutine(StartWave(2));
-        StartCoroutine(StartWave(3));
+        if (currentWave != null) return;
+        switch (currentWaveId)
+        {
+            case 0:
+                StartCoroutine(StartWave(3));
+                break;
+            case 1:
+                StartCoroutine(StartWave(3));
+                break;
+            case 2:
+                StartCoroutine(StartWave(2));
+                break;
+            case 3:
+                StartCoroutine(StartWave(2));
+                break;
+            default:
+                StartCoroutine(StartWave(2));
+                StartCoroutine(StartWave(3));
+                break;
+
+        }
+        StartCoroutine(CheckWaveComplete());
+        currentWaveId++;
     }
 
     public IEnumerator StartWave(int spawnPointId)
     {
-        for (int i = 0; i < waves[0].enemyWave.Count; i++)
+        int waveId = (currentWaveId > 3) ? 3 : currentWaveId;
+        currentWave = new Transform[waves[waveId].Count];
+        for (int i = 0; i < waves[waveId].Count; i++)
         {
-            waveOnGoing = true;
             // waveCount.text = "Wave: " + (waveGlobalIndex + 1);
-            SpawnEnemy(spawnPointId);
+            var enemy = SpawnEnemy(waves[waveId][i].gameObject, spawnPointId);
+            currentWave[i] = enemy.transform;
             yield return new WaitForSeconds(individualSpawnDelay);
-            waveCurrentIndex++;
-            if (waveCurrentIndex == waves[waveGlobalIndex].enemyWave.Count)
-            {
-                waveOnGoing = false;
-                waveCurrentIndex = 0;
-                waveGlobalIndex++;
-            }
         }
     }
-    void SpawnEnemy(int spawnPointId)
+    GameObject SpawnEnemy(GameObject enemyGO, int spawnPointId)
     {
-        var enemyT = Instantiate(waves[waveGlobalIndex].enemyWave[waveCurrentIndex],
+        var enemy = Instantiate(enemyGO,
                                 spawnPoints[spawnPointId].transform.position,
-                                spawnPoints[spawnPointId].transform.rotation, parent);
-        var enemy = enemyT.GetComponent<Enemies>();
+                                spawnPoints[spawnPointId].transform.rotation, parent)
+                            .GetComponent<Enemies>();
         var pointsTransform = spawnPoints[spawnPointId].GetComponent<Waypoints>().Paths[spawnPointId];
         enemy.Waypoints = pointsTransform;
         enemy.target = pointsTransform.GetChild(0);
+        return enemy.gameObject;
+    }
+
+    public IEnumerator CheckWaveComplete()
+    {
+        while (true)
+        {
+            waveOnGoing = false;
+            foreach (var enemy in currentWave)
+            {
+                if (enemy != null)
+                {
+                    waveOnGoing = true;
+                    break;
+                }
+            }
+            if (!waveOnGoing)
+            {
+                currentWave = null;
+                if (OnRoundEnd != null) OnRoundEnd();
+                break;
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 }

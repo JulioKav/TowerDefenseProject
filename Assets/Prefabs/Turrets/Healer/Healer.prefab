@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal_amount: 50
-  heal_range: 3
+  heal_range: 2
   heal_speed: 1
 --- !u!114 &394492052922745441
 MonoBehaviour:
@@ -283,8 +283,8 @@ MonoBehaviour:
   healthBar: {fileID: 7974492258556495263}
   attack_range: 0
   attack_speed: 0
-  _health: 100
-  _maxHealth: 100
+  _health: 250
+  _maxHealth: 250
   Enemy: Enemy
   turn_speed: 0
   bulletprefab: {fileID: 5287857317809669664}

@@ -1,24 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class InventoryButtonManager : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
-
-    public GameObject tower;
     GameObject selectedTower;
-
-    public float yOffset;
-
-    public GameObject inventoryFrame;
-    public GameObject inventoryText;
-
-    public Material ghostTowerMat;
+    InventoryButton selectedButton;
     Plane plane;
+    public Material ghostTowerMat;
 
     // Start is called before the first frame update
     void Start()
     {
         selectedTower = null;
+        selectedButton = null;
         plane = new Plane(Vector3.up, Vector3.zero);
     }
 
@@ -37,13 +34,14 @@ public class InventoryButtonManager : MonoBehaviour
                 if (EventSystem.current.IsPointerOverGameObject()) return;
                 {
                     Vector3 pos = hit.transform.position;
-                    pos.y += yOffset;
+                    pos.y += selectedButton.yOffset;
                     selectedTower.transform.position = pos;
                     if (Input.GetMouseButtonUp(0))
                     {
+                        GameObject originalPrefab = selectedButton.towerModel.gameObject.GetComponent<TowerModelInfo>().originalPrefab;
+                        hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab, selectedButton.yOffset);
+                        selectedButton.numTowers--;
                         DeselectTower();
-                        GameObject originalPrefab = tower.GetComponent<TowerModelInfo>().originalPrefab;
-                        hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab, yOffset);
                     }
                 }
             }
@@ -69,15 +67,28 @@ public class InventoryButtonManager : MonoBehaviour
         else SelectTower();
     }
 
-    public void DeselectTower()
+    public void InventoryButtonClick(InventoryButton button)
     {
-        Destroy(selectedTower);
-        inventoryFrame.SetActive(false);
+        if (button == selectedButton) DeselectTower();
+        else
+        {
+            if (selectedButton) DeselectTower();
+            selectedButton = button;
+            SelectTower();
+        }
     }
 
-    private void SelectTower()
+    void SelectTower()
     {
-        selectedTower = Instantiate(tower, new Vector3(0, -100, 0), Quaternion.identity);
-        inventoryFrame.SetActive(true);
+        selectedTower = Instantiate(selectedButton.towerModel.gameObject, new Vector3(0, -100, 0), Quaternion.identity);
+        selectedButton.inventoryFrame.SetActive(true);
+    }
+
+    void DeselectTower()
+    {
+        if (!selectedButton) return;
+        selectedButton.inventoryFrame.SetActive(false);
+        selectedButton = null;
+        Destroy(selectedTower);
     }
 }

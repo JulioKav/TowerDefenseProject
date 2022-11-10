@@ -48,6 +48,9 @@ public class SkillManager : MonoBehaviour
     }
     #endregion
 
+    public delegate void GameEndEvent(int status); // 1 is win, 0 is loss
+    public static event GameEndEvent OnGameEnd;
+
     SkillBranch[] branches;
     Skill finalSkill;
     public Button finalSkillBtn;
@@ -60,8 +63,8 @@ public class SkillManager : MonoBehaviour
     public int skillPoints = 50;
 
     const int BASE_COST = 50;
-    const int COST_PER_LEVEL = 50;
-    const int FINAL_SKILL_COST = 500;
+    const int COST_PER_LEVEL = 150;
+    const int FINAL_SKILL_COST = 1000;
 
     public TextMeshProUGUI endGameText;
 
@@ -153,6 +156,7 @@ public class SkillManager : MonoBehaviour
             if (skill.skillClass == SkillClass.FINAL)
             {
                 endGameText.text = "YOU WIN!";
+                OnGameEnd(1);
                 return;
             }
             // Spawn mage if first skill
@@ -220,7 +224,7 @@ public class SkillManager : MonoBehaviour
             {
                 this.skillPoints = 0;
                 endGameText.text = "YOU LOSE!";
-                // TODO: Lose game
+                OnGameEnd(0);
             }
         }
     }

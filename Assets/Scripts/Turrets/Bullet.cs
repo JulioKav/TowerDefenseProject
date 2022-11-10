@@ -87,8 +87,8 @@ public class Bullet : MonoBehaviour
                 }
                 else
                     Damage_enemy(target);
-                Damage_tower(target);
             }
+            if (target.tag == "Tower") Damage_tower(target);
         }
 
 

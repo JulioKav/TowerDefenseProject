@@ -53,7 +53,7 @@ public class Enemies : MonoBehaviour
     {
         if (wavepointIndex >= Waypoints.childCount - 1)
         {
-            skillManager.SubtractSkillPoints(25);
+            skillManager.SubtractSkillPoints(20);
             Destroy(gameObject);
             return;
         }
@@ -79,7 +79,7 @@ public class Enemies : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-        skillManager.AddSkillPoints(50);
+        skillManager.AddSkillPoints(20);
     }
 
 

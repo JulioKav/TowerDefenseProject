@@ -400,7 +400,6 @@ MonoBehaviour:
   speed: 4
   target: {fileID: 0}
   Waypoints: {fileID: 0}
-  UI: {fileID: 3853214951749332943, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
   healthBar: {fileID: 7705250150219191229}
 --- !u!114 &-6655786311451173978
 MonoBehaviour:
@@ -417,8 +416,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   attack_range: 5
   attack_speed: 1
-  _health: 100
-  _maxHealth: 100
+  _health: 150
+  _maxHealth: 150
   Enemy: Tower
   turn_speed: 0
   bulletprefab: {fileID: 3795423907188121459, guid: f6bc9e14f4ce1304a9a79ca97919e7a5, type: 3}

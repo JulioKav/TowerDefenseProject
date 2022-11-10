@@ -1,39 +1,52 @@
+using TMPro;
 using UnityEngine;
 
 public class SkillTreeToggle : MonoBehaviour
 {
-    public GameObject skillTree;
+    public Transform skillTree;
     private Vector3 skillTreePos;
 
     // Game objects to hide when skill tree is open
-    public GameObject inventory;
+    public Transform hideWhenSkillTreeVisible;
+    private Vector3 hideWhenSkillTreeVisiblePos;
+
     public GameObject background;
+
+    private TextMeshProUGUI text;
+
+    bool skillTreeVisible;
 
     // Start is called before the first frame update
     void Start()
     {
-        skillTreePos = skillTree.transform.position;
+        skillTreePos = skillTree.position;
+        hideWhenSkillTreeVisiblePos = hideWhenSkillTreeVisible.position;
+        skillTreeVisible = false;
+        text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         HideSkillTree();
     }
 
     public void ToggleSkillTree()
     {
-        bool enabled = background.activeSelf;
-        if (enabled) HideSkillTree();
-        else ShowSkillTree();
-        // toggle other UI elements
-        background.SetActive(!enabled);
-        inventory.SetActive(enabled);
+        skillTreeVisible = !skillTreeVisible;
+        if (skillTreeVisible) ShowSkillTree();
+        else HideSkillTree();
     }
 
     private void HideSkillTree()
     {
-        skillTree.transform.position = Vector3.right * 10000;
+        skillTree.position += Vector3.right * 10000;
+        hideWhenSkillTreeVisible.position = hideWhenSkillTreeVisiblePos;
+        background.SetActive(false);
+        text.text = "Show Skill Tree";
     }
 
     private void ShowSkillTree()
     {
-        skillTree.transform.position = skillTreePos;
+        skillTree.position = skillTreePos;
+        hideWhenSkillTreeVisible.position += Vector3.right * 10000;
+        background.SetActive(true);
+        text.text = "Hide Skill Tree";
     }
 
 }

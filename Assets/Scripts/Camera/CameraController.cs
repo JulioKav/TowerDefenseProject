@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (panSpeed == 0) return;
+
         if (Input.GetKey(KeyCode.Escape))
         {
             doMovement = !doMovement;
@@ -36,5 +38,20 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime);
         }
+    }
+
+    void OnEnable()
+    {
+        SkillManager.OnGameEnd += GameEndHandler;
+    }
+
+    void OnDisable()
+    {
+        SkillManager.OnGameEnd -= GameEndHandler;
+    }
+
+    void GameEndHandler(int status)
+    {
+        panSpeed = 0f;
     }
 }
