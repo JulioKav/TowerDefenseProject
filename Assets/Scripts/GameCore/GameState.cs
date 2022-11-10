@@ -16,15 +16,17 @@ static class Constants
     public const int origin = 0;//(MAX_MAPSIZE - 1) / 2;
     public const int MAX_LAYERSIZE = 3;// Can be edited, different game object on the same grid will be stored in different layer.
 
-    
+
 }
 
-namespace MapEnums {
-    public enum mapMaterial{
+namespace MapEnums
+{
+    public enum mapMaterial
+    {
         BASE,
         SPAWNER,
         ROAD,
-        CUBE, 
+        CUBE,
     };
     public enum direction
     {
@@ -50,15 +52,15 @@ public class GameState : MonoBehaviour
 
     private void setGameGrid(int x, int y, layer l, mapMaterial material)
     {
-        gameGrid[x+ (MAX_MAPSIZE - 1) / 2, y+ (MAX_MAPSIZE - 1) / 2, (int)l] = (int)material;
+        gameGrid[x + (MAX_MAPSIZE - 1) / 2, y + (MAX_MAPSIZE - 1) / 2, (int)l] = (int)material;
         return;
     }
-    
-    
+
+
     private void spawnMapMaterial(mapMaterial material, int x, int y, int height = 0) //Spawn specific material in the location x,y refer to the grid system
     {
         //Will add facing direction in the future, if mapMaterial is differed 
-        
+
         Vector3 pos; pos.x = -x; pos.z = -y; pos.y = (0.5f * height);
         Vector3 angle; angle.x = 0.0f; angle.y = 0.0f; angle.z = 0.0f;
 
@@ -115,10 +117,10 @@ public class GameState : MonoBehaviour
 
     }
 
-    void Start()
+    void Awake()
     {
         setGameGrid(0, 0, layer.TERRAIN, BASE);
-        
+
         spawnMapMaterial(mapMaterial.BASE, origin, origin);
         if (isPrototype == true)
         {

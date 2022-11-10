@@ -64,7 +64,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 6359345768752633327, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
+      propertyPath: m_TagString
+      value: SpawnPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8475457571591531562, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
+--- !u!1 &3957943522925004869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6359345768752633327, guid: 3aa01ab61b4bcaf269d9caa3413aef67, type: 3}
+  m_PrefabInstance: {fileID: 7975206305795317162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6095969144142978329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957943522925004869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f712beddd205d52a53087e2dd70f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Paths:
+  - {fileID: 5174726096371785356, guid: 7771d14cf787649c7aa4af2afee08790, type: 3}
+  - {fileID: 5174726096371785356, guid: 7771d14cf787649c7aa4af2afee08790, type: 3}
+  - {fileID: 5174726096371785356, guid: 7771d14cf787649c7aa4af2afee08790, type: 3}
+  - {fileID: 4727369727349232603, guid: aa7107f48b5124c888980433eeefcaad, type: 3}

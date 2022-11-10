@@ -398,6 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  target: {fileID: 0}
+  Waypoints: {fileID: 0}
+  UI: {fileID: 3853214951749332943, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
   healthBar: {fileID: 1520257046650462586}
 --- !u!114 &-6655786311451173978
 MonoBehaviour:

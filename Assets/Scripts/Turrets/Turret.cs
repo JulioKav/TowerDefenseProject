@@ -7,8 +7,8 @@ public class Turret : MonoBehaviour
 {
     private Transform target;
     private Enemy targetEnemy;
-    
-    [Header("Unity Stuff")] 
+
+    [Header("Unity Stuff")]
     public Image healthBar;
 
     [Header("Turret Stats")]
@@ -107,14 +107,13 @@ public class Turret : MonoBehaviour
 
         attack_countdown -= Time.deltaTime;
 
-       
+
     }
 
 
 
     void shoot()
     {
-
 
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
@@ -127,7 +126,7 @@ public class Turret : MonoBehaviour
 
 
     }
-    
+
     public void TakeDamage(int amountOfDamage)
     {
         _health -= amountOfDamage;

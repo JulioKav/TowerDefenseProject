@@ -1,10 +1,11 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyWave : MonoBehaviour
 {
+    [HideInInspector]
     public List<Transform> enemyWave;
 
     public void AddEnemy(Transform enemy)

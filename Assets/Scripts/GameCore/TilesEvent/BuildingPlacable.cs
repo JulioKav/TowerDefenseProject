@@ -9,10 +9,10 @@ public class BuildingPlacable : MonoBehaviour
 {
     //public Transform parent;
     // Start is called before the first frame update
-    public void PlaceTower(GameObject turret)
+    public void PlaceTower(GameObject turret, float yOffset)
     {
         Vector3 pos = transform.position;
-        pos.y += 0.25f;
+        pos.y += yOffset;
 
         Instantiate(turret, pos, transform.rotation);
     }

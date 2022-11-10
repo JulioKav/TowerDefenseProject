@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
 
         transform.Translate(direction.normalized * distance_per_frame, Space.World);
         transform.LookAt(target);
-        
+
 
 
 
@@ -58,8 +58,10 @@ public class Bullet : MonoBehaviour
         if (explosion_radius > 0f)
         {
             Explode();
-        } else
-        { if (target.tag == "Enemy")
+        }
+        else
+        {
+            if (target.tag == "Enemy")
             {
                 if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
@@ -93,10 +95,10 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
 
     }
-    
-    void Explode ()
+
+    void Explode()
     {
-        Collider [] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
+        Collider[] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
         foreach (Collider collider in collided_objects)
         {
             if (collider.tag == "Enemy")
@@ -105,7 +107,7 @@ public class Bullet : MonoBehaviour
                 {
                     Magic_damage(collider.transform);
                 }
-                
+
                 if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
                 {
                     Physical_damage(collider.transform);
@@ -123,7 +125,7 @@ public class Bullet : MonoBehaviour
                     Damage_enemy(collider.transform);
             }
 
-            
+
 
             if (collider.tag == "Tower")
             {
@@ -131,18 +133,18 @@ public class Bullet : MonoBehaviour
             }
         }
 
-    }    
-    
-    void Damage_enemy (Transform Enemy)
+    }
+
+    void Damage_enemy(Transform Enemy)
     {
         // retrieves script aspect of enemy
-        Enemies enemy_component =  Enemy.GetComponent<Enemies>();
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-        
+
 
         if (enemy_component != null)
         {
-            
+
             enemy_component.TakeDamage(damage);
         }
     }
@@ -168,7 +170,7 @@ public class Bullet : MonoBehaviour
         if (enemy_component != null)
         {
 
-            enemy_component.TakeDamage(damage*3);
+            enemy_component.TakeDamage(damage * 3);
         }
     }
 

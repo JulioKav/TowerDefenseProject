@@ -7,6 +7,8 @@ public class InventoryButtonManager : MonoBehaviour
     public GameObject tower;
     GameObject selectedTower;
 
+    public float yOffset;
+
     public GameObject inventoryFrame;
     public GameObject inventoryText;
 
@@ -35,13 +37,13 @@ public class InventoryButtonManager : MonoBehaviour
                 if (EventSystem.current.IsPointerOverGameObject()) return;
                 {
                     Vector3 pos = hit.transform.position;
-                    pos.y += 0.25f;
+                    pos.y += yOffset;
                     selectedTower.transform.position = pos;
                     if (Input.GetMouseButtonUp(0))
                     {
                         DeselectTower();
                         GameObject originalPrefab = tower.GetComponent<TowerModelInfo>().originalPrefab;
-                        hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab);
+                        hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab, yOffset);
                     }
                 }
             }

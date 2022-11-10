@@ -10,7 +10,6 @@ public abstract class Mage : MonoBehaviour
     public void Start()
     {
         skillsUnlocked = new bool[] { false, false, false, false };
-        Debug.Log(skillsUnlocked.Length);
     }
 
     public virtual void UnlockSkill(int id)

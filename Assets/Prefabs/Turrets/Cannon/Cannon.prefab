@@ -574,7 +574,7 @@ Transform:
   - {fileID: 4684884370650287145}
   - {fileID: 272579254}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -91.147, z: 0}
 --- !u!114 &4193301359853601190
 MonoBehaviour:
@@ -611,7 +611,7 @@ CapsuleCollider:
   m_Radius: 3
   m_Height: 10
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 2}
+  m_Center: {x: 0, y: 1, z: 2}
 --- !u!1 &6988021439278284862
 GameObject:
   m_ObjectHideFlags: 0

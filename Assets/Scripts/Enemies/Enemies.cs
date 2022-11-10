@@ -8,9 +8,16 @@ public class Enemies : MonoBehaviour
     protected float _health;
     protected float _attack;
     protected float _range;
-    protected Transform _target;
-    
-    [Header("Unity Stuff")] 
+
+
+    [HideInInspector]
+    public Transform target;
+    [HideInInspector]
+    public Transform Waypoints;
+    private SkillManager skillManager;
+
+
+    [Header("Unity Stuff")]
     public Image healthBar;
 
     enum subtype
@@ -19,37 +26,39 @@ public class Enemies : MonoBehaviour
         Mechanic,
         Magic,
     };
-    
+
     private int wavepointIndex = 0;
-    
-    protected void Start()
+
+    public void Start()
     {
-        _target = Waypoints.points[0];
+        skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
     }
 
     protected void Update()
     {
-        Vector3 direction = _target.position - transform.position;
+        if (target == null) return;
+        Vector3 direction = target.position - transform.position;
         transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, _target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
         {
             GetNextWaypoint();
         }
     }
 
-    
+
 
 
     void GetNextWaypoint()
     {
-        if (wavepointIndex >= Waypoints.points.Length - 1)
+        if (wavepointIndex >= Waypoints.childCount - 1)
         {
+            skillManager.SubtractSkillPoints(25);
             Destroy(gameObject);
             return;
         }
         wavepointIndex++;
-        _target = Waypoints.points[wavepointIndex];
+        target = Waypoints.GetChild(wavepointIndex);
     }
 
 
@@ -69,11 +78,8 @@ public class Enemies : MonoBehaviour
 
     void Die()
     {
-        
-        SkillManager skillpoints_on_death = gameObject.GetComponent<SkillManager>();
-
-        skillpoints_on_death.AddSkillPoints(50);
         Destroy(gameObject);
+        skillManager.AddSkillPoints(50);
     }
 
 
