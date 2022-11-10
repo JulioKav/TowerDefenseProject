@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
+    // GameObjects
     public Transform[] enemyPrefab;
     GameObject[] spawnPoints;
     public Transform parent;
@@ -13,8 +14,6 @@ public class WaveSpawner : MonoBehaviour
 
     public List<Transform>[] waves;
 
-    public TMPro.TMP_Text waveSpawningCheck;
-    public TMPro.TMP_Text waveCount;
 
     int currentWaveId;
     Transform[] currentWave;
