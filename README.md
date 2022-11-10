@@ -12,6 +12,10 @@ On top of this, you will have the option to open a skill tree. Here are 4 branch
 
 The currency to buy these skills is skill points. You start with 50 skill points, which is enough to unlock one mage at the start. You gain skill points by killing enemies (currently 20 per enemy) and lose skill points (currently 20 per enemy) when enemies reach your base (blue cube). When you lose skill points that would take you below 0, you lose the last skill you acquired (and gain half its cost as skill points). If you lose skill points that would take you below 0 and have no more skills unlocked, you lose the game. When you purchase the final skill (can only be purchased once all skill branches are bought), you win the game.
 
+There are 2 types of enemies, blue and red:
+- Blue enemies are slow and do not have a lot of Health
+- Red enemies are faster with more Health
+
 To play, click on one of the towers on the inventory, or unlock the mage by opening the skill tree and clicking on Skill 1 on the top left. Press the "Next Wave" button to spawn the next wave. Waves get increasingly more difficult (until wave 5, then they stay constant) and also start spawning on different, and later multiple paths. 
 
 ## External Sources
