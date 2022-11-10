@@ -18,6 +18,8 @@ There are 2 types of enemies, blue and red:
 
 To play, click on one of the towers on the inventory, or unlock the mage by opening the skill tree and clicking on Skill 1 on the top left. Press the "Next Wave" button to spawn the next wave. Waves get increasingly more difficult (until wave 5, then they stay constant) and also start spawning on different, and later multiple paths. 
 
+Use WASD to move the Camera.
+
 ## External Sources
 
 Some code used and adapted from https://www.youtube.com/watch?v=beuoNuK2tbk&list=PLPV2KyIb3jR4u5jX8za5iU1cqnQPmbzG0 , https://github.com/Brackeys/Tower-Defense-Tutorial
