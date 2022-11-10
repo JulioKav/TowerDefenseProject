@@ -22,6 +22,7 @@ public class Healer : MonoBehaviour
         
     }
 
+    // Radius of healing (Visual aid only)
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
@@ -31,7 +32,7 @@ public class Healer : MonoBehaviour
 
     void heal_tower(GameObject Tower)
     {
-        // retrieves script aspect of enemy
+        // retrieves script aspect of Turret, to get heal damage property
         Turret turret_component = Tower.GetComponent<Turret>();
 
         if (turret_component != null)

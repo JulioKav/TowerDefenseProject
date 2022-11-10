@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tags : MonoBehaviour
-{
+{// allows for multiple tags
     [SerializeField]
     private List<string> tags = new List<string>();
 

@@ -111,7 +111,7 @@ public class Turret : MonoBehaviour
     }
 
 
-
+    // turret shooting out a bullet, instantiating the bulletprefab, bullet chases target.
     void shoot()
     {
 
@@ -127,6 +127,8 @@ public class Turret : MonoBehaviour
 
     }
 
+    // hp gets minused from current hp
+    // healthbar is made used the ratio of health to max health 
     public void TakeDamage(int amountOfDamage)
     {
         _health -= amountOfDamage;
@@ -139,6 +141,8 @@ public class Turret : MonoBehaviour
         }
     }
 
+    // hp gets added from current hp
+    // healthbar is made used the ratio of health to max health 
     public void HealDamage(int amountOfDamage)
     {
         _health += amountOfDamage;
@@ -151,6 +155,7 @@ public class Turret : MonoBehaviour
         }
     }
 
+    //destroys game object
     void Die()
     {
         Destroy(gameObject);
