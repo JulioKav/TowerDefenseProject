@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ProtoMage : Mage
 {
+    // The golden tower prototype mage
 
     float[] attackSpeedBuffs;
 

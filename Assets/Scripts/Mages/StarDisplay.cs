@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class StarDisplay : MonoBehaviour
 {
+    // Responsible for the star display above the mage tower
 
     public Image[] stars;
 
@@ -15,11 +16,13 @@ public class StarDisplay : MonoBehaviour
 
     public void UnlockSkill(int skillId)
     {
+        // Makes star fully visible
         stars[skillId].color = Color.white;
     }
 
     public void LockSkill(int skillId)
     {
+        // Make star translucent
         stars[skillId].color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
     }
 }

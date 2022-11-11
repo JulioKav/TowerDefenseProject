@@ -911,10 +911,8 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 8681798273466170120, guid: a16aac5791c8478f88758cf03f9746ab, type: 3}
   - {fileID: 8681798273466170120, guid: 455440f76f9b899d2a8103ad464115dc, type: 3}
-  parent: {fileID: 1999873657}
+  enemiesParent: {fileID: 580037962}
   individualSpawnDelay: 0.5
-  waveSpawningCheck: {fileID: 0}
-  waveCount: {fileID: 0}
   waveOnGoing: 0
 --- !u!1001 &4727369726291884297
 PrefabInstance:

@@ -1,11 +1,11 @@
 
-using static MapInstructionEnums.mapInstructionType;
-using static MapEnums.direction;
-using static MapEnums.mapMaterial;
 using MapEnums;
 using MapInstructionEnums;
 using UnityEngine;
 using static Constants;
+using static MapEnums.direction;
+using static MapEnums.mapMaterial;
+using static MapInstructionEnums.mapInstructionType;
 
 namespace MapInstructionEnums
 {
@@ -18,6 +18,8 @@ namespace MapInstructionEnums
 
 public static class MapGenerator
 {
+    // This class allows for map generation through our grid system. It sets up data structures to store all information needed
+    // for map generation in one place, so that the logic code for map generation is separate to the structure code.
 
     public struct MapInstr
     {
@@ -34,14 +36,14 @@ public static class MapGenerator
             //times is how many times of rotation, 90 degrees reverseclockwise per times. So 4 = 0 Easy to understand
             //reverseclockwise Rotation, (x,y) -> (-y,x)
             int x = this.position.x, y = this.position.y;
-            for(int i = 0; i < times; i++)
+            for (int i = 0; i < times; i++)
             {
                 int temp = x;
                 x = -y;
                 y = temp;
                 switch (this.direction)
                 {
-                    case EAST: this.direction= NORTH; break;
+                    case EAST: this.direction = NORTH; break;
                     case WEST: this.direction = SOUTH; ; break;
                     case NORTH: this.direction = WEST; ; break;
                     case SOUTH: this.direction = EAST; ; break;
@@ -54,7 +56,7 @@ public static class MapGenerator
         }
         public MapInstr slide(direction dir, int distance)
         {
-            for(int i = 0; i < distance; i++)
+            for (int i = 0; i < distance; i++)
             {
                 switch (dir)
                 {
@@ -67,6 +69,8 @@ public static class MapGenerator
             }
             return this;
         }
+
+        // Map instruction for a row, having a direction and length
         public MapInstr(mapInstructionType type, mapMaterial material, Vector2Int position, direction direction, int length, int height = 0)
         {
             this.type = type;
@@ -77,6 +81,7 @@ public static class MapGenerator
             this.height = height;
         }
 
+        // Map instruction for a single cube
         public MapInstr(mapInstructionType type, mapMaterial material, Vector2Int position, int height = 0)
         {
             this.type = type;
@@ -89,6 +94,7 @@ public static class MapGenerator
         }
     }
 
+    // The instructions for our prototype map
     public static MapInstr[] prototypeMap = {
        
         //W

@@ -10,8 +10,10 @@ public class SkillTreeToggle : MonoBehaviour
     public Transform hideWhenSkillTreeVisible;
     private Vector3 hideWhenSkillTreeVisiblePos;
 
+    // Background that shows when skill tree is open
     public GameObject background;
 
+    // Skill Tree Toggle button text
     private TextMeshProUGUI text;
 
     bool skillTreeVisible;
@@ -19,8 +21,10 @@ public class SkillTreeToggle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get old positions of UI elements
         skillTreePos = skillTree.position;
         hideWhenSkillTreeVisiblePos = hideWhenSkillTreeVisible.position;
+        // Set default values
         skillTreeVisible = false;
         text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         HideSkillTree();
@@ -35,6 +39,8 @@ public class SkillTreeToggle : MonoBehaviour
 
     private void HideSkillTree()
     {
+        // Hides skill tree by moving it off screen, and moving other UI elements back on screen.
+        // Cant disable due to lost functionality
         skillTree.position += Vector3.right * 10000;
         hideWhenSkillTreeVisible.position = hideWhenSkillTreeVisiblePos;
         background.SetActive(false);
@@ -43,6 +49,7 @@ public class SkillTreeToggle : MonoBehaviour
 
     private void ShowSkillTree()
     {
+        // Moves UI elements back on/off screen respectively.
         skillTree.position = skillTreePos;
         hideWhenSkillTreeVisible.position += Vector3.right * 10000;
         background.SetActive(true);

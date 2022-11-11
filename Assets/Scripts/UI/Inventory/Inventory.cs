@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    // Currently selected tower and button
     GameObject selectedTower;
     InventoryButton selectedButton;
+    // Plane for intersection tests
     Plane plane;
+    // Ghost material for hovered towers to be transparent
     public Material ghostTowerMat;
 
     // Start is called before the first frame update
@@ -26,18 +29,20 @@ public class Inventory : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // TODO: Make ray only collide with terrain
+            // Ray can only collide with terrain
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("PlacableTerrain")))
             {
                 ghostTowerMat.color = new Color(40 / 255f, 40 / 255f, 40 / 255f, 185 / 255f);
 
                 if (EventSystem.current.IsPointerOverGameObject()) return;
                 {
+                    // If a placable terrain is hit, update the tower to be on its position
                     Vector3 pos = hit.transform.position;
                     pos.y += selectedButton.yOffset;
                     selectedTower.transform.position = pos;
                     if (Input.GetMouseButtonUp(0))
                     {
+                        // When a selected tower is placed, spawn it at the right spot and deselect it after.
                         GameObject originalPrefab = selectedButton.towerModel.gameObject.GetComponent<TowerModelInfo>().originalPrefab;
                         hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab, selectedButton.yOffset);
                         selectedButton.numTowers--;
@@ -45,6 +50,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
             }
+            // otherwise it will get a position from the flat plane variable, and map to that
             else
             {
                 ghostTowerMat.color = new Color(185 / 255f, 40 / 255f, 40 / 255f, 185 / 255f);
@@ -67,10 +73,13 @@ public class Inventory : MonoBehaviour
         else SelectTower();
     }
 
+    // This is called by buttons to tell the inventory script theyve been clicked
     public void InventoryButtonClick(InventoryButton button)
     {
+        // If same button is clicked thats previously selected, deselect it
         if (button == selectedButton) DeselectTower();
         else
+        // different button is clicked: select it (and deselect previous)
         {
             if (selectedButton) DeselectTower();
             selectedButton = button;
@@ -80,12 +89,14 @@ public class Inventory : MonoBehaviour
 
     void SelectTower()
     {
+        // Make instance of tower, and highlight the button
         selectedTower = Instantiate(selectedButton.towerModel.gameObject, new Vector3(0, -100, 0), Quaternion.identity);
         selectedButton.inventoryFrame.SetActive(true);
     }
 
     void DeselectTower()
     {
+        // Delete instance of tower, and unhighlight the previously selected button
         if (!selectedButton) return;
         selectedButton.inventoryFrame.SetActive(false);
         selectedButton = null;

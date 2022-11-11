@@ -18,6 +18,7 @@ public class InventoryButton : MonoBehaviour
     void Start()
     {
         numTowers = 1;
+        // Subscribes this buttons onClick to the parent (Inventory sript)'s InventoryButtonClick function with this button as the argument
         gameObject.GetComponent<Button>().onClick.AddListener(() => transform.parent.GetComponent<Inventory>().InventoryButtonClick(this));
         inventoryText = gameObject.GetComponentsInChildren<TextMeshProUGUI>()[0];
     }
@@ -28,18 +29,13 @@ public class InventoryButton : MonoBehaviour
         if (inventoryText) inventoryText.text = "" + numTowers;
     }
 
-    void OnEnable()
-    {
-        WaveSpawner.OnRoundEnd += RoundEndHandler;
-    }
-
-    void OnDisable()
-    {
-        WaveSpawner.OnRoundEnd -= RoundEndHandler;
-    }
+    // Subscribe to RoundEndEvent
+    void OnEnable() { WaveSpawner.OnRoundEnd += RoundEndHandler; }
+    void OnDisable() { WaveSpawner.OnRoundEnd -= RoundEndHandler; }
 
     void RoundEndHandler()
     {
+        // Add 1 tower each round end
         AddTowers(1);
     }
 
