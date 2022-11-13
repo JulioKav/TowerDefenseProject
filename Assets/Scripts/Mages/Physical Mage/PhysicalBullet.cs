@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PhysicalBullet : MonoBehaviour
 {
     public float speed = 50f;
 
@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
     public GameObject impact_effect;
 
     public int damage = 50;
+
+    public GameObject target_null_effect;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -25,6 +27,10 @@ public class Bullet : MonoBehaviour
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
         if (target == null)
         {
+            GameObject effect_instance = (GameObject)Instantiate(target_null_effect, transform.position, transform.rotation);
+
+            Destroy(effect_instance, 5f);
+
             Destroy(gameObject);
             return;
         }
@@ -64,39 +70,24 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    Magic_damage(target);
-                }
-                else
+               
 
                 if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
                 {
-                    
+
                     if (identity_of_shooter.tag == "Physical Mage")
                     {
                         Physical_damage(target);
                     }
                 }
-                else
 
-                if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
+                else
                 {
-                    Imaginary_damage(target);
-                }
-                else
-
-                if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {   if (identity_of_shooter.tag == "Mechanical Mage")
-                    {
-                        Mechanical_damage(target);
-                    }
-                    
-                }
-                else
                     Damage_enemy(target);
+                }
+                    
             }
-            if (target.tag == "Tower") Damage_tower(target);
+            
         }
 
 
@@ -112,41 +103,26 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    Magic_damage(collider.transform);
-                }
 
-                else if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
-                  if(identity_of_shooter.tag == "Physical Mage")
-                   {
-                    Physical_damage(target);
-                   }
-
-                else if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
-                {
-                    Imaginary_damage(collider.transform);
-                }
-                else if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {
-                    if (identity_of_shooter.tag == "Mechanical Mage")
+                    if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
                     {
-                        Mechanical_damage(target);
+                        if (identity_of_shooter.tag == "Physical Mage")
+                        {
+                                Physical_damage(target);
+                        }
                     }
-                }
-                else
+                    
+
+                    else
                     {
                         Damage_enemy(collider.transform);
                     }
-                    
+
             }
 
 
 
-            if (collider.tag == "Tower")
-            {
-                Damage_tower(collider.transform);
-            }
+            
         }
 
     }
@@ -165,76 +141,24 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    // updates tower hp with dmg
-    void Damage_tower(Transform Tower)
-    {
-        // retrieves script aspect of enemy
-        Turret turret_component = Tower.GetComponent<Turret>();
+    
 
-        if (turret_component != null)
-        {
-            turret_component.TakeDamage(damage);
-        }
-    }
-
-    // specific type dmg
-    void Magic_damage(Transform Enemy)
-    {
-        // retrieves script aspect of enemy
-        Enemies enemy_component = Enemy.GetComponent<Enemies>();
-
-
-
-        if (enemy_component != null)
-        {
-
-            enemy_component.TakeDamage(damage * 3);
-        }
-    }
-    // specific type dmg
+    
     void Physical_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-        
-
-        if (enemy_component != null)
-        {
-
-            enemy_component.TakeDamage(damage * 3);
-            
-        }
-    }
-    // specific type dmg
-    void Imaginary_damage(Transform Enemy)
-    {
-        // retrieves script aspect of enemy
-        Enemies enemy_component = Enemy.GetComponent<Enemies>();
-
 
 
         if (enemy_component != null)
         {
 
             enemy_component.TakeDamage(damage * 3);
+
         }
     }
-    // specific type dmg
-    void Mechanical_damage(Transform Enemy)
-    {
-        // retrieves script aspect of enemy
-        Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-
-
-        if (enemy_component != null)
-        {
-
-            enemy_component.TakeDamage(damage *2);
-            //enemy_component.mechanical_lift(1);
-        }
-    }
     //visual explosion range
     private void OnDrawGizmosSelected()
     {
@@ -243,3 +167,4 @@ public class Bullet : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, explosion_radius);
     }
 }
+

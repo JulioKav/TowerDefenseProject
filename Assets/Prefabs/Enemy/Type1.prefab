@@ -436,4 +436,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Enemy
+  - Physical Enemy
