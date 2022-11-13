@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
 
     public int damage = 50;
 
-
+    public GameObject identity_of_shooter;
     public void Chase(Transform _target)
     {
         target = _target;
@@ -83,8 +83,11 @@ public class Bullet : MonoBehaviour
                 else
 
                 if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {
-                    Mechanical_damage(target);
+                {   if (identity_of_shooter.tag == "Mechanical Mage")
+                    {
+                        Mechanical_damage(target);
+                    }
+                    
                 }
                 else
                     Damage_enemy(target);
@@ -121,7 +124,10 @@ public class Bullet : MonoBehaviour
                 }
                 else if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
-                    Mechanical_damage(collider.transform);
+                    if (identity_of_shooter.tag == "Mechanical Mage")
+                    {
+                        Mechanical_damage(target);
+                    }
                 }
                 else
                     Damage_enemy(collider.transform);
@@ -216,7 +222,8 @@ public class Bullet : MonoBehaviour
         if (enemy_component != null)
         {
 
-            enemy_component.TakeDamage(damage * 3);
+            enemy_component.TakeDamage(damage *2);
+            enemy_component.mechanical_lift(1);
         }
     }
     //visual explosion range

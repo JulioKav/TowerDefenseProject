@@ -47,6 +47,8 @@ public class Enemies : MonoBehaviour
         {
             GetNextWaypoint();
         }
+
+        
     }
     void GetNextWaypoint()
     {
@@ -82,7 +84,10 @@ public class Enemies : MonoBehaviour
     }
 
 
-
+    public void mechanical_lift(int time)
+    {
+        target = Waypoints.GetChild(0);
+    }
 
 
 

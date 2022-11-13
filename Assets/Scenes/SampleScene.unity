@@ -8188,6 +8188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f712beddd205d52a53087e2dd70f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Paths: []
 --- !u!1001 &1090943212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14105,14 +14106,9 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 8681798273466170120, guid: a16aac5791c8478f88758cf03f9746ab, type: 3}
   - {fileID: 8681798273466170120, guid: 455440f76f9b899d2a8103ad464115dc, type: 3}
-  spawnPoint: {fileID: 2014111506}
-  parent: {fileID: 580037962}
+  enemiesParent: {fileID: 0}
   individualSpawnDelay: 0.5
-  waves:
-  - {fileID: 1999873659}
-  - {fileID: 1999873659}
-  waveSpawningCheck: {fileID: 0}
-  waveCount: {fileID: 0}
+  waveOnGoing: 0
 --- !u!114 &1999873659
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -624,7 +624,7 @@ GameObject:
   - component: {fileID: 1682231119041540461}
   m_Layer: 0
   m_Name: ProtoMage
-  m_TagString: Untagged
+  m_TagString: Mechanical Mage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

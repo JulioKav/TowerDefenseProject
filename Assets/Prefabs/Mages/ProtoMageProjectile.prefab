@@ -113,4 +113,5 @@ MonoBehaviour:
   speed: 20
   explosion_radius: 1
   impact_effect: {fileID: 4825178348198417852, guid: 1f961fa31bbc54537b58486c2c0eff15, type: 3}
-  damage: 50
+  damage: 8
+  identity_of_shooter: {fileID: 6810060772655838063, guid: bcf19b36814d04531b051291cb2f641c, type: 3}
