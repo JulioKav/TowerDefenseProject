@@ -129,6 +129,8 @@ public virtual void Skill4()
     {
         if (target == null)
         {
+            attack_countdown = attack_speed / 2;
+            Target_Search();
             return;
         }
 

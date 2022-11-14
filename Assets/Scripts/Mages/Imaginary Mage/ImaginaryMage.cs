@@ -16,7 +16,7 @@ public class ImaginaryMage : MonoBehaviour
         // by default they are not unlocked
         skillsUnlocked = new bool[] { false, false, false, false };
         // Calls Target_Search every chosen amount seconds.
-        
+        get_path_tiles();
     }
 
     public virtual void UnlockSkill(int id)
@@ -98,7 +98,7 @@ public class ImaginaryMage : MonoBehaviour
 
     // Looks for closest target
     //void Target_Search()
-
+    
 
     // Update is called once per frame
     void Update()
@@ -107,7 +107,7 @@ public class ImaginaryMage : MonoBehaviour
 
         if (attack_countdown <= 0f)
         {
-            get_path_tiles();
+            
             attack_countdown = 1f / attack_speed;
 
         }
@@ -151,12 +151,12 @@ public class ImaginaryMage : MonoBehaviour
 
         }
 
-        foreach (GameObject toxic_road in toxic_road_blocks)
-        {
-            make_floor_safe(toxic_road.transform);
+        //foreach (GameObject toxic_road in toxic_road_blocks)
+        //{
+        //    make_floor_safe(toxic_road.transform);
             
 
-        }
+        //}
     }
 
     void make_floor_toxic(Transform floor)

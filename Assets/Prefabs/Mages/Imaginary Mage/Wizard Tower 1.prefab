@@ -292,7 +292,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5612807064510927900}
-  - component: {fileID: 5612807064510927899}
   - component: {fileID: 7349727292453536745}
   - component: {fileID: 4091462185042327560}
   m_Layer: 0
@@ -319,30 +318,8 @@ Transform:
   - {fileID: 1609120694380030406}
   - {fileID: 165686551702530482}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 179.072, z: 0}
---- !u!114 &5612807064510927899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5093398439573212838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  attack_range: 3
-  attack_speed: 1
-  _health: 100
-  _maxHealth: 100
-  Enemy: Enemy
-  turn_speed: 5
-  bulletprefab: {fileID: 3795423907188121459, guid: f6bc9e14f4ce1304a9a79ca97919e7a5, type: 3}
-  firepoint: {fileID: 2399862608746338377}
-  part_to_rotate: {fileID: 2399862608606630069}
 --- !u!114 &7349727292453536745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,9 +352,9 @@ MonoBehaviour:
   attack_speed: 1
   Road: Road
   Toxic_Road: Toxic Road
-  blocks_affected: 100
+  blocks_affected: 8
   search_radius: 100
-  toxic_floor: {fileID: 6102082939136078856, guid: ec7cd4f2a09eff54b8cf9060dfe70d1b, type: 3}
+  toxic_floor: {fileID: 5499342297403173779, guid: d86971c71ef9959478d22bce9ff3a019, type: 3}
   regular_floor: {fileID: 6359345768752633327, guid: 25c071b44665cc0429553a51895279e7, type: 3}
   damage: 50
   identity_of_shooter: {fileID: 5093398439573212838}

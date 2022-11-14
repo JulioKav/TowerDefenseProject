@@ -84,6 +84,8 @@ public class Turret : MonoBehaviour
     {
         if (target == null)
         {
+            attack_countdown = attack_speed / 2;
+            Target_Search();
             return;
         }
 
