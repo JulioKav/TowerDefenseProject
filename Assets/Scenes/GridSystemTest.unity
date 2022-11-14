@@ -210,7 +210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -219,7 +219,7 @@ PrefabInstance:
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1999873659}
+      objectReference: {fileID: 1837260575}
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -229,8 +229,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EmitWaveStartEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: EmitWaveStartEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StartButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
