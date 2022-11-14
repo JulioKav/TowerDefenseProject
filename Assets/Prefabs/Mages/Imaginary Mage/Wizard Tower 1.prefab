@@ -332,10 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb35bd98aece83945b51fbc8ad3ae1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  search_radius: 100
   toxic_floor: {fileID: 6102082939136078856, guid: ec7cd4f2a09eff54b8cf9060dfe70d1b, type: 3}
   damage: 50
-  identity_of_shooter: {fileID: 5093398439573212838}
 --- !u!114 &4091462185042327560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starDisplay: {fileID: 0}
-  attack_speed: 1
+  attack_speed: 5
   Road: Road
   Toxic_Road: Toxic Road
   blocks_affected: 8
@@ -358,7 +356,7 @@ MonoBehaviour:
   regular_floor: {fileID: 6359345768752633327, guid: 25c071b44665cc0429553a51895279e7, type: 3}
   damage: 50
   identity_of_shooter: {fileID: 5093398439573212838}
-  bulletprefab: {fileID: 6215002559182218556, guid: 8b6b76fe85fb9904aa671ee1ad231a7a, type: 3}
+  bulletprefab: {fileID: 398654435160830667, guid: 514039ce328e133459242aa972f4590c, type: 3}
   firepoint: {fileID: 2399862608746338377}
   part_to_rotate: {fileID: 2399862608606630069}
   turn_speed: 1000

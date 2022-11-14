@@ -92,6 +92,7 @@ public class ImaginaryMage : MonoBehaviour
     public Transform firepoint;
     public Transform part_to_rotate;
     public float turn_speed = 5f;
+    private Transform target;
 
     // Draws a 3D wire mesh range around turret.
 
@@ -103,12 +104,14 @@ public class ImaginaryMage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         
 
+        // shoot floor at start of round
         if (attack_countdown <= 0f)
         {
-            
-            attack_countdown = 1f / attack_speed;
+           shoot(target);
+           attack_countdown = 1f / attack_speed;
 
         }
 
@@ -118,10 +121,10 @@ public class ImaginaryMage : MonoBehaviour
     }
 
 
-    // turret shooting out a bullet, instantiating the bulletprefab, bullet chases target.
 
 
 
+    //create a list of GameObject road_blocks with tag 'road', make new list randomly selecting a number 'blocks_affected' of them, then for each road block, shoot at them
     void get_path_tiles()
     {
         GameObject[] road_blocks = GameObject.FindGameObjectsWithTag(Road);
@@ -129,9 +132,9 @@ public class ImaginaryMage : MonoBehaviour
         GameObject[] toxic_road_blocks = GameObject.FindGameObjectsWithTag(Toxic_Road);
 
 
-        
+        float smallest_distance = Mathf.Infinity;
         int i;
-
+        GameObject closest_road = null;
         List<GameObject> chosen_to_be_toxic_blocks = new List<GameObject>();
 
         for (i = 0; i < blocks_affected; i++)
@@ -143,9 +146,18 @@ public class ImaginaryMage : MonoBehaviour
 
         foreach (GameObject road in chosen_to_be_toxic_blocks)
         {
-            
 
-            make_floor_toxic(road.transform);
+            float distance_to_target = Vector3.Distance(transform.position, road.transform.position);
+
+
+            if (distance_to_target < smallest_distance)
+            {
+                smallest_distance = distance_to_target;
+
+                closest_road = road;
+            }
+            shoot(road.transform);
+            //make_floor_toxic(road.transform);
             
 
 
@@ -159,7 +171,7 @@ public class ImaginaryMage : MonoBehaviour
         //}
     }
 
-    void make_floor_toxic(Transform floor)
+    public void make_floor_toxic(Transform floor)
     {
 
 
@@ -178,6 +190,7 @@ public class ImaginaryMage : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, search_radius);
     }
 
+    //damage
     public void Imaginary_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -192,19 +205,20 @@ public class ImaginaryMage : MonoBehaviour
     }
 
     
-
-    void shoot(Transform road)
+    // cloning bulletprefab at firepoint
+    void shoot(Transform target)
     {
 
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
+        ImaginaryBullet bullet = bulletGO.GetComponent<ImaginaryBullet>();
 
 
         if (bullet != null)
         {
-            bullet.Chase(road);
+            bullet.Chase(target);
         }
 
 
     }
+
 }

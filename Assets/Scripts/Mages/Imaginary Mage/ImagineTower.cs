@@ -17,8 +17,6 @@ public class ImagineTower : MonoBehaviour
     public float attack_speed = 50f;
 
 
-
-
     public float _health = 100;
     public float _maxHealth = 100;
 
@@ -28,8 +26,6 @@ public class ImagineTower : MonoBehaviour
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
-
-        
         InvokeRepeating("Target_Search", 0f, 1/attack_speed);
         
     }
@@ -41,9 +37,9 @@ public class ImagineTower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, slow_range);
     }
 
-    // Looks for closest target
+    // gets colliders in physics sphere around tower, checks if they are enemy, then applies a chosen slow amount and does dmg.
     void Target_Search()
-    {   //Creates an array of Target Enemies with tag "Enemy".
+    {   
 
 
         
@@ -69,18 +65,22 @@ public class ImagineTower : MonoBehaviour
             }
         }
     }
-        // Update is called once per frame
-        void FixedUpdate()
-    {
-        if (target == null)
-        {
-            return;
-        }
 
 
-    }
+    //
+    //Not sure if needed
 
-    
+    //void FixedUpdate()
+    //{
+    //    if (target == null)
+    //    {
+    //        return;
+    //    }
+
+
+    //}
+
+
 
 
     // hp gets minused from current hp
@@ -146,7 +146,7 @@ public class ImagineTower : MonoBehaviour
     }
 
 
-    
+    //sets enemy speed as slower
     void slow_enemy_x2()
     {
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, slow_range);
