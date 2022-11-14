@@ -26,8 +26,8 @@ public class ImagineTower : MonoBehaviour
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
-        InvokeRepeating("Target_Search", 0f, 1/attack_speed);
-        
+        InvokeRepeating("Target_Search", 0f, 1 / attack_speed);
+
     }
 
     // Draws a 3D wire mesh range around turret.
@@ -39,10 +39,10 @@ public class ImagineTower : MonoBehaviour
 
     // gets colliders in physics sphere around tower, checks if they are enemy, then applies a chosen slow amount and does dmg.
     void Target_Search()
-    {   
+    {
 
 
-        
+
 
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, slow_range);
         foreach (Collider collider in collided_objects)

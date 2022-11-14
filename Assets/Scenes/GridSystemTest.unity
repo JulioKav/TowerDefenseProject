@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -209,9 +209,37 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1999873659}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1837260575}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: EmitWaveStartEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: StartButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 603218796, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 874891190, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: waveSpawner
       value: 
@@ -230,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3853214951749332939, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3853214951749332939, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -403,7 +431,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901959664
 GameObject:
@@ -723,7 +751,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345210215
 GameObject:
@@ -868,6 +896,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1837260575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 874891190, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+  m_PrefabInstance: {fileID: 386863647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf3650cd49e8411a91c1a239001e6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916187998 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3853214951296185283, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
@@ -985,6 +1024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard Tower 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4726115004143983497, guid: 626e989c66354cd4487a8a39cb976647, type: 3}
+      propertyPath: m_TagString
+      value: Physical Mage
+      objectReference: {fileID: 0}
     - target: {fileID: 5394564835991421235, guid: 626e989c66354cd4487a8a39cb976647, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1029,7 +1072,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5394564835991421236, guid: 626e989c66354cd4487a8a39cb976647, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 626e989c66354cd4487a8a39cb976647, type: 3}
 --- !u!4 &545888984822843768
@@ -1132,7 +1176,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5174726096371785356, guid: 7771d14cf787649c7aa4af2afee08790, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5174726096371785356, guid: 7771d14cf787649c7aa4af2afee08790, type: 3}
       propertyPath: m_LocalPosition.x

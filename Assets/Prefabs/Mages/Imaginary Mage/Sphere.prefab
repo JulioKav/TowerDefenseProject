@@ -111,4 +111,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toxic_floor: {fileID: 5499342297403173779, guid: d86971c71ef9959478d22bce9ff3a019, type: 3}
-  damage: 50

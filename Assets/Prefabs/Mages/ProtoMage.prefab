@@ -620,12 +620,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6181721130136070613}
   - component: {fileID: 4193301359853601190}
-  - component: {fileID: -816476088314152356}
   - component: {fileID: 1541661487}
   - component: {fileID: 1682231119041540461}
   m_Layer: 0
   m_Name: ProtoMage
-  m_TagString: Physical Mage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,7 +659,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6810060772655838063}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
@@ -673,28 +672,6 @@ MonoBehaviour:
   Enemy: Enemy
   turn_speed: 10
   bulletprefab: {fileID: 8875824785813524639, guid: d2d41935fb2a44f4db04edb4da80a98f, type: 3}
-  firepoint: {fileID: 4684884370650287145}
-  part_to_rotate: {fileID: 6181721130136070613}
---- !u!114 &-816476088314152356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6810060772655838063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1fd24d4f2473584b9aa183a51936c68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  starDisplay: {fileID: 2262433876362475393}
-  attack_range: 100
-  attack_speed: 1
-  _health: 100
-  _maxHealth: 100
-  Enemy: Enemy
-  turn_speed: 10
-  bulletprefab: {fileID: 6963857768583187444, guid: ac1145b1e436ffe49807442597f32d44, type: 3}
   firepoint: {fileID: 4684884370650287145}
   part_to_rotate: {fileID: 6181721130136070613}
 --- !u!136 &1541661487

@@ -61,7 +61,7 @@ public class SkillManager : MonoBehaviour
     public MageSpawner mageSpawner;
     Mage[] mages;
 
-    public int skillPoints = 50;
+    public int skillPoints = 5000;
 
     const int BASE_COST = 50;
     const int COST_PER_LEVEL = 150;

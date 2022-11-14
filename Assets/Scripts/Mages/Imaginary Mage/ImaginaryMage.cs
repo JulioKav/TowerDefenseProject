@@ -2,71 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ImaginaryMage : MonoBehaviour
+public class ImaginaryMage : Mage
 {
-    // An interface for mage scripts
-
-    bool[] skillsUnlocked;
-    public StarDisplay starDisplay;
-
-    // Start is called before the first frame update
-    public void Start()
-    {
-
-        // by default they are not unlocked
-        skillsUnlocked = new bool[] { false, false, false, false };
-        // Calls Target_Search every chosen amount seconds.
-        get_path_tiles();
-    }
-
-    public virtual void UnlockSkill(int id)
-    {
-        // unlocks the skill and shows the star
-        skillsUnlocked[id] = true;
-        starDisplay.UnlockSkill(id);
-    }
-
-    public virtual void LockSkill(int id)
-    {
-        // locks unlocked skill and hides scar
-        skillsUnlocked[id] = false;
-        starDisplay.LockSkill(id);
-    }
-
-    public virtual void Skill1()
-    {
-        if (!skillsUnlocked[0]) return;
-    }
-
-    public virtual void Skill2()
-    {
-        if (!skillsUnlocked[1]) return;
-    }
-
-    public virtual void Skill3()
-    {
-        if (!skillsUnlocked[2]) return;
-    }
-
-    public virtual void Skill4()
-    {
-        if (!skillsUnlocked[3]) return;
-    }
-
-    ///////////////////////////////////////////////////////////////
-    /// <shooting>
-    /// ///////////////////////////////
-    /// </summary>
-    ////////////////////////////////////////////////////
-    
-
-
 
     [Header("Turret Stats")]
 
     public float attack_speed = 1f;
     private float attack_countdown = 0f;
-    
+
 
     [Header("Unity Required Stuff")]
 
@@ -99,25 +42,30 @@ public class ImaginaryMage : MonoBehaviour
 
     // Looks for closest target
     //void Target_Search()
-    
+
+    new void Start()
+    {
+        base.Start();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
 
-        
+
 
         // shoot floor at start of round
-        if (attack_countdown <= 0f)
-        {
-           shoot(target);
-           attack_countdown = 1f / attack_speed;
+        // if (attack_countdown <= 0f)
+        // {
+        //     shoot(target);
+        //     attack_countdown = 1f / attack_speed;
 
-        }
+        // }
 
-        attack_countdown -= Time.deltaTime;
+        // attack_countdown -= Time.deltaTime;
 
-        
+
     }
 
 
@@ -129,19 +77,15 @@ public class ImaginaryMage : MonoBehaviour
     {
         GameObject[] road_blocks = GameObject.FindGameObjectsWithTag(Road);
 
-        GameObject[] toxic_road_blocks = GameObject.FindGameObjectsWithTag(Toxic_Road);
 
-
-        float smallest_distance = Mathf.Infinity;
         int i;
-        GameObject closest_road = null;
         List<GameObject> chosen_to_be_toxic_blocks = new List<GameObject>();
 
         for (i = 0; i < blocks_affected; i++)
         {
             int random_index_for_toxic = Random.Range(0, road_blocks.Length);
             chosen_to_be_toxic_blocks.Add(road_blocks[random_index_for_toxic]);
-            
+
         }
 
         foreach (GameObject road in chosen_to_be_toxic_blocks)
@@ -149,16 +93,11 @@ public class ImaginaryMage : MonoBehaviour
 
             float distance_to_target = Vector3.Distance(transform.position, road.transform.position);
 
-
-            if (distance_to_target < smallest_distance)
-            {
-                smallest_distance = distance_to_target;
-
-                closest_road = road;
-            }
-            shoot(road.transform);
+            var rnd = new System.Random();
+            float delay = (float)rnd.NextDouble() * (WaveSpawner.WaveCountdownTime - 1);
+            StartCoroutine(shoot(road.transform, delay));
             //make_floor_toxic(road.transform);
-            
+
 
 
         }
@@ -166,48 +105,47 @@ public class ImaginaryMage : MonoBehaviour
         //foreach (GameObject toxic_road in toxic_road_blocks)
         //{
         //    make_floor_safe(toxic_road.transform);
-            
+
 
         //}
     }
 
-    public void make_floor_toxic(Transform floor)
-    {
-
-
-        Destroy(floor.gameObject);
-        Instantiate(toxic_floor, floor.position, floor.rotation);
-    }
+    // public void make_floor_toxic(Transform floor)
+    // {
+    //     Destroy(floor.gameObject);
+    //     Instantiate(toxic_floor, floor.position, floor.rotation);
+    // }
 
     void make_floor_safe(Transform floor)
     {
         Destroy(floor.gameObject);
         Instantiate(regular_floor, floor.position, floor.rotation);
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, search_radius);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.green;
+    //     Gizmos.DrawWireSphere(transform.position, search_radius);
+    // }
 
-    //damage
-    public void Imaginary_damage(Transform Enemy)
-    {
-        // retrieves script aspect of enemy
-        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+    // //damage
+    // public void Imaginary_damage(Transform Enemy)
+    // {
+    //     // retrieves script aspect of enemy
+    //     Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-        if (enemy_component != null)
-        {
+    //     if (enemy_component != null)
+    //     {
 
-            enemy_component.TakeDamage(damage * 3);
+    //         enemy_component.TakeDamage(damage * 3);
 
-        }
-    }
+    //     }
+    // }
 
-    
+
     // cloning bulletprefab at firepoint
-    void shoot(Transform target)
+    IEnumerator shoot(Transform target, float delay)
     {
+        yield return new WaitForSeconds(delay);
 
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
         ImaginaryBullet bullet = bulletGO.GetComponent<ImaginaryBullet>();
@@ -217,8 +155,42 @@ public class ImaginaryMage : MonoBehaviour
         {
             bullet.Chase(target);
         }
+    }
 
+    void OnEnable()
+    {
+        StartButton.OnWaveStart += WaveStartHandler;
+        WaveSpawner.OnRoundEnd += WaveEndHandler;
+    }
 
+    void OnDisable()
+    {
+        StartButton.OnWaveStart -= WaveStartHandler;
+        WaveSpawner.OnRoundEnd -= WaveEndHandler;
+    }
+
+    void WaveStartHandler()
+    {
+        get_path_tiles();
+    }
+
+    void WaveEndHandler()
+    {
+        foreach (var tile in GameObject.FindGameObjectsWithTag(Toxic_Road))
+        {
+            var rnd = new System.Random();
+            float delay = (float)rnd.NextDouble();
+            StartCoroutine(DespawnTower(tile, delay));
+        }
+    }
+
+    private IEnumerator DespawnTower(GameObject tile, float delay)
+    {
+        tile.GetComponentInChildren<ImagineTower>().enabled = false;
+        yield return new WaitForSeconds(delay);
+        tile.GetComponent<Animator>().SetTrigger("EndOfRound");
+        yield return new WaitForSeconds(3);
+        make_floor_safe(tile.transform);
     }
 
 }

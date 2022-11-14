@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
+
+    public static int WaveCountdownTime = 3;
+
     public Transform[] enemyPrefab;
     GameObject[] spawnPoints;
     // The game object enemies will be attached to
@@ -59,29 +62,44 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    public void ButtonInput()
+    void OnEnable()
     {
+        StartButton.OnWaveStart += RoundStartHandler;
+    }
+    void OnDisable()
+    {
+        StartButton.OnWaveStart -= RoundStartHandler;
+    }
+
+    void RoundStartHandler()
+    {
+        StartCoroutine(StartRound());
+    }
+
+    IEnumerator StartRound()
+    {
+        waveOnGoing = true;
+        yield return new WaitForSeconds(WaveCountdownTime);
         // Spawns waves depending on wave index
-        if (currentWave != null) return;
         switch (currentWaveId)
         {
             // Handles wave logic based on wave number
             case 0:
-                StartCoroutine(StartWave(3));
+                StartCoroutine(SpawnWave(3));
                 break;
             case 1:
-                StartCoroutine(StartWave(3));
+                StartCoroutine(SpawnWave(3));
                 break;
             case 2:
-                StartCoroutine(StartWave(2));
+                StartCoroutine(SpawnWave(2));
                 break;
             case 3:
-                StartCoroutine(StartWave(2));
+                StartCoroutine(SpawnWave(2));
                 break;
             // after wave index 3, just spawn this double wave
             default:
-                StartCoroutine(StartWave(2));
-                StartCoroutine(StartWave(3));
+                StartCoroutine(SpawnWave(2));
+                StartCoroutine(SpawnWave(3));
                 break;
 
         }
@@ -90,7 +108,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     // Starts spawning a wave in a coroutine with a delay between enemies
-    public IEnumerator StartWave(int spawnPointId)
+    public IEnumerator SpawnWave(int spawnPointId)
     {
         // After wave 3, spwans the same wave over and over
         int waveId = (currentWaveId > 3) ? 3 : currentWaveId;
@@ -135,8 +153,11 @@ public class WaveSpawner : MonoBehaviour
             }
             if (!waveOnGoing)
             {
+                waveOnGoing = true; // Cleanup for wave is still happening
                 currentWave = null;
                 if (OnRoundEnd != null) OnRoundEnd();
+                yield return new WaitForSeconds(2);
+                waveOnGoing = false; // All cleanup completed
                 break;
             }
             yield return new WaitForSeconds(1);
