@@ -5,6 +5,10 @@ using UnityEngine;
 public class ImaginaryMage : Mage
 {
 
+    // Make Mage a Singleton for easier access, since only one of each mage can exist
+    public static ImaginaryMage Instance { get; private set; }
+    private void Awake() { if (!Instance) Instance = this; }
+
     [Header("Turret Stats")]
 
     public float attack_speed = 1f;
@@ -32,6 +36,7 @@ public class ImaginaryMage : Mage
     public GameObject identity_of_shooter;
 
     public GameObject bulletprefab;
+    public GameObject toxicRoadLvl1Prefab, toxicRoadLvl2Prefab, toxicRoadLvl3Prefab;
     public Transform firepoint;
     public Transform part_to_rotate;
     public float turn_speed = 5f;
@@ -41,12 +46,6 @@ public class ImaginaryMage : Mage
 
 
     // Looks for closest target
-    //void Target_Search()
-
-    new void Start()
-    {
-        base.Start();
-    }
 
 
     // Update is called once per frame
@@ -191,6 +190,13 @@ public class ImaginaryMage : Mage
         tile.GetComponent<Animator>().SetTrigger("EndOfRound");
         yield return new WaitForSeconds(3);
         make_floor_safe(tile.transform);
+    }
+
+    public GameObject GetToxicRoadPrefab()
+    {
+        if (skillsUnlocked[1]) return toxicRoadLvl3Prefab;
+        if (skillsUnlocked[0]) return toxicRoadLvl2Prefab;
+        return toxicRoadLvl1Prefab;
     }
 
 }

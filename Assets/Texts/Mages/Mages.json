@@ -1,0 +1,48 @@
+{
+  "mages": [
+    {
+      "name": "Bruiser",
+      "type": "Physical",
+      "skills": [
+        { "name": "TODO", "cost": 200 },
+        { "name": "TODO", "cost": 350 },
+        { "name": "TODO", "cost": 500 },
+        { "name": "TODO", "cost": 600 }
+      ]
+    },
+    {
+      "name": "Wizard",
+      "type": "Magic",
+      "skills": [
+        { "name": "TODO", "cost": 200 },
+        { "name": "TODO", "cost": 350 },
+        { "name": "TODO", "cost": 500 },
+        { "name": "TODO", "cost": 600 }
+      ]
+    },
+    {
+      "name": "Dreamer",
+      "type": "Imaginary",
+      "skills": [
+        { "name": "Slowing towers", "cost": 200 },
+        { "name": "Better slowing towers", "cost": 350 },
+        { "name": "Best slowing towers", "cost": 500 },
+        { "name": "TODO", "cost": 600 }
+      ]
+    },
+    {
+      "name": "Tinkerer",
+      "type": "Mechanical",
+      "skills": [
+        { "name": "TODO", "cost": 200 },
+        { "name": "TODO", "cost": 350 },
+        { "name": "TODO", "cost": 500 },
+        { "name": "TODO", "cost": 600 }
+      ]
+    }
+  ],
+  "finalSkill": {
+    "name": "SCDW 3000",
+    "cost": 1000
+  }
+}

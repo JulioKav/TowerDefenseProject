@@ -7,7 +7,6 @@ public class ImaginaryBullet : MonoBehaviour
 
     private Transform target;
     private float speed = 15;
-    public GameObject toxic_floor;
 
     //Bullet assigns target (in this case 'floor')
     public void Chase(Transform _target)
@@ -25,7 +24,7 @@ public class ImaginaryBullet : MonoBehaviour
         }
 
         Vector3 direction = target.position - transform.position;
-        
+
         float distance_per_frame = speed * Time.deltaTime;
 
         // if the bullet slows, it calls that it has hit target, so destroy floor and replace with imaginary tower
@@ -40,31 +39,32 @@ public class ImaginaryBullet : MonoBehaviour
         }
         //bullet follows target
         transform.Translate(direction.normalized * distance_per_frame, Space.World);
-        
+
 
 
 
 
     }
 
-    
+
     // destroy bullet on collision
     void hit_target()
-    {   
+    {
 
         Destroy(gameObject);
-        
+
 
     }
 
-    
+
     //clone toxic floor to replace floor
     void make_floor_toxic(Transform floor)
     {
         Destroy(floor.gameObject);
+        var toxic_floor = ImaginaryMage.Instance.GetToxicRoadPrefab();
         Instantiate(toxic_floor, floor.position, floor.rotation);
     }
 
 
-    
+
 }

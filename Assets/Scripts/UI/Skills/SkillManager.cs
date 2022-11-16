@@ -61,7 +61,7 @@ public class SkillManager : MonoBehaviour
     public MageSpawner mageSpawner;
     Mage[] mages;
 
-    public int skillPoints = 5000;
+    public int skillPoints = 50;
 
     const int BASE_COST = 50;
     const int COST_PER_LEVEL = 150;
@@ -82,6 +82,8 @@ public class SkillManager : MonoBehaviour
         branches = new SkillBranch[4];
         for (int i = 0; i < branches.Length; i++)
             branches[i] = new SkillBranch((SkillClass)i);
+
+        var magesJson = MagesJson.Instance.magesJson;
 
         // Initialize branches to have default values
         foreach (Transform branchT in transform)
@@ -119,9 +121,15 @@ public class SkillManager : MonoBehaviour
                 Button skillBtn = skillT.GetComponent<Button>();
                 branches[bId].skills[sId] = new Skill((SkillClass)bId, sId, unlockable, skillBtn, cost);
                 branches[bId].skills[sId].button.onClick.AddListener(() => TryUnlockSkill(branches[bId].skills[sId]));
-                skillBtn.GetComponentInChildren<TextMeshProUGUI>().text += "\n" + cost + "SP";
-                // TODO: This is prototype code to disable other 3 branches, remove later
-                if (bId > 0 && sId == 0)
+                TextMeshProUGUI btnText = skillBtn.GetComponentInChildren<TextMeshProUGUI>();
+                if (sId == 0) btnText.text = "Unlock " + magesJson.mages[bId].name;
+                else
+                {
+                    var skillJson = magesJson.mages[bId].skills[sId - 1];
+                    btnText.text = skillJson.name + "\n" + skillJson.cost + "SP";
+                }
+                // TODO: This is prototype code to disable other 2 branches, remove later
+                if (bId % 2 == 1 && sId == 0)
                 {
                     branches[bId].completed = true;
                     branches[bId].skills[sId].unlockable = false;
@@ -136,7 +144,8 @@ public class SkillManager : MonoBehaviour
         // Do same for final skill
         finalSkill = new Skill(SkillClass.FINAL, -1, false, finalSkillBtn, FINAL_SKILL_COST);
         finalSkill.button.onClick.AddListener(() => TryUnlockSkill(finalSkill));
-        finalSkill.button.GetComponentInChildren<TextMeshProUGUI>().text += "\n" + FINAL_SKILL_COST + "SP";
+        TextMeshProUGUI finalBtnText = finalSkill.button.GetComponentInChildren<TextMeshProUGUI>();
+        finalBtnText.text = magesJson.finalSkill.name + "\n" + magesJson.finalSkill.cost + "SP";
     }
 
     void UnlockMage(SkillClass skillClass)
@@ -222,6 +231,8 @@ public class SkillManager : MonoBehaviour
 
     public void SubtractSkillPoints(int skillPoints)
     {
+        this.skillPoints += skillPoints;
+        return;
         if (this.skillPoints >= skillPoints)
         {
             this.skillPoints -= skillPoints;

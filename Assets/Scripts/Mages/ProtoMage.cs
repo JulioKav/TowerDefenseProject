@@ -6,9 +6,8 @@ public class ProtoMage : Mage
 
     float[] attackSpeedBuffs;
 
-    new public void Start()
+    public void Start()
     {
-        base.Start();
         attackSpeedBuffs = new float[] { 0.5f, 0.5f, 1f, 2f };
     }
 
