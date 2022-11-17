@@ -21,4 +21,10 @@ public class MageSkill : Skill
 
         foreach (Skill skill in GetComponentsInChildren<Skill>()) skill.mageClass = mageClass;
     }
+
+    new public void TryUnlockSkill()
+    {
+        base.TryUnlockSkill();
+        if (Unlocked) SM.mageSpawner.SpawnMage(mageClass);
+    }
 }

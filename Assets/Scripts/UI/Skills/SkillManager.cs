@@ -38,11 +38,11 @@ public class SkillManager : MonoBehaviour
         {
             skillPoints -= skill.cost;
             unlockOrder.AddLast(skill);
-            // Handle first and last skills of each branch differently
-            if (skill is MageSkill) mageSpawner.SpawnMage(skill.mageClass);
             if (skill.completesBranch) branchCompleted[(int)skill.mageClass] = true;
             // Broadcast Event
             if (OnUnlockSkill != null) OnUnlockSkill(skill.mageClass, skill.gameObject.name);
+            // Check for Game End
+            if (skill is FinalSkill && OnGameEnd != null) OnGameEnd(1);
             return true;
         }
         return false;

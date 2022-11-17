@@ -212,54 +212,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 93027828, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 176830712, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 611796813, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 671481122, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 874891190, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: waveSpawner
       value: 
       objectReference: {fileID: 1999873659}
-    - target: {fileID: 900077596, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 936842763, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 966722223, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2146011893, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: completesBranch
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3853214951296185281, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: mageSpawner
       value: 
       objectReference: {fileID: 171014296}
-    - target: {fileID: 3853214951296185281, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: startingSkillPoints
-      value: 50000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853214951516360179, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3853214951749332939, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -348,8 +308,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: User Interface
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1006629974, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
 --- !u!1 &580037961
@@ -545,28 +504,6 @@ Transform:
   m_Father: {fileID: 1142140180}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1006629969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3853214951396482088, guid: 8305b092e5e4948d5add84ce9523204f, type: 3}
-  m_PrefabInstance: {fileID: 386863647}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1006629974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006629969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d04a0f83ed1944f88175fcc9f651bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextSkills: []
-  button: {fileID: 0}
-  mageClass: 0
-  cost: 0
-  completesBranch: 0
 --- !u!1 &1142140179
 GameObject:
   m_ObjectHideFlags: 0
