@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MagesJson : MonoBehaviour
+public class MagesJSONParser : MonoBehaviour
 {
-    public static MagesJson Instance { get; private set; }
+    public static MagesJSONParser Instance { get; private set; }
 
     public TextAsset jsonFile;
 
@@ -26,13 +26,15 @@ public class MagesJson : MonoBehaviour
     {
         public string name;
         public string type;
+        public int cost;
         public Skill[] skills;
     }
 
     [System.Serializable]
     public class Skill
     {
+        public string id;
         public string name;
-        public string cost;
+        public int cost;
     }
 }

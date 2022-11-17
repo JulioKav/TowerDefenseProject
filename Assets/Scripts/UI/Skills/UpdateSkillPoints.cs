@@ -6,7 +6,7 @@ using UnityEngine;
 public class UpdateSkillPoints : MonoBehaviour
 {
 
-    public TextMeshProUGUI skillPointText;
+    TextMeshProUGUI skillPointText;
     public SkillManager skillManager;
 
     void Start()

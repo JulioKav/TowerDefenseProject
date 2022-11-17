@@ -8,9 +8,11 @@ TagManager:
   - Castle
   - enemyBug
   - Friendly
-  - Skill
-  - SkillBranch
   - Tower
+  - Imaginary Mage
+  - SpawnPoint
+  - Road
+  - Toxic Road
   layers:
   - Default
   - TransparentFX

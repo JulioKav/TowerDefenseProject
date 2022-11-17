@@ -3,41 +3,45 @@
     {
       "name": "Bruiser",
       "type": "Physical",
+      "cost": 50,
       "skills": [
-        { "name": "TODO", "cost": 200 },
-        { "name": "TODO", "cost": 350 },
-        { "name": "TODO", "cost": 500 },
-        { "name": "TODO", "cost": 600 }
+        { "id": "TODO", "name": "TODO", "cost": 200 },
+        { "id": "TODO", "name": "TODO", "cost": 350 },
+        { "id": "TODO", "name": "TODO", "cost": 500 },
+        { "id": "TODO", "name": "TODO", "cost": 600 }
       ]
     },
     {
       "name": "Wizard",
       "type": "Magic",
+      "cost": 50,
       "skills": [
-        { "name": "TODO", "cost": 200 },
-        { "name": "TODO", "cost": 350 },
-        { "name": "TODO", "cost": 500 },
-        { "name": "TODO", "cost": 600 }
+        { "id": "TODO", "name": "TODO", "cost": 200 },
+        { "id": "TODO", "name": "TODO", "cost": 350 },
+        { "id": "TODO", "name": "TODO", "cost": 500 },
+        { "id": "TODO", "name": "TODO", "cost": 600 }
       ]
     },
     {
       "name": "Dreamer",
       "type": "Imaginary",
+      "cost": 50,
       "skills": [
-        { "name": "Slowing towers", "cost": 200 },
-        { "name": "Better slowing towers", "cost": 350 },
-        { "name": "Best slowing towers", "cost": 500 },
-        { "name": "TODO", "cost": 600 }
+        { "id": "slowing_1", "name": "Slowing towers", "cost": 200 },
+        { "id": "slowing_2", "name": "Better slowing towers", "cost": 350 },
+        { "id": "slowing_3", "name": "Best slowing towers", "cost": 500 },
+        { "id": "TODO", "name": "TODO", "cost": 600 }
       ]
     },
     {
       "name": "Tinkerer",
       "type": "Mechanical",
+      "cost": 50,
       "skills": [
-        { "name": "TODO", "cost": 200 },
-        { "name": "TODO", "cost": 350 },
-        { "name": "TODO", "cost": 500 },
-        { "name": "TODO", "cost": 600 }
+        { "id": "TODO", "name": "TODO", "cost": 200 },
+        { "id": "TODO", "name": "TODO", "cost": 350 },
+        { "id": "TODO", "name": "TODO", "cost": 500 },
+        { "id": "TODO", "name": "TODO", "cost": 600 }
       ]
     }
   ],
