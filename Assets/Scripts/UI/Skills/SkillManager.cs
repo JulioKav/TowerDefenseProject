@@ -18,33 +18,18 @@ public class SkillManager : MonoBehaviour
     private LinkedList<Skill> unlockOrder;
 
     public MageSpawner mageSpawner;
-    Mage[] mages;
-
-    List<Skill> startingSkills;
 
     public int startingSkillPoints = 50;
     public int skillPoints { get; private set; }
 
-    public TextMeshProUGUI endGameText;
+    public bool[] branchCompleted;
 
     // Start is called before the first frame update
     void Start()
     {
         skillPoints = startingSkillPoints;
         unlockOrder = new LinkedList<Skill>();
-        mages = new Mage[4];
-        InitStartingSkills();
-    }
-
-    void InitStartingSkills()
-    {
-        startingSkills = new List<Skill>();
-        foreach (Transform skillT in transform) if (skillT.tag == "MageSkill")
-            {
-                Skill skill = skillT.GetComponent<Skill>();
-                startingSkills.Add(skill);
-                skill.Unlockable = true;
-            }
+        branchCompleted = new bool[] { false, false, false, false };
     }
 
     public bool TryUnlockSkill(Skill skill)
@@ -53,7 +38,10 @@ public class SkillManager : MonoBehaviour
         {
             skillPoints -= skill.cost;
             unlockOrder.AddLast(skill);
+            // Handle first and last skills of each branch differently
             if (skill is MageSkill) mageSpawner.SpawnMage(skill.mageClass);
+            if (skill.completesBranch) branchCompleted[(int)skill.mageClass] = true;
+            // Broadcast Event
             if (OnUnlockSkill != null) OnUnlockSkill(skill.mageClass, skill.gameObject.name);
             return true;
         }
@@ -72,11 +60,16 @@ public class SkillManager : MonoBehaviour
         // Losing these skill points makes player go below 0 skill points
         {
             if (unlockOrder.Count > 0)
-            // There are any unlocked skills - lose the last bought skill
+            // There are unlocked skills - lose last bought skill
             {
-                this.skillPoints += unlockOrder.Last.Value.cost / 2;
+                Skill lastUnlocked = unlockOrder.Last.Value;
+                // Update Skill Points
+                this.skillPoints += lastUnlocked.cost / 2;
                 this.skillPoints -= skillPoints;
-                unlockOrder.Last.Value.LockSkill();
+                // Lock the skill
+                if (lastUnlocked is MageSkill) mageSpawner.DespawnMage(lastUnlocked.mageClass);
+                if (lastUnlocked.completesBranch) branchCompleted[(int)lastUnlocked.mageClass] = false;
+                lastUnlocked.LockSkill();
                 unlockOrder.RemoveLast();
             }
             else

@@ -1389,9 +1389,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214950359797212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,9 +1529,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc8be0b05dab44bf899d362d2fa84c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214950392697006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,9 +1668,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 1
   cost: 0
+  completesBranch: 1
 --- !u!1 &3853214950394267072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,9 +1808,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 2
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214950444597870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,9 +1947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 2
   cost: 0
+  completesBranch: 1
 --- !u!1 &3853214950491186844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,9 +2087,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 1
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214950714788518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,9 +2226,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 1
 --- !u!1 &3853214950828067287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,9 +2366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 1
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951023434057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,9 +2641,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 3
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951076110247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,9 +2930,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951173835438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,9 +3070,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc8be0b05dab44bf899d362d2fa84c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951296185283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,8 +3131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mageSpawner: {fileID: 0}
-  startingSkillPoints: 50
-  endGameText: {fileID: 2129601690525848346}
+  startingSkillPoints: 50000
+  branchCompleted: 
 --- !u!114 &1916188000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3404,12 +3426,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3853214951396482088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d04a0f83ed1944f88175fcc9f651bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951516360181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,9 +3569,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc8be0b05dab44bf899d362d2fa84c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951569853210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,9 +3709,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 3
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951749332943
 GameObject:
   m_ObjectHideFlags: 0
@@ -3927,9 +3955,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 2
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214951950035081
 GameObject:
   m_ObjectHideFlags: 0
@@ -4116,9 +4146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 3
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214952005583358
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,9 +4286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc8be0b05dab44bf899d362d2fa84c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214952012802936
 GameObject:
   m_ObjectHideFlags: 0
@@ -4391,9 +4425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 3
   cost: 0
+  completesBranch: 1
 --- !u!1 &3853214952114803437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,9 +4565,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 0
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214952220497709
 GameObject:
   m_ObjectHideFlags: 0
@@ -4667,9 +4705,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 2
   cost: 0
+  completesBranch: 0
 --- !u!1 &3853214952322537922
 GameObject:
   m_ObjectHideFlags: 0
@@ -4805,9 +4845,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027feb3d5b82456b9fc319e9a84ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSkills: []
   button: {fileID: 0}
   mageClass: 1
   cost: 0
+  completesBranch: 0
 --- !u!1 &4415526281677425904
 GameObject:
   m_ObjectHideFlags: 0

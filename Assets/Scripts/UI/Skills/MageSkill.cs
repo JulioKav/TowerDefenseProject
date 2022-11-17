@@ -9,6 +9,7 @@ public class MageSkill : Skill
         InitMageClassesInBranch();
         base.Start();
         cost = magesJson.cost;
+        Unlockable = true;
     }
 
     void InitMageClassesInBranch()

@@ -4,17 +4,18 @@ using UnityEngine.UI;
 
 public class Skill : MonoBehaviour
 {
-    protected List<Skill> nextSkills;
+    [HideInInspector] public List<Skill> nextSkills;
 
     [HideInInspector] public Button button;
     [HideInInspector] public MageClass mageClass;
     [HideInInspector] public int cost;
 
+    public bool completesBranch = false;
+
     private bool _unlockable;
     public bool Unlockable { get { return _unlockable; } set { _unlockable = value; UpdateButtonAppearance(); } }
     private bool _unlocked;
     public bool Unlocked { get { return _unlocked; } set { _unlocked = value; UpdateButtonAppearance(); } }
-
 
     protected MagesJSONParser.Mage magesJson;
     protected SkillManager SM;
@@ -38,6 +39,8 @@ public class Skill : MonoBehaviour
         magesJson = MagesJSONParser.Instance.magesJson.mages[(int)mageClass];
         foreach (var skillJson in magesJson.skills)
             if (skillJson.id == gameObject.name) cost = skillJson.cost;
+        Unlockable = false;
+        Unlocked = false;
     }
 
     void InitNextSkills()
@@ -51,11 +54,8 @@ public class Skill : MonoBehaviour
         if (SM.TryUnlockSkill(this))
         {
             Unlocked = true;
-            foreach (Skill ns in nextSkills)
-            {
-                if (ns is FinalSkill) ((FinalSkill)ns).CheckUnlockable();
-                else ns.Unlockable = true;
-            }
+            if (completesBranch) FinalSkill.Instance.CheckUnlockable();
+            foreach (Skill ns in nextSkills) ns.Unlockable = true;
         }
     }
 
