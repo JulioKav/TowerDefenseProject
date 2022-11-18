@@ -1,11 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillTreeToggle : MonoBehaviour
 {
-    public delegate void ToggleSkillTreeEvent();
-    public static event ToggleSkillTreeEvent OnToggleSkillTree;
-
     // Skill Tree Toggle button text
     private TextMeshProUGUI text;
 
@@ -18,9 +16,9 @@ public class SkillTreeToggle : MonoBehaviour
         text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void ToggleSkillTree()
+    void Start()
     {
-        if (OnToggleSkillTree != null) OnToggleSkillTree();
+        GetComponent<Button>().onClick.AddListener(UIStateManager.Instance.ToggleSkillTree);
     }
 
     void OnEnable()

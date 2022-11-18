@@ -4,6 +4,15 @@ public class EnabledOnUIState : MonoBehaviour
 {
 
     public UIState[] enabledStates;
+    public bool enabledAtStart = true;
+
+    private Canvas canvas;
+
+    void Start()
+    {
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = enabledAtStart;
+    }
 
     void OnEnable()
     {
@@ -17,7 +26,6 @@ public class EnabledOnUIState : MonoBehaviour
 
     void StateChangeHandler(UIState newState)
     {
-        Canvas canvas = GetComponent<Canvas>();
         canvas.enabled = false;
         foreach (UIState es in enabledStates) if (es == newState) canvas.enabled = true;
     }

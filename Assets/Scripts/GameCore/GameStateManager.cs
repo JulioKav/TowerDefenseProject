@@ -13,26 +13,21 @@ public class GameStateManager : MonoBehaviour
     public static event StateChangeEvent OnStateChange;
 
     // State property that, when set, automatically triggers the OnStateChange event
-    private GameState _state;
+    private GameState _state = GameState.IDLE;
     public GameState State
     {
         get { return _state; }
         set
         {
-            Debug.Log(_state + ", " + value);
-            if (OnStateChange != null && _state != value)
-                OnStateChange(value); _state = value;
+            Debug.Log("Game State: " + _state + " -> " + value);
+            var oldState = _state;
+            _state = value;
+            if (OnStateChange != null && oldState != value) OnStateChange(value);
         }
     }
 
-
     public int PreRoundTimeInSeconds = 3;
     public int PostRoundTimeInSeconds = 2;
-
-    void Start()
-    {
-        State = GameState.IDLE;
-    }
 
     public void StartRound()
     {
@@ -50,17 +45,13 @@ public class GameStateManager : MonoBehaviour
 
     private IEnumerator StartPreRound()
     {
-        Debug.Log("Pre Round");
         yield return new WaitForSeconds(PreRoundTimeInSeconds);
-        Debug.Log("Round Round");
         State = GameState.ROUND_ONGOING;
     }
 
     private IEnumerator StartPostRound()
     {
-        Debug.Log("Post Round");
         yield return new WaitForSeconds(PostRoundTimeInSeconds);
-        Debug.Log("Idle");
         State = GameState.IDLE;
     }
 }

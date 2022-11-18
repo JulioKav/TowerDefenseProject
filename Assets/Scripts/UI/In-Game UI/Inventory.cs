@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
                         // When a selected tower is placed, spawn it at the right spot and deselect it after.
                         GameObject originalPrefab = selectedButton.towerModel.gameObject.GetComponent<TowerModelInfo>().originalPrefab;
                         hit.transform.GetComponent<BuildingPlacable>().PlaceTower(originalPrefab, selectedButton.yOffset);
-                        selectedButton.numTowers--;
+                        selectedButton.NumTowers--;
                         DeselectTower();
                     }
                 }
