@@ -649,6 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc68c27d2fa303468a0828e4a9b303e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mageClass: 2
   attack_speed: 5
   Road: Road
   Toxic_Road: Toxic Road

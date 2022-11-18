@@ -19,19 +19,12 @@ public class WaveSpawner : MonoBehaviour
     public List<Transform>[] waves;
     int currentWaveId;
     Transform[] currentWave;
-    [HideInInspector]
-    public bool waveOnGoing;
-
-    // For emitting a round end event for other things to subscribe to
-    public delegate void RoundEndEvent();
-    public static event RoundEndEvent OnRoundEnd;
 
     void Start()
     {
         waves = new List<Transform>[4];
         PopulateWave();
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        waveOnGoing = false;
         currentWave = null;
     }
 
@@ -64,22 +57,20 @@ public class WaveSpawner : MonoBehaviour
 
     void OnEnable()
     {
-        StartButton.OnWaveStart += RoundStartHandler;
+        GameStateManager.OnStateChange += StateChangeHandler;
     }
     void OnDisable()
     {
-        StartButton.OnWaveStart -= RoundStartHandler;
+        GameStateManager.OnStateChange -= StateChangeHandler;
     }
 
-    void RoundStartHandler()
+    void StateChangeHandler(GameState newState)
     {
-        StartCoroutine(StartRound());
+        if (newState == GameState.ROUND_ONGOING) StartRound();
     }
 
-    IEnumerator StartRound()
+    void StartRound()
     {
-        waveOnGoing = true;
-        yield return new WaitForSeconds(WaveCountdownTime);
         // Spawns waves depending on wave index
         switch (currentWaveId)
         {
@@ -140,7 +131,8 @@ public class WaveSpawner : MonoBehaviour
     // variable, and emits a RoundEndEvent.
     public IEnumerator CheckWaveComplete()
     {
-        while (true)
+        bool waveOnGoing = true;
+        while (waveOnGoing)
         {
             waveOnGoing = false;
             foreach (var enemy in currentWave)
@@ -153,13 +145,11 @@ public class WaveSpawner : MonoBehaviour
             }
             if (!waveOnGoing)
             {
-                waveOnGoing = true; // Cleanup for wave is still happening
                 currentWave = null;
-                if (OnRoundEnd != null) OnRoundEnd();
-                yield return new WaitForSeconds(2);
-                waveOnGoing = false; // All cleanup completed
+                GameStateManager.Instance.EndRound();
                 break;
             }
+            // Check if wave is empty once a second
             yield return new WaitForSeconds(1);
         }
     }

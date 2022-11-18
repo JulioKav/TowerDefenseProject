@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Mage : MonoBehaviour
@@ -5,26 +6,35 @@ public abstract class Mage : MonoBehaviour
 
     // An interface for mage scripts
 
-    protected bool[] skillsUnlocked = new bool[] { false, false, false, false };
+    private Dictionary<string, bool> skillsUnlocked;
     StarDisplay starDisplay;
+    public MageClass mageClass;
 
-    void Awake()
+    public void Start()
     {
         starDisplay = GetComponentInChildren<StarDisplay>();
+        skillsUnlocked = new Dictionary<string, bool>();
     }
 
-    public virtual void UnlockSkill(int id)
+    public void OnEnable()
     {
-        // unlocks the skill and shows the star
-        skillsUnlocked[id] = true;
-        // starDisplay.UnlockSkill(id);
+        SkillManager.OnChangeSkill += ChangeSkillHandler;
     }
 
-    public virtual void LockSkill(int id)
+    public void OnDisable()
     {
-        // locks unlocked skill and hides scar
-        skillsUnlocked[id] = false;
-        starDisplay.LockSkill(id);
+        SkillManager.OnChangeSkill -= ChangeSkillHandler;
+    }
+
+    public virtual void ChangeSkillHandler(MageClass mageClass, string id, bool unlocked)
+    {
+        if (mageClass != this.mageClass) return;
+        skillsUnlocked[id] = unlocked;
+    }
+
+    public bool IsSkillUnlocked(string id)
+    {
+        return (skillsUnlocked.ContainsKey(id) && skillsUnlocked[id]);
     }
 
 }

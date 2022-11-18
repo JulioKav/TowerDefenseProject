@@ -12,8 +12,8 @@ public class SkillManager : MonoBehaviour
     public delegate void GameEndEvent(int status); // 1 is win, 0 is loss
     public static event GameEndEvent OnGameEnd;
 
-    public delegate void UnlockSkillEvent(MageClass mageClass, string id);
-    public static event UnlockSkillEvent OnUnlockSkill;
+    public delegate void ChangeSkillEvent(MageClass mageClass, string id, bool unlocked);
+    public static event ChangeSkillEvent OnChangeSkill;
 
     private LinkedList<Skill> unlockOrder;
 
@@ -22,7 +22,7 @@ public class SkillManager : MonoBehaviour
     public int startingSkillPoints = 50;
     public int skillPoints { get; private set; }
 
-    public bool[] branchCompleted;
+    [HideInInspector] public bool[] branchCompleted;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class SkillManager : MonoBehaviour
             unlockOrder.AddLast(skill);
             if (skill.completesBranch) branchCompleted[(int)skill.mageClass] = true;
             // Broadcast Event
-            if (OnUnlockSkill != null) OnUnlockSkill(skill.mageClass, skill.gameObject.name);
+            if (OnChangeSkill != null) OnChangeSkill(skill.mageClass, skill.gameObject.name, true);
             // Check for Game End
             if (skill is FinalSkill && OnGameEnd != null) OnGameEnd(1);
             return true;
@@ -70,6 +70,7 @@ public class SkillManager : MonoBehaviour
                 if (lastUnlocked is MageSkill) mageSpawner.DespawnMage(lastUnlocked.mageClass);
                 if (lastUnlocked.completesBranch) branchCompleted[(int)lastUnlocked.mageClass] = false;
                 lastUnlocked.LockSkill();
+                if (OnChangeSkill != null) OnChangeSkill(lastUnlocked.mageClass, lastUnlocked.gameObject.name, false);
                 unlockOrder.RemoveLast();
             }
             else

@@ -7,7 +7,6 @@ public class UpdateSkillPoints : MonoBehaviour
 {
 
     TextMeshProUGUI skillPointText;
-    public SkillManager skillManager;
 
     void Start()
     {
@@ -17,6 +16,6 @@ public class UpdateSkillPoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        skillPointText.text = "Skill Points: " + skillManager.skillPoints;
+        skillPointText.text = "Skill Points: " + SkillManager.Instance.skillPoints;
     }
 }
