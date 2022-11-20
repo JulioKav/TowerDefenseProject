@@ -41,7 +41,7 @@ namespace MapEnums
         CONSTRUCTION,
     }
 }
-public class GameState : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     public Transform MapContainer;
     public GameObject[] materialPrefab;

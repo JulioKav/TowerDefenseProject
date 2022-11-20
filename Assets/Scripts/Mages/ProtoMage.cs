@@ -6,21 +6,10 @@ public class ProtoMage : Mage
 
     float[] attackSpeedBuffs;
 
-    public void Start()
+    new public void Start()
     {
+        base.Start();
         attackSpeedBuffs = new float[] { 0.5f, 0.5f, 1f, 2f };
-    }
-
-    public override void UnlockSkill(int id)
-    {
-        base.UnlockSkill(id);
-        increaseAttackSpeed(attackSpeedBuffs[id]);
-    }
-
-    public override void LockSkill(int id)
-    {
-        base.LockSkill(id);
-        decreaseAttackSpeed(attackSpeedBuffs[id]);
     }
 
     void increaseAttackSpeed(float value)
@@ -33,4 +22,8 @@ public class ProtoMage : Mage
         increaseAttackSpeed(-value);
     }
 
+    public override void ChangeSkillHandler(MageClass mageClass, string id, bool unlocked)
+    {
+
+    }
 }

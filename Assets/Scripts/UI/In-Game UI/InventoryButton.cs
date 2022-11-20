@@ -29,14 +29,25 @@ public class InventoryButton : MonoBehaviour
         if (inventoryText) inventoryText.text = "" + numTowers;
     }
 
-    // Subscribe to RoundEndEvent
-    void OnEnable() { WaveSpawner.OnRoundEnd += RoundEndHandler; }
-    void OnDisable() { WaveSpawner.OnRoundEnd -= RoundEndHandler; }
-
-    void RoundEndHandler()
+    void OnEnable()
     {
-        // Add 1 tower each round end
-        AddTowers(1);
+        GameStateManager.OnStateChange += StateChangeHandler;
+    }
+    void OnDisable()
+    {
+        GameStateManager.OnStateChange -= StateChangeHandler;
+    }
+
+    void StateChangeHandler(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.POST_ROUND:
+                AddTowers(1);
+                break;
+            default:
+                break;
+        }
     }
 
     void AddTowers(int num)

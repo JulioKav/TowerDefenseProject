@@ -2,65 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicalMage : MonoBehaviour { 
-// An interface for mage scripts
+public class PhysicalMage : Mage
+{
 
-    bool[] skillsUnlocked;
-    public StarDisplay starDisplay;
-
-// Start is called before the first frame update
-public void Start()
-{   
-
-    // by default they are not unlocked
-    skillsUnlocked = new bool[] { false, false, false, false };
+    // Start is called before the first frame update
+    new public void Start()
+    {
         // Calls Target_Search every chosen amount seconds.
-    InvokeRepeating("Target_Search", 0f, 1.0f);
+        base.Start();
+        InvokeRepeating("Target_Search", 0f, 1.0f);
     }
 
-public virtual void UnlockSkill(int id)
-{
-    // unlocks the skill and shows the star
-    skillsUnlocked[id] = true;
-    starDisplay.UnlockSkill(id);
-}
-
-public virtual void LockSkill(int id)
-{
-    // locks unlocked skill and hides scar
-    skillsUnlocked[id] = false;
-    starDisplay.LockSkill(id);
-}
-
-public virtual void Skill1()
-{
-    if (!skillsUnlocked[0]) return;
-}
-
-public virtual void Skill2()
-{
-    if (!skillsUnlocked[1]) return;
-}
-
-public virtual void Skill3()
-{
-    if (!skillsUnlocked[2]) return;
-}
-
-public virtual void Skill4()
-{
-    if (!skillsUnlocked[3]) return;
-}
-
-    ///////////////////////////////////////////////////////////////
-    /// <shooting>
-    /// ///////////////////////////////
-    /// </summary>
-    ////////////////////////////////////////////////////
     private Transform target;
     private Enemy targetEnemy;
 
-    
+
 
     [Header("Turret Stats")]
 
@@ -80,8 +36,6 @@ public virtual void Skill4()
 
     // USE THIS WHEN YOU HAVE ASSETS, NAMELY A PART OF TURRET YOU WANT TO ROTATE NOT WHOLE THING
     public Transform part_to_rotate;
-
-
 
     // Draws a 3D wire mesh range around turret.
     private void OnDrawGizmosSelected()
@@ -166,7 +120,7 @@ public virtual void Skill4()
 
         Destroy(effect_instance, 1f);
 
-        GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3( 0, 16f, 0), firepoint.rotation);
+        GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 16f, 0), firepoint.rotation);
         GameObject bulletGO1 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 8f, 0), firepoint.rotation);
         GameObject bulletGO2 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 10f, 0), firepoint.rotation);
         GameObject bulletGO3 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 12f, 0), firepoint.rotation);
@@ -188,5 +142,5 @@ public virtual void Skill4()
 
     }
 
-    
+
 }

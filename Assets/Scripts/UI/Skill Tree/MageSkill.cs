@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class MageSkill : Skill
 {
@@ -22,7 +23,7 @@ public class MageSkill : Skill
         foreach (Skill skill in GetComponentsInChildren<Skill>()) skill.mageClass = mageClass;
     }
 
-    new public void TryUnlockSkill()
+    public override void TryUnlockSkill()
     {
         base.TryUnlockSkill();
         if (Unlocked) SM.mageSpawner.SpawnMage(mageClass);

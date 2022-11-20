@@ -156,24 +156,34 @@ public class ImaginaryMage : Mage
         }
     }
 
-    void OnEnable()
+    new public void OnEnable()
     {
-        StartButton.OnWaveStart += WaveStartHandler;
-        WaveSpawner.OnRoundEnd += WaveEndHandler;
+        base.OnEnable();
+        GameStateManager.OnStateChange += StateChangeHandler;
     }
 
-    void OnDisable()
+    new public void OnDisable()
     {
-        StartButton.OnWaveStart -= WaveStartHandler;
-        WaveSpawner.OnRoundEnd -= WaveEndHandler;
+        base.OnDisable();
+        GameStateManager.OnStateChange -= StateChangeHandler;
     }
 
-    void WaveStartHandler()
+    void StateChangeHandler(GameState newState)
     {
-        get_path_tiles();
+        switch (newState)
+        {
+            case GameState.PRE_ROUND:
+                get_path_tiles();
+                break;
+            case GameState.POST_ROUND:
+                DespawnAllObjects();
+                break;
+            default:
+                break;
+        }
     }
 
-    void WaveEndHandler()
+    void DespawnAllObjects()
     {
         foreach (var tile in GameObject.FindGameObjectsWithTag(Toxic_Road))
         {
@@ -194,8 +204,8 @@ public class ImaginaryMage : Mage
 
     public GameObject GetToxicRoadPrefab()
     {
-        if (skillsUnlocked[1]) return toxicRoadLvl3Prefab;
-        if (skillsUnlocked[0]) return toxicRoadLvl2Prefab;
+        if (IsSkillUnlocked("slowing_1")) return toxicRoadLvl3Prefab;
+        if (IsSkillUnlocked("slowing_2")) return toxicRoadLvl2Prefab;
         return toxicRoadLvl1Prefab;
     }
 

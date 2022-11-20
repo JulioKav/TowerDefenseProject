@@ -49,7 +49,7 @@ public class Skill : MonoBehaviour
         foreach (Transform skillT in transform) nextSkills.Add(skillT.GetComponent<Skill>());
     }
 
-    public void TryUnlockSkill()
+    public virtual void TryUnlockSkill()
     {
         if (SM.TryUnlockSkill(this))
         {
