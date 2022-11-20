@@ -12,21 +12,27 @@ public class InventoryButton : MonoBehaviour
     public GameObject inventoryFrame;
     TextMeshProUGUI inventoryText;
 
-    [HideInInspector]
-    public int numTowers;
+    private int _numTowers;
+    public int NumTowers
+    {
+        get
+        {
+            return _numTowers;
+        }
+        set
+        {
+            _numTowers = value;
+            UpdateText();
+            CheckInteractability();
+        }
+    }
 
     void Start()
     {
-        numTowers = 1;
         // Subscribes this buttons onClick to the parent (Inventory sript)'s InventoryButtonClick function with this button as the argument
-        gameObject.GetComponent<Button>().onClick.AddListener(() => transform.parent.GetComponent<Inventory>().InventoryButtonClick(this));
+        GetComponent<Button>().onClick.AddListener(() => transform.parent.GetComponent<Inventory>().InventoryButtonClick(this));
         inventoryText = gameObject.GetComponentsInChildren<TextMeshProUGUI>()[0];
-    }
-
-    void Update()
-    {
-        gameObject.GetComponent<Button>().interactable = numTowers > 0;
-        if (inventoryText) inventoryText.text = "" + numTowers;
+        NumTowers = 1;
     }
 
     void OnEnable()
@@ -45,6 +51,10 @@ public class InventoryButton : MonoBehaviour
             case GameState.POST_ROUND:
                 AddTowers(1);
                 break;
+            case GameState.PRE_ROUND:
+            case GameState.IDLE:
+                CheckInteractability();
+                break;
             default:
                 break;
         }
@@ -52,7 +62,17 @@ public class InventoryButton : MonoBehaviour
 
     void AddTowers(int num)
     {
-        numTowers += num;
+        NumTowers += num;
+    }
+
+    void UpdateText()
+    {
+        if (inventoryText) inventoryText.text = "" + NumTowers;
+    }
+
+    void CheckInteractability()
+    {
+        GetComponent<Button>().interactable = GameStateManager.Instance.State == GameState.IDLE && NumTowers > 0;
     }
 
 }
