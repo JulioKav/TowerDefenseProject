@@ -32,7 +32,7 @@ public class Enemies : MonoBehaviour
 
     public void Start()
     {
-        skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+        skillManager = SkillManager.Instance;
     }
 
     protected void Update()

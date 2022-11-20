@@ -32,7 +32,7 @@ public class InventoryButton : MonoBehaviour
         // Subscribes this buttons onClick to the parent (Inventory sript)'s InventoryButtonClick function with this button as the argument
         GetComponent<Button>().onClick.AddListener(() => transform.parent.GetComponent<Inventory>().InventoryButtonClick(this));
         inventoryText = gameObject.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        NumTowers = 1;
+        NumTowers = 0;
     }
 
     void OnEnable()
@@ -48,9 +48,6 @@ public class InventoryButton : MonoBehaviour
     {
         switch (newState)
         {
-            case GameState.POST_ROUND:
-                AddTowers(1);
-                break;
             case GameState.PRE_ROUND:
             case GameState.IDLE:
                 CheckInteractability();
@@ -60,7 +57,7 @@ public class InventoryButton : MonoBehaviour
         }
     }
 
-    void AddTowers(int num)
+    public void AddTowers(int num)
     {
         NumTowers += num;
     }

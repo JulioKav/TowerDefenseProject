@@ -3,6 +3,7 @@ using UnityEngine;
 public class MagesJSONParser : MonoBehaviour
 {
     public static MagesJSONParser Instance { get; private set; }
+    void InitSingleton() { if (!Instance) Instance = this; }
 
     public TextAsset jsonFile;
 
@@ -10,7 +11,7 @@ public class MagesJSONParser : MonoBehaviour
 
     void Awake()
     {
-        if (!Instance) Instance = this;
+        InitSingleton();
         magesJson = JsonUtility.FromJson<Mages>(jsonFile.text);
     }
 
