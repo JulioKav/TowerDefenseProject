@@ -675,7 +675,7 @@ MonoBehaviour:
   attack_speed: 50
   _health: 100
   _maxHealth: 100
-  damage: 2
+  damage: 1
   Enemy: Enemy
 --- !u!95 &5418908553388845760
 Animator:

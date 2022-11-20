@@ -601,7 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
   attack_range: 4
-  attack_speed: 100
+  attack_speed: 2
   _health: 100
   _maxHealth: 100
   Enemy: Tower
