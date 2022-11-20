@@ -49,6 +49,28 @@ public class Skill : MonoBehaviour
         foreach (Transform skillT in transform) nextSkills.Add(skillT.GetComponent<Skill>());
     }
 
+    void OnEnable()
+    {
+        GameStateManager.OnStateChange += StateChangeHandler;
+    }
+    void OnDisable()
+    {
+        GameStateManager.OnStateChange -= StateChangeHandler;
+    }
+
+    void StateChangeHandler(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.PRE_ROUND:
+            case GameState.IDLE:
+                UpdateButtonAppearance();
+                break;
+            default:
+                break;
+        }
+    }
+
     public virtual void TryUnlockSkill()
     {
         if (SM.TryUnlockSkill(this))
@@ -68,18 +90,12 @@ public class Skill : MonoBehaviour
     void UpdateButtonAppearance()
     {
         // Udpate button based on if it is unlockable and/or unlocked
-        button.interactable = Unlockable && !Unlocked;
-        if (Unlocked)
-        {
-            var colors = button.colors;
-            colors.disabledColor = new Color(0x52 / 255f, 0xE7 / 255f, 0x62 / 255f);
-            button.colors = colors;
-        }
-        else
-        {
-            var colors = button.colors;
-            colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 128 / 255f);
-            button.colors = colors;
-        }
+        button.interactable = GameStateManager.Instance.State == GameState.IDLE && Unlockable && !Unlocked;
+        // Set color of disabled button
+        var colors = button.colors;
+        if (Unlocked) colors.disabledColor = new Color(0x52 / 255f, 0xE7 / 255f, 0x62 / 255f);
+        else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 128 / 255f);
+        else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 128 / 255f);
+        button.colors = colors;
     }
 }

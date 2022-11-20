@@ -11,7 +11,7 @@ public class BoonManager : MonoBehaviour
     int skillPointValue;
 
     // These names have to match "id" values in Assets/Texts/Boons/Boons.json
-    public InventoryButton cannon, healer, archer;
+    public InventoryButton cannon, archer, healer;
 
     public System.Random rnd;
 
