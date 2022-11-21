@@ -7,11 +7,15 @@ using UnityEngine;
 public class LineConnectedImageEditor : ImageEditor
 {
     SerializedProperty thickness;
+    SerializedProperty radius;
+    SerializedProperty circleResolution;
 
     new void OnEnable()
     {
         base.OnEnable();
         thickness = serializedObject.FindProperty("thickness");
+        radius = serializedObject.FindProperty("radius");
+        circleResolution = serializedObject.FindProperty("circleResolution");
     }
 
     public override void OnInspectorGUI()
@@ -19,6 +23,8 @@ public class LineConnectedImageEditor : ImageEditor
         base.OnInspectorGUI();
         serializedObject.Update();
         EditorGUILayout.PropertyField(thickness);
+        EditorGUILayout.PropertyField(radius);
+        EditorGUILayout.PropertyField(circleResolution);
         serializedObject.ApplyModifiedProperties();
     }
 }
