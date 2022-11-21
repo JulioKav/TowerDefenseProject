@@ -27,11 +27,6 @@ public class UIStateManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        State = UIState.DEFAULT;
-    }
-
     void OnEnable()
     {
         GameStateManager.OnStateChange += StateChangeHandler;
