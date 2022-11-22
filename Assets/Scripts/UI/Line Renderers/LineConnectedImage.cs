@@ -27,52 +27,25 @@ public class LineConnectedImage : Image
 
         if (transform.childCount == 0) return;
 
-        int offset = vh.currentVertCount;
-
-        // Single vertical line from skill halfway to next skills
-        float longestYDistance = 0;
-        float longestXDistance = 0;
-        float realRadius = radius;
-        foreach (Transform target in transform)
-        {
-            float yDistance = Math.Abs(transform.position.y - target.position.y);
-            if (yDistance > longestYDistance) longestYDistance = yDistance;
-
-            float xDistance = Math.Abs(target.position.x - transform.position.x);
-            if (xDistance > longestXDistance) longestXDistance = xDistance;
-        }
-        longestXDistance /= transform.root.localScale.x;
-        longestYDistance /= transform.root.localScale.y;
-        realRadius = Math.Min(radius, Math.Abs(longestXDistance) / 2);
-        float firstSegmentLength = longestYDistance / 2 - realRadius;
-
         UIVertex vertex = UIVertex.simpleVert;
+        vertex.color = color;
 
-        vertex.position = new Vector3(-thickness / 2, 0, 0);
-        vh.AddVert(vertex);
-        vertex.position = new Vector3(thickness / 2, 0, 0);
-        vh.AddVert(vertex);
-        vertex.position = new Vector3(-thickness / 2, -firstSegmentLength, 0);
-        vh.AddVert(vertex);
-        vertex.position = new Vector3(thickness / 2, -firstSegmentLength, 0);
-        vh.AddVert(vertex);
-        vh.AddTriangle(offset + 0, offset + 1, offset + 3);
-        vh.AddTriangle(offset + 3, offset + 2, offset + 0);
+        int offset = vh.currentVertCount;
+        float realRadius = radius / transform.root.localScale.x;
 
+        float longestVertLine = 0;
 
         // Remaining lines from skill to each next skills
         foreach (Transform target in transform)
         {
-
             float distance = Math.Abs(transform.position.y - target.position.y);
-            float thirdSegmentLength = (distance / 2) / transform.root.localScale.y - realRadius;
 
             float x = target.position.x - transform.position.x;
             float y = target.position.y - transform.position.y;
             x /= transform.root.localScale.x;
             y /= transform.root.localScale.y;
 
-            realRadius = Math.Min(radius, Math.Abs(x) / 2);
+            realRadius = Math.Min(radius / transform.root.localScale.x, Math.Abs(x) / 2);
             float yCenter = y + (distance / 2) / transform.root.localScale.y;
             float radiusXOffset = Math.Sign(x) * realRadius;
 
@@ -90,6 +63,8 @@ public class LineConnectedImage : Image
             vh.AddTriangle(offset + 3, offset + 2, offset + 0);
 
             // Remaining half way vertical lines from skill to each next skill
+            float thirdSegmentLength = (distance / 2) / transform.root.localScale.y - realRadius;
+            if (thirdSegmentLength > longestVertLine) longestVertLine = thirdSegmentLength;
             offset = vh.currentVertCount;
             vertex.position = new Vector3(x - thickness / 2, y, 0);
             vh.AddVert(vertex);
@@ -102,7 +77,7 @@ public class LineConnectedImage : Image
             vh.AddTriangle(offset + 0, offset + 1, offset + 3);
             vh.AddTriangle(offset + 3, offset + 2, offset + 0);
 
-            if (realRadius == 0) return;
+            if (realRadius == 0) continue;
 
             // First half circle
             offset = vh.currentVertCount;
@@ -157,6 +132,19 @@ public class LineConnectedImage : Image
                 vh.AddTriangle(offset + 2 * i + 3, offset + 2 * i + 2, offset + 2 * i + 0);
             }
         }
+
+        // Single vertical line from skill halfway to next skills
+        offset = vh.currentVertCount;
+        vertex.position = new Vector3(-thickness / 2, 0, 0);
+        vh.AddVert(vertex);
+        vertex.position = new Vector3(thickness / 2, 0, 0);
+        vh.AddVert(vertex);
+        vertex.position = new Vector3(-thickness / 2, -longestVertLine, 0);
+        vh.AddVert(vertex);
+        vertex.position = new Vector3(thickness / 2, -longestVertLine, 0);
+        vh.AddVert(vertex);
+        vh.AddTriangle(offset + 0, offset + 1, offset + 3);
+        vh.AddTriangle(offset + 3, offset + 2, offset + 0);
     }
 
     new void OnValidate()
