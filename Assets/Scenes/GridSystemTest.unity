@@ -912,6 +912,10 @@ PrefabInstance:
       propertyPath: mageSpawner
       value: 
       objectReference: {fileID: 171014296}
+    - target: {fileID: 9121907900005772748, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+      propertyPath: numStartingTowers
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}

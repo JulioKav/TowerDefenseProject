@@ -12,6 +12,8 @@ public class InventoryButton : MonoBehaviour
     public GameObject inventoryFrame;
     TextMeshProUGUI inventoryText;
 
+    public int numStartingTowers = 0;
+
     private int _numTowers;
     public int NumTowers
     {
@@ -32,7 +34,7 @@ public class InventoryButton : MonoBehaviour
         // Subscribes this buttons onClick to the parent (Inventory sript)'s InventoryButtonClick function with this button as the argument
         GetComponent<Button>().onClick.AddListener(() => transform.parent.GetComponent<Inventory>().InventoryButtonClick(this));
         inventoryText = gameObject.GetComponentsInChildren<TextMeshProUGUI>()[0];
-        NumTowers = 0;
+        NumTowers = numStartingTowers;
     }
 
     void OnEnable()
