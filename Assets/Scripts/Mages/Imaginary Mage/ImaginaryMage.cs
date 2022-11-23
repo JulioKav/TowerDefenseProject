@@ -204,7 +204,7 @@ public class ImaginaryMage : Mage
 
     public GameObject GetToxicRoadPrefab()
     {
-        if (IsSkillUnlocked("slowing_1")) return toxicRoadLvl3Prefab;
+        if (IsSkillUnlocked("slowing_3")) return toxicRoadLvl3Prefab;
         if (IsSkillUnlocked("slowing_2")) return toxicRoadLvl2Prefab;
         return toxicRoadLvl1Prefab;
     }

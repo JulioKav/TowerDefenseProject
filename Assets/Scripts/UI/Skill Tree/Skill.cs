@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 using UnityEngine.UI;
 
-public class Skill : MonoBehaviour
+public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector] public List<Skill> nextSkills;
 
@@ -10,6 +12,10 @@ public class Skill : MonoBehaviour
     [HideInInspector] public MageClass mageClass;
     [HideInInspector] public int cost;
 
+    protected string skillName;
+    protected string skillDesc; // ...ription
+
+    public bool isFirstSkill = false;
     public bool completesBranch = false;
 
     private bool _unlockable;
@@ -17,7 +23,7 @@ public class Skill : MonoBehaviour
     private bool _unlocked;
     public bool Unlocked { get { return _unlocked; } set { _unlocked = value; UpdateButtonAppearance(); } }
 
-    protected MagesJSONParser.Mage magesJson;
+    protected MagesJSONParser.Mage mageJson;
     protected SkillManager SM;
 
     public void Start()
@@ -34,19 +40,44 @@ public class Skill : MonoBehaviour
         button.onClick.AddListener(TryUnlockSkill);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (eventData.hovered.Count > 0 && eventData.hovered[0] != this) return;
+        SkillDescriptionManager.Instance.SetText(skillName, skillDesc, cost);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SkillDescriptionManager.Instance.ClearText();
+    }
+
     void InitStats()
     {
-        magesJson = MagesJSONParser.Instance.magesJson.mages[(int)mageClass];
-        foreach (var skillJson in magesJson.skills)
-            if (skillJson.id == gameObject.name) cost = skillJson.cost;
-        Unlockable = false;
+        mageJson = MagesJSONParser.Instance.magesJson.mages[(int)mageClass];
+        if (isFirstSkill)
+        {
+            cost = mageJson.cost;
+            skillName = mageJson.name;
+            skillDesc = mageJson.description;
+        }
+        else foreach (var skillJson in mageJson.skills) if (skillJson.id == gameObject.name)
+                {
+                    cost = skillJson.cost;
+                    skillName = skillJson.name;
+                    skillDesc = skillJson.description;
+                }
+        Unlockable = isFirstSkill;
         Unlocked = false;
     }
 
     void InitNextSkills()
     {
         nextSkills = new List<Skill>();
-        foreach (Transform skillT in transform) nextSkills.Add(skillT.GetComponent<Skill>());
+        foreach (Transform skillT in transform)
+        {
+            Skill s;
+            if (skillT.TryGetComponent<Skill>(out s)) nextSkills.Add(s);
+        }
     }
 
     void OnEnable()
@@ -78,6 +109,7 @@ public class Skill : MonoBehaviour
             Unlocked = true;
             if (completesBranch) FinalSkill.Instance.CheckUnlockable();
             foreach (Skill ns in nextSkills) ns.Unlockable = true;
+            if (isFirstSkill) SM.mageSpawner.SpawnMage(mageClass);
         }
     }
 
@@ -94,8 +126,8 @@ public class Skill : MonoBehaviour
         // Set color of disabled button
         var colors = button.colors;
         if (Unlocked) colors.disabledColor = new Color(0x52 / 255f, 0xE7 / 255f, 0x62 / 255f);
-        else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 128 / 255f);
-        else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 128 / 255f);
+        else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 1);
+        else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1);
         button.colors = colors;
     }
 }

@@ -38,6 +38,8 @@ public class LineConnectedImage : Image
         // Remaining lines from skill to each next skills
         foreach (Transform target in transform)
         {
+            if (target == null) continue;
+
             float distance = Math.Abs(transform.position.y - target.position.y);
 
             float x = target.position.x - transform.position.x;
@@ -147,7 +149,7 @@ public class LineConnectedImage : Image
         vh.AddTriangle(offset + 3, offset + 2, offset + 0);
     }
 
-    new void OnValidate()
+    protected override void OnValidate()
     {
         base.OnValidate();
         thickness = Math.Max(thickness, 1);

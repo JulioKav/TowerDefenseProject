@@ -25,9 +25,10 @@ public class MagesJSONParser : MonoBehaviour
     [System.Serializable]
     public class Mage
     {
-        public string name;
         public string type;
+        public string name;
         public int cost;
+        public string description;
         public Skill[] skills;
     }
 
@@ -37,5 +38,6 @@ public class MagesJSONParser : MonoBehaviour
         public string id;
         public string name;
         public int cost;
+        public string description;
     }
 }

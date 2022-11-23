@@ -39,19 +39,27 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime);
         }
     }
-
+    // This scripts subscribes the attached game object to the GameEndEvent, and disables it on game end
     void OnEnable()
     {
-        SkillManager.OnGameEnd += GameEndHandler;
+        GameStateManager.OnStateChange += StateChangeHandler;
     }
 
     void OnDisable()
     {
-        SkillManager.OnGameEnd -= GameEndHandler;
+        GameStateManager.OnStateChange -= StateChangeHandler;
     }
 
-    void GameEndHandler(int status)
+    void StateChangeHandler(GameState newState)
     {
-        panSpeed = 0f;
+        switch (newState)
+        {
+            case GameState.WIN:
+            case GameState.LOSE:
+                panSpeed = 0f;
+                break;
+            default:
+                break;
+        }
     }
 }

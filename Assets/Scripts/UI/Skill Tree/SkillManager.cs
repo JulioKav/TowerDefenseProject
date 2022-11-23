@@ -6,16 +6,15 @@ public class SkillManager : MonoBehaviour
 {
 
     public static SkillManager Instance { get; private set; }
-    void Awake() { if (!Instance) Instance = this; }
-
-    // Event for game end
-    public delegate void GameEndEvent(int status); // 1 is win, 0 is loss
-    public static event GameEndEvent OnGameEnd;
+    void InitSingleton() { if (!Instance) Instance = this; }
 
     public delegate void ChangeSkillEvent(MageClass mageClass, string id, bool unlocked);
     public static event ChangeSkillEvent OnChangeSkill;
 
     private LinkedList<Skill> unlockOrder;
+
+    // The first skill in each branch, which unlocks the mage itself
+    public Skill[] mageSkills;
 
     public MageSpawner mageSpawner;
 
@@ -24,12 +23,31 @@ public class SkillManager : MonoBehaviour
 
     [HideInInspector] public bool[] branchCompleted;
 
+    void Awake()
+    {
+        InitSingleton();
+        InitMageClasses();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         skillPoints = startingSkillPoints;
         unlockOrder = new LinkedList<Skill>();
         branchCompleted = new bool[] { false, false, false, false };
+    }
+
+    void InitMageClasses()
+    {
+        foreach (Skill ms in mageSkills)
+        {
+            if (ms.gameObject.name == "Bruiser") ms.mageClass = MageClass.Physical;
+            if (ms.gameObject.name == "Wizard") ms.mageClass = MageClass.Magic;
+            if (ms.gameObject.name == "Dreamer") ms.mageClass = MageClass.Imaginary;
+            if (ms.gameObject.name == "Tinkerer") ms.mageClass = MageClass.Mechanical;
+
+            foreach (Skill s in ms.GetComponentsInChildren<Skill>()) s.mageClass = ms.mageClass;
+        }
     }
 
     public bool TryUnlockSkill(Skill skill)
@@ -42,7 +60,7 @@ public class SkillManager : MonoBehaviour
             // Broadcast Event
             if (OnChangeSkill != null) OnChangeSkill(skill.mageClass, skill.gameObject.name, true);
             // Check for Game End
-            if (skill is FinalSkill && OnGameEnd != null) OnGameEnd(1);
+            if (skill is FinalSkill) GameStateManager.Instance.EndGame(true);
             return true;
         }
         return false;
@@ -67,7 +85,7 @@ public class SkillManager : MonoBehaviour
                 this.skillPoints += lastUnlocked.cost / 2;
                 this.skillPoints -= skillPoints;
                 // Lock the skill
-                if (lastUnlocked is MageSkill) mageSpawner.DespawnMage(lastUnlocked.mageClass);
+                if (lastUnlocked.isFirstSkill) mageSpawner.DespawnMage(lastUnlocked.mageClass);
                 if (lastUnlocked.completesBranch) branchCompleted[(int)lastUnlocked.mageClass] = false;
                 lastUnlocked.LockSkill();
                 if (OnChangeSkill != null) OnChangeSkill(lastUnlocked.mageClass, lastUnlocked.gameObject.name, false);
@@ -77,7 +95,7 @@ public class SkillManager : MonoBehaviour
             // Lose the game
             {
                 this.skillPoints = 0;
-                if (OnGameEnd != null) OnGameEnd(0);
+                GameStateManager.Instance.EndGame(false);
             }
         }
     }

@@ -5,16 +5,24 @@ public class DisableOnGameEnd : MonoBehaviour
     // This scripts subscribes the attached game object to the GameEndEvent, and disables it on game end
     void OnEnable()
     {
-        SkillManager.OnGameEnd += GameEndHandler;
+        GameStateManager.OnStateChange += StateChangeHandler;
     }
 
     void OnDisable()
     {
-        SkillManager.OnGameEnd -= GameEndHandler;
+        GameStateManager.OnStateChange -= StateChangeHandler;
     }
 
-    void GameEndHandler(int status)
+    void StateChangeHandler(GameState newState)
     {
-        gameObject.SetActive(false);
+        switch (newState)
+        {
+            case GameState.WIN:
+            case GameState.LOSE:
+                gameObject.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
 }

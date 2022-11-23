@@ -1,52 +1,51 @@
 {
   "mages": [
     {
-      "name": "Bruiser",
       "type": "Physical",
+      "name": "Bruiser",
       "cost": 50,
-      "skills": [
-        { "id": "TODO", "name": "TODO", "cost": 200 },
-        { "id": "TODO", "name": "TODO", "cost": 350 },
-        { "id": "TODO", "name": "TODO", "cost": 500 },
-        { "id": "TODO", "name": "TODO", "cost": 600 }
-      ]
+      "description": "Unlocks the Bruiser",
+      "skills": []
     },
     {
-      "name": "Wizard",
       "type": "Magic",
+      "name": "Wizard",
       "cost": 50,
-      "skills": [
-        { "id": "TODO", "name": "TODO", "cost": 200 },
-        { "id": "TODO", "name": "TODO", "cost": 350 },
-        { "id": "TODO", "name": "TODO", "cost": 500 },
-        { "id": "TODO", "name": "TODO", "cost": 600 }
-      ]
+      "description": "Unlocks the Wizard",
+      "skills": []
     },
     {
-      "name": "Dreamer",
       "type": "Imaginary",
+      "name": "Dreamer",
       "cost": 50,
+      "description": "Unlocks the Dreamer",
       "skills": [
-        { "id": "slowing_1", "name": "Slowing towers", "cost": 200 },
-        { "id": "slowing_2", "name": "Better slowing towers", "cost": 350 },
-        { "id": "slowing_3", "name": "Best slowing towers", "cost": 500 },
-        { "id": "TODO", "name": "TODO", "cost": 600 }
+        {
+          "id": "slowing_2",
+          "name": "Slowing Towers+",
+          "cost": 200,
+          "description": "A double stacked slowing tower slows more and does more damage"
+        },
+        {
+          "id": "slowing_3",
+          "name": "Slowing Towers++",
+          "cost": 350,
+          "description": "A triple stacked slowing tower slows more and does more damage"
+        },
+        { "id": "TODO", "name": "TODO", "cost": 600, "description": "TODO" }
       ]
     },
     {
-      "name": "Tinkerer",
       "type": "Mechanical",
+      "name": "Tinkerer",
       "cost": 50,
-      "skills": [
-        { "id": "TODO", "name": "TODO", "cost": 200 },
-        { "id": "TODO", "name": "TODO", "cost": 350 },
-        { "id": "TODO", "name": "TODO", "cost": 500 },
-        { "id": "TODO", "name": "TODO", "cost": 600 }
-      ]
+      "description": "Unlocks the Tinkerer",
+      "skills": []
     }
   ],
   "finalSkill": {
     "name": "SCDW 3000",
+    "description": "The Super Crazy Death Weapon 3000 is the ultimate weapon",
     "cost": 1000
   }
 }

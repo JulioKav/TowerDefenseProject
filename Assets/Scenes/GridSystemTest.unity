@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9c52cc77fc34e6a93da82384598587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillTree: {fileID: 0}
+  SkillTree: {fileID: 373819251}
   magesPrefabs:
   - {fileID: 4726115004143983497, guid: 626e989c66354cd4487a8a39cb976647, type: 3}
   - {fileID: 6810060772655838063, guid: bcf19b36814d04531b051291cb2f641c, type: 3}
@@ -204,6 +204,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373819251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7849428063743256960, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+  m_PrefabInstance: {fileID: 2281649222341954044}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f91a46c5447486c9cd4ac55a960e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &580037961
 GameObject:
   m_ObjectHideFlags: 0
