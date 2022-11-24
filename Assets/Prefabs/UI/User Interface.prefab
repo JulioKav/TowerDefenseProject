@@ -3161,7 +3161,7 @@ RectTransform:
   - {fileID: 4595578698171380677}
   - {fileID: 8527986773434423208}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4241,6 +4241,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 5842120285537407426}
     m_Modifications:
+    - target: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+      propertyPath: completesBranch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4552819661790206222, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_Name
       value: Wizard
@@ -4359,6 +4363,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 5842120285537407426}
     m_Modifications:
+    - target: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+      propertyPath: completesBranch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4552819661790206222, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_Name
       value: Tinkerer
@@ -4484,7 +4492,7 @@ PrefabInstance:
     - target: {fileID: 4552819661790206216, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_TargetGraphic
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3017415618132579028}
     - target: {fileID: 4552819661790206216, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
       value: 0.8301887
@@ -4607,6 +4615,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 296866029}
   m_SourcePrefab: {fileID: 100100000, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+--- !u!114 &3017415618132579028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8525562203306843244, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+  m_PrefabInstance: {fileID: 6895259672746118840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2c83fb886f94cd791c3aeef7393257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5249555062975884174 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
@@ -4631,6 +4650,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4770982093962410368}
     m_Modifications:
+    - target: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+      propertyPath: isFirstSkill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+      propertyPath: completesBranch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4552819661790206216, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -4746,6 +4773,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1614015210232291007}
     m_Modifications:
+    - target: {fileID: 1687381634042307894, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
+      propertyPath: isFirstSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4552819661790206216, guid: 50e94fd53554b4d448fe9bee40a3867b, type: 3}
       propertyPath: m_Interactable
       value: 0
