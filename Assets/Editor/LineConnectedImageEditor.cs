@@ -1,7 +1,9 @@
 using UnityEditor;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.Scripting;
 
+[Preserve]
 [CustomEditor(typeof(LineConnectedImage))]
 [CanEditMultipleObjects]
 public class LineConnectedImageEditor : ImageEditor

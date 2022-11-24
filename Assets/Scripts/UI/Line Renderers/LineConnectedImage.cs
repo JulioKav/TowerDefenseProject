@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 using UnityEngine.UI;
 
+[Preserve]
 public class LineConnectedImage : Image
 {
     [SerializeField] public float thickness = 10f;
@@ -13,12 +15,6 @@ public class LineConnectedImage : Image
     new void Awake()
     {
         base.Awake();
-    }
-
-    void Update()
-    {
-        // TODO: This is nice for changing layout, but not necessary for final game
-        UpdateGeometry();
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
@@ -149,6 +145,12 @@ public class LineConnectedImage : Image
         vh.AddTriangle(offset + 3, offset + 2, offset + 0);
     }
 
+#if UNITY_EDITOR
+    void Update()
+    {
+        UpdateGeometry();
+    }
+
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -156,4 +158,6 @@ public class LineConnectedImage : Image
         radius = Math.Max(radius, 1);
         circleResolution = Math.Max(circleResolution, 2);
     }
+#endif
+
 }
