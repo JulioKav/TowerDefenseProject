@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicalBullet : MonoBehaviour
+public class MagicBullet : MonoBehaviour
 {
     public float speed = 50f;
-
+    public float time_airborne = 1f;
     private Transform target;
 
     public float explosion_radius = 0f;
 
     public GameObject impact_effect;
-
+    public GameObject tornadoprefab;
     public int damage = 50;
-
-    public GameObject target_null_effect;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -27,10 +25,6 @@ public class PhysicalBullet : MonoBehaviour
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
         if (target == null)
         {
-            GameObject effect_instance = (GameObject)Instantiate(target_null_effect, transform.position, transform.rotation);
-
-            Destroy(effect_instance, 5f);
-
             Destroy(gameObject);
             return;
         }
@@ -57,9 +51,9 @@ public class PhysicalBullet : MonoBehaviour
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
-        GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+        //GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
 
-        Destroy(effect_instance, 5f);
+        //Destroy(effect_instance, 5f);
 
         // for cannonball etc
         if (explosion_radius > 0f)
@@ -70,22 +64,13 @@ public class PhysicalBullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-               
-
-                if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
+                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-
-                    if (identity_of_shooter.tag == "Physical Mage")
-                    {
-                        Physical_damage(target);
-                    }
+                    Magic_damage(target);
                 }
 
                 else
-                {
                     Damage_enemy(target);
-                }
-                    
             }
             
         }
@@ -103,26 +88,26 @@ public class PhysicalBullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-
-                    if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
-                    {
-                        if (identity_of_shooter.tag == "Physical Mage")
-                        {
-                                Physical_damage(target);
-                        }
-                    }
+                if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
+                {
                     
+                        Raise(collider.transform);
+                        Magic_damage(collider.transform);
+                        
+                }
 
-                    else
-                    {
-                        Damage_enemy(collider.transform);
-                    }
+              
+                else
+                {
+                    
+                    Damage_enemy(collider.transform);
+                }
 
             }
 
 
 
-            
+
         }
 
     }
@@ -138,13 +123,14 @@ public class PhysicalBullet : MonoBehaviour
         {
 
             enemy_component.TakeDamage(damage);
+
         }
     }
 
-    
-
-    
-    void Physical_damage(Transform Enemy)
+    // updates tower hp with dmg
+   
+    // specific type dmg
+    void Magic_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
@@ -155,7 +141,52 @@ public class PhysicalBullet : MonoBehaviour
         {
 
             enemy_component.TakeDamage(damage * 3);
+            
+        }
+    }
+    /// <summary>
+    /// ////////////////////////////////
+    /// </summary>
+    /// need to smoothly raise rather than teleport the enemies into air!!!!!!! also need animation + lowering to work
+    void Raise(Transform Enemy)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
+
+
+        if (enemy_component != null)
+        {
+            float saved_speed = enemy_component.speed;
+            enemy_component.speed = 0;
+            if (Enemy.position.y<2)
+                Enemy.position = Enemy.position + new Vector3(0, 2, 0);
+                Enemy.tag = "Airborne Enemy";
+                GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
+                
+            //StartCoroutine(LowerAfterTime(1, Enemy, saved_speed));
+
+        }
+    }
+
+    IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
+    {
+        
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+        Lower(Enemy, saved_speed);
+    }
+    void Lower(Transform Enemy,float saved_speed)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+        if (enemy_component != null)
+        {
+            if (Enemy.position.y == 2)
+                Enemy.position = Enemy.position - new Vector3(0, 2, 0);
+                Enemy.tag = "Enemy";
+                enemy_component.speed = saved_speed;
         }
     }
 

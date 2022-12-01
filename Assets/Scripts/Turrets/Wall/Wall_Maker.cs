@@ -68,7 +68,7 @@ public class Wall_Maker : MonoBehaviour
 
     private IEnumerator DespawnTower(GameObject tile, float delay)
     {
-        tile.GetComponentInChildren<Wall_Maker>().enabled = false;
+        tile.GetComponentInChildren<ImagineTower>().enabled = false;
         yield return new WaitForSeconds(delay);
         tile.GetComponent<Animator>().SetTrigger("EndOfRound");
         yield return new WaitForSeconds(3);
