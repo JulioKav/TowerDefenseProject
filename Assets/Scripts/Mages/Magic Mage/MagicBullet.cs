@@ -13,6 +13,8 @@ public class MagicBullet : MonoBehaviour
     public GameObject impact_effect;
     public GameObject tornadoprefab;
     public int damage = 50;
+    public string Enemy = "Enemy";
+
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -23,9 +25,15 @@ public class MagicBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
-        if (target == null)
+        if (target == null || target.tag == "Airborne Enemy")
         {
-            Destroy(gameObject);
+            Target_Search();
+            if (target == null || target.tag == "Airborne Enemy")
+            {
+                Destroy(gameObject);
+            }
+                
+            
             return;
         }
 
@@ -47,6 +55,7 @@ public class MagicBullet : MonoBehaviour
 
     }
 
+    
 
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
@@ -111,6 +120,40 @@ public class MagicBullet : MonoBehaviour
         }
 
     }
+
+    void Target_Search()
+    {   //Creates an array of Target Enemies with tag "Enemy".
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Enemy);
+
+        float smallest_distance = Mathf.Infinity;
+
+        GameObject closest_enemy = null;
+
+        //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
+        foreach (GameObject enemy in enemies)
+        {
+            float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
+
+
+            if (distance_to_target < smallest_distance)
+            {
+                smallest_distance = distance_to_target;
+
+                closest_enemy = enemy;
+            }
+        }
+
+        // If the enemy is in attack range, it becomes target.
+        if (closest_enemy != null)
+        {
+            target = closest_enemy.transform;
+        }
+        else
+        {
+            target = null;
+        }
+    }
+
     // updates enemy hp with dmg
     void Damage_enemy(Transform Enemy)
     {
@@ -155,7 +198,7 @@ public class MagicBullet : MonoBehaviour
 
 
 
-        if (enemy_component != null)
+        if (enemy_component != null && Enemy.tag == "Enemy")
         {
             float saved_speed = enemy_component.speed;
             enemy_component.speed = 0;
