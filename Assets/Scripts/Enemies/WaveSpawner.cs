@@ -52,6 +52,7 @@ public class WaveSpawner : MonoBehaviour
                 if (i % 2 == 0)
                 {
                     waves[wave].Add(enemyPrefab[0]);
+                    waves[wave].Add(enemyPrefab[2]);
                 }
                 else
                 {
