@@ -52,7 +52,7 @@ public class Enemies : MonoBehaviour
             GetNextWaypoint();
         }
 
-        if (gameObject.tag == "Airborne Enemy")
+        if (gameObject.tag == "AirborneEnemy")
         {
             StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
         }
