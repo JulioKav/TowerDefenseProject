@@ -9,7 +9,7 @@ public class Tornado : MonoBehaviour
     public float attack_range = 2f;
     public float damage = 2;
     public float attack_speed = 50f;
-    public string airborne_enemy = "Airborne Enemy";
+    
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class Tornado : MonoBehaviour
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, attack_range);
         foreach (Collider collider in collided_objects)
         {
-            if (collider.tag == "Enemy" || collider.tag == "Airborne Enemy")
+            if (collider.tag == "Enemy" || collider.tag == "AirborneEnemy")
             {
                 
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
@@ -53,7 +53,7 @@ public class Tornado : MonoBehaviour
     List<GameObject> enemies_in_range = new List<GameObject>();
     void Enemy_Alive_Checker()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(airborne_enemy);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("AirborneEnemy");
         foreach (GameObject enemy in enemies)
         {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);

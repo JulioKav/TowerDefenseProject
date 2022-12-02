@@ -25,10 +25,10 @@ public class MagicBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
-        if (target == null || target.tag == "Airborne Enemy")
+        if (target == null || target.tag == "AirborneEnemy")
         {
             Target_Search();
-            if (target == null || target.tag == "Airborne Enemy")
+            if (target == null || target.tag == "AirborneEnemy")
             {
                 Destroy(gameObject);
             }
@@ -193,7 +193,7 @@ public class MagicBullet : MonoBehaviour
             enemy_component.speed = 0;
             if (Enemy.position.y<2)
                 Enemy.position = Enemy.position + new Vector3(0, 2, 0);
-                Enemy.tag = "Airborne Enemy";
+                Enemy.tag = "AirborneEnemy";
                 GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
                 
             
