@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 
     public GameObject impact_effect;
 
-    public int damage = 50;
+    public float damage = 50;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -64,36 +64,6 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    Magic_damage(target);
-                }
-                else
-
-                if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
-                {
-                    
-                    if (identity_of_shooter.tag == "Physical Mage")
-                    {
-                        Physical_damage(target);
-                    }
-                }
-                else
-
-                if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
-                {
-                    Imaginary_damage(target);
-                }
-                else
-
-                if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {   if (identity_of_shooter.tag == "Mechanical Mage")
-                    {
-                        Mechanical_damage(target);
-                    }
-                    
-                }
-                else
                     Damage_enemy(target);
             }
             if (target.tag == "Tower") Damage_tower(target);
@@ -112,32 +82,9 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    Magic_damage(collider.transform);
-                }
-
-                else if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
-                  if(identity_of_shooter.tag == "Physical Mage")
-                   {
-                    Physical_damage(target);
-                   }
-
-                else if (target.GetComponent<Tags>().HasTag("Imaginary Enemy"))
-                {
-                    Imaginary_damage(collider.transform);
-                }
-                else if (target.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {
-                    if (identity_of_shooter.tag == "Mechanical Mage")
-                    {
-                        Mechanical_damage(target);
-                    }
-                }
-                else
-                    {
+               
                         Damage_enemy(collider.transform);
-                    }
+                   
                     
             }
 

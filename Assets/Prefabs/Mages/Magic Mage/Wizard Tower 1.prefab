@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starDisplay: {fileID: 0}
   attack_range: 100
-  attack_speed: 3
+  attack_speed: 0.1
   _health: 100
   _maxHealth: 100
   Enemy: Enemy

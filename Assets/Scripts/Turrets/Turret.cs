@@ -131,7 +131,7 @@ public class Turret : MonoBehaviour
 
     // hp gets minused from current hp
     // healthbar is made used the ratio of health to max health 
-    public void TakeDamage(int amountOfDamage)
+    public void TakeDamage(float amountOfDamage)
     {
         _health -= amountOfDamage;
 
@@ -145,7 +145,7 @@ public class Turret : MonoBehaviour
 
     // hp gets added from current hp
     // healthbar is made used the ratio of health to max health 
-    public void HealDamage(int amountOfDamage)
+    public void HealDamage(float amountOfDamage)
     {
         _health += amountOfDamage;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class SpikeTurret : Mage
+public class SpikeTurret : Mage
 {
     [Header("Turret Stats")]
 
@@ -25,7 +25,7 @@ public abstract class SpikeTurret : Mage
     public GameObject spike_floor;
     public GameObject regular_floor;
 
-    public int damage = 20;
+    public float damage = 20;
 
 
     public GameObject identity_of_shooter;

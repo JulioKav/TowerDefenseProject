@@ -20,7 +20,7 @@ public class SpikeFloor : MonoBehaviour
     public float _health = 100;
     public float _maxHealth = 100;
 
-    public int damage = 1;
+    public float damage = 1;
 
     public string Enemy = "Enemy";
     void Start()
@@ -57,7 +57,7 @@ public class SpikeFloor : MonoBehaviour
 
     // hp gets minused from current hp
     // healthbar is made used the ratio of health to max health 
-    public void TakeDamage(int amountOfDamage)
+    public void TakeDamage(float amountOfDamage)
     {
         _health -= amountOfDamage;
 
@@ -71,7 +71,7 @@ public class SpikeFloor : MonoBehaviour
 
     // hp gets added from current hp
     // healthbar is made used the ratio of health to max health 
-    public void HealDamage(int amountOfDamage)
+    public void HealDamage(float amountOfDamage)
     {
         _health += amountOfDamage;
 

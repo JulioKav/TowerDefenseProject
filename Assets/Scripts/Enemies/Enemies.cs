@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class Enemies : MonoBehaviour
 
     private SkillManager skillManager;
 
+    private string Tornado = "Tornado";
 
     [Header("Unity Stuff")]
     public Image healthBar;
@@ -33,6 +35,8 @@ public class Enemies : MonoBehaviour
     public void Start()
     {
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+
+        
     }
 
     protected void Update()
@@ -48,7 +52,12 @@ public class Enemies : MonoBehaviour
             GetNextWaypoint();
         }
 
+        if (gameObject.tag == "Airborne Enemy")
+        {
+            StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
+        }
 
+        
     }
     void GetNextWaypoint()
     {
@@ -65,7 +74,7 @@ public class Enemies : MonoBehaviour
 
 
     //Enemy death/damage taken
-    public void TakeDamage(int amountOfDamage)
+    public void TakeDamage(float amountOfDamage)
     {
         // Healthbar value
         _health -= amountOfDamage;
@@ -78,7 +87,7 @@ public class Enemies : MonoBehaviour
     }
 
     void Die()
-    {
+    {   
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
     }
@@ -89,25 +98,84 @@ public class Enemies : MonoBehaviour
         target = Waypoints.GetChild(0);
     }
 
+    IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
+    {
+
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+        Lower(Enemy, saved_speed);
+    }
+    void Lower(Transform Enemy, float saved_speed)
+    {
+        // retrieves script aspect of enemy
+        Enemies enemy_component = Enemy.GetComponent<Enemies>();
+        if (enemy_component != null)
+        {
+            if (gameObject.transform.position.y == 2 )
+            {
+                gameObject.tag = "Enemy";
+                speed = 2;
+                Tornado_Search();
+                gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
+                
+            }
+                
+
+            
+        }
+    }
+
+
+    void Tornado_Search()
+    {
+        //GameObject[] tornados = GameObject.FindGameObjectsWithTag(Tornado);
+
+        //foreach (GameObject tornado in tornados)
+        //{
+        //    Destroy(tornado);
+        //}
+        Collider[] collided_objects = Physics.OverlapSphere(transform.position, 0.5f);
+        foreach (Collider collider in collided_objects)
+        {
+            Enemies enemy_component = collider.GetComponent<Enemies>();
+            if (collider.tag == "Tornado")
+            {
+                
+                Destroy(collider.gameObject);
+
+            }
 
 
 
 
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    private float speed_storer(float speed)
+    {
+        float speed_clone = speed;
+        return speed_clone;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

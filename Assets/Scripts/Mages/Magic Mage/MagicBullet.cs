@@ -12,7 +12,7 @@ public class MagicBullet : MonoBehaviour
 
     public GameObject impact_effect;
     public GameObject tornadoprefab;
-    public int damage = 50;
+    public float damage = 10;
     public string Enemy = "Enemy";
 
 
@@ -32,8 +32,8 @@ public class MagicBullet : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-                
-            
+
+            Destroy(gameObject);
             return;
         }
 
@@ -57,7 +57,7 @@ public class MagicBullet : MonoBehaviour
 
     
 
-    // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
+    // on hit check if there is explosion radius, explode
     void hit_target()
     {
         //GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
@@ -69,20 +69,7 @@ public class MagicBullet : MonoBehaviour
         {
             Explode();
         }
-        else
-        {
-            if (target.tag == "Enemy")
-            {
-                if (target.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    Magic_damage(target);
-                }
-
-                else
-                    Damage_enemy(target);
-            }
-            
-        }
+ 
 
 
         Destroy(gameObject);
@@ -91,15 +78,16 @@ public class MagicBullet : MonoBehaviour
 
     // checks tags in a collider list in a sphere around explosion point, then deals dmg to all injured enemies
     void Explode()
-    {
+    {   
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
         foreach (Collider collider in collided_objects)
         {
+            
             if (collider.tag == "Enemy")
             {
                 if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-                    
+                        
                         Raise(collider.transform);
                         Magic_damage(collider.transform);
                         
@@ -190,7 +178,8 @@ public class MagicBullet : MonoBehaviour
     /// <summary>
     /// ////////////////////////////////
     /// </summary>
-    /// need to smoothly raise rather than teleport the enemies into air!!!!!!! also need animation + lowering to work
+    /// need to smoothly raise rather than teleport the enemies into air!!!!!!! also need animation
+    /// need to cancel movement to next waypoint in order to get enemies to float up
     void Raise(Transform Enemy)
     {
         // retrieves script aspect of enemy
@@ -207,31 +196,12 @@ public class MagicBullet : MonoBehaviour
                 Enemy.tag = "Airborne Enemy";
                 GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
                 
-            //StartCoroutine(LowerAfterTime(1, Enemy, saved_speed));
+            
 
         }
     }
 
-    IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
-    {
-        
-        yield return new WaitForSeconds(time);
-
-        // Code to execute after the delay
-        Lower(Enemy, saved_speed);
-    }
-    void Lower(Transform Enemy,float saved_speed)
-    {
-        // retrieves script aspect of enemy
-        Enemies enemy_component = Enemy.GetComponent<Enemies>();
-        if (enemy_component != null)
-        {
-            if (Enemy.position.y == 2)
-                Enemy.position = Enemy.position - new Vector3(0, 2, 0);
-                Enemy.tag = "Enemy";
-                enemy_component.speed = saved_speed;
-        }
-    }
+    
 
     //visual explosion range
     private void OnDrawGizmosSelected()

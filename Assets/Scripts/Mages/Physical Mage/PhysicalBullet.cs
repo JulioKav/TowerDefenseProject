@@ -12,7 +12,7 @@ public class PhysicalBullet : MonoBehaviour
 
     public GameObject impact_effect;
 
-    public int damage = 50;
+    public float damage = 50;
 
     public GameObject target_null_effect;
 

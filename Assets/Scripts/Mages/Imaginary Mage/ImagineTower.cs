@@ -20,7 +20,7 @@ public class ImagineTower : MonoBehaviour
     public float _health = 100;
     public float _maxHealth = 100;
 
-    public int damage = 1;
+    public float damage = 1;
 
     public string Enemy = "Enemy";
     void Start()

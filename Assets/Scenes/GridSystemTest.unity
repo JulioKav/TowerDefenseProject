@@ -384,67 +384,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &793476791
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.205
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.408
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.008098251
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9999673
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.072
-      objectReference: {fileID: 0}
-    - target: {fileID: 328024390755473683, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136790425937675177, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
-      propertyPath: m_Name
-      value: Wizard Tower 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 31f420360b6f8c6428e2183b505d6c6e, type: 3}
 --- !u!1 &901959664
 GameObject:
   m_ObjectHideFlags: 0

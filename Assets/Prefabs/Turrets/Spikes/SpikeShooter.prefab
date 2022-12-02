@@ -322,7 +322,7 @@ Transform:
   - {fileID: 5972569732543668770}
   - {fileID: 7974587453626501578}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6059569297471433527
 MeshFilter:
@@ -400,19 +400,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starDisplay: {fileID: 0}
-  attack_speed: 5
+  attack_speed: 1
   Road: Road
   Spike_Road: Spike Road
   blocks_affected: 8
-  search_radius: 100
+  search_radius: 40
   spike_floor: {fileID: 2652455203813619348, guid: be34c8a5a7993f74cbf480bc564c6bcf, type: 3}
   regular_floor: {fileID: 6359345768752633327, guid: 25c071b44665cc0429553a51895279e7, type: 3}
   damage: 20
-  identity_of_shooter: {fileID: 7458416482865178296}
+  identity_of_shooter: {fileID: 0}
   bulletprefab: {fileID: 7944800617633078397, guid: 7efb97c7ab80ef845913cc2d12097e29, type: 3}
   firepoint: {fileID: 5972569732543668770}
-  part_to_rotate: {fileID: 601135570266038322}
-  turn_speed: 100
+  part_to_rotate: {fileID: 0}
+  turn_speed: 5
 --- !u!114 &3693367890336122843
 MonoBehaviour:
   m_ObjectHideFlags: 0

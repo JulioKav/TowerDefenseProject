@@ -1393,5 +1393,6 @@ MonoBehaviour:
   explosion_radius: 3
   impact_effect: {fileID: 0}
   tornadoprefab: {fileID: 2119550378338140774, guid: ba1b747a99b02dd45ab5838b4820c625, type: 3}
-  damage: 20
+  damage: 1
+  Enemy: Enemy
   identity_of_shooter: {fileID: 0}
