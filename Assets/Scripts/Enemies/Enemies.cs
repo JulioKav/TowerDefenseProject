@@ -6,6 +6,7 @@ public class Enemies : MonoBehaviour
 {
     // Enemy Attributes
     public float speed = 4.0f;
+    public bool slowed = false;
     protected float _maxHealth;
     protected float _health;
     protected float _attack;
@@ -91,6 +92,8 @@ public class Enemies : MonoBehaviour
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
     }
+
+
 
 
     public void mechanical_lift(int time)

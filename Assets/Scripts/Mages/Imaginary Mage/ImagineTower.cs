@@ -21,7 +21,7 @@ public class ImagineTower : MonoBehaviour
     public float _maxHealth = 100;
 
     public float damage = 1;
-
+    public float slow_amount = 2f;
     public string Enemy = "Enemy";
     void Start()
     {
@@ -49,7 +49,8 @@ public class ImagineTower : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                slow_enemy_x2();
+                slow_enemy(2);
+                
 
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
@@ -146,85 +147,39 @@ public class ImagineTower : MonoBehaviour
     }
 
 
-    //sets enemy speed as slower
-    void slow_enemy_x2()
-    {
+    //sets enemy speed as slower, change slow_amount (its the divisor), imaginary enems are 50%extra slow
+    void slow_enemy(float slow_amount)
+    {   
+        
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, slow_range);
         foreach (Collider collider in collided_objects)
         {
             Enemies enemy_component = collider.GetComponent<Enemies>();
-
-            if (collider.tag == "Enemy")
-            {
-                if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    enemy_component.speed = 1;
-                }
-                else
-
-                if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
-                {
-                    enemy_component.speed = 1;
-                }
-                else
-
+            
+            if (collider.tag == "Enemy" && enemy_component.slowed == false) 
+            {   
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
-                    enemy_component.speed = 1;
-                }
-                else
+                    
+                    enemy_component.speed = enemy_component.speed / (slow_amount*1.5f);
+                    enemy_component.slowed = true;
 
-                if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {
-                    enemy_component.speed = 1;
                 }
 
                 else
                 {
-                    enemy_component.speed = 1;
+                    
+                    enemy_component.speed = enemy_component.speed / slow_amount;
+                    enemy_component.slowed = true;
+
                 }
+                
             }
+            
         }
+        
     }
 
-    void slow_enemy_x4()
-    {
-        Collider[] collided_objects = Physics.OverlapSphere(transform.position, slow_range);
-        foreach (Collider collider in collided_objects)
-        {
-            Enemies enemy_component = collider.GetComponent<Enemies>();
-
-            if (collider.tag == "Enemy")
-            {
-                if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
-                {
-                    enemy_component.speed = 0.5f;
-                }
-                else
-
-                if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
-                {
-                    enemy_component.speed = 0.5f;
-                }
-                else
-
-                if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
-                {
-                    enemy_component.speed = 0.5f;
-                }
-                else
-
-                if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
-                {
-                    enemy_component.speed = 0.5f;
-                }
-
-                else
-                {
-                    enemy_component.speed = 0.5f;
-                }
-            }
-        }
-    }
-
+    
+   
 }

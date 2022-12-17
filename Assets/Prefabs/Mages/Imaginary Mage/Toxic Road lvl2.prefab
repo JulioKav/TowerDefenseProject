@@ -6371,6 +6371,7 @@ GameObject:
   - component: {fileID: 7061282167769884774}
   - component: {fileID: 6069040762570564285}
   - component: {fileID: 3219634565928455689}
+  - component: {fileID: -2677452912381716964}
   m_Layer: 0
   m_Name: Toxic Road lvl2
   m_TagString: Toxic Road
@@ -6519,6 +6520,26 @@ MonoBehaviour:
   bulletprefab: {fileID: 0}
   firepoint: {fileID: 0}
   part_to_rotate: {fileID: 0}
+--- !u!114 &-2677452912381716964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601375898659159309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e70f956bd0d04e98ff7ebf2f7c32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 6162124334194891566}
+  slow_range: 1
+  attack_speed: 25
+  _health: 100
+  _maxHealth: 100
+  damage: 1
+  slow_amount: 2
+  Enemy: Enemy
 --- !u!1 &5870955157100501884
 GameObject:
   m_ObjectHideFlags: 0
@@ -7304,6 +7325,7 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   damage: 1
+  slow_amount: 2
   Enemy: Enemy
 --- !u!1 &8587080047999086543
 GameObject:

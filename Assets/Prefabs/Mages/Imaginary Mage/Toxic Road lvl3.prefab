@@ -5116,6 +5116,7 @@ GameObject:
   - component: {fileID: 6922936035911745272}
   - component: {fileID: -3879435734147343871}
   - component: {fileID: 1202207614204993935}
+  - component: {fileID: -2871361938159859652}
   m_Layer: 0
   m_Name: Toxic Road lvl3
   m_TagString: Toxic Road
@@ -5264,6 +5265,26 @@ MonoBehaviour:
   bulletprefab: {fileID: 0}
   firepoint: {fileID: 0}
   part_to_rotate: {fileID: 0}
+--- !u!114 &-2871361938159859652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499342297403173779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e70f956bd0d04e98ff7ebf2f7c32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 6382167221458406436}
+  slow_range: 2
+  attack_speed: 25
+  _health: 100
+  _maxHealth: 100
+  damage: 1
+  slow_amount: 2
+  Enemy: Enemy
 --- !u!1 &5806355434160082402
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +5926,7 @@ MonoBehaviour:
   _health: 100
   _maxHealth: 100
   damage: 1
+  slow_amount: 2
   Enemy: Enemy
 --- !u!4 &9085918910622947796 stripped
 Transform:
