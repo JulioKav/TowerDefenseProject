@@ -123,14 +123,14 @@ public class SpikeTurret : Mage
 
     void OnEnable()
     {
-        StartButton.OnWaveStart += WaveStartHandler;
-        WaveSpawner.OnRoundEnd += WaveEndHandler;
+        //StartButton.OnWaveStart += WaveStartHandler;
+        //WaveSpawner.OnRoundEnd += WaveEndHandler;
     }
 
     void OnDisable()
     {
-        StartButton.OnWaveStart -= WaveStartHandler;
-        WaveSpawner.OnRoundEnd -= WaveEndHandler;
+        //StartButton.OnWaveStart -= WaveStartHandler;
+       // WaveSpawner.OnRoundEnd -= WaveEndHandler;
     }
 
     void WaveStartHandler()
