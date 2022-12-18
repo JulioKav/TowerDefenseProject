@@ -12,14 +12,17 @@ public class PhysicalBullet : MonoBehaviour
 
     public GameObject impact_effect;
 
-    public int damage = 50;
+    public float damage = 50;
 
     public GameObject target_null_effect;
 
     public GameObject identity_of_shooter;
+
+    private string Road = "Road";
     public void Chase(Transform _target)
     {
         target = _target;
+
     }
 
     // Update is called once per frame
@@ -27,11 +30,11 @@ public class PhysicalBullet : MonoBehaviour
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
         if (target == null)
         {
-            GameObject effect_instance = (GameObject)Instantiate(target_null_effect, transform.position, transform.rotation);
+            Target_Search_Floor();
+            //GameObject effect_instance = (GameObject)Instantiate(target_null_effect, transform.position, transform.rotation);
+            //Destroy(effect_instance, 5f);
 
-            Destroy(effect_instance, 5f);
-
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         }
 
@@ -53,7 +56,38 @@ public class PhysicalBullet : MonoBehaviour
 
     }
 
+    void Target_Search_Floor()
+    {   //Creates an array of Target Enemies with tag "Enemy".
+        GameObject[] roads = GameObject.FindGameObjectsWithTag(Road);
 
+        float smallest_distance = Mathf.Infinity;
+
+        GameObject closest_Road = null;
+
+        //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
+        foreach (GameObject road in roads)
+        {
+            float distance_to_target = Vector3.Distance(transform.position, road.transform.position);
+
+
+            if (distance_to_target < smallest_distance)
+            {
+                smallest_distance = distance_to_target;
+
+                closest_Road = road;
+            }
+        }
+
+        // If the enemy is in attack range, it becomes target.
+        if (closest_Road != null)
+        {
+            target = closest_Road.transform;
+        }
+        else
+        {
+            target = null;
+        }
+    }
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
@@ -95,6 +129,9 @@ public class PhysicalBullet : MonoBehaviour
 
     }
 
+    
+
+
     // checks tags in a collider list in a sphere around explosion point, then deals dmg to all injured enemies
     void Explode()
     {
@@ -104,7 +141,7 @@ public class PhysicalBullet : MonoBehaviour
             if (collider.tag == "Enemy")
             {
 
-                    if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
+                    if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
                     {
                         if (identity_of_shooter.tag == "Physical Mage")
                         {

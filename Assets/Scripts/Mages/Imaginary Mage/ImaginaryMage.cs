@@ -95,50 +95,20 @@ public class ImaginaryMage : Mage
             var rnd = new System.Random();
             float delay = (float)rnd.NextDouble() * (WaveSpawner.WaveCountdownTime - 1);
             StartCoroutine(shoot(road.transform, delay));
-            //make_floor_toxic(road.transform);
+            
 
 
 
         }
 
-        //foreach (GameObject toxic_road in toxic_road_blocks)
-        //{
-        //    make_floor_safe(toxic_road.transform);
-
-
-        //}
     }
 
-    // public void make_floor_toxic(Transform floor)
-    // {
-    //     Destroy(floor.gameObject);
-    //     Instantiate(toxic_floor, floor.position, floor.rotation);
-    // }
 
     void make_floor_safe(Transform floor)
     {
         Destroy(floor.gameObject);
         Instantiate(regular_floor, floor.position, floor.rotation);
     }
-    // private void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.color = Color.green;
-    //     Gizmos.DrawWireSphere(transform.position, search_radius);
-    // }
-
-    // //damage
-    // public void Imaginary_damage(Transform Enemy)
-    // {
-    //     // retrieves script aspect of enemy
-    //     Enemies enemy_component = Enemy.GetComponent<Enemies>();
-
-    //     if (enemy_component != null)
-    //     {
-
-    //         enemy_component.TakeDamage(damage * 3);
-
-    //     }
-    // }
 
 
     // cloning bulletprefab at firepoint
