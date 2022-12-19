@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  slowed: 0
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 1520257046650462586}
@@ -437,3 +438,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - Imaginary Enemy
+  - Magic Enemy

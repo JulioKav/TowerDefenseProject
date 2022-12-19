@@ -11,6 +11,9 @@ public class Enemies : MonoBehaviour
     protected float _health;
     protected float _attack;
     protected float _range;
+    public float mech_explosion_radius = 5f;
+    public float mech_damage = 50f;
+    public GameObject impact_effect;
 
     // Waypoint
     [HideInInspector]
@@ -35,6 +38,7 @@ public class Enemies : MonoBehaviour
 
     public void Start()
     {
+        
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
 
         
@@ -42,6 +46,12 @@ public class Enemies : MonoBehaviour
 
     protected void Update()
     {
+        
+        if (gameObject.tag == "AirborneEnemy")
+        {
+            StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
+        }
+
         // Moves enemy to the direction of a waypoint
         if (target == null) return;
         Vector3 direction = target.position - transform.position;
@@ -53,10 +63,8 @@ public class Enemies : MonoBehaviour
             GetNextWaypoint();
         }
 
-        if (gameObject.tag == "AirborneEnemy")
-        {
-            StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
-        }
+        
+        
 
         
     }
@@ -94,18 +102,20 @@ public class Enemies : MonoBehaviour
     }
 
 
-
-
-    public void mechanical_lift(int time)
+    IEnumerator ImpactDMGAfterTime(float time)
     {
-        target = Waypoints.GetChild(0);
+        Debug.Log("ff");
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+        Explode();
     }
 
     IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
     {
-
+        
         yield return new WaitForSeconds(time);
-
+        
         // Code to execute after the delay
         Lower(Enemy, saved_speed);
     }
@@ -115,13 +125,24 @@ public class Enemies : MonoBehaviour
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
         if (enemy_component != null)
         {
-            if (gameObject.transform.position.y == 2 )
+            if (gameObject.transform.position.y >= 2 )
             {
+                
                 gameObject.tag = "Enemy";
                 speed = 2;
                 Tornado_Search();
                 gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
                 
+                
+                if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    //GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+                    //Destroy(effect_instance, 5f);
+                    StartCoroutine(ImpactDMGAfterTime(0.2f));
+                    
+                }
+
+
             }
                 
 
@@ -161,6 +182,35 @@ public class Enemies : MonoBehaviour
         float speed_clone = speed;
         return speed_clone;
     }
+
+    void Explode()
+    {
+        
+        Collider[] collided_objects = Physics.OverlapSphere(transform.position, mech_explosion_radius);
+        foreach (Collider collider in collided_objects)
+        {
+            Enemies enemy_component = collider.GetComponent<Enemies>();
+            if (collider.tag == "Enemy")
+            {
+                if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    enemy_component.TakeDamage(mech_damage*3);
+                }
+
+                else
+                {
+                    enemy_component.TakeDamage(mech_damage);
+                }
+            }
+
+
+
+
+        }
+
+    }
+
+
 }
 
 

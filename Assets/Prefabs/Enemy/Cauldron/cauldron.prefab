@@ -1197,7 +1197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506695847441454472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.633, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2639648, y: 0.2639648, z: 0.2639648}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1214,7 +1214,7 @@ Transform:
   - {fileID: 6113920450166316410}
   - {fileID: 6113920449722573572}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1041889399155966589
 SphereCollider:
@@ -1242,6 +1242,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  slowed: 0
+  mech_explosion_radius: 5
+  mech_damage: 20
+  impact_effect: {fileID: 4878526371843087557, guid: a1ddc513ce1f1934aaf667d3527e62a1, type: 3}
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 4737799981558667476}
@@ -1280,4 +1284,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Magic Enemy
+  - Mechanical Enemy
