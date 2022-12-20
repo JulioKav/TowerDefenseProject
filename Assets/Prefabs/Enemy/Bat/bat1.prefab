@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 791025125472190394}
   - component: {fileID: 968538165478350297}
   - component: {fileID: 333583798789744679}
-  - component: {fileID: 333583798789744678}
   - component: {fileID: 333583798789744697}
+  - component: {fileID: -1861673103726557804}
   m_Layer: 0
   m_Name: bat1
   m_TagString: Enemy
@@ -229,23 +229,6 @@ MonoBehaviour:
   bulletprefab: {fileID: 4085013217985289296, guid: 4143f7371a4f7b74a9d3fb594859d79c, type: 3}
   firepoint: {fileID: 7156068948932647821}
   part_to_rotate: {fileID: 791025125472190394}
---- !u!114 &333583798789744678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122047463683908864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1a8e5f345598341b558e1364650549, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  slowed: 0
-  target: {fileID: 0}
-  Waypoints: {fileID: 0}
-  healthBar: {fileID: 8527143071308619869}
 --- !u!114 &333583798789744697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +242,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: []
+--- !u!114 &-1861673103726557804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122047463683908864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b03ece174449d194a9207031b15fb911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  slowed: 0
+  mech_explosion_radius: 5
+  mech_damage: 50
+  impact_effect: {fileID: 0}
+  target: {fileID: 0}
+  Waypoints: {fileID: 0}
+  healthBar: {fileID: 8527143071308619869}
 --- !u!1 &1248714550938870263
 GameObject:
   m_ObjectHideFlags: 0
