@@ -95,10 +95,9 @@ public class Pathfinding : MonoBehaviour
         }
         return n;
     }
-    public Vector3 findDirection(Vector2Int origin, MapManager map)
+    public Vector3 findDirection(Vector2Int origin, MapManager map, Vector2Int des)
     {
         int opensize = 0;
-        Vector2Int des = new Vector2Int(0, 0);
         Vector3 v = new Vector3(0.0f, 0.0f, 0.0f);
         if (origin == des)
             return v;

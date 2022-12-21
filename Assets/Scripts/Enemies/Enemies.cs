@@ -13,6 +13,10 @@ public class Enemies : MonoBehaviour
     protected float _attack;
     protected float _range;
 
+    //Enemy State
+    public bool isBackward = false;
+    private Vector3 spawner;
+
     // Waypoint
     [HideInInspector]
     public Transform target;
@@ -35,6 +39,7 @@ public class Enemies : MonoBehaviour
 
     public void Start()
     {
+        spawner = transform.position;
         skillManager = SkillManager.Instance;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
@@ -47,7 +52,15 @@ public class Enemies : MonoBehaviour
         if (target == null) return;
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
         Vector3 direction;
-        direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager);
+        if (isBackward != true)
+        {
+            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
+        }
+        else
+        {
+            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+        }
+        
         // Softly snap the enemy into grid
         if (direction.x == 0.0f)
         {
