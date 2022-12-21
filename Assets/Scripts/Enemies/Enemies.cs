@@ -14,6 +14,7 @@ public class Enemies : MonoBehaviour
     public float mech_explosion_radius = 5f;
     public float mech_damage = 50f;
     public GameObject impact_effect;
+    public GameObject death_effect;
 
     // Waypoint
     [HideInInspector]
@@ -96,7 +97,17 @@ public class Enemies : MonoBehaviour
     }
 
     void Die()
-    {   
+    {
+        if (gameObject.GetComponent<Tags>().HasTag("Boss") == true)
+        {
+            GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
+            Destroy(effect_instance, 5f);
+        }
+        else
+        {
+            GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
+            Destroy(effect_instance, 1f);
+        }
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
     }
@@ -177,11 +188,7 @@ public class Enemies : MonoBehaviour
 
 
     }
-    private float speed_storer(float speed)
-    {
-        float speed_clone = speed;
-        return speed_clone;
-    }
+
 
     void Explode()
     {
@@ -210,6 +217,17 @@ public class Enemies : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("success1");
+        if (other.gameObject.GetComponent<Tags>().HasTag("Wall") == true)
+        {
+            Debug.Log("success");
+            speed = 0f;
+        }
+    }
+    
 
 }
 

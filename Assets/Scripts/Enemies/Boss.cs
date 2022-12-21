@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Boss : Enemies
 {
+    public float turn_speed = 5;
     public float explosion_radius = 3f;
     public float attack_speed_in_sec = 3f;
     public GameObject explosion_effect;
-   
+    
     new void Start()
     {
+        
         // Enemy Attributes
         base.Start();
         _maxHealth = 10000;
@@ -25,14 +27,15 @@ public class Boss : Enemies
     new void Update()
     {
         base.Update();
-        
-        
+        transform.LookAt(Vector3.zero * Time.deltaTime * turn_speed);
+        transform.transform.Rotate(0, 90, 0);
+
     }
 
     public void Explode()
     {
         GameObject effect_instance = (GameObject)Instantiate(explosion_effect, transform.position, transform.rotation);
-        //Destroy(effect_instance, 0.1f);
+        Destroy(effect_instance, 1f);
 
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
         foreach (Collider collider in collided_objects)

@@ -1246,6 +1246,7 @@ MonoBehaviour:
   mech_explosion_radius: 5
   mech_damage: 20
   impact_effect: {fileID: 4878526371843087557, guid: a1ddc513ce1f1934aaf667d3527e62a1, type: 3}
+  death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 4737799981558667476}

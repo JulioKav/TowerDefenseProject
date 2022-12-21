@@ -37,7 +37,7 @@ Transform:
   - {fileID: 8344915406614004253}
   - {fileID: 8344915407159999587}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &400807269271261133
 MonoBehaviour:
@@ -52,6 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  slowed: 0
+  mech_explosion_radius: 5
+  mech_damage: 50
+  impact_effect: {fileID: 0}
+  death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 1810891762613472010}
