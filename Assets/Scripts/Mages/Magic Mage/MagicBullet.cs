@@ -190,7 +190,8 @@ public class MagicBullet : MonoBehaviour
         if (enemy_component != null && Enemy.tag == "Enemy")
         {
             float saved_speed = enemy_component.speed;
-            enemy_component.speed = 0;
+            //enemy_component.speed = 0;
+            enemy_component.isBackward = !enemy_component.isBackward;
             if (Enemy.position.y<2)
                 Enemy.position = Enemy.position + new Vector3(0, 2, 0);
                 Enemy.tag = "AirborneEnemy";

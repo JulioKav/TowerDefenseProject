@@ -182,7 +182,8 @@ public class Enemies : MonoBehaviour
             {
                 
                 gameObject.tag = "Enemy";
-                speed = 2;
+                //speed = 2;
+                enemy_component.isBackward = !enemy_component.isBackward;
                 Tornado_Search();
                 gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
                 

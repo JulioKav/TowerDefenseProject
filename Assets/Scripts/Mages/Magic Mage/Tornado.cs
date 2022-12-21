@@ -9,19 +9,19 @@ public class Tornado : MonoBehaviour
     public float attack_range = 2f;
     public float damage = 2;
     public float attack_speed = 50f;
-    
-
+    private Vector3 offset = new Vector3(0, -2, 0);
+    private Transform target;
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 1 / attack_speed);
-
+        following_Search();
     }
 
     void Update()
     {
         Enemy_Alive_Checker();
-
+        transform.position = target.transform.position + offset;
 
     }
     // damage
@@ -33,9 +33,10 @@ public class Tornado : MonoBehaviour
         {
             if (collider.tag == "Enemy" || collider.tag == "AirborneEnemy")
             {
-                
+
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
+
                     Magic_damage(collider.transform);
                 }
 
@@ -57,25 +58,25 @@ public class Tornado : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
-            
+
 
             if (distance_to_target < attack_range)
             {
                 enemies_in_range.Add(enemy);
             }
 
-            
+
         }
 
         if (enemies_in_range.Count == 0)
         {
             //death animation here
             Destroy(gameObject);
-            
+
         }
         enemies_in_range.Clear();
     }
-    
+
 
     void Magic_damage(Transform Enemy)
     {
@@ -105,5 +106,31 @@ public class Tornado : MonoBehaviour
             enemy_component.TakeDamage(damage);
 
         }
+    }
+
+    void following_Search()
+    {   //Creates an array of Target Enemies with tag "Enemy".
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("AirborneEnemy");
+
+        float smallest_distance = Mathf.Infinity;
+
+        GameObject closest_enemy = null;
+
+        //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
+        foreach (GameObject enemy in enemies)
+        {
+            float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
+
+
+            if (distance_to_target < smallest_distance)
+            {
+                smallest_distance = distance_to_target;
+
+                closest_enemy = enemy;
+            }
+            target = closest_enemy.transform;
+
+        }
+        
     }
 }
