@@ -411,7 +411,6 @@ MonoBehaviour:
   attack_range: 3
   damage: 1
   attack_speed: 20
-  airborne_enemy: Airborne Enemy
 --- !u!1 &2485689614995302529
 GameObject:
   m_ObjectHideFlags: 0

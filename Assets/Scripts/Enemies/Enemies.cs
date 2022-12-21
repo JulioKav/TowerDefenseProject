@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class Enemies : MonoBehaviour
 {
-    //Retrieve gamegrid from Map Manager
-    private MapManager mapManager;
-    private Pathfinding pathFinding;
     // Enemy Attributes
     public float speed = 4.0f;
     public bool slowed = false;
@@ -14,10 +11,10 @@ public class Enemies : MonoBehaviour
     protected float _health;
     protected float _attack;
     protected float _range;
-
-    //Enemy State
-    public bool isBackward = false;
-    private Vector3 spawner;
+    public float mech_explosion_radius = 5f;
+    public float mech_damage = 50f;
+    public GameObject impact_effect;
+    public GameObject death_effect;
 
     // Waypoint
     [HideInInspector]
@@ -28,6 +25,7 @@ public class Enemies : MonoBehaviour
 
     private SkillManager skillManager;
 
+    private string Tornado = "Tornado";
 
     [Header("Unity Stuff")]
     public Image healthBar;
@@ -41,70 +39,35 @@ public class Enemies : MonoBehaviour
 
     public void Start()
     {
-        spawner = transform.position;
-        skillManager = SkillManager.Instance;
-        mapManager = FindObjectOfType<MapManager>();
-        pathFinding = FindObjectOfType<Pathfinding>();
+        
+        skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+
         
     }
 
     protected void Update()
     {
         
-        if (target == null) return;
-        float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
-        Vector3 direction;
-        if (isBackward != true)
-        {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
-        }
-        else
-        {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
-        }
-        
-        // Softly snap the enemy into grid
-        if (direction.x == 0.0f)
-        {
-            direction.x -= 2.5f*xdiff;
-        }
-        else if(direction.z==0.0f)
-        {
-            direction.z -= 2.5f*zdiff;
-        }
-        //target.position - transform.position;
-        //Debug.Log(direction);
-
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-
-        if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
-        {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
-        }
-        // If enemy reaches a waypoint, move to next waypoint
-        /*
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
-        {
-            GetNextWaypoint();
-            //Debug.Log(mapManager.getGameGrid(1,1,MapEnums.layer.TERRAIN));
-            //Debug.Log("x:"+transform.localPosition.x+",y:"+transform.localPosition.y+",z:"+transform.localPosition.z);
-            Debug.Log(mapManager.getLocOnGrid(transform.position));
-        }*/
-
-        //Give information of yourself, and the map you're in to pathfind
-        //It will return a direction to go.
-        
-
-        
-
         if (gameObject.tag == "AirborneEnemy")
         {
             StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
         }
 
+        // Moves enemy to the direction of a waypoint
+        if (target == null) return;
+        Vector3 direction = target.position - transform.position;
+        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
+        // If enemy reaches a waypoint, move to next waypoint
+        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        {
+            GetNextWaypoint();
+        }
+
+        
+        
+
+        
     }
     void GetNextWaypoint()
     {
@@ -135,21 +98,35 @@ public class Enemies : MonoBehaviour
 
     void Die()
     {
+        if (gameObject.GetComponent<Tags>().HasTag("Boss") == true)
+        {
+            GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
+            Destroy(effect_instance, 5f);
+        }
+        else
+        {
+            GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
+            Destroy(effect_instance, 1f);
+        }
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
     }
 
 
-    public void mechanical_lift(int time)
+    IEnumerator ImpactDMGAfterTime(float time)
     {
-        target = Waypoints.GetChild(0);
+        Debug.Log("ff");
+        yield return new WaitForSeconds(time);
+
+        // Code to execute after the delay
+        Explode();
     }
 
     IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
     {
-
+        
         yield return new WaitForSeconds(time);
-
+        
         // Code to execute after the delay
         Lower(Enemy, saved_speed);
     }
@@ -159,17 +136,28 @@ public class Enemies : MonoBehaviour
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
         if (enemy_component != null)
         {
-            if (gameObject.transform.position.y == 2)
+            if (gameObject.transform.position.y >= 2 )
             {
+                
                 gameObject.tag = "Enemy";
                 speed = 2;
                 Tornado_Search();
                 gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
+                
+                
+                if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    //GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+                    //Destroy(effect_instance, 5f);
+                    StartCoroutine(ImpactDMGAfterTime(0.2f));
+                    
+                }
+
 
             }
+                
 
-
-
+            
         }
     }
 
@@ -188,7 +176,7 @@ public class Enemies : MonoBehaviour
             Enemies enemy_component = collider.GetComponent<Enemies>();
             if (collider.tag == "Tornado")
             {
-
+                
                 Destroy(collider.gameObject);
 
             }
@@ -200,15 +188,49 @@ public class Enemies : MonoBehaviour
 
 
     }
-    private float speed_storer(float speed)
+
+
+    void Explode()
     {
-        float speed_clone = speed;
-        return speed_clone;
+        
+        Collider[] collided_objects = Physics.OverlapSphere(transform.position, mech_explosion_radius);
+        foreach (Collider collider in collided_objects)
+        {
+            Enemies enemy_component = collider.GetComponent<Enemies>();
+            if (collider.tag == "Enemy")
+            {
+                if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                {
+                    enemy_component.TakeDamage(mech_damage*3);
+                }
+
+                else
+                {
+                    enemy_component.TakeDamage(mech_damage);
+                }
+            }
+
+
+
+
+        }
+
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("success1");
+        if (other.gameObject.GetComponent<Tags>().HasTag("Wall") == true)
+        {
+            Debug.Log("success");
+            speed = 0f;
+        }
+    }
     
+
 }
+
 
 
 

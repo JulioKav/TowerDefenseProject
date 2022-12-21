@@ -41,6 +41,10 @@ public class Bullet : MonoBehaviour
         //bullet follows target
         transform.Translate(direction.normalized * distance_per_frame, Space.World);
         transform.LookAt(target);
+        if (gameObject.tag == "Arrow")
+        {
+            transform.transform.Rotate(0, 90, 0);
+        }    
 
 
 
@@ -83,7 +87,7 @@ public class Bullet : MonoBehaviour
             if (collider.tag == "Enemy")
             {
                
-                        Damage_enemy(collider.transform);
+                Damage_enemy(collider.transform);
                    
                     
             }

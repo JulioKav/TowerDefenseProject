@@ -399,7 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   slowed: 0
-  isBackward: 0
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 1520257046650462586}
