@@ -9,6 +9,7 @@ public class Enemies : MonoBehaviour
     private Pathfinding pathFinding;
     // Enemy Attributes
     public float speed = 4.0f;
+    public float max_speed = 4.0f;
     public bool slowed = false;
     protected float _maxHealth;
     protected float _health;
@@ -19,6 +20,7 @@ public class Enemies : MonoBehaviour
     public GameObject impact_effect;
     public GameObject death_effect;
 
+    Animator m_Animator;
     //Enemy State
     public bool isBackward = false;
     private Vector3 spawner;
@@ -51,7 +53,7 @@ public class Enemies : MonoBehaviour
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
-
+        m_Animator = gameObject.GetComponent<Animator>();
     }
 
     protected void Update()
@@ -186,12 +188,13 @@ public class Enemies : MonoBehaviour
                 enemy_component.isBackward = !enemy_component.isBackward;
                 Tornado_Search();
                 gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
-                
-                
+                GameObject effect_instance_1 = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+                Destroy(effect_instance_1, 5f);
+
                 if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
-                    //GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
-                    //Destroy(effect_instance, 5f);
+                    GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+                    Destroy(effect_instance, 5f);
                     StartCoroutine(ImpactDMGAfterTime(0.2f));
                     
                 }

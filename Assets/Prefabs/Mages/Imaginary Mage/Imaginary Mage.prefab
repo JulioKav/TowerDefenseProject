@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 5612807064510927900}
   - component: {fileID: 4091462185042327560}
   m_Layer: 0
-  m_Name: Wizard Tower 1
+  m_Name: Imaginary Mage
   m_TagString: Imaginary Mage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc68c27d2fa303468a0828e4a9b303e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starDisplay: {fileID: 0}
+  mageClass: 0
   attack_speed: 5
   Road: Road
   Toxic_Road: Toxic Road
@@ -342,6 +342,9 @@ MonoBehaviour:
   damage: 50
   identity_of_shooter: {fileID: 5093398439573212838}
   bulletprefab: {fileID: 398654435160830667, guid: 514039ce328e133459242aa972f4590c, type: 3}
+  toxicRoadLvl1Prefab: {fileID: 1582490172571472993, guid: e460ad33768adae428bd15240a3440df, type: 3}
+  toxicRoadLvl2Prefab: {fileID: 5601375898659159309, guid: a5b2f8b15010fc64bbbd9bebabb1d829, type: 3}
+  toxicRoadLvl3Prefab: {fileID: 5499342297403173779, guid: d86971c71ef9959478d22bce9ff3a019, type: 3}
   firepoint: {fileID: 2399862608746338377}
   part_to_rotate: {fileID: 2399862608606630069}
   turn_speed: 1000

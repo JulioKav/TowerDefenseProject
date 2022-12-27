@@ -151,7 +151,7 @@ public class Pathfinding : MonoBehaviour
                     
                     openlist[opensize++] = new Node(openlist[selectedIndex], selectedPos+neighbour[i], origin, des);
                     openlist[opensize-1].initialCost();
-                    Debug.Log("opensize:" + opensize + "selectedIndex:" + selectedIndex + "hCost:" + openlist[opensize-1].hCost);
+                    //Debug.Log("opensize:" + opensize + "selectedIndex:" + selectedIndex + "hCost:" + openlist[opensize-1].hCost);
                     //Check if finished
                     if (openlist[opensize - 1].hCost == 0) //Found
                     {

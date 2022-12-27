@@ -11,11 +11,13 @@ public class Tornado : MonoBehaviour
     public float attack_speed = 50f;
     private Vector3 offset = new Vector3(0, -2, 0);
     private Transform target;
+    public Animator m_Animator;
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 1 / attack_speed);
         following_Search();
+        m_Animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -71,8 +73,11 @@ public class Tornado : MonoBehaviour
         if (enemies_in_range.Count == 0)
         {
             //death animation here
-            Destroy(gameObject);
-
+            m_Animator.SetTrigger("Death");
+            //m_Animator.ResetTrigger("Death");
+            Debug.Log("anim");
+            //Destroy(gameObject);
+            
         }
         enemies_in_range.Clear();
     }

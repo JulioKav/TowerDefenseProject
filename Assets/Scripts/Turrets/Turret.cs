@@ -35,7 +35,9 @@ public class Turret : MonoBehaviour
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
-        InvokeRepeating("Target_Search", 0f, 1.0f);
+        InvokeRepeating("Target_Search", 0f, 0.1f);
+        
+        
     }
 
     // Draws a 3D wire mesh range around turret.
@@ -54,6 +56,7 @@ public class Turret : MonoBehaviour
 
         GameObject closest_enemy = null;
 
+        bool wall_active = false;
         //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
         foreach (GameObject enemy in enemies)
         {
@@ -66,17 +69,38 @@ public class Turret : MonoBehaviour
 
                 closest_enemy = enemy;
             }
-        }
+            /*
+            if (gameObject.tag == "Enemy" && enemy.GetComponent<Tags>().HasTag("Wall") == true && distance_to_target <= attack_range)
+            {
+                wall_active = true;
+                gameObject.GetComponent<Enemies>().speed = 0;
 
+            }
+            */
+        }
+        
         // If the enemy is in attack range, it becomes target.
+        /*
+        if(wall_active == false)
+        {
+            gameObject.GetComponent<Enemies>().speed = 4;
+        }
+        */
         if (closest_enemy != null && smallest_distance <= attack_range)
-        {
-            target = closest_enemy.transform;
-        }
-        else
-        {
-            target = null;
-        }
+            {   if(wall_active == false)
+                target = closest_enemy.transform;
+
+            }
+
+            else
+            {
+                target = null;
+
+            }
+
+
+        
+
     }
 
     // Update is called once per frame
@@ -162,6 +186,10 @@ public class Turret : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    
+
+    
 }
 
 
