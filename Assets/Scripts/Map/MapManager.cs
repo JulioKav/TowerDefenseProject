@@ -48,15 +48,30 @@ public class MapManager : MonoBehaviour
     public bool isPrototype = false;
 
     // Start is called before the first frame update
-    private int[,,] gameGrid = new int[MAX_MAPSIZE, MAX_MAPSIZE, MAX_LAYERSIZE]; //Storage of map information
+    public int[,,] gameGrid = new int[MAX_MAPSIZE, MAX_MAPSIZE, MAX_LAYERSIZE]; //Storage of map information
 
-    private void setGameGrid(int x, int y, layer l, mapMaterial material)
+    public void setGameGrid(int x, int y, layer l, mapMaterial material)
     {
         gameGrid[x + (MAX_MAPSIZE - 1) / 2, y + (MAX_MAPSIZE - 1) / 2, (int)l] = (int)material;
         return;
     }
-
-
+    public int getGameGrid(int x, int y, layer l)
+    {
+        return gameGrid[x + (MAX_MAPSIZE - 1) / 2, y + (MAX_MAPSIZE - 1) / 2, (int)l];
+    }
+    public Vector2Int getLocOnGrid(Vector3 pos)
+    {
+        Vector2Int v = new Vector2Int(0,0);
+        v.x = -Mathf.RoundToInt(pos.x);
+        v.y = -Mathf.RoundToInt(pos.z);
+        return v;
+    }
+    public bool isPassable(int x, int y)
+    {
+        if (getGameGrid(x,y, 0) == (int)mapMaterial.ROAD|| getGameGrid(x, y, 0) == (int)mapMaterial.BASE)
+            return true;
+        return false;
+    }
     private void spawnMapMaterial(mapMaterial material, int x, int y, int height = 0) //Spawn specific material in the location x,y refer to the grid system
     {
         //Will add facing direction in the future, if mapMaterial is differed 

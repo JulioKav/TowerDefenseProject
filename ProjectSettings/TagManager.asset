@@ -13,6 +13,10 @@ TagManager:
   - SpawnPoint
   - Road
   - Toxic Road
+  - Tornado
+  - Arrow
+  - Base
+  - AirborneEnemy
   layers:
   - Default
   - TransparentFX
