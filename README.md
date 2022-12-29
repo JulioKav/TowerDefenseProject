@@ -35,3 +35,5 @@ Code for UI Line Renderers: https://www.youtube.com/watch?v=--LB7URk60A
 Code used for menus:
 https://www.youtube.com/watch?v=YOaYQrN1oYQ&ab_channel=Brackeys
 https://www.youtube.com/watch?v=zc8ac_qUXQY&ab_channel=Brackeys
+https://www.youtube.com/watch?v=6OT43pvUyfY&ab_channel=Brackeys
+https://www.youtube.com/watch?v=JivuXdrIHK0&ab_channel=Brackeys
