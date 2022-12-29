@@ -5,9 +5,9 @@ using UnityEngine;
 public class Tornado : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float time_tornado_is_up = 3.0f;
+    public float time_tornado_is_up = 3.0f; // ! skill link
     public float attack_range = 2f;
-    public float damage = 2;
+    public float damage = 2;  // ! skill link (its dot damage)
     public float attack_speed = 50f;
     private Vector3 offset = new Vector3(0, -2, 0);
     private Transform target;
@@ -77,7 +77,7 @@ public class Tornado : MonoBehaviour
             //m_Animator.ResetTrigger("Death");
             Debug.Log("anim");
             //Destroy(gameObject);
-            
+
         }
         enemies_in_range.Clear();
     }
@@ -136,6 +136,6 @@ public class Tornado : MonoBehaviour
             target = closest_enemy.transform;
 
         }
-        
+
     }
 }

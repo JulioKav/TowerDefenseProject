@@ -12,7 +12,7 @@ public class MagicBullet : MonoBehaviour
 
     public GameObject impact_effect;
     public GameObject tornadoprefab;
-    public float damage = 10;
+    public float damage = 10;  // ! skill link
     public string Enemy = "Enemy";
 
 
@@ -55,7 +55,7 @@ public class MagicBullet : MonoBehaviour
 
     }
 
-    
+
 
     // on hit check if there is explosion radius, explode
     void hit_target()
@@ -69,7 +69,7 @@ public class MagicBullet : MonoBehaviour
         {
             Explode();
         }
- 
+
 
 
         Destroy(gameObject);
@@ -78,25 +78,25 @@ public class MagicBullet : MonoBehaviour
 
     // checks tags in a collider list in a sphere around explosion point, then deals dmg to all injured enemies
     void Explode()
-    {   
+    {
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, explosion_radius);
         foreach (Collider collider in collided_objects)
         {
-            
+
             if (collider.tag == "Enemy")
             {
                 if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-                        
-                        Raise(collider.transform);
-                        Magic_damage(collider.transform);
-                        
+
+                    Raise(collider.transform);
+                    Magic_damage(collider.transform);
+
                 }
 
-              
+
                 else
                 {
-                    
+
                     Damage_enemy(collider.transform);
                 }
 
@@ -159,7 +159,7 @@ public class MagicBullet : MonoBehaviour
     }
 
     // updates tower hp with dmg
-   
+
     // specific type dmg
     void Magic_damage(Transform Enemy)
     {
@@ -172,7 +172,7 @@ public class MagicBullet : MonoBehaviour
         {
 
             enemy_component.TakeDamage(damage * 3);
-            
+
         }
     }
     /// <summary>
@@ -194,15 +194,15 @@ public class MagicBullet : MonoBehaviour
             enemy_component.isBackward = !enemy_component.isBackward;
             if (Enemy.position.y < 2)
                 Enemy.position = Enemy.position + new Vector3(0, 2, 0);
-                Enemy.tag = "AirborneEnemy";
-                GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
-                
-            
+            Enemy.tag = "AirborneEnemy";
+            GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
+
+
 
         }
     }
 
-    
+
 
     //visual explosion range
     private void OnDrawGizmosSelected()

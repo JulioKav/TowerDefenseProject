@@ -13,7 +13,7 @@ public class FinalSkill : Skill
         finalSkillJson = MagesJSONParser.Instance.magesJson.finalSkill;
         skillName = finalSkillJson.name;
         skillDesc = finalSkillJson.description;
-        cost = finalSkillJson.cost;
+        cost = FINAL_SKILL_COST;
 
     }
 

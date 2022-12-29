@@ -48,7 +48,7 @@ public class Enemies : MonoBehaviour
 
     public void Start()
     {
-        
+
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
@@ -58,7 +58,7 @@ public class Enemies : MonoBehaviour
 
     protected void Update()
     {
-        
+
         if (gameObject.tag == "AirborneEnemy")
         {
             StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
@@ -124,7 +124,7 @@ public class Enemies : MonoBehaviour
         wavepointIndex++;
         target = Waypoints.GetChild(wavepointIndex);
     }
-    
+
 
 
     //Enemy death/damage taken
@@ -159,7 +159,6 @@ public class Enemies : MonoBehaviour
 
     IEnumerator ImpactDMGAfterTime(float time)
     {
-        Debug.Log("ff");
         yield return new WaitForSeconds(time);
 
         // Code to execute after the delay
@@ -168,9 +167,9 @@ public class Enemies : MonoBehaviour
 
     IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
     {
-        
+
         yield return new WaitForSeconds(time);
-        
+
         // Code to execute after the delay
         Lower(Enemy, saved_speed);
     }
@@ -180,9 +179,9 @@ public class Enemies : MonoBehaviour
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
         if (enemy_component != null)
         {
-            if (gameObject.transform.position.y >= 2 )
+            if (gameObject.transform.position.y >= 2)
             {
-                
+
                 gameObject.tag = "Enemy";
                 //speed = 2;
                 enemy_component.isBackward = !enemy_component.isBackward;
@@ -196,14 +195,14 @@ public class Enemies : MonoBehaviour
                     GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
                     Destroy(effect_instance, 5f);
                     StartCoroutine(ImpactDMGAfterTime(0.2f));
-                    
+
                 }
 
 
             }
-                
 
-            
+
+
         }
     }
 
@@ -222,7 +221,7 @@ public class Enemies : MonoBehaviour
             Enemies enemy_component = collider.GetComponent<Enemies>();
             if (collider.tag == "Tornado")
             {
-                
+
                 Destroy(collider.gameObject);
 
             }
@@ -238,7 +237,7 @@ public class Enemies : MonoBehaviour
 
     void Explode()
     {
-        
+
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, mech_explosion_radius);
         foreach (Collider collider in collided_objects)
         {
@@ -247,7 +246,7 @@ public class Enemies : MonoBehaviour
             {
                 if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
-                    enemy_component.TakeDamage(mech_damage*3);
+                    enemy_component.TakeDamage(mech_damage * 3);
                 }
 
                 else

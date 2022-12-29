@@ -398,6 +398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  max_speed: 4
   slowed: 0
   mech_explosion_radius: 5
   mech_damage: 50
@@ -444,3 +445,4 @@ MonoBehaviour:
   tags:
   - Imaginary Enemy
   - Magic Enemy
+  - Mechanical Enemy

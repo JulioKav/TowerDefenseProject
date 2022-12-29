@@ -66,10 +66,8 @@ public class MagicMage : MonoBehaviour
     [Header("Turret Stats")]
 
     public float attack_range;
-    public float attack_speed = 1f;
+    public float attack_speed = 1f; // ! skill link
     private float attack_countdown = 0f;
-    public float _health = 100;
-    public float _maxHealth = 100;
 
     [Header("Unity Required Stuff")]
 
@@ -101,21 +99,21 @@ public class MagicMage : MonoBehaviour
         GameObject closest_enemy = null;
 
         //Array search of Targets for closest distance to target, updating closest enemy with shortest distance
-        
-            foreach (GameObject enemy in enemies)
-            {
+
+        foreach (GameObject enemy in enemies)
+        {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);
 
-          
-                if (distance_to_target < smallest_distance)
-                {
-                    smallest_distance = distance_to_target;
 
-                    closest_enemy = enemy;
-                }
-            
-                
+            if (distance_to_target < smallest_distance)
+            {
+                smallest_distance = distance_to_target;
+
+                closest_enemy = enemy;
             }
+
+
+        }
 
         // If the enemy is in attack range, it becomes target.
         if (closest_enemy != null && smallest_distance <= attack_range)

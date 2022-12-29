@@ -8,11 +8,11 @@ public class PhysicalBullet : MonoBehaviour
 
     private Transform target;
 
-    public float explosion_radius = 0f;
+    public float explosion_radius = 0f;  // ! skill link
 
     public GameObject impact_effect;
 
-    public float damage = 50;
+    public float damage = 50;  // ! skill link
 
     public GameObject target_null_effect;
 
@@ -104,7 +104,7 @@ public class PhysicalBullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-               
+
 
                 if (target.GetComponent<Tags>().HasTag("Physical Enemy"))
                 {
@@ -119,9 +119,9 @@ public class PhysicalBullet : MonoBehaviour
                 {
                     Damage_enemy(target);
                 }
-                    
+
             }
-            
+
         }
 
 
@@ -129,7 +129,7 @@ public class PhysicalBullet : MonoBehaviour
 
     }
 
-    
+
 
 
     // checks tags in a collider list in a sphere around explosion point, then deals dmg to all injured enemies
@@ -141,25 +141,25 @@ public class PhysicalBullet : MonoBehaviour
             if (collider.tag == "Enemy")
             {
 
-                    if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
+                if (collider.GetComponent<Tags>().HasTag("Physical Enemy"))
+                {
+                    if (identity_of_shooter.tag == "Physical Mage")
                     {
-                        if (identity_of_shooter.tag == "Physical Mage")
-                        {
-                                Physical_damage(target);
-                        }
+                        Physical_damage(target);
                     }
-                    
+                }
 
-                    else
-                    {
-                        Damage_enemy(collider.transform);
-                    }
+
+                else
+                {
+                    Damage_enemy(collider.transform);
+                }
 
             }
 
 
 
-            
+
         }
 
     }
@@ -178,9 +178,9 @@ public class PhysicalBullet : MonoBehaviour
         }
     }
 
-    
 
-    
+
+
     void Physical_damage(Transform Enemy)
     {
         // retrieves script aspect of enemy

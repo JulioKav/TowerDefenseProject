@@ -13,15 +13,15 @@ public class ImagineTower : MonoBehaviour
 
     [Header("Turret Stats")]
 
-    public float slow_range;
+    public float slow_range; // ! skill link
     public float attack_speed = 50f;
 
 
     public float _health = 100;
     public float _maxHealth = 100;
 
-    public float damage = 1;
-    public float slow_amount = 2f;
+    public float damage = 1; // ! skill link
+    public float slow_amount = 2f;  // ! skill link
     public string Enemy = "Enemy";
     void Start()
     {
@@ -50,7 +50,7 @@ public class ImagineTower : MonoBehaviour
             if (collider.tag == "Enemy")
             {
                 slow_enemy(2);
-                
+
 
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
@@ -149,37 +149,37 @@ public class ImagineTower : MonoBehaviour
 
     //sets enemy speed as slower, change slow_amount (its the divisor), imaginary enems are 50%extra slow
     void slow_enemy(float slow_amount)
-    {   
-        
+    {
+
         Collider[] collided_objects = Physics.OverlapSphere(transform.position, slow_range);
         foreach (Collider collider in collided_objects)
         {
             Enemies enemy_component = collider.GetComponent<Enemies>();
-            
-            if (collider.tag == "Enemy" && enemy_component.slowed == false) 
-            {   
+
+            if (collider.tag == "Enemy" && enemy_component.slowed == false)
+            {
                 if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
                 {
-                    
-                    enemy_component.speed = enemy_component.speed / (slow_amount*1.5f);
+
+                    enemy_component.speed = enemy_component.speed / (slow_amount * 1.5f);
                     enemy_component.slowed = true;
 
                 }
 
                 else
                 {
-                    
+
                     enemy_component.speed = enemy_component.speed / slow_amount;
                     enemy_component.slowed = true;
 
                 }
-                
+
             }
-            
+
         }
-        
+
     }
 
-    
-   
+
+
 }

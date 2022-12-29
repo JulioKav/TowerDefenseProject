@@ -21,7 +21,7 @@ public class PhysicalMage : Mage
     [Header("Turret Stats")]
 
     public float attack_range;
-    public float attack_speed = 1f;
+    public float attack_speed = 1f; // ! skill link
     private float attack_countdown = 0f;
     public float _health = 100;
     public float _maxHealth = 100;
@@ -120,6 +120,7 @@ public class PhysicalMage : Mage
 
         Destroy(effect_instance, 1f);
 
+        // ! enable GOs with skill upgrades
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 16f, 0), firepoint.rotation);
         GameObject bulletGO1 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 8f, 0), firepoint.rotation);
         GameObject bulletGO2 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 10f, 0), firepoint.rotation);

@@ -3,49 +3,94 @@
     {
       "type": "Physical",
       "name": "Bruiser",
-      "cost": 50,
       "description": "Unlocks the Bruiser",
-      "skills": []
+      "skills": [
+        {
+          "id": "attack_speed",
+          "name": "Peace of mind",
+          "description": "Decreased cooldown times"
+        },
+        {
+          "id": "radius",
+          "name": "Splash zone",
+          "description": "Increased range of impact"
+        },
+        {
+          "id": "more_projectiles",
+          "name": "More!",
+          "description": "More projectiles"
+        }
+      ]
     },
     {
       "type": "Magic",
       "name": "Wizard",
-      "cost": 50,
       "description": "Unlocks the Wizard",
-      "skills": []
+      "skills": [
+        {
+          "id": "attack_speed",
+          "name": "Hothead",
+          "description": "Increased attack speed"
+        },
+        {
+          "id": "dot_damage",
+          "name": "Arsonist",
+          "description": "Increased damage over time"
+        },
+        {
+          "id": "raise_time",
+          "name": "Night owl",
+          "description": "Increased amount of time an enemy is held in the air"
+        }
+      ]
     },
     {
       "type": "Imaginary",
       "name": "Dreamer",
-      "cost": 50,
       "description": "Unlocks the Dreamer",
       "skills": [
         {
-          "id": "slowing_2",
-          "name": "Slowing Towers+",
-          "cost": 200,
-          "description": "A double stacked slowing tower slows more and does more damage"
+          "id": "slowing",
+          "name": "Freezer",
+          "description": "Increased damage"
         },
         {
-          "id": "slowing_3",
-          "name": "Slowing Towers++",
-          "cost": 350,
-          "description": "A triple stacked slowing tower slows more and does more damage"
+          "id": "range",
+          "name": "Visionary",
+          "description": "Increased range of the slowing towers"
         },
-        { "id": "TODO", "name": "TODO", "cost": 600, "description": "TODO" }
+        {
+          "id": "more_towers",
+          "name": "Better together",
+          "description": "More slowing towers"
+        }
       ]
     },
     {
       "type": "Mechanical",
       "name": "Tinkerer",
-      "cost": 50,
       "description": "Unlocks the Tinkerer",
-      "skills": []
+      "skills": [
+        {
+          "id": "raise_time",
+          "name": "Hold that thought!",
+          "description": "Increased amount of time an enemy is held in the air"
+        },
+        {
+          "id": "splash_range",
+          "name": "Bomb expert",
+          "description": "Increased range of the damage when the enemy is dropped"
+        },
+        {
+          "id": "splash_damage",
+          "name": "Clumsy",
+          "description": "Increased damage when the enemy is dropped"
+        }
+      ]
     }
   ],
   "finalSkill": {
     "name": "SCDW 3000",
-    "description": "The Super Crazy Death Weapon 3000 is the ultimate weapon",
-    "cost": 1000
+    "description": "The Super Crazy Death Weapon 3000 is the ultimate weapon"
   }
 }

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public static int MAGE_COST = 50;
+    public static int[] COSTS = new int[] { 200, 350, 500 };
+    public static int FINAL_SKILL_COST = 1000;
+
     [HideInInspector] public List<Skill> nextSkills;
 
     [HideInInspector] public Button button;
@@ -56,14 +60,15 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         mageJson = MagesJSONParser.Instance.magesJson.mages[(int)mageClass];
         if (isFirstSkill)
         {
-            cost = mageJson.cost;
+            cost = MAGE_COST;
             skillName = mageJson.name;
             skillDesc = mageJson.description;
         }
-        else foreach (var skillJson in mageJson.skills) if (skillJson.id == gameObject.name)
+        else foreach (var skillJson in mageJson.skills) if (gameObject.name.StartsWith(skillJson.id))
                 {
-                    cost = skillJson.cost;
-                    skillName = skillJson.name;
+                    string level = gameObject.name.Substring(skillJson.id.Length, gameObject.name.Length - skillJson.id.Length);
+                    cost = COSTS[level.Length];
+                    skillName = skillJson.name + " " + level;
                     skillDesc = skillJson.description;
                 }
         Unlockable = isFirstSkill;
@@ -129,5 +134,15 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 1);
         else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1);
         button.colors = colors;
+
+        if (!isFirstSkill)
+        {
+            // Disable buttons based on interactability, but always show either:
+            //      1. the first skill if no skill in that branch has been unlocked
+            //      2. the last skill if that branch has been completed
+            GetComponent<Image>().enabled = button.interactable;
+            if (completesBranch && Unlocked) button.GetComponent<Image>().enabled = true;
+            if (gameObject.name == "Final Skill") button.GetComponent<Image>().enabled = true;
+        }
     }
 }

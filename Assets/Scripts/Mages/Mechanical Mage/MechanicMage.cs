@@ -19,8 +19,10 @@ public class MechanicMage : MonoBehaviour
 
     [Header("Turret Stats")]
 
+    // ! for raise time and splash damage and radius look at enemies script :)
+
     private float attack_range = 100f;
-    public float attack_speed = 1f;
+    public float attack_speed = 1f; // ! skill link
     private float attack_countdown = 0f;
 
     [Header("Unity Required Stuff")]
@@ -62,6 +64,7 @@ public class MechanicMage : MonoBehaviour
 
             if (distance_to_target < smallest_distance)
             {
+                // ? priorotize mechanical enemies in search
                 smallest_distance = distance_to_target;
 
                 closest_enemy = enemy;
