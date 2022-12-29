@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    
     public TMPro.TMP_Dropdown ResDropdown;
 
     Resolution[] resolutions;
@@ -42,6 +43,18 @@ public class SettingsMenu : MonoBehaviour
     {
         audioMixer.SetFloat("MasterVolume", volume);
     }
+
+    public void MusicVolume(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    public void SFXVolume(float volume)
+    {
+        audioMixer.SetFloat("SFXVolume", volume);
+    }
+
+
 
     public void Quality(int quality)
     {
