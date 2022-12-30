@@ -7,10 +7,24 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    
+
     public TMPro.TMP_Dropdown ResDropdown;
 
     Resolution[] resolutions;
+
+    public Slider volSlider;
+    public Slider musSlider;
+    public Slider sfxSlider;
+
+
+    void Awake()
+    {
+        volSlider.value = PlayerPrefs.GetFloat("masterslidersavednumber");
+        musSlider.value = PlayerPrefs.GetFloat("musslidersavednumber");
+        sfxSlider.value = PlayerPrefs.GetFloat("sfxslidersavednumber");
+
+        
+    }
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -23,7 +37,7 @@ public class SettingsMenu : MonoBehaviour
             string choice = resolutions[i].width + "x" + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
             choices.Add(choice);
 
-            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 currentReso = i;
             }
@@ -31,6 +45,20 @@ public class SettingsMenu : MonoBehaviour
         ResDropdown.AddOptions(choices);
         ResDropdown.value = currentReso;
         ResDropdown.RefreshShownValue();
+
+        audioMixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("masterslidersavednumber"));
+        audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musslidersavednumber"));
+        audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("sfxslidersavednumber"));
+
+    }
+
+    void Update()
+    {
+        PlayerPrefs.SetFloat("masterslidersavednumber", (float)volSlider.value);
+        PlayerPrefs.SetFloat("musslidersavednumber", (float)musSlider.value);
+        PlayerPrefs.SetFloat("sfxslidersavednumber", (float)sfxSlider.value);
+
+
     }
 
     public void SetResolution(int resolutionIndex)
@@ -39,9 +67,10 @@ public class SettingsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void Volume (float volume)
+    public void Volume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
+
     }
 
     public void MusicVolume(float volume)
@@ -65,4 +94,6 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = fullscreen;
     }
+
+
 }
