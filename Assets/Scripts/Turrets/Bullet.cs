@@ -68,9 +68,14 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
+                    FindObjectOfType<AudioManager>().Play("Impact");
                     Damage_enemy(target);
             }
-            if (target.tag == "Tower") Damage_tower(target);
+            if (target.tag == "Tower")
+            {
+                FindObjectOfType<AudioManager>().Play("Impact");
+                Damage_tower(target);
+            }
         }
 
 

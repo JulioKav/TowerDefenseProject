@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.83137256}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 6748230540134850165}
   - component: {fileID: 1606486673465757209}
   - component: {fileID: 6747296693229803247}
+  - component: {fileID: 9197630809929928700}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -514,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b144692e527fb994fb67c5d557cd3c8c, type: 2}
   m_Color: {r: 0.028044224, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -532,6 +533,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9197630809929928700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8284781265238150619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a03828de0ffa4845a2b78abc9812ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 6747296693229803247}
 --- !u!1 &8307290577064042553
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +586,7 @@ Transform:
   - {fileID: 2210802074717542172}
   - {fileID: 6070814442819180064}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6692874703610559120
 MonoBehaviour:
@@ -623,11 +637,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  max_speed: 4
   slowed: 0
   mech_explosion_radius: 5
   mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
+  isBackward: 0
   target: {fileID: 0}
   Waypoints: {fileID: 0}
   healthBar: {fileID: 6747296693229803247}

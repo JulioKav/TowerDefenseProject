@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6276604000717576594}
   - component: {fileID: 4691234114230223127}
   - component: {fileID: 6388798402088295746}
+  - component: {fileID: 4371847746276722190}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b144692e527fb994fb67c5d557cd3c8c, type: 2}
   m_Color: {r: 0, g: 0.36236167, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4371847746276722190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074033614658403651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a03828de0ffa4845a2b78abc9812ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 6388798402088295746}
 --- !u!1 &1408269883642971461
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.93333334}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -211,7 +225,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7054001588791247148}
   m_LocalRotation: {x: -0.1499781, y: -0.84997183, z: 0.35206985, w: -0.3620792}
-  m_LocalPosition: {x: 0, y: 0, z: -70.34032}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.00677, y: 0.0033900002, z: 0.00339}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -221,7 +235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 45, y: -135, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -125.73424, y: 105.75748}
+  m_AnchoredPosition: {x: 0, y: 0.898}
   m_SizeDelta: {x: 31.969, y: 15.7757}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8420247955577945521
@@ -322,7 +336,7 @@ Transform:
   - {fileID: 5972569732543668770}
   - {fileID: 7974587453626501578}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6059569297471433527
 MeshFilter:
@@ -399,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74b9b1674fe2114bbda02208cfee2f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starDisplay: {fileID: 0}
+  mageClass: 0
   attack_speed: 1
   Road: Road
   Spike_Road: Spike Road
