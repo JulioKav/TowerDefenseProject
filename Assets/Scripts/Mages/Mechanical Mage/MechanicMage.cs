@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MechanicMage : MonoBehaviour
+public class MechanicMage : Mage
 {
+    static string RAISE_TIME = "raise_time", SPLASH_DMG = "splash_damage", SPLASH_RANGE = "splash_range";
 
+    static float[] RAISE_TIMES = new float[] { 2f, 3f, 4f, 5f };
+    static int[] SPLASH_DMGS = new int[] { 30, 50, 70, 100 };
+    static float[] SPLASH_RANGES = new float[] { 2f, 3f, 4f, 5f };
 
-    void Start()
+    public new void Start()
     {
+        base.Start();
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 1.0f);
+        FillDictionary(new string[] { RAISE_TIME, SPLASH_DMG, SPLASH_RANGE });
+        mageClass = MageClass.Mechanical;
     }
 
     private Transform target;
@@ -19,10 +26,8 @@ public class MechanicMage : MonoBehaviour
 
     [Header("Turret Stats")]
 
-    // ! for raise time and splash damage and radius look at enemies script :)
-
     private float attack_range = 100f;
-    public float attack_speed = 1f; // ! skill link
+    public float attack_speed = 1f;
     private float attack_countdown = 0f;
 
     [Header("Unity Required Stuff")]
@@ -113,14 +118,16 @@ public class MechanicMage : MonoBehaviour
         }
 
         attack_countdown -= Time.deltaTime;
-
-
     }
 
 
     // turret shooting out a bullet, instantiating the bulletprefab, bullet chases target.
     void shoot()
     {   //make new function to swap out shoot after upgrade
+
+        Enemies.mech_airborne_time = RAISE_TIMES[GetSkillLevel(RAISE_TIME)];
+        Enemies.mech_explosion_radius = SPLASH_RANGES[GetSkillLevel(SPLASH_RANGE)];
+        Enemies.mech_damage = SPLASH_DMGS[GetSkillLevel(SPLASH_DMG)];
 
         GameObject effect_instance = (GameObject)Instantiate(start_effect, transform.position, transform.rotation);
 

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ImaginaryMage : Mage
 {
+    static string SLOWING = "slowing", RANGE = "range", MORE_TOWERS = "more_towers";
+
+    static float[] SLOWING_MULTIPLIERS = new float[] { 1.4f, 1.8f, 2.2f, 2.5f };
+    static float[] SLOWING_RANGES = new float[] { 1f, 1.5f, 2f, 3f };
+    static int[] NUM_TOWERS = new int[] { 2, 4, 6, 8 };
 
     // Make Mage a Singleton for easier access, since only one of each mage can exist
     public static ImaginaryMage Instance { get; private set; }
@@ -47,12 +52,19 @@ public class ImaginaryMage : Mage
 
     // Looks for closest target
 
+    public new void Start()
+    {
+        base.Start();
+        FillDictionary(new string[] { SLOWING, RANGE, MORE_TOWERS });
+        mageClass = MageClass.Imaginary;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
 
-
+        blocks_affected = NUM_TOWERS[GetSkillLevel(MORE_TOWERS)];
 
         // shoot floor at start of round
         // if (attack_countdown <= 0f)
@@ -95,7 +107,7 @@ public class ImaginaryMage : Mage
             var rnd = new System.Random();
             float delay = (float)rnd.NextDouble() * (WaveSpawner.WaveCountdownTime - 1);
             StartCoroutine(shoot(road.transform, delay));
-            
+
 
 
 
@@ -118,6 +130,8 @@ public class ImaginaryMage : Mage
 
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
         ImaginaryBullet bullet = bulletGO.GetComponent<ImaginaryBullet>();
+        bullet.slowing_amount = SLOWING_MULTIPLIERS[GetSkillLevel(SLOWING)];
+        bullet.slowing_range = SLOWING_RANGES[GetSkillLevel(RANGE)];
 
 
         if (bullet != null)
@@ -174,8 +188,9 @@ public class ImaginaryMage : Mage
 
     public GameObject GetToxicRoadPrefab()
     {
-        if (IsSkillUnlocked("slowing_3")) return toxicRoadLvl3Prefab;
-        if (IsSkillUnlocked("slowing_2")) return toxicRoadLvl2Prefab;
+        int skillLevel = GetSkillLevel(SLOWING);
+        if (skillLevel == 3) return toxicRoadLvl3Prefab;
+        if (skillLevel == 2) return toxicRoadLvl2Prefab;
         return toxicRoadLvl1Prefab;
     }
 

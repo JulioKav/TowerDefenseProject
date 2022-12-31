@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 using UnityEngine.UI;
 
-public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Skill : MonoBehaviour
 {
     public static int MAGE_COST = 50;
     public static int[] COSTS = new int[] { 200, 350, 500 };
@@ -13,7 +12,7 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector] public List<Skill> nextSkills;
 
     [HideInInspector] public Button button;
-    [HideInInspector] public MageClass mageClass;
+    public MageClass mageClass;
     [HideInInspector] public int cost;
 
     protected string skillName;
@@ -42,17 +41,6 @@ public class Skill : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(TryUnlockSkill);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (eventData.hovered.Count > 0 && eventData.hovered[0] != this) return;
-        SkillDescriptionManager.Instance.SetText(skillName, skillDesc, cost);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        SkillDescriptionManager.Instance.ClearText();
     }
 
     void InitStats()

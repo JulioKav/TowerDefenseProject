@@ -6,14 +6,14 @@ public abstract class Mage : MonoBehaviour
 
     // An interface for mage scripts
 
-    private Dictionary<string, bool> skillsUnlocked;
+    private Dictionary<string, int> skillsUnlocked;
     StarDisplay starDisplay;
     public MageClass mageClass;
 
     public void Start()
     {
         starDisplay = GetComponentInChildren<StarDisplay>();
-        skillsUnlocked = new Dictionary<string, bool>();
+        skillsUnlocked = new Dictionary<string, int>();
     }
 
     public void OnEnable()
@@ -28,13 +28,23 @@ public abstract class Mage : MonoBehaviour
 
     public virtual void ChangeSkillHandler(MageClass mageClass, string id, bool unlocked)
     {
+        Debug.Log(this.mageClass);
         if (mageClass != this.mageClass) return;
-        skillsUnlocked[id] = unlocked;
+        string name = id.TrimEnd('+');
+        int level = id.Substring(name.Length).Length;
+        skillsUnlocked[name] = level + (unlocked ? 0 : -1);
+        Debug.Log(mageClass + " Mage - Skill " + (unlocked ? "Unlocked" : "Locked") + ": " +
+                    name + " lvl " + (level + 1));
     }
 
-    public bool IsSkillUnlocked(string id)
+    public int GetSkillLevel(string id)
     {
-        return (skillsUnlocked.ContainsKey(id) && skillsUnlocked[id]);
+        return skillsUnlocked[id.TrimEnd('+')] + 1;
+    }
+
+    public void FillDictionary(string[] ids)
+    {
+        foreach (var id in ids) skillsUnlocked[id] = -1;
     }
 
 }

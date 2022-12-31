@@ -2,55 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicMage : MonoBehaviour
+public class MagicMage : Mage
 {
-    // An interface for mage scripts
+    static string RAISE_TIME = "raise_time", ATTACK_SPEED = "attack_speed", DOT_DMG = "dot_damage";
 
-    bool[] skillsUnlocked;
-    public StarDisplay starDisplay;
+    static float[] RAISE_TIMES = new float[] { 5f, 3.5f, 2f, 1f };
+    static float[] ATTACK_SPEEDS = new float[] { 0.5f, 1.25f, 2f, 2.5f };
+    static float[] DOT_DMGS = new float[] { 2f, 3f, 4f, 5f };
 
     // Start is called before the first frame update
-    public void Start()
+    public new void Start()
     {
-
+        base.Start();
         // by default they are not unlocked
-        skillsUnlocked = new bool[] { false, false, false, false };
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 1.0f);
-    }
-
-    public virtual void UnlockSkill(int id)
-    {
-        // unlocks the skill and shows the star
-        skillsUnlocked[id] = true;
-        starDisplay.UnlockSkill(id);
-    }
-
-    public virtual void LockSkill(int id)
-    {
-        // locks unlocked skill and hides scar
-        skillsUnlocked[id] = false;
-        starDisplay.LockSkill(id);
-    }
-
-    public virtual void Skill1()
-    {
-        if (!skillsUnlocked[0]) return;
-    }
-
-    public virtual void Skill2()
-    {
-        if (!skillsUnlocked[1]) return;
-    }
-
-    public virtual void Skill3()
-    {
-        if (!skillsUnlocked[2]) return;
-    }
-
-    public virtual void Skill4()
-    {
-        if (!skillsUnlocked[3]) return;
+        FillDictionary(new string[] { RAISE_TIME, ATTACK_SPEED, DOT_DMG });
+        mageClass = MageClass.Magic;
     }
 
     ///////////////////////////////////////////////////////////////
@@ -66,7 +34,7 @@ public class MagicMage : MonoBehaviour
     [Header("Turret Stats")]
 
     public float attack_range;
-    public float attack_speed = 1f; // ! skill link
+    public float attack_speed = 1f;
     private float attack_countdown = 0f;
 
     [Header("Unity Required Stuff")]
@@ -156,6 +124,8 @@ public class MagicMage : MonoBehaviour
 
         attack_countdown -= Time.deltaTime;
 
+        attack_speed = ATTACK_SPEEDS[GetSkillLevel(ATTACK_SPEED)];
+
 
     }
 
@@ -164,12 +134,15 @@ public class MagicMage : MonoBehaviour
     void shoot()
     {   //make new function to swap out shoot after upgrade
 
+        Enemies.magic_airborne_time = RAISE_TIMES[GetSkillLevel(RAISE_TIME)];
+
         GameObject effect_instance = (GameObject)Instantiate(start_effect, transform.position, transform.rotation);
 
         Destroy(effect_instance, 1f);
 
         GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
         MagicBullet bullet = bulletGO.GetComponent<MagicBullet>();
+        bullet.damage_over_time = DOT_DMGS[GetSkillLevel(DOT_DMG)];
         if (bullet != null)
         {
             bullet.Chase(target);

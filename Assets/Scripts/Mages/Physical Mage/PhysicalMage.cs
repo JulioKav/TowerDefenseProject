@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PhysicalMage : Mage
 {
+    static string ATTACK_SPEED = "attack_speed", RADIUS = "radius", MORE_PROJECTILES = "more_projectiles";
+
+    static float[] ATTACK_SPEEDS = new float[] { 1f, 1.2f, 1.4f, 1.6f };
+    static int[] NUM_PROJECTILES = new int[] { 2, 4, 6, 8 };
+    static float[] EXPLOSION_RADII = new float[] { 0f, 0.5f, 1f, 1.5f };
 
     // Start is called before the first frame update
     new public void Start()
@@ -11,6 +16,8 @@ public class PhysicalMage : Mage
         // Calls Target_Search every chosen amount seconds.
         base.Start();
         InvokeRepeating("Target_Search", 0f, 1.0f);
+        FillDictionary(new string[] { ATTACK_SPEED, RADIUS, MORE_PROJECTILES });
+        mageClass = MageClass.Physical;
     }
 
     private Transform target;
@@ -21,7 +28,7 @@ public class PhysicalMage : Mage
     [Header("Turret Stats")]
 
     public float attack_range;
-    public float attack_speed = 1f; // ! skill link
+    public float attack_speed = 1f;
     private float attack_countdown = 0f;
     public float _health = 100;
     public float _maxHealth = 100;
@@ -83,7 +90,7 @@ public class PhysicalMage : Mage
     {
         if (target == null)
         {
-            attack_countdown = attack_speed / 2;
+            attack_countdown = 1f / attack_speed;
             Target_Search();
             return;
         }
@@ -108,7 +115,7 @@ public class PhysicalMage : Mage
 
         attack_countdown -= Time.deltaTime;
 
-
+        attack_speed = ATTACK_SPEEDS[GetSkillLevel(ATTACK_SPEED)];
     }
 
 
@@ -120,26 +127,13 @@ public class PhysicalMage : Mage
 
         Destroy(effect_instance, 1f);
 
-        // ! enable GOs with skill upgrades
-        GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 16f, 0), firepoint.rotation);
-        GameObject bulletGO1 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 8f, 0), firepoint.rotation);
-        GameObject bulletGO2 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 10f, 0), firepoint.rotation);
-        GameObject bulletGO3 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 12f, 0), firepoint.rotation);
-        GameObject bulletGO4 = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 14f, 0), firepoint.rotation);
-        PhysicalBullet bullet = bulletGO.GetComponent<PhysicalBullet>();
-        PhysicalBullet bullet1 = bulletGO1.GetComponent<PhysicalBullet>();
-        PhysicalBullet bullet2 = bulletGO2.GetComponent<PhysicalBullet>();
-        PhysicalBullet bullet3 = bulletGO3.GetComponent<PhysicalBullet>();
-        PhysicalBullet bullet4 = bulletGO4.GetComponent<PhysicalBullet>();
-        if (bullet != null && bullet1 != null && bullet2 != null && bullet3 != null)
+        for (int i = 0; i < NUM_PROJECTILES[GetSkillLevel(MORE_PROJECTILES)]; i++)
         {
-            bullet.Chase(target);
-            bullet1.Chase(target);
-            bullet2.Chase(target);
-            bullet3.Chase(target);
-            bullet4.Chase(target);
+            GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position + new Vector3(0, 8f + i * 2f, 0), firepoint.rotation);
+            PhysicalBullet bullet = bulletGO.GetComponent<PhysicalBullet>();
+            bullet.explosion_radius = EXPLOSION_RADII[GetSkillLevel(RADIUS)];
+            if (bullet != null) bullet.Chase(target);
         }
-
 
     }
 

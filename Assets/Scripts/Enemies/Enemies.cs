@@ -15,10 +15,14 @@ public class Enemies : MonoBehaviour
     protected float _health;
     protected float _attack;
     protected float _range;
-    public float mech_explosion_radius = 5f;
-    public float mech_damage = 50f;
     public GameObject impact_effect;
     public GameObject death_effect;
+
+    public static float mech_airborne_time = 2;
+    public static float mech_explosion_radius = 5f;
+    public static float mech_damage = 50f;
+
+    public static float magic_airborne_time = 5;
 
     Animator m_Animator;
     //Enemy State
@@ -59,10 +63,11 @@ public class Enemies : MonoBehaviour
     protected void Update()
     {
 
-        if (gameObject.tag == "AirborneEnemy")
-        {
-            StartCoroutine(LowerAfterTime(3, gameObject.transform, speed));
-        }
+        if (gameObject.tag == "AirborneEnemyMechanical")
+            StartCoroutine(LowerAfterTime(mech_airborne_time, gameObject.transform, speed));
+
+        if (gameObject.tag == "AirborneEnemyMagic")
+            StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform, speed));
 
         if (target == null) return;
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);

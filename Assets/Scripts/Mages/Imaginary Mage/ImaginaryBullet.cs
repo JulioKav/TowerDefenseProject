@@ -5,6 +5,9 @@ using UnityEngine;
 public class ImaginaryBullet : MonoBehaviour
 {
 
+    public float slowing_amount;
+    public float slowing_range;
+
     private Transform target;
     private float speed = 15;
 
@@ -62,7 +65,9 @@ public class ImaginaryBullet : MonoBehaviour
     {
         Destroy(floor.gameObject);
         var toxic_floor = ImaginaryMage.Instance.GetToxicRoadPrefab();
-        Instantiate(toxic_floor, floor.position, floor.rotation);
+        GameObject tower = Instantiate(toxic_floor, floor.position, floor.rotation);
+        tower.GetComponent<ImagineTower>().slow_amount = slowing_amount;
+        tower.GetComponent<ImagineTower>().slow_range = slowing_range;
     }
 
 

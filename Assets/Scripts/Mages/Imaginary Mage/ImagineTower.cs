@@ -13,15 +13,15 @@ public class ImagineTower : MonoBehaviour
 
     [Header("Turret Stats")]
 
-    public float slow_range; // ! skill link
+    public float slow_range;
     public float attack_speed = 50f;
 
 
     public float _health = 100;
     public float _maxHealth = 100;
 
-    public float damage = 1; // ! skill link
-    public float slow_amount = 2f;  // ! skill link
+    public float damage = 1;
+    public float slow_amount = 2f;
     public string Enemy = "Enemy";
     void Start()
     {

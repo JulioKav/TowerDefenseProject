@@ -20,10 +20,10 @@ public class MechanicalBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
-        if (target == null || target.tag == "AirborneEnemy")
+        if (target == null || target.tag == "AirborneEnemyMechanical")
         {
             Target_Search();
-            if (target == null || target.tag == "AirborneEnemy")
+            if (target == null || target.tag == "AirborneEnemyMechanical")
             {
                 Destroy(gameObject);
             }
@@ -82,7 +82,7 @@ public class MechanicalBullet : MonoBehaviour
             {
                 if (collider.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
-                    
+
                     Raise(collider.transform);
                     Mechanical_damage(collider.transform);
 
@@ -188,7 +188,7 @@ public class MechanicalBullet : MonoBehaviour
             enemy_component.speed = 0;
             if (Enemy.position.y < 2)
                 Enemy.position = Enemy.position + new Vector3(0, 2, 0);
-            Enemy.tag = "AirborneEnemy";
+            Enemy.tag = "AirborneEnemyMechanical";
             GameObject tornado = (GameObject)Instantiate(MechanicPrefab, Enemy.position, Enemy.rotation);
 
 

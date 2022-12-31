@@ -8,11 +8,11 @@ public class PhysicalBullet : MonoBehaviour
 
     private Transform target;
 
-    public float explosion_radius = 0f;  // ! skill link
+    public float explosion_radius = 0f;
 
     public GameObject impact_effect;
 
-    public float damage = 50;  // ! skill link
+    public float damage = 50;
 
     public GameObject target_null_effect;
 
