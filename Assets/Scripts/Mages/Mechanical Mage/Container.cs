@@ -13,7 +13,7 @@ public class Container : MonoBehaviour
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
-        
+
 
     }
 
@@ -28,7 +28,7 @@ public class Container : MonoBehaviour
     List<GameObject> enemies_in_range = new List<GameObject>();
     void Enemy_Alive_Checker()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("AirborneEnemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("AirborneEnemyMechanical");
         foreach (GameObject enemy in enemies)
         {
             float distance_to_target = Vector3.Distance(transform.position, enemy.transform.position);

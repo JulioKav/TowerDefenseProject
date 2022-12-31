@@ -22,7 +22,7 @@ public class Tornado : MonoBehaviour
     void Update()
     {
         Enemy_Alive_Checker();
-        transform.position = target.transform.position + offset;
+        if (target != null) transform.position = target.transform.position + offset;
 
     }
     // damage
