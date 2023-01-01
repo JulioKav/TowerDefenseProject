@@ -17,7 +17,7 @@ public class Enemies : MonoBehaviour
     protected float _range;
     public GameObject impact_effect;
     public GameObject death_effect;
-
+    private Achievements achievements;
     public static float mech_airborne_time = 2;
     public static float mech_explosion_radius = 5f;
     public static float mech_damage = 50f;
@@ -54,6 +54,7 @@ public class Enemies : MonoBehaviour
     {
 
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
@@ -159,6 +160,7 @@ public class Enemies : MonoBehaviour
         }
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
+        achievements.kills += 1;
     }
 
 
