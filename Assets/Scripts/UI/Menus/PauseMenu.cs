@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject PauseMenuUI;
+    public TMPro.TMP_Dropdown GameSpeedDropdown;
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +28,21 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
+        /*
         Time.timeScale = 1f;
+        if (GameSpeedDropdown.value == 0)
+        {
+            Time.timeScale = 1f;
+        }
+        if (GameSpeedDropdown.value == 1)
+        {
+            Time.timeScale = 1.5f;
+        }
+        if (GameSpeedDropdown.value == 2)
+        {
+            Time.timeScale = 2f;
+        }
+        */
         GamePaused = false;
     }
 

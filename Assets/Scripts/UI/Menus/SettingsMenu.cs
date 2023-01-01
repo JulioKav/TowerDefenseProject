@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMPro.TMP_Dropdown ResDropdown;
+    public TMPro.TMP_Dropdown QualityDropdown;
+    public Toggle fullscreentoggle;
 
     Resolution[] resolutions;
 
@@ -50,6 +51,20 @@ public class SettingsMenu : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musslidersavednumber"));
         audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("sfxslidersavednumber"));
 
+        int resolutionsaved = PlayerPrefs.GetInt("resIndex");
+        ResDropdown.value = resolutionsaved;
+
+        int qualitysaved = PlayerPrefs.GetInt("qualityIndex");
+        QualityDropdown.value = qualitysaved;
+
+        if (PlayerPrefs.GetInt("fullscreen") == 1)
+        {
+            fullscreentoggle.isOn = true;
+        }
+        else
+        {
+            fullscreentoggle.isOn = false;
+        }
     }
 
     void Update()
@@ -57,6 +72,17 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("masterslidersavednumber", (float)volSlider.value);
         PlayerPrefs.SetFloat("musslidersavednumber", (float)musSlider.value);
         PlayerPrefs.SetFloat("sfxslidersavednumber", (float)sfxSlider.value);
+
+        PlayerPrefs.SetInt("resIndex", ResDropdown.value);
+        PlayerPrefs.SetInt("qualityIndex", QualityDropdown.value);
+        if (Screen.fullScreen == true)
+        {
+            PlayerPrefs.SetInt("fullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("fullscreen", 0);
+        }
 
 
     }

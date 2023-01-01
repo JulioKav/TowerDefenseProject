@@ -37,6 +37,7 @@ public class Enemies : MonoBehaviour
     private int wavepointIndex = 0;
 
     private SkillManager skillManager;
+    private Achievements achievements;
 
     private string Tornado = "Tornado";
 
@@ -54,6 +55,7 @@ public class Enemies : MonoBehaviour
     {
 
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
@@ -159,6 +161,7 @@ public class Enemies : MonoBehaviour
         }
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
+        achievements.kills += 1;
     }
 
 
