@@ -110,21 +110,14 @@ public class Skill : MonoBehaviour
     {
         foreach (Skill ns in nextSkills) ns.Unlockable = false;
         Unlocked = false;
+        if (completesBranch) FinalSkill.Instance.CheckUnlockable();
     }
 
     void UpdateButtonAppearance()
     {
         // Udpate button based on if it is unlockable and/or unlocked
         button.interactable = GameStateManager.Instance.State == GameState.IDLE && Unlockable && !Unlocked;
-        // Set color of disabled button
-        var colors = button.colors;
-        if (Unlocked) colors.disabledColor = new Color(0x52 / 255f, 0xE7 / 255f, 0x62 / 255f);
-        else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 1);
-        else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1);
-        button.colors = colors;
-
-        // Disable buttons based on interactability
-        GetComponent<Image>().enabled = button.interactable;
-        if (gameObject.name == "Final Skill") button.GetComponent<Image>().enabled = true;
+        // Disable buttons based on interactability, but not game state
+        GetComponent<Image>().enabled = Unlockable && !Unlocked;
     }
 }

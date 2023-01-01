@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FinalSkill : Skill
 {
@@ -6,6 +7,8 @@ public class FinalSkill : Skill
     void Awake() { if (!Instance) Instance = this; }
 
     MagesJSONParser.Skill finalSkillJson;
+
+    public FinalSkillGraphic[] finalSkillGraphics;
 
     new public void Start()
     {
@@ -19,7 +22,27 @@ public class FinalSkill : Skill
 
     public void CheckUnlockable()
     {
-        foreach (bool bc in SkillManager.Instance.branchCompleted) if (!bc) return;
-        Unlockable = true;
+        bool unlockable = true;
+        for (int i = 0; i < SkillManager.Instance.branchCompleted.Length; i++)
+        {
+            var bc = SkillManager.Instance.branchCompleted[i];
+            Sprite s;
+            switch (bc)
+            {
+                case 0:
+                    s = finalSkillGraphics[i].notUnlocked;
+                    unlockable = false;
+                    break;
+                case 1:
+                    s = finalSkillGraphics[i].halfUnlocked;
+                    unlockable = false;
+                    break;
+                default:
+                    s = finalSkillGraphics[i].fullyUnlocked;
+                    break;
+            }
+            finalSkillGraphics[i].GetComponent<Image>().sprite = s;
+        }
+        if (unlockable) Unlockable = true;
     }
 }
