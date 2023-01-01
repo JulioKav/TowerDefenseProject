@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
 
     public static int WaveCountdownTime = 3;
-    public static int WaveNumber = 0;
+
     public Transform[] enemyPrefab;
     GameObject[] spawnPoints;
     // The game object enemies will be attached to
@@ -38,8 +38,10 @@ public class WaveSpawner : MonoBehaviour
         // Wave 1-4
         for (int wave = 0; wave < 4; wave++)
         {
-            WaveNumber += 1;
-            print(WaveNumber);
+
+            
+            
+
             // Adds 4, then 8, then 16, then 32 enemies in the waves 1-4, respectively
             waves[wave] = new List<Transform>();
             for (int i = 0; i < Mathf.Pow(2, wave + 2); i++)

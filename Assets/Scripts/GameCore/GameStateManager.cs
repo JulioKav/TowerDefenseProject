@@ -55,11 +55,18 @@ public class GameStateManager : MonoBehaviour
         State = GameState.IDLE;
     }
 
+
     public void EndGame(bool victory)
     {
         if (victory) State = GameState.WIN;
         else State = GameState.LOSE;
     }
+
+    public void GameSpeed(float speed)
+    {
+        Time.timeScale = speed;
+    }
+
 }
 
 public enum GameState

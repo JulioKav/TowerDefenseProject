@@ -7,15 +7,17 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMPro.TMP_Dropdown ResDropdown;
+    public TMPro.TMP_Dropdown QualityDropdown;
+    public Toggle fullscreentoggle;
 
     Resolution[] resolutions;
+
 
     public Slider volSlider;
     public Slider musSlider;
     public Slider sfxSlider;
-
+    
 
     void Awake()
     {
@@ -25,6 +27,7 @@ public class SettingsMenu : MonoBehaviour
 
         
     }
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -46,10 +49,25 @@ public class SettingsMenu : MonoBehaviour
         ResDropdown.value = currentReso;
         ResDropdown.RefreshShownValue();
 
+
         audioMixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("masterslidersavednumber"));
         audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musslidersavednumber"));
         audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("sfxslidersavednumber"));
 
+        int resolutionsaved = PlayerPrefs.GetInt("resIndex");
+        ResDropdown.value = resolutionsaved;
+
+        int qualitysaved = PlayerPrefs.GetInt("qualityIndex");
+        QualityDropdown.value = qualitysaved;
+
+        if (PlayerPrefs.GetInt("fullscreen") == 1)
+        {
+            fullscreentoggle.isOn = true;
+        }
+        else
+        {
+            fullscreentoggle.isOn = false;
+        }
     }
 
     void Update()
@@ -58,32 +76,32 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("musslidersavednumber", (float)musSlider.value);
         PlayerPrefs.SetFloat("sfxslidersavednumber", (float)sfxSlider.value);
 
+        PlayerPrefs.SetInt("resIndex", ResDropdown.value);
+        PlayerPrefs.SetInt("qualityIndex", QualityDropdown.value);
+        if (Screen.fullScreen == true)
+        {
+            PlayerPrefs.SetInt("fullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("fullscreen", 0);
+        }
+        
+
 
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
+
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void Volume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
-
     }
-
-    public void MusicVolume(float volume)
-    {
-        audioMixer.SetFloat("MusicVolume", volume);
-    }
-
-    public void SFXVolume(float volume)
-    {
-        audioMixer.SetFloat("SFXVolume", volume);
-    }
-
-
 
     public void Quality(int quality)
     {
@@ -94,6 +112,4 @@ public class SettingsMenu : MonoBehaviour
     {
         Screen.fullScreen = fullscreen;
     }
-
-
 }
