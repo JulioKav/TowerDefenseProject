@@ -54,6 +54,20 @@ public class GameStateManager : MonoBehaviour
         yield return new WaitForSeconds(PostRoundTimeInSeconds);
         State = GameState.IDLE;
     }
+<<<<<<< Updated upstream
+=======
+
+    public void EndGame(bool victory)
+    {
+        if (victory) State = GameState.WIN;
+        else State = GameState.LOSE;
+    }
+
+    public void GameSpeed(float speed)
+    {
+        Time.timeScale = speed;
+    }
+>>>>>>> Stashed changes
 }
 
 public enum GameState
