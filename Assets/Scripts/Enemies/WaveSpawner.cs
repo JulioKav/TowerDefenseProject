@@ -38,11 +38,6 @@ public class WaveSpawner : MonoBehaviour
         // Wave 1-4
         for (int wave = 0; wave < 4; wave++)
         {
-<<<<<<< Updated upstream
-=======
-            WaveNumber += 1;
-            
->>>>>>> Stashed changes
             // Adds 4, then 8, then 16, then 32 enemies in the waves 1-4, respectively
             waves[wave] = new List<Transform>();
             for (int i = 0; i < Mathf.Pow(2, wave + 2); i++)

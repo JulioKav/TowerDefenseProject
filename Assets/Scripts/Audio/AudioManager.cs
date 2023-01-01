@@ -8,15 +8,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-<<<<<<< Updated upstream
-=======
-
-    bool boonSelection = false;
-
-    public float MusicVolume { get { return _musicVolume; } set { _musicVolume =   Math.Clamp(value, 0f, 0.5f); } }
-    private float _musicVolume = 0.5f;
-
->>>>>>> Stashed changes
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,16 +17,11 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
             return;
         }
-<<<<<<< Updated upstream
         
 
-=======
-
-        DontDestroyOnLoad(gameObject);
->>>>>>> Stashed changes
 
         foreach (Sound s in sounds)
         {
