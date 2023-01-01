@@ -9,6 +9,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
 
     public TMPro.TMP_Dropdown ResDropdown;
+    public TMPro.TMP_Dropdown QualityDropdown;
 
     Resolution[] resolutions;
 
@@ -25,6 +26,7 @@ public class SettingsMenu : MonoBehaviour
 
         
     }
+
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -58,19 +60,17 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("musslidersavednumber", (float)musSlider.value);
         PlayerPrefs.SetFloat("sfxslidersavednumber", (float)sfxSlider.value);
 
-
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
-    public void Volume(float volume)
-    {
-        audioMixer.SetFloat("MasterVolume", volume);
-
+        PlayerPrefs.SetInt("resIndex", ResDropdown.value);
+        PlayerPrefs.SetInt("qualityIndex", QualityDropdown.value);
+        if (Screen.fullScreen == true)
+        {
+            PlayerPrefs.SetInt("fullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("fullscreen", 0);
+        }
+        
     }
 
     public void MusicVolume(float volume)
