@@ -12,7 +12,7 @@ public class Skill : MonoBehaviour
     [HideInInspector] public List<Skill> nextSkills;
 
     [HideInInspector] public Button button;
-    public MageClass mageClass;
+    [HideInInspector] public MageClass mageClass;
     [HideInInspector] public int cost;
 
     protected string skillName;
@@ -123,14 +123,8 @@ public class Skill : MonoBehaviour
         else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1);
         button.colors = colors;
 
-        if (!isFirstSkill)
-        {
-            // Disable buttons based on interactability, but always show either:
-            //      1. the first skill if no skill in that branch has been unlocked
-            //      2. the last skill if that branch has been completed
-            GetComponent<Image>().enabled = button.interactable;
-            if (completesBranch && Unlocked) button.GetComponent<Image>().enabled = true;
-            if (gameObject.name == "Final Skill") button.GetComponent<Image>().enabled = true;
-        }
+        // Disable buttons based on interactability
+        GetComponent<Image>().enabled = button.interactable;
+        if (gameObject.name == "Final Skill") button.GetComponent<Image>().enabled = true;
     }
 }

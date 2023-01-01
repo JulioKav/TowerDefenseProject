@@ -16,7 +16,9 @@ TagManager:
   - Tornado
   - Arrow
   - Base
-  - AirborneEnemy
+  - AirborneEnemyMagic
+  - AirborneEnemyMechanical
+  - Spike Road
   layers:
   - Default
   - TransparentFX
