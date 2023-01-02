@@ -12,11 +12,11 @@ public class FinalSkill : Skill
 
     new public void Start()
     {
-        base.Start();
         finalSkillJson = MagesJSONParser.Instance.magesJson.finalSkill;
         skillName = finalSkillJson.name;
         skillDesc = finalSkillJson.description;
         cost = FINAL_SKILL_COST;
+        base.Start();
 
     }
 
