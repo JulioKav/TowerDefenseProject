@@ -6,16 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class Achievements : MonoBehaviour
 {
+
     public static bool GamePaused = false;
     public GameObject achieveMenuUI;
     public GameObject skillpoints;
+    public GameObject Gamespeed;
+    public GameObject achieveButtonui;
     public Button achieveButton;
     public GameObject achievepopup;
-    public int kills;
+    private SkillManager skillManager;
+
+
     public GameObject firstkillachieveObject;
-    public GameObject tenkillachieveObject;
+    public GameObject fiftykillachieveObject;
+    public GameObject twofiftykillachieveObject;
+    public GameObject all4typeskillachieveObject;
+
+    [HideInInspector]
+    public int kills = 0;
+    [HideInInspector]
+    public int mechkills = 0;
+    [HideInInspector]
+    public int imaginarykills = 0;
+    [HideInInspector]
+    public int magickills = 0;
+    [HideInInspector]
+    public int physkills = 0;
 
     protected static bool firstkillachieve = false;
+    protected static bool fiftykillachieve = false;
+    protected static bool twofiftykillachieve = false;
+    protected static bool all4typeskillachieve = false;
+
+
     //public Button returnButton;
 
     // Update is called once per frame
@@ -32,14 +55,33 @@ public class Achievements : MonoBehaviour
                 Pause();
             }
         }
-
+        
         if (kills > 1)
         {
             firstkillachieve = true;
 
         }
-        
-        
+
+        if (kills > 50)
+        {
+            fiftykillachieve = true;
+
+        }
+
+
+        if (kills > 250)
+        {
+            twofiftykillachieve = true;
+
+        }
+
+        if (mechkills >= 5 && physkills >= 5 && magickills >= 5 && imaginarykills >= 5)
+        {
+           
+            all4typeskillachieve = true;
+
+        }
+
         AchieveChecker();
 
     }
@@ -47,7 +89,9 @@ public class Achievements : MonoBehaviour
     {
         achieveMenuUI.SetActive(false);
         skillpoints.SetActive(true);
-        Time.timeScale = 1f;
+        Gamespeed.SetActive(true);
+        achieveButtonui.SetActive(true);
+        //Time.timeScale = 1f;
         GamePaused = false;
     }
 
@@ -55,13 +99,16 @@ public class Achievements : MonoBehaviour
     {
         achieveMenuUI.SetActive(true);
         skillpoints.SetActive(false);
-        Time.timeScale = 0f;
+        Gamespeed.SetActive(false);
+        achieveButtonui.SetActive(false);
+        //Time.timeScale = 0f;
         GamePaused = true;
 
     }
 
     public void AchieveChecker()
     {
+        //First Kill
         if (firstkillachieveObject != null)
         {
             PlayerPrefs.SetInt("firstkillachieve", 0);
@@ -74,18 +121,95 @@ public class Achievements : MonoBehaviour
 
         if (firstkillachieve == true && firstkillachieveObject != null && PlayerPrefs.GetInt("firstkillachieve") == 0)
         {
-            print("aaaaaaa");
+            
             Destroy(firstkillachieveObject);
             PlayerPrefs.SetInt("firstkillachieve", 1);
             achievepopup.SetActive(true);
             deleteAfterSeconds(2);
+            skillManager.AddSkillPoints(25);
 
         }
+
+        // 50 Kills
+        if (fiftykillachieveObject != null)
+        {
+            PlayerPrefs.SetInt("fiftykillachieve", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("fiftykillachieve", 1);
+
+        }
+
+        if (fiftykillachieve == true && fiftykillachieveObject != null && PlayerPrefs.GetInt("fiftykillachieve") == 0)
+        {
+
+            Destroy(fiftykillachieveObject);
+            PlayerPrefs.SetInt("fiftykillachieve", 1);
+            achievepopup.SetActive(true);
+            deleteAfterSeconds(2);
+            skillManager.AddSkillPoints(250);
+        }
+
+        // 250 Kills
+        if (twofiftykillachieveObject != null)
+        {
+            PlayerPrefs.SetInt("twofiftykillachieve", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("twofiftykillachieve", 1);
+
+        }
+
+        if (twofiftykillachieve == true && twofiftykillachieveObject != null && PlayerPrefs.GetInt("twofiftykillachieve") == 0)
+        {
+
+            Destroy(twofiftykillachieveObject);
+            PlayerPrefs.SetInt("twofiftykillachieve", 1);
+            achievepopup.SetActive(true);
+            deleteAfterSeconds(2);
+            skillManager.AddSkillPoints(1000);
+
+        }
+
+        //4 types kills
+        if (all4typeskillachieveObject != null)
+        {
+            PlayerPrefs.SetInt("all4typeskillachieve", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("all4typeskillachieve", 1);
+
+        }
+
+        if (all4typeskillachieve == true && all4typeskillachieveObject != null && PlayerPrefs.GetInt("all4typeskillachieve") == 0)
+        {
+
+            Destroy(all4typeskillachieveObject);
+            PlayerPrefs.SetInt("all4typeskillachieve", 1);
+            achievepopup.SetActive(true);
+            deleteAfterSeconds(2);
+            skillManager.AddSkillPoints(400);
+
+        }
+
     }
 
-    private void Start()
+    private void Awake()
     {
+        /*
+        if (PlayerPrefs.GetInt("firstkillachieve") == 1)
+        {
+            Destroy(firstkillachieveObject);
+        }
 
+        if (PlayerPrefs.GetInt("fiftykillachieve") == 1)
+        {
+            Destroy(firstkillachieveObject);
+        }
+        */
     }
 
 
@@ -101,5 +225,10 @@ public class Achievements : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         DeletePopUp();
+    }
+
+    private void Start()
+    {
+        skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
     }
 }

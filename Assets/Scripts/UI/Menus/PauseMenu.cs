@@ -8,18 +8,22 @@ public class PauseMenu : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject PauseMenuUI;
     public TMPro.TMP_Dropdown GameSpeedDropdown;
+    
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(GamePaused)
             {
                 Resume();
+                
             }
             else
             {
                 Pause();
+                
             }
         }
 
@@ -48,8 +52,9 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        
         PauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         GamePaused = true;
     }
 

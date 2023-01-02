@@ -400,8 +400,6 @@ MonoBehaviour:
   speed: 2
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
@@ -446,3 +444,4 @@ MonoBehaviour:
   - Imaginary Enemy
   - Magic Enemy
   - Mechanical Enemy
+  - Physical Enemy
