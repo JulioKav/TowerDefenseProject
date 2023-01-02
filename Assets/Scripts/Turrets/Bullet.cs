@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -91,21 +92,32 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-               
-                Damage_enemy(collider.transform);
-                   
-                    
+                Damage_enemy(collider.transform);   
             }
 
-
+            //if (collider.tag == "Shield")
+            //{
+            //    Damage_shield(collider.transform);
+            //}
 
             if (collider.tag == "Tower")
             {
                 Damage_tower(collider.transform);
             }
         }
-
     }
+
+   // private void Damage_shield(Transform Shield)
+    //{
+    //    Shield shield_component = Shield.GetComponent<Shield>();
+    //    Debug.Log("stuff");
+    //    if (shield_component != null)
+    //    {
+    //        
+    //        shield_component.TakeDamage(damage);
+    //    }
+    //}
+
     // updates enemy hp with dmg
     void Damage_enemy(Transform Enemy)
     {
