@@ -37,6 +37,7 @@ public class Enemies : MonoBehaviour
     private int wavepointIndex = 0;
 
     private SkillManager skillManager;
+    private Achievements achievements;
 
     private string Tornado = "Tornado";
 
@@ -54,6 +55,7 @@ public class Enemies : MonoBehaviour
     {
 
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
@@ -157,8 +159,13 @@ public class Enemies : MonoBehaviour
             GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
             Destroy(effect_instance, 1f);
         }
+        if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy")) achievements.mechkills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Magic Enemy")) achievements.magickills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Physical Enemy")) achievements.physkills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Imaginary Enemy")) achievements.imaginarykills += 1;
         Destroy(gameObject);
         skillManager.AddSkillPoints(20);
+        achievements.kills += 1;
     }
 
 
