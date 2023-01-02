@@ -60,7 +60,7 @@ public class GameStateManager : MonoBehaviour
 
     private void StartPreRoundDialogue()
     {
-        if (Random.Range(0f, 1f) < 67f) State = GameState.ROUND_ONGOING;
+        if (Random.Range(0f, 1f) < .67f) State = GameState.ROUND_ONGOING;
         else State = GameState.PRE_ROUND_DIALOGUE;
     }
 
