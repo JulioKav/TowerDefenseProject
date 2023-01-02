@@ -110,6 +110,9 @@ MonoBehaviour:
   cost: 0
   isFirstSkill: 1
   completesBranch: 0
+  titleTMP: {fileID: 6366347482724674405, guid: 07183d0a39f92449795a9e9e4d589525, type: 3}
+  descriptionTMP: {fileID: 610236413876937623, guid: cf8d074180808478b8a3f1a80ba6c013, type: 3}
+  costTMP: {fileID: 6611672681393297008, guid: 11ad7147131d8464a9b83376f3d9e8b2, type: 3}
 --- !u!114 &-2485995925398937747
 MonoBehaviour:
   m_ObjectHideFlags: 0
