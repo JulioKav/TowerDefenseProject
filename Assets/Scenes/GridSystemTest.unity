@@ -790,7 +790,7 @@ GameObject:
   - component: {fileID: 236333215}
   - component: {fileID: 236333214}
   m_Layer: 5
-  m_Name: FirstKillAchievementTXT (11)
+  m_Name: CheaterAchievementTXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,8 +814,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 355, y: 106}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 362.73608, y: 106}
+  m_SizeDelta: {x: 252.6051, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &236333214
 MonoBehaviour:
@@ -837,9 +837,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'First Kill!
+  m_text: 'Attempted Cheater!
 
-    The adventure begins...'
+    You didn''t think it''d be that easy, did you?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 303350421}
   - component: {fileID: 303350420}
   m_Layer: 5
-  m_Name: FirstKillAchievementObj
+  m_Name: CheaterAchievementObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1164,8 +1164,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.6015625, y: 28}
-  m_SizeDelta: {x: 146.5797, y: 84.9193}
+  m_AnchoredPosition: {x: -7.736084, y: 34}
+  m_SizeDelta: {x: 146.57971, y: 84.9193}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &303350420
 MonoBehaviour:
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 694179116}
   - component: {fileID: 694179115}
   m_Layer: 5
-  m_Name: FirstKillAchievementSKILLPOINTS
+  m_Name: CheaterAchievementTXT2.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,7 +2307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -45}
+  m_AnchoredPosition: {x: 0, y: -51}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694179115
@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: + 25 Skill Points!
+  m_text: + Immense Guilt and Shame
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2357,8 +2357,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6186,6 +6186,7 @@ MonoBehaviour:
   fiftykillachieveObject: {fileID: 1688220124}
   twofiftykillachieveObject: {fileID: 181438422}
   all4typeskillachieveObject: {fileID: 1600670924}
+  cheatergameobject: {fileID: 303350418}
   kills: 0
   mechkills: 0
   imaginarykills: 0

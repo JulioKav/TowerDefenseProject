@@ -21,6 +21,7 @@ public class Achievements : MonoBehaviour
     public GameObject fiftykillachieveObject;
     public GameObject twofiftykillachieveObject;
     public GameObject all4typeskillachieveObject;
+    public GameObject cheatergameobject;
 
     [HideInInspector]
     public int kills = 0;
@@ -193,6 +194,11 @@ public class Achievements : MonoBehaviour
             deleteAfterSeconds(2);
             skillManager.AddSkillPoints(400);
 
+        }
+
+        if(PlayerPrefs.GetInt("cheatspopupdone") == 1)
+        {
+            Destroy(cheatergameobject);
         }
 
     }

@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-
+    
     bool boonSelection = false;
 
     public float MusicVolume { get { return _musicVolume; } set { _musicVolume = Math.Clamp(value, 0f, 1f); } }
