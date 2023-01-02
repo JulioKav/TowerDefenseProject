@@ -33,7 +33,7 @@ public class SkillTreeToggle : MonoBehaviour
 
     void StateChangeHandler(UIState newState)
     {
-        if (newState == UIState.DEFAULT) HideSkillTree();
+        if (newState == UIState.INVENTORY) HideSkillTree();
         if (newState == UIState.SKILL_TREE) ShowSkillTree();
     }
 

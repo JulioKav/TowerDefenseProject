@@ -39,25 +39,44 @@ public class UIStateManager : MonoBehaviour
 
     public void ToggleSkillTree()
     {
-        if (State == UIState.DEFAULT) State = UIState.SKILL_TREE;
-        else State = UIState.DEFAULT;
+        if (State == UIState.INVENTORY) State = UIState.SKILL_TREE;
+        else State = UIState.INVENTORY;
     }
 
     public void BoonSelected()
     {
         if (State != UIState.BOONS) return;
-        State = UIState.DEFAULT;
+        State = UIState.INVENTORY;
     }
 
     void StateChangeHandler(GameState newState)
     {
-        if (newState == GameState.IDLE) State = UIState.BOONS;
+        switch (newState)
+        {
+            case GameState.PRE_GAME:
+            case GameState.PRE_ROUND_DIALOGUE:
+                State = UIState.DIALOGUE;
+                break;
+            case GameState.POST_ROUND:
+                State = UIState.DEFAULT;
+                break;
+            case GameState.ROUND_ONGOING:
+                if (State == UIState.DIALOGUE) State = UIState.INVENTORY;
+                break;
+            case GameState.IDLE:
+                State = UIState.BOONS;
+                break;
+            default:
+                break;
+        }
     }
 }
 
 public enum UIState
 {
-    DEFAULT,        // Inventory + next wave spawner button
+    DEFAULT,        // Nothing interactable
+    INVENTORY,      // Inventory + next wave button
     SKILL_TREE,     // Skill tree
-    BOONS           // End of wave boon selector screen
+    BOONS,          // End of wave boon selector screen
+    DIALOGUE,       // When dialogue is happening
 }

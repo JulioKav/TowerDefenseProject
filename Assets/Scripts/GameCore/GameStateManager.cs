@@ -13,7 +13,7 @@ public class GameStateManager : MonoBehaviour
     public static event StateChangeEvent OnStateChange;
 
     // State property that, when set, automatically triggers the OnStateChange event
-    private GameState _state = GameState.IDLE;
+    private GameState _state = GameState.NONE;
     public GameState State
     {
         get { return _state; }
@@ -26,30 +26,57 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        State = GameState.PRE_GAME;
+    }
+
     public int PreRoundTimeInSeconds = 3;
     public int PostRoundTimeInSeconds = 2;
 
     public void StartRound()
     {
         if (State != GameState.IDLE) return;
-        State = GameState.PRE_ROUND;
-        StartCoroutine(StartPreRound());
+        StartPreRound();
+    }
+
+    public void EndDialogue()
+    {
+        if (State == GameState.PRE_GAME) StartPostRound();
+        if (State == GameState.PRE_ROUND_DIALOGUE) State = GameState.ROUND_ONGOING;
     }
 
     public void EndRound()
     {
         if (State != GameState.ROUND_ONGOING) return;
-        State = GameState.POST_ROUND;
-        StartCoroutine(StartPostRound());
+        StartPostRound();
     }
 
-    private IEnumerator StartPreRound()
+    private void StartPreRound()
+    {
+        State = GameState.PRE_ROUND;
+        StartCoroutine(CountdownPreRound());
+    }
+
+    private void StartPreRoundDialogue()
+    {
+        if (Random.Range(0f, 1f) < 0f) State = GameState.ROUND_ONGOING;
+        else State = GameState.PRE_ROUND_DIALOGUE;
+    }
+
+    private void StartPostRound()
+    {
+        State = GameState.POST_ROUND;
+        StartCoroutine(CountdownPostRound());
+    }
+
+    private IEnumerator CountdownPreRound()
     {
         yield return new WaitForSeconds(PreRoundTimeInSeconds);
-        State = GameState.ROUND_ONGOING;
+        StartPreRoundDialogue();
     }
 
-    private IEnumerator StartPostRound()
+    private IEnumerator CountdownPostRound()
     {
         yield return new WaitForSeconds(PostRoundTimeInSeconds);
         State = GameState.IDLE;
@@ -64,7 +91,10 @@ public class GameStateManager : MonoBehaviour
 
 public enum GameState
 {
+    NONE,               // Before start of game, to trigger transition
+    PRE_GAME,           // Start of game for dialogue
     PRE_ROUND,          // Delay before wave spawns after pressing next wave button 
+    PRE_ROUND_DIALOGUE, // One-line dialogue before the start of the wave
     ROUND_ONGOING,      // Wave is currently active
     POST_ROUND,         // Delay after wave is defeated, before game continues
     IDLE,               // State where player places turrets, upgrades skill tree, etc.

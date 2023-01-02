@@ -14,6 +14,32 @@ public class AudioManager : MonoBehaviour
     public float MusicVolume { get { return _musicVolume; } set { _musicVolume = Math.Clamp(value, 0f, 1f); } }
     private float _musicVolume = 1f;
 
+    private bool _attack = false;
+    public bool Attack
+    {
+        get { return _attack; }
+        set
+        {
+            if (_attack && _attack == value) return;
+            _attack = value;
+            if (_attack) Play("WaveOngoing");
+            else Stop("WaveOngoing", GameStateManager.Instance.PostRoundTimeInSeconds);
+        }
+    }
+
+    private bool _idle = false;
+    public bool Idle
+    {
+        get { return _idle; }
+        set
+        {
+            if (_idle && _idle == value) return;
+            _idle = value;
+            if (_idle) PlayAfterSeconds("Idle", 2.5f);
+            else Stop("Idle", GameStateManager.Instance.PreRoundTimeInSeconds + 1);
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -45,11 +71,6 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        PlayAfterSeconds("Idle", 3);
-    }
-
     void OnEnable()
     {
         GameStateManager.OnStateChange += GameStateChangeHandler;
@@ -65,16 +86,18 @@ public class AudioManager : MonoBehaviour
         switch (newState)
         {
             case GameState.IDLE:
-                PlayAfterSeconds("Idle", 3);
+                Idle = true;
                 break;
             case GameState.PRE_ROUND:
-                Stop("Idle", GameStateManager.Instance.PreRoundTimeInSeconds + 1);
+                Idle = false;
                 break;
+            case GameState.PRE_GAME:
+            case GameState.PRE_ROUND_DIALOGUE:
             case GameState.ROUND_ONGOING:
-                Play("WaveOngoing");
+                Attack = true;
                 break;
             case GameState.POST_ROUND:
-                Stop("WaveOngoing", GameStateManager.Instance.PostRoundTimeInSeconds);
+                Attack = false;
                 break;
             default:
                 break;
