@@ -69,35 +69,40 @@ public class Enemies : MonoBehaviour
             StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform, speed));
 
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
-        Vector3 direction;
-        if (!isBackward)
-        {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
-        }
-        else
-        {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
-        }
 
-        // Softly snap the enemy into grid
-        if (direction.x == 0.0f)
+        Turret t;
+        if (!TryGetComponent<Turret>(out t) || !t.isAttacking)
         {
-            direction.x -= 2.5f * xdiff;
-        }
-        else if (direction.z == 0.0f)
-        {
-            direction.z -= 2.5f * zdiff;
-        }
-        //target.position - transform.position;
-        //Debug.Log(direction);
+            Vector3 direction;
+            if (!isBackward)
+            {
+                direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
+            }
+            else
+            {
+                direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+            }
 
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+            // Softly snap the enemy into grid
+            if (direction.x == 0.0f)
+            {
+                direction.x -= 2.5f * xdiff;
+            }
+            else if (direction.z == 0.0f)
+            {
+                direction.z -= 2.5f * zdiff;
+            }
+            //target.position - transform.position;
+            //Debug.Log(direction);
 
-        if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
-        {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
+            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+
+            if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
+            {
+                skillManager.SubtractSkillPoints(20);
+                Destroy(gameObject);
+                return;
+            }
         }
         // If enemy reaches a waypoint, move to next waypoint
         /*

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
+    public bool isAttacking = false;
+
     private Transform target;
     private Enemy targetEnemy;
 
@@ -36,8 +38,8 @@ public class Turret : MonoBehaviour
     {
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 0.1f);
-        
-        
+
+
     }
 
     // Draws a 3D wire mesh range around turret.
@@ -78,7 +80,7 @@ public class Turret : MonoBehaviour
             }
             */
         }
-        
+
         // If the enemy is in attack range, it becomes target.
         /*
         if(wall_active == false)
@@ -87,26 +89,28 @@ public class Turret : MonoBehaviour
         }
         */
         if (closest_enemy != null && smallest_distance <= attack_range)
-            {   if(wall_active == false)
+        {
+            if (wall_active == false)
                 target = closest_enemy.transform;
 
-            }
+        }
 
-            else
-            {
-                target = null;
+        else
+        {
+            target = null;
 
-            }
+        }
 
 
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        isAttacking = target != null;
+        if (!isAttacking)
         {
             attack_countdown = attack_speed / 2;
             Target_Search();
@@ -187,9 +191,9 @@ public class Turret : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
 
-    
+
+
 }
 
 

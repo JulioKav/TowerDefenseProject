@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 731366441857312060}
   - component: {fileID: -6655786311451173978}
   - component: {fileID: -1526020060431451631}
+  - component: {fileID: 5663380564191102156}
   m_Layer: 0
   m_Name: Type2
   m_TagString: Enemy
@@ -404,7 +405,6 @@ MonoBehaviour:
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 1520257046650462586}
 --- !u!114 &-6655786311451173978
 MonoBehaviour:
@@ -418,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 5
   attack_speed: 1
@@ -445,3 +446,19 @@ MonoBehaviour:
   - Magic Enemy
   - Mechanical Enemy
   - Physical Enemy
+--- !u!54 &5663380564191102156
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360518026176381996}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 84
+  m_CollisionDetection: 0
