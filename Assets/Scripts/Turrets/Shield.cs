@@ -19,6 +19,42 @@ public class Shield : MonoBehaviour
         material.SetColor("_Color", new Color(0, 1, 1, 0.25f));
     }
 
+    void OnEnable()
+    {
+        GameStateManager.OnStateChange += StateChangeHandler;
+    }
+
+    void OnDisable()
+    {
+        GameStateManager.OnStateChange -= StateChangeHandler;
+    }
+
+    void StateChangeHandler(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.IDLE:
+                // TODO: Reset shields here
+                material.SetColor("_Color", new Color(0, 1, 0, 0.25f));
+                StartCoroutine(RegenerateShield());
+                
+                break;
+            default:
+                break;
+        }
+    }
+
+    IEnumerator RegenerateShield()
+    {
+        while (_health != _maxHealth)
+        {
+            _health += 5;
+            TakeDamage(0);
+            yield return new WaitForSeconds(0.1f);
+        }
+        material.SetColor("_Color", new Color(0, 1, 1, 0.25f));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Enemy Bullet")
@@ -27,6 +63,8 @@ public class Shield : MonoBehaviour
             Debug.Log("Shield Hit!");
             material.SetColor("_Color", new Color(1, 0, 0, 0.25f));
             StartCoroutine(colorChange());
+
+            TakeDamage(10);
         }
     }
 
@@ -49,6 +87,6 @@ public class Shield : MonoBehaviour
     }
     void Die()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }
