@@ -48,7 +48,7 @@ public class SpikeTurret : Mage
     }
 
 
-    
+
 
 
 
@@ -76,7 +76,7 @@ public class SpikeTurret : Mage
             float distance_to_target = Vector3.Distance(transform.position, road.transform.position);
 
             var rnd = new System.Random();
-            float delay = (float)rnd.NextDouble() * (WaveSpawner.WaveCountdownTime - 1);
+            float delay = (float)rnd.NextDouble() * (GameStateManager.Instance.PreRoundTimeInSeconds - 1);
             StartCoroutine(shoot(road.transform, delay));
             //make_floor_toxic(road.transform);
 
@@ -130,7 +130,7 @@ public class SpikeTurret : Mage
     void OnDisable()
     {
         //StartButton.OnWaveStart -= WaveStartHandler;
-       // WaveSpawner.OnRoundEnd -= WaveEndHandler;
+        // WaveSpawner.OnRoundEnd -= WaveEndHandler;
     }
 
     void WaveStartHandler()

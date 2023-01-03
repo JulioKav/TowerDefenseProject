@@ -32,9 +32,6 @@ public class Enemies : MonoBehaviour
     // Waypoint
     [HideInInspector]
     public Transform target;
-    [HideInInspector]
-    public Transform Waypoints;
-    private int wavepointIndex = 0;
 
     private SkillManager skillManager;
     private Achievements achievements;
@@ -71,10 +68,9 @@ public class Enemies : MonoBehaviour
         if (gameObject.tag == "AirborneEnemyMagic")
             StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform, speed));
 
-        if (target == null) return;
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
         Vector3 direction;
-        if (isBackward != true)
+        if (!isBackward)
         {
             direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
         }
@@ -118,18 +114,6 @@ public class Enemies : MonoBehaviour
 
 
 
-    }
-    void GetNextWaypoint()
-    {
-        // If enemies reach final base, subtract skill points and despawn enemy
-        if (wavepointIndex >= Waypoints.childCount - 1)
-        {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
-        }
-        wavepointIndex++;
-        target = Waypoints.GetChild(wavepointIndex);
     }
 
 

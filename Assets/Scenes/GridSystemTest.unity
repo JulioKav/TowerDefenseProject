@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.34202012, y: -0, z: 0.0000000074505797, w: 0.9396926}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -9.88, y: -0, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1729,6 +1729,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jsonFile: {fileID: 4900000, guid: 28ac3bb45c4804da4a374d2403604229, type: 3}
+--- !u!1001 &2032294434
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1399149076333568803, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_Name
+      value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945627044294953757, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979714972894228714, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384995826795717079, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+      propertyPath: pathCurviness
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8448042285338145242, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89eb0b9cc995d47cdb756e6c1949532e, type: 3}
 --- !u!1 &2146116484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +2017,10 @@ PrefabInstance:
     - target: {fileID: 3085904127634191404, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
       propertyPath: m_Name
       value: User Interface
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783044807047161367, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7849428063743256960, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
       propertyPath: mageSpawner

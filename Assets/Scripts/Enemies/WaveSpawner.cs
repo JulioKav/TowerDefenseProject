@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class WaveSpawner : MonoBehaviour
 {
 
-    public static int WaveCountdownTime = 3;
     public static int WaveNumber = 0;
     public Transform[] enemyPrefab;
     GameObject[] spawnPoints;
@@ -78,21 +77,21 @@ public class WaveSpawner : MonoBehaviour
         {
             // Handles wave logic based on wave number
             case 0:
-                StartCoroutine(SpawnWave(3));
+                StartCoroutine(SpawnWave(0));
                 break;
             case 1:
-                StartCoroutine(SpawnWave(3));
+                StartCoroutine(SpawnWave(0));
                 break;
             case 2:
-                StartCoroutine(SpawnWave(2));
+                StartCoroutine(SpawnWave(0));
                 break;
             case 3:
-                StartCoroutine(SpawnWave(2));
+                StartCoroutine(SpawnWave(0));
                 break;
             // after wave index 3, just spawn this double wave
             default:
-                StartCoroutine(SpawnWave(2));
-                StartCoroutine(SpawnWave(3));
+                StartCoroutine(SpawnWave(0));
+                StartCoroutine(SpawnWave(0));
                 break;
 
         }
@@ -122,10 +121,6 @@ public class WaveSpawner : MonoBehaviour
                                 spawnPoints[spawnPointId].transform.position,
                                 spawnPoints[spawnPointId].transform.rotation, enemiesParent)
                             .GetComponent<Enemies>();
-        var pointsTransform = spawnPoints[spawnPointId].GetComponent<Waypoints>().Paths[spawnPointId];
-        // Set its waypoints, as well as its first waypoint
-        enemy.Waypoints = pointsTransform;
-        enemy.target = pointsTransform.GetChild(0);
         return enemy.gameObject;
     }
 
