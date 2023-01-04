@@ -36,6 +36,8 @@ public class Skill : MonoBehaviour
     protected MagesJSONParser.Mage mageJson;
     protected SkillManager SM;
 
+
+    private Achievements achievements;
     public void Start()
     {
         InitButton();
@@ -44,6 +46,7 @@ public class Skill : MonoBehaviour
         InitTexts();
         SM = SkillManager.Instance;
         UpdateButtonAppearance();
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
     }
 
     void InitButton()
@@ -122,7 +125,16 @@ public class Skill : MonoBehaviour
             Unlocked = true;
             if (completesBranch) FinalSkill.Instance.CheckUnlockable();
             foreach (Skill ns in nextSkills) ns.Unlockable = true;
-            if (isFirstSkill) SM.mageSpawner.SpawnMage(mageClass);
+            if (isFirstSkill) 
+            {
+                SM.mageSpawner.SpawnMage(mageClass);
+                achievements.onemageunlock = true;
+            }
+            if(this is FinalSkill)
+            {
+                
+                achievements.finalskillunlock = true;
+            }
         }
     }
 
