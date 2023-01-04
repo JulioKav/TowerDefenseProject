@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1360174162}
-  _health: 100
-  _maxHealth: 100
+  _health: 500
+  _maxHealth: 500
   material: {fileID: 2100000, guid: 36ffc9be7e2979a45aa89d4245e69d2f, type: 2}
 --- !u!1 &852568200
 GameObject:

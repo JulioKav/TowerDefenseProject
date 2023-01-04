@@ -9,8 +9,8 @@ public class Shield : MonoBehaviour
     [Header("Unity Stuff")]
     public Image healthBar;
 
-    public float _health = 100;
-    public float _maxHealth = 100;
+    public float _health = 500;
+    public float _maxHealth = 500;
 
     public Material material;
 
@@ -33,11 +33,10 @@ public class Shield : MonoBehaviour
     {
         switch (newState)
         {
-            case GameState.IDLE:
+            case GameState.POST_ROUND:
                 // TODO: Reset shields here
                 material.SetColor("_Color", new Color(0, 1, 0, 0.25f));
                 StartCoroutine(RegenerateShield());
-                
                 break;
             default:
                 break;
@@ -48,7 +47,7 @@ public class Shield : MonoBehaviour
     {
         while (_health != _maxHealth)
         {
-            _health += 5;
+            _health += _maxHealth/10;
             TakeDamage(0);
             yield return new WaitForSeconds(0.1f);
         }
@@ -63,8 +62,8 @@ public class Shield : MonoBehaviour
             Debug.Log("Shield Hit!");
             material.SetColor("_Color", new Color(1, 0, 0, 0.25f));
             StartCoroutine(colorChange());
-
-            TakeDamage(10);
+            Debug.Log(other.gameObject.GetComponent<Bullet>().damage);
+            TakeDamage(other.gameObject.GetComponent<Bullet>().damage);
         }
     }
 
