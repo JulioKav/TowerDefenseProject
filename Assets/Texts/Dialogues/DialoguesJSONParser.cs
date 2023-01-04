@@ -24,6 +24,7 @@ public class DialoguesJSONParser : MonoBehaviour
         public string finalWaveWithWeapon;
         public string victory;
         public string[] startOfRound;
+        public string[] pathGeneration;
 
         [System.Serializable]
         public class StartOfGameDialogue

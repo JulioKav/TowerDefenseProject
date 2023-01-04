@@ -29,6 +29,8 @@ public class GameStateManager : MonoBehaviour
     public int PreRoundTimeInSeconds = 3;
     public int PostRoundTimeInSeconds = 2;
 
+    int newSpawnPointEveryXWaves = 5;
+
     public void StartRound()
     {
         if (State != GameState.IDLE) return;
@@ -45,6 +47,17 @@ public class GameStateManager : MonoBehaviour
     {
         if (State != GameState.ROUND_ONGOING) return;
         StartPostRound();
+    }
+
+    public void EndGame(bool victory)
+    {
+        if (victory) State = GameState.WIN;
+        else State = GameState.LOSE;
+    }
+
+    public void PathGenerationDone()
+    {
+        if (State == GameState.PATH_GENERATION) State = GameState.IDLE;
     }
 
     private void StartPreRound()
@@ -74,13 +87,9 @@ public class GameStateManager : MonoBehaviour
     private IEnumerator CountdownPostRound()
     {
         yield return new WaitForSeconds(PostRoundTimeInSeconds);
-        State = GameState.IDLE;
-    }
-
-    public void EndGame(bool victory)
-    {
-        if (victory) State = GameState.WIN;
-        else State = GameState.LOSE;
+        bool generateNewPath = WaveSpawner.WaveNumber % newSpawnPointEveryXWaves == 0 &&
+                               !PathGenerator.Instance.allSpawnPointsActive();
+        State = (generateNewPath) ? GameState.PATH_GENERATION : GameState.IDLE;
     }
 }
 
@@ -88,9 +97,10 @@ public enum GameState
 {
     PRE_GAME,           // Start of game for dialogue
     PRE_ROUND,          // Delay before wave spawns after pressing next wave button 
-    PRE_ROUND_DIALOGUE, // One-line dialogue before the start of the wave
+    PRE_ROUND_DIALOGUE, // [Optional] One-line dialogue before the start of the wave
     ROUND_ONGOING,      // Wave is currently active
     POST_ROUND,         // Delay after wave is defeated, before game continues
+    PATH_GENERATION,    // [Optional] Generates a new path on the terrain
     IDLE,               // State where player places turrets, upgrades skill tree, etc.
     WIN,                // Player won
     LOSE                // Player lost

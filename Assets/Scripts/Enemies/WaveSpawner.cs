@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
-
     public static int WaveNumber = 0;
     public Transform[] enemyPrefab;
-    GameObject[] spawnPoints;
     // The game object enemies will be attached to
     public Transform enemiesParent;
 
@@ -23,8 +21,8 @@ public class WaveSpawner : MonoBehaviour
     {
         waves = new List<Transform>[4];
         PopulateWave();
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         currentWave = null;
+        WaveNumber = 0;
     }
 
     private void Update()
@@ -37,7 +35,6 @@ public class WaveSpawner : MonoBehaviour
         // Wave 1-4
         for (int wave = 0; wave < 4; wave++)
         {
-            WaveNumber += 1;
             // Adds 4, then 8, then 16, then 32 enemies in the waves 1-4, respectively
             waves[wave] = new List<Transform>();
             for (int i = 0; i < Mathf.Pow(2, wave + 2); i++)
@@ -72,6 +69,7 @@ public class WaveSpawner : MonoBehaviour
 
     void StartRound()
     {
+        currentWaveId++;
         // Spawns waves depending on wave index
         switch (currentWaveId)
         {
@@ -96,7 +94,6 @@ public class WaveSpawner : MonoBehaviour
 
         }
         StartCoroutine(CheckWaveComplete());
-        currentWaveId++;
     }
 
     // Starts spawning a wave in a coroutine with a delay between enemies
@@ -118,8 +115,8 @@ public class WaveSpawner : MonoBehaviour
     {
         // Create enemy objects at designated spawnpoints 
         var enemy = Instantiate(enemyGO,
-                                spawnPoints[spawnPointId].transform.position,
-                                spawnPoints[spawnPointId].transform.rotation, enemiesParent)
+                                PathGenerator.Instance.activeSpawnPoints[spawnPointId].position,
+                                PathGenerator.Instance.activeSpawnPoints[spawnPointId].rotation, enemiesParent)
                             .GetComponent<Enemies>();
         return enemy.gameObject;
     }
@@ -132,6 +129,12 @@ public class WaveSpawner : MonoBehaviour
         while (waveOnGoing)
         {
             waveOnGoing = false;
+            if (currentWave == null)
+            {
+                GameStateManager.Instance.EndRound();
+                yield return new WaitForEndOfFrame();
+                break;
+            }
             foreach (var enemy in currentWave)
             {
                 if (enemy != null)

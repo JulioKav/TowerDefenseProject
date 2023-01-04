@@ -49,12 +49,18 @@ public class UIStateManager : MonoBehaviour
         State = UIState.INVENTORY;
     }
 
+    public void DisableDialogue()
+    {
+        if (State == UIState.DIALOGUE) State = UIState.DEFAULT;
+    }
+
     void StateChangeHandler(GameState newState)
     {
         switch (newState)
         {
             case GameState.PRE_GAME:
             case GameState.PRE_ROUND_DIALOGUE:
+            case GameState.PATH_GENERATION:
                 State = UIState.DIALOGUE;
                 break;
             case GameState.POST_ROUND:

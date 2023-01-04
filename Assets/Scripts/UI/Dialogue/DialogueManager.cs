@@ -41,6 +41,9 @@ public class DialogueManager : MonoBehaviour
             case GameState.PRE_ROUND:
                 QueueStartOfRoundDialogue();
                 break;
+            case GameState.PATH_GENERATION:
+                QueuePathGenerationDialogue();
+                break;
             default:
                 break;
         }
@@ -69,7 +72,19 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        GameStateManager.Instance.EndDialogue();
+        switch (GameStateManager.Instance.State)
+        {
+            case GameState.PRE_GAME:
+            case GameState.PRE_ROUND_DIALOGUE:
+                GameStateManager.Instance.EndDialogue();
+                break;
+            case GameState.PATH_GENERATION:
+                PathGenerator.Instance.ActivateSpawnPoint();
+                UIStateManager.Instance.DisableDialogue();
+                break;
+            default:
+                break;
+        }
     }
 
     void QueueStartOfGameDialogue()
@@ -86,6 +101,12 @@ public class DialogueManager : MonoBehaviour
     {
         int id = Random.Range(0, dialogues.startOfRound.Length);
         sentences.Enqueue(dialogues.startOfRound[id]);
+    }
+
+    void QueuePathGenerationDialogue()
+    {
+        int id = Random.Range(0, dialogues.pathGeneration.Length);
+        sentences.Enqueue(dialogues.pathGeneration[id]);
     }
 
     void QueueFinalWaveDialogue(bool weaponUnlocked) { }

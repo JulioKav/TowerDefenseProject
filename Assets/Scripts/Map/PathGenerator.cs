@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PathGenerator : MonoBehaviour
 {
+    public static PathGenerator Instance { get; private set; }
+    void Awake() { if (!Instance) Instance = this; }
 
-    public Transform[] spawnPoints;
     public Transform fortress;
     public GameObject roadPrefab;
     public float pathCurviness;
+
+    public List<Transform> activeSpawnPoints;
+    public Transform startingSpawnPoint = null;
+    Queue<Transform> inactiveSpawnPoints;
+    public bool allSpawnPointsActive() { return inactiveSpawnPoints.Count == 0; }
 
     // Specifies how much the path stays on route
     // A lower factor means stronger variation
@@ -90,13 +96,42 @@ public class PathGenerator : MonoBehaviour
         }
 
         MapManager.Instance.RefreshGameGrid();
+        StartCoroutine(PathGenerationDone());
+    }
+
+    IEnumerator PathGenerationDone()
+    {
+        yield return new WaitForSeconds(1);
+        GameStateManager.Instance.PathGenerationDone();
     }
 
     void Start()
     {
         TilesToDestroy = new Queue<GameObject>();
         GrassTiles = FindObjectsOfType<BuildingPlacable>();
-        spawnPoints[0].GetComponent<MeshRenderer>().enabled = false;
-        GeneratePath(spawnPoints[0].position, fortress.position);
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        // Fisher-Yates shuffle to randomize the list order
+        for (int n = spawnPoints.Length - 1; n > 0; n--)
+        {
+            int k = Random.Range(0, n);
+            GameObject value = spawnPoints[k];
+            spawnPoints[k] = spawnPoints[n];
+            spawnPoints[n] = value;
+        }
+        inactiveSpawnPoints = new Queue<Transform>();
+        foreach (GameObject sp in spawnPoints) inactiveSpawnPoints.Enqueue(sp.transform);
+
+        activeSpawnPoints = new List<Transform>();
+    }
+
+    public void ActivateSpawnPoint()
+    {
+        if (inactiveSpawnPoints.Count == 0) return;
+        Transform spawnPoint = inactiveSpawnPoints.Dequeue();
+        if (startingSpawnPoint == null) startingSpawnPoint = spawnPoint;
+        spawnPoint.GetComponent<MeshRenderer>().enabled = false;
+        GeneratePath(spawnPoint.position, fortress.position);
+        activeSpawnPoints.Add(spawnPoint);
     }
 }
