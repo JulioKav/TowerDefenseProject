@@ -26,6 +26,7 @@ public class MechanicalBullet : MonoBehaviour
             if (target == null || target.tag == "AirborneEnemyMechanical")
             {
                 Destroy(gameObject);
+                return;
             }
 
             Destroy(gameObject);
@@ -184,8 +185,9 @@ public class MechanicalBullet : MonoBehaviour
 
         if (enemy_component != null && Enemy.tag == "Enemy")
         {
-            float saved_speed = enemy_component.speed;
+            
             enemy_component.speed = 0;
+            
             if (Enemy.position.y < 2)
                 Enemy.position = Enemy.position + new Vector3(0, 2, 0);
             Enemy.tag = "AirborneEnemyMechanical";

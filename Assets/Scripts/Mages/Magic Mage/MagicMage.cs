@@ -6,9 +6,9 @@ public class MagicMage : Mage
 {
     static string RAISE_TIME = "raise_time", ATTACK_SPEED = "attack_speed", DOT_DMG = "dot_damage";
 
-    static float[] RAISE_TIMES = new float[] { 5f, 3.5f, 2f, 1f };
+    static float[] RAISE_TIMES = new float[] { 2f, 3.5f, 5f, 7f };
     static float[] ATTACK_SPEEDS = new float[] { 0.5f, 1.25f, 2f, 2.5f };
-    static float[] DOT_DMGS = new float[] { 2f, 3f, 4f, 5f };
+    static float[] DOT_DMGS = new float[] { 0.1f, 2f, 3f, 4f };
 
     // Start is called before the first frame update
     public new void Start()
@@ -16,7 +16,7 @@ public class MagicMage : Mage
         base.Start();
         // by default they are not unlocked
         // Calls Target_Search every chosen amount seconds.
-        InvokeRepeating("Target_Search", 0f, 1.0f);
+        InvokeRepeating("Target_Search", 0f, 1f);
         FillDictionary(new string[] { RAISE_TIME, ATTACK_SPEED, DOT_DMG });
         mageClass = MageClass.Magic;
     }
@@ -135,7 +135,7 @@ public class MagicMage : Mage
     {   //make new function to swap out shoot after upgrade
 
         Enemies.magic_airborne_time = RAISE_TIMES[GetSkillLevel(RAISE_TIME)];
-
+        
         GameObject effect_instance = (GameObject)Instantiate(start_effect, transform.position, transform.rotation);
 
         Destroy(effect_instance, 1f);

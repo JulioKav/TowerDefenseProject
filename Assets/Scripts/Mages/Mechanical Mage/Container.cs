@@ -13,13 +13,14 @@ public class Container : MonoBehaviour
     void Start()
     {
         // Calls Target_Search every chosen amount seconds.
-
+        InvokeRepeating("Enemy_Alive_Checker", 0f, 0.1f);
 
     }
 
     void Update()
     {
-        Enemy_Alive_Checker();
+        
+        
 
 
     }

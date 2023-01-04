@@ -7,6 +7,7 @@ public class GameSpeed : MonoBehaviour
     public TMPro.TMP_Dropdown GameSpeedDropdown;
     public GameObject pauseUI;
     public GameObject achieveUI;
+    public GameObject helpUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class GameSpeed : MonoBehaviour
             }
         
 
-        if (pauseUI.activeInHierarchy == true || achieveUI.activeInHierarchy == true)
+        if (pauseUI.activeInHierarchy == true || achieveUI.activeInHierarchy == true || helpUI.activeInHierarchy == true)
         {
             Time.timeScale = 0f;
         }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    
+
     public float speed = 50f;
 
     private Transform target;
@@ -12,7 +14,7 @@ public class Bullet : MonoBehaviour
 
     public GameObject impact_effect;
 
-    public float damage = 50;
+    private float damage = Difficulty.bullet_dmg;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -55,6 +57,7 @@ public class Bullet : MonoBehaviour
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
+        print(damage);
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
 
         Destroy(effect_instance, 5f);

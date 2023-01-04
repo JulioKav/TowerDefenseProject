@@ -6397,7 +6397,7 @@ Transform:
   - {fileID: 9221727172666003274}
   - {fileID: 876327587441659014}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5601375898659159310
 MeshFilter:
@@ -6505,11 +6505,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5601375898659159309}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 6162124334194891566}
   attack_range: 0
   attack_speed: 1
@@ -7251,7 +7252,7 @@ GameObject:
   - component: {fileID: 3859323807727957225}
   m_Layer: 0
   m_Name: imaginetotem.blender (1)
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7301,7 +7302,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8408775404091037168}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
   m_Height: 15
