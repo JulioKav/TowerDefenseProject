@@ -37,13 +37,13 @@ public class Tornado : MonoBehaviour
 
                 if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-
+                    if (collider != null)
                     Magic_damage(collider.transform);
                 }
 
                 else
                 {
-                    
+                        if (collider != null)
                         Damage_enemy(collider.transform);
                     
                     

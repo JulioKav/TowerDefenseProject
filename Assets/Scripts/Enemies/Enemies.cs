@@ -79,29 +79,38 @@ public class Enemies : MonoBehaviour
         Turret t;
         if (!TryGetComponent<Turret>(out t) || !t.isAttacking)
         {
-            Vector3 direction;
-            if (!isBackward)
+            try
             {
-                direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
+
+                Vector3 direction;
+                if (!isBackward)
+                {
+                    direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
+                }
+                else
+                {
+                    direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+                }
+
+                // Softly snap the enemy into grid
+                if (direction.x == 0.0f)
+                {
+                    direction.x -= 2.5f * xdiff;
+                }
+                else if (direction.z == 0.0f)
+                {
+                    direction.z -= 2.5f * zdiff;
+                }
+                //target.position - transform.position;
+                //Debug.Log(direction);
+
+                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
             }
-            else
+            catch
             {
-                direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+                Debug.Log("pathfinding error");
             }
             
-            // Softly snap the enemy into grid
-            if (direction.x == 0.0f)
-            {
-                direction.x -= 2.5f * xdiff;
-            }
-            else if (direction.z == 0.0f)
-            {
-                direction.z -= 2.5f * zdiff;
-            }
-            //target.position - transform.position;
-            //Debug.Log(direction);
-
-            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 
             if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
             {
@@ -189,18 +198,19 @@ public class Enemies : MonoBehaviour
         {
             if (Enemy.transform.position.y >= 2)
             {
+                Enemy.transform.position = Enemy.transform.position - new Vector3(0, 2, 0);
 
                 Enemy.tag = "Enemy";
-                
-                if(Enemy.GetComponent<Tags>().HasTag("Magic Enemy"))
+
+                if (Enemy.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-                    enemy_component.isBackward = !enemy_component.isBackward;
+                    enemy_component.isBackward = false;
 
 
                 }
-                    
+
                 Tornado_Search();
-                Enemy.transform.position = Enemy.transform.position - new Vector3(0, 2, 0);
+
                 GameObject effect_instance_1 = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
                 Destroy(effect_instance_1, 5f);
 
@@ -212,8 +222,8 @@ public class Enemies : MonoBehaviour
 
                 }
 
-
             }
+            
 
 
 
