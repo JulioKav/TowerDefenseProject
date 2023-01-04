@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         dialogues = DialoguesJSONParser.Instance.dialoguesJson;
+        QueueStartOfGameDialogue();
+        TriggerDialogue();
     }
 
     void OnEnable()
@@ -36,9 +38,6 @@ public class DialogueManager : MonoBehaviour
     {
         switch (newState)
         {
-            case GameState.PRE_GAME:
-                QueueStartOfGameDialogue();
-                break;
             case GameState.PRE_ROUND:
                 QueueStartOfRoundDialogue();
                 break;

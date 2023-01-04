@@ -11,9 +11,9 @@ public class SettingsMenu : MonoBehaviour
     public TMPro.TMP_Dropdown QualityDropdown;
     public Toggle fullscreentoggle;
     public Toggle cheats;
-    
+
     public GameObject achievepopup;
-    
+
 
 
 
@@ -30,11 +30,11 @@ public class SettingsMenu : MonoBehaviour
         musSlider.value = PlayerPrefs.GetFloat("musslidersavednumber");
         sfxSlider.value = PlayerPrefs.GetFloat("sfxslidersavednumber");
 
-        
+
     }
     void Start()
     {
-        
+
 
         resolutions = Screen.resolutions;
         ResDropdown.ClearOptions();
@@ -68,7 +68,7 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.GetInt("fullscreen") == 1)
         {
             fullscreentoggle.isOn = true;
-            
+
         }
         else
         {
@@ -80,7 +80,7 @@ public class SettingsMenu : MonoBehaviour
             cheats.isOn = true;
             cheats.enabled = false;
             cheats.gameObject.SetActive(false);
-            
+
         }
         else
         {

@@ -13,7 +13,7 @@ public class UIStateManager : MonoBehaviour
     public static event StateChangeEvent OnStateChange;
 
     // State property that, when set, automatically triggers the OnStateChange event
-    private UIState _state = UIState.DEFAULT;
+    private UIState _state = UIState.DIALOGUE;
     public UIState State
     {
         get
