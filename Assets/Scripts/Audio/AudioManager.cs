@@ -116,7 +116,7 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeSoundInSeconds(s, fadeSeconds));
     }
 
-    public void Play(string name)
+    public void Play(string name, bool repeat = true)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -124,7 +124,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("sound" + name + "not found!");
             return;
         }
-        s.source.Play();
+        if(repeat == true)
+        {
+            s.source.Play();
+        }
+        else
+        {
+            s.source.PlayOneShot(s.clip, 1.0f);
+        }
     }
 
     IEnumerator FadeSoundInSeconds(Sound s, float seconds)

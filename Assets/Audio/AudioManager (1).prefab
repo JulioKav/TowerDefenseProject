@@ -66,3 +66,10 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: se_cannonShooting
+    clip: {fileID: 8300000, guid: a2e1731820bf047e190c23900efd1ff6, type: 3}
+    group: {fileID: 6490762387701023137, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

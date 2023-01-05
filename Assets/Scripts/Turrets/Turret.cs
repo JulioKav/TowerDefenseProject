@@ -28,7 +28,7 @@ public class Turret : MonoBehaviour
     public GameObject bulletprefab;
     public Transform firepoint;
 
-
+    private AudioManager audioMananger;
     // USE THIS WHEN YOU HAVE ASSETS, NAMELY A PART OF TURRET YOU WANT TO ROTATE NOT WHOLE THING
     public Transform part_to_rotate;
 
@@ -38,7 +38,7 @@ public class Turret : MonoBehaviour
     {
         // Calls Target_Search every chosen amount seconds.
         InvokeRepeating("Target_Search", 0f, 0.1f);
-
+        audioMananger = FindObjectOfType<AudioManager>();
 
     }
 
@@ -131,6 +131,13 @@ public class Turret : MonoBehaviour
 
         if (attack_countdown <= 0f)
         {
+            switch (this.gameObject.name)
+            {
+                case "Cannon" + "(Clone)"://Meaning this is a cannon
+                    audioMananger.Play("se_cannonShooting", false); break;
+                default:
+                    break;
+            }
             shoot();
             attack_countdown = 1f / attack_speed;
         }
