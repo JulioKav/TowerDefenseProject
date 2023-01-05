@@ -10,11 +10,10 @@ public class WaveSpawner : MonoBehaviour
     // The game object enemies will be attached to
     public Transform enemiesParent;
 
-    public float individualSpawnDelay = 0.5f;
+    public float individualSpawnDelay = 0.25f;
 
     // Variables for wave management
     public List<Transform>[] waves;
-    int currentWaveId;
     Transform[] currentWave;
 
     void Start()
@@ -23,10 +22,6 @@ public class WaveSpawner : MonoBehaviour
         PopulateWave();
         currentWave = null;
         WaveNumber = 0;
-    }
-
-    private void Update()
-    {
     }
 
     // Populates the wave with enemy prefabs
@@ -50,6 +45,19 @@ public class WaveSpawner : MonoBehaviour
                 }
             }
         }
+        waves[0] = new List<Transform>();
+        for (int i = 0; i < 100; i++)
+        {
+            if (i % 2 == 0)
+            {
+                waves[0].Add(enemyPrefab[0]);
+                //waves[wave].Add(enemyPrefab[2]);
+            }
+            else
+            {
+                waves[0].Add(enemyPrefab[1]);
+            }
+        }
 
     }
 
@@ -69,38 +77,46 @@ public class WaveSpawner : MonoBehaviour
 
     void StartRound()
     {
-        currentWaveId++;
         // Spawns waves depending on wave index
-        switch (currentWaveId)
+        switch (WaveNumber)
         {
             // Handles wave logic based on wave number
             case 0:
-                StartCoroutine(SpawnWave(0));
+                SpawnWave();
                 break;
             case 1:
-                StartCoroutine(SpawnWave(0));
+                SpawnWave();
                 break;
             case 2:
-                StartCoroutine(SpawnWave(0));
+                SpawnWave();
                 break;
             case 3:
-                StartCoroutine(SpawnWave(0));
+                SpawnWave();
                 break;
             // after wave index 3, just spawn this double wave
             default:
-                StartCoroutine(SpawnWave(0));
-                StartCoroutine(SpawnWave(0));
+                SpawnWave();
+                SpawnWave();
                 break;
 
         }
         StartCoroutine(CheckWaveComplete());
+        WaveNumber++;
+    }
+
+    void SpawnWave()
+    {
+        for (int i = 0; i < PathGenerator.Instance.activeSpawnPoints.Count; i++)
+        {
+            StartCoroutine(SpawnWave(i));
+        }
     }
 
     // Starts spawning a wave in a coroutine with a delay between enemies
     public IEnumerator SpawnWave(int spawnPointId)
     {
         // After wave 3, spwans the same wave over and over
-        int waveId = (currentWaveId > 3) ? 3 : currentWaveId;
+        int waveId = (WaveNumber > 3) ? 3 : WaveNumber;
         currentWave = new Transform[waves[waveId].Count];
         for (int i = 0; i < waves[waveId].Count; i++)
         {

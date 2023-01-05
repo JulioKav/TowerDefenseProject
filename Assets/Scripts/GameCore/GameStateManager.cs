@@ -29,7 +29,7 @@ public class GameStateManager : MonoBehaviour
     public int PreRoundTimeInSeconds = 3;
     public int PostRoundTimeInSeconds = 2;
 
-    int newSpawnPointEveryXWaves = 5;
+    int newSpawnPointEveryXWaves = 1;
 
     public void StartRound()
     {
@@ -87,7 +87,7 @@ public class GameStateManager : MonoBehaviour
     private IEnumerator CountdownPostRound()
     {
         yield return new WaitForSeconds(PostRoundTimeInSeconds);
-        bool generateNewPath = WaveSpawner.WaveNumber % newSpawnPointEveryXWaves == 0 &&
+        bool generateNewPath = (WaveSpawner.WaveNumber % newSpawnPointEveryXWaves) == 0 &&
                                !PathGenerator.Instance.allSpawnPointsActive();
         State = (generateNewPath) ? GameState.PATH_GENERATION : GameState.IDLE;
     }

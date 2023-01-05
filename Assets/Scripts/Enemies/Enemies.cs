@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +38,7 @@ public class Enemies : MonoBehaviour
     private Achievements achievements;
 
     private string Tornado = "Tornado";
+    Vector3 direction;
 
     [Header("Unity Stuff")]
     public Image healthBar;
@@ -58,31 +60,33 @@ public class Enemies : MonoBehaviour
         pathFinding = FindObjectOfType<Pathfinding>();
         m_Animator = gameObject.GetComponent<Animator>();
 
-        
+
     }
 
     protected void Update()
     {
-        
+
         if (gameObject.tag == "AirborneEnemyMechanical")
             StartCoroutine(LowerAfterTime(mech_airborne_time, gameObject.transform));
 
         if (gameObject.tag == "AirborneEnemyMagic")
             StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform));
-        
-        
+
+
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
         if (gameObject.tag == "Enemy" && slowed == false)
         {
             speed = max_speed;
         }
+
         Turret t;
-        if (!TryGetComponent<Turret>(out t) || !t.isAttacking)
+        bool isAttacking = TryGetComponent<Turret>(out t) && t.isAttacking;
+
+        if (!isAttacking)
         {
             try
             {
 
-                Vector3 direction;
                 if (!isBackward)
                 {
                     direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
@@ -91,35 +95,36 @@ public class Enemies : MonoBehaviour
                 {
                     direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
                 }
-
-                // Softly snap the enemy into grid
-                if (direction.x == 0.0f)
-                {
-                    direction.x -= 2.5f * xdiff;
-                }
-                else if (direction.z == 0.0f)
-                {
-                    direction.z -= 2.5f * zdiff;
-                }
-                //target.position - transform.position;
-                //Debug.Log(direction);
-
-                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
             }
             catch
             {
                 Debug.Log("pathfinding error");
             }
-            
-
-            if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
-            {
-                skillManager.SubtractSkillPoints(20);
-                Destroy(gameObject);
-                return;
-            }
         }
-        
+
+        // Softly snap the enemy into grid
+        if (direction.x == 0.0f)
+        {
+            direction.x -= 2.5f * xdiff;
+        }
+        else if (direction.z == 0.0f)
+        {
+            direction.z -= 2.5f * zdiff;
+        }
+        //target.position - transform.position;
+        //Debug.Log(direction);
+
+        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+
+
+
+        if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
+        {
+            skillManager.SubtractSkillPoints(20);
+            Destroy(gameObject);
+            return;
+        }
+
         // If enemy reaches a waypoint, move to next waypoint
         /*
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
@@ -223,7 +228,7 @@ public class Enemies : MonoBehaviour
                 }
 
             }
-            
+
 
 
 
@@ -287,9 +292,9 @@ public class Enemies : MonoBehaviour
     }
 
 
-    
 
-    }
+
+}
 
 
 
