@@ -25,6 +25,8 @@ public class Achievements : MonoBehaviour
     public GameObject cheatergameobject;
     public GameObject onemageunlockgameobject;
     public GameObject finalskillgameobject;
+    public GameObject difficultygameobject;
+    public GameObject harddifficultygameobject;
 
     [HideInInspector]
     public int kills = 0;
@@ -40,6 +42,8 @@ public class Achievements : MonoBehaviour
     public bool onemageunlock = false;
     [HideInInspector]
     public bool finalskillunlock = false;
+
+    
 
     protected static bool firstkillachieve = false;
     protected static bool fiftykillachieve = false;
@@ -209,6 +213,20 @@ public class Achievements : MonoBehaviour
         {
             Destroy(cheatergameobject);
         }
+
+        //difficulty
+        if (PlayerPrefs.GetInt("difficultyachieve") == 1)
+        {
+            Destroy(difficultygameobject);
+            skillManager.AddSkillPoints(25);
+        }
+
+        if (PlayerPrefs.GetInt("harddifficultyachieve") == 1)
+        {
+            Destroy(harddifficultygameobject);
+            skillManager.AddSkillPoints(250);
+        }
+
         //first mage
 
         if (onemageunlockgameobject != null)

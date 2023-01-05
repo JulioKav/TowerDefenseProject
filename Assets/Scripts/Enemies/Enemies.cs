@@ -8,7 +8,7 @@ public class Enemies : MonoBehaviour
     private MapManager mapManager;
     private Pathfinding pathFinding;
     // Enemy Attributes
-    public float speed = 4.0f;
+    public float speed;
     public float max_speed = 4.0f;
     public bool slowed = false;
     protected float _maxHealth;
@@ -104,7 +104,7 @@ public class Enemies : MonoBehaviour
                 //target.position - transform.position;
                 //Debug.Log(direction);
 
-                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+                transform.Translate(direction.normalized * (float)speed * Time.deltaTime, Space.World);
             }
             catch
             {
@@ -169,7 +169,7 @@ public class Enemies : MonoBehaviour
         if (gameObject.GetComponent<Tags>().HasTag("Physical Enemy")) achievements.physkills += 1;
         if (gameObject.GetComponent<Tags>().HasTag("Imaginary Enemy")) achievements.imaginarykills += 1;
         Destroy(gameObject);
-        skillManager.AddSkillPoints(20);
+        skillManager.AddSkillPoints(Difficulty.skillpoints);
         achievements.kills += 1;
     }
 

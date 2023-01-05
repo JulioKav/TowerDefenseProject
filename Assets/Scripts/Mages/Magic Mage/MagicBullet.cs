@@ -192,7 +192,7 @@ public class MagicBullet : MonoBehaviour
         if (enemy_component != null && Enemy.tag == "Enemy")
         {
             
-            float saved_speed = enemy_component.speed;
+            float saved_speed = (float)enemy_component.speed;
             //enemy_component.speed = 0;
             enemy_component.isBackward = true;
             if (Enemy.position.y < 2)

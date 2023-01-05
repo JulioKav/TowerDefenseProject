@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7653843615915808627}
-  - component: {fileID: 1847667995138788554}
+  - component: {fileID: 973784351938747079}
   m_Layer: 0
   m_Name: archer arrow
   m_TagString: Arrow
@@ -369,7 +369,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!114 &1847667995138788554
+--- !u!114 &973784351938747079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -378,13 +378,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7024553956718005705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4015ff2e39465f84e99db256c2b30734, type: 3}
+  m_Script: {fileID: 11500000, guid: e6fad2a540d976947a7d71bbe236c50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
   explosion_radius: 0
   impact_effect: {fileID: 5793143773966844333, guid: 0a24167cb056a4c48b30d1f152bb8722, type: 3}
-  damage: 5000
   identity_of_shooter: {fileID: 0}
 --- !u!1 &8703618954971165723
 GameObject:

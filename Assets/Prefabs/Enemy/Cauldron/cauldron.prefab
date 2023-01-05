@@ -1258,13 +1258,10 @@ MonoBehaviour:
   speed: 2
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 20
   impact_effect: {fileID: 9175318103248289093, guid: 7c2ea24c30fea8f4992f39ca90052ee9, type: 3}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 4737799981558667476}
 --- !u!114 &3176215299799949274
 MonoBehaviour:
@@ -1278,6 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 5
   attack_speed: 1
@@ -1301,4 +1299,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Magic Enemy
+  - Mechanical Enemy
