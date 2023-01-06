@@ -37,3 +37,6 @@ https://www.youtube.com/watch?v=YOaYQrN1oYQ&ab_channel=Brackeys
 https://www.youtube.com/watch?v=zc8ac_qUXQY&ab_channel=Brackeys
 https://www.youtube.com/watch?v=6OT43pvUyfY&ab_channel=Brackeys
 https://www.youtube.com/watch?v=JivuXdrIHK0&ab_channel=Brackeys
+
+Some code adapted for lasers:
+https://www.youtube.com/watch?v=UOYBr9vFqYI&list=PLPV2KyIb3jR4u5jX8za5iU1cqnQPmbzG0&index=16&ab_channel=Brackeys
