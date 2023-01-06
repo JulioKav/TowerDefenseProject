@@ -38,6 +38,7 @@ public class Skill : MonoBehaviour
 
 
     private Achievements achievements;
+    private Laser laser;
     public void Start()
     {
         InitButton();
@@ -47,6 +48,7 @@ public class Skill : MonoBehaviour
         SM = SkillManager.Instance;
         UpdateButtonAppearance();
         achievements = GameObject.FindObjectsOfType<Achievements>()[0];
+        laser = GameObject.FindObjectsOfType<Laser>()[0];
     }
 
     void InitButton()
@@ -134,6 +136,7 @@ public class Skill : MonoBehaviour
             {
                 
                 achievements.finalskillunlock = true;
+                laser.finalskillunlocked = true;
             }
         }
     }

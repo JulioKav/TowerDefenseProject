@@ -34,7 +34,7 @@ public class Laser : MonoBehaviour
     // USE THIS WHEN YOU HAVE ASSETS, NAMELY A PART OF TURRET YOU WANT TO ROTATE NOT WHOLE THING
     public Transform part_to_rotate;
 
-
+    public bool finalskillunlocked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -112,8 +112,11 @@ public class Laser : MonoBehaviour
         
 
        
-
-        Laser_shoot();
+        if (finalskillunlocked == true)
+        {
+            Laser_shoot();
+        }
+        
 
 
     }

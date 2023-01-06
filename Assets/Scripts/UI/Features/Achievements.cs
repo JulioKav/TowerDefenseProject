@@ -215,13 +215,13 @@ public class Achievements : MonoBehaviour
         }
 
         //difficulty
-        if (PlayerPrefs.GetInt("difficultyachieve") == 1)
+        if (PlayerPrefs.GetInt("difficultyachieve") == 1 && difficultygameobject != null)
         {
             Destroy(difficultygameobject);
             skillManager.AddSkillPoints(25);
         }
 
-        if (PlayerPrefs.GetInt("harddifficultyachieve") == 1)
+        if (PlayerPrefs.GetInt("harddifficultyachieve") == 1 && harddifficultygameobject != null)
         {
             Destroy(harddifficultygameobject);
             skillManager.AddSkillPoints(250);
