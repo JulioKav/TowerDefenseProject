@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    
+
 
     public float speed = 50f;
 
@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
         if (gameObject.tag == "Arrow")
         {
             transform.transform.Rotate(0, 90, 0);
-        }    
+        }
 
 
 
@@ -57,7 +57,6 @@ public class Bullet : MonoBehaviour
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
-        print(damage);
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
 
         Destroy(effect_instance, 5f);
@@ -71,8 +70,8 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                    FindObjectOfType<AudioManager>().Play("Impact");
-                    Damage_enemy(target);
+                FindObjectOfType<AudioManager>().Play("Impact");
+                Damage_enemy(target);
             }
             if (target.tag == "Tower")
             {
@@ -94,10 +93,10 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-               
+
                 Damage_enemy(collider.transform);
-                   
-                    
+
+
             }
 
 
@@ -156,13 +155,13 @@ public class Bullet : MonoBehaviour
         // retrieves script aspect of enemy
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-        
+
 
         if (enemy_component != null)
         {
 
             enemy_component.TakeDamage(damage * 3);
-            
+
         }
     }
     // specific type dmg
@@ -190,7 +189,7 @@ public class Bullet : MonoBehaviour
         if (enemy_component != null)
         {
 
-            enemy_component.TakeDamage(damage *2);
+            enemy_component.TakeDamage(damage * 2);
             //enemy_component.mechanical_lift(1);
         }
     }

@@ -95,34 +95,34 @@ public class Enemies : MonoBehaviour
                 {
                     direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
                 }
+
+                // Softly snap the enemy into grid
+                if (direction.x == 0.0f)
+                {
+                    direction.x -= 2.5f * xdiff;
+                }
+                else if (direction.z == 0.0f)
+                {
+                    direction.z -= 2.5f * zdiff;
+                }
+                //target.position - transform.position;
+                //Debug.Log(direction);
+
+                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+
+
+
+                if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
+                {
+                    skillManager.SubtractSkillPoints(20);
+                    Destroy(gameObject);
+                    return;
+                }
             }
             catch
             {
                 Debug.Log("pathfinding error");
             }
-        }
-
-        // Softly snap the enemy into grid
-        if (direction.x == 0.0f)
-        {
-            direction.x -= 2.5f * xdiff;
-        }
-        else if (direction.z == 0.0f)
-        {
-            direction.z -= 2.5f * zdiff;
-        }
-        //target.position - transform.position;
-        //Debug.Log(direction);
-
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-
-
-
-        if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
-        {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
         }
 
         // If enemy reaches a waypoint, move to next waypoint
