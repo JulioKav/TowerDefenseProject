@@ -14,6 +14,7 @@ public class Achievements : MonoBehaviour
     public GameObject achieveButtonui;
     public Button achieveButton;
     public GameObject achievepopup;
+
     private SkillManager skillManager;
 
 
@@ -22,6 +23,10 @@ public class Achievements : MonoBehaviour
     public GameObject twofiftykillachieveObject;
     public GameObject all4typeskillachieveObject;
     public GameObject cheatergameobject;
+    public GameObject onemageunlockgameobject;
+    public GameObject finalskillgameobject;
+    public GameObject difficultygameobject;
+    public GameObject harddifficultygameobject;
 
     [HideInInspector]
     public int kills = 0;
@@ -33,6 +38,12 @@ public class Achievements : MonoBehaviour
     public int magickills = 0;
     [HideInInspector]
     public int physkills = 0;
+    [HideInInspector]
+    public bool onemageunlock = false;
+    [HideInInspector]
+    public bool finalskillunlock = false;
+
+    
 
     protected static bool firstkillachieve = false;
     protected static bool fiftykillachieve = false;
@@ -82,6 +93,8 @@ public class Achievements : MonoBehaviour
             all4typeskillachieve = true;
 
         }
+
+       
 
         AchieveChecker();
 
@@ -195,11 +208,72 @@ public class Achievements : MonoBehaviour
             skillManager.AddSkillPoints(400);
 
         }
-
+        //cheats
         if(PlayerPrefs.GetInt("cheatspopupdone") == 1)
         {
             Destroy(cheatergameobject);
         }
+
+        //difficulty
+        if (PlayerPrefs.GetInt("difficultyachieve") == 1 && difficultygameobject != null)
+        {
+            Destroy(difficultygameobject);
+            skillManager.AddSkillPoints(25);
+        }
+
+        if (PlayerPrefs.GetInt("harddifficultyachieve") == 1 && harddifficultygameobject != null)
+        {
+            Destroy(harddifficultygameobject);
+            skillManager.AddSkillPoints(250);
+        }
+
+        //first mage
+
+        if (onemageunlockgameobject != null)
+        {
+            PlayerPrefs.SetInt("firstmageachieve", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("firstmageachieve", 1);
+
+        }
+
+        if (onemageunlock == true && onemageunlockgameobject != null && PlayerPrefs.GetInt("firstmageachieve") == 0)
+        {
+
+            Destroy(onemageunlockgameobject);
+            PlayerPrefs.SetInt("firstmageachieve", 1);
+            achievepopup.SetActive(true);
+            deleteAfterSeconds(2);
+            skillManager.AddSkillPoints(50);
+
+        }
+
+        //final skill
+
+        if (finalskillgameobject != null)
+        {
+            PlayerPrefs.SetInt("finalskillachieve", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("finalskillachieve", 1);
+
+        }
+
+        if (finalskillunlock == true && finalskillgameobject != null && PlayerPrefs.GetInt("finalskillachieve") == 0)
+        {
+
+            Destroy(finalskillgameobject);
+            PlayerPrefs.SetInt("finalskillachieve", 1);
+            achievepopup.SetActive(true);
+            deleteAfterSeconds(2);
+            
+
+        }
+
+        
 
     }
 

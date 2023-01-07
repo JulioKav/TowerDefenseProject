@@ -1389,10 +1389,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  time_airborne: 1
   explosion_radius: 3
   impact_effect: {fileID: 0}
   tornadoprefab: {fileID: 2119550378338140774, guid: ba1b747a99b02dd45ab5838b4820c625, type: 3}
   damage: 1
+  damage_over_time: 2
   Enemy: Enemy
   identity_of_shooter: {fileID: 0}

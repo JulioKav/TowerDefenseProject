@@ -130,8 +130,21 @@ public class PathGenerator : MonoBehaviour
         if (inactiveSpawnPoints.Count == 0) return;
         Transform spawnPoint = inactiveSpawnPoints.Dequeue();
         if (startingSpawnPoint == null) startingSpawnPoint = spawnPoint;
+        spawnPoint.GetComponent<PortalManager>().ActivatePortal();
         spawnPoint.GetComponent<MeshRenderer>().enabled = false;
+        StartCoroutine(LowerPortal(spawnPoint.transform));
         GeneratePath(spawnPoint.position, Vector3.zero);
         activeSpawnPoints.Add(spawnPoint);
+    }
+
+    IEnumerator LowerPortal(Transform spawnPoint)
+    {
+        Vector3 target = spawnPoint.position + 0.5f * Vector3.down;
+        while (true)
+        {
+            spawnPoint.position = Vector3.MoveTowards(spawnPoint.position, target, 0.005f);
+            if (spawnPoint.position == target) break;
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

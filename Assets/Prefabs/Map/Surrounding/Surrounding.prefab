@@ -147,8 +147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surroundingCube: {fileID: 638841715403719737, guid: 58b5857028b4f48d0b1a045fbcb7c8fc, type: 3}
   trees:
+  - {fileID: 4180605344139843217, guid: 3901e31824564cc4187bdb00be4f04da, type: 3}
   - {fileID: 8109402292535995867, guid: 10726b5ae46ff4549a4a82c61567d3b2, type: 3}
-  grass: []
+  grass:
+  - {fileID: 6890973303433463261, guid: f6e2afbb4d8f60242a31caf39786cfd0, type: 3}
 --- !u!1 &2298707376246098121
 GameObject:
   m_ObjectHideFlags: 0

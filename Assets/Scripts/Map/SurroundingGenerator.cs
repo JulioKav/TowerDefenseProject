@@ -42,7 +42,8 @@ public class SurroundingGenerator : MonoBehaviour
         while (mapBorder.Count > 0)
         {
             Vector2Int pos = mapBorder.Dequeue();
-            Instantiate(surroundingCube, new Vector3(pos.x, 0, pos.y), Quaternion.identity);
+            GameObject floor = Instantiate(surroundingCube, new Vector3(pos.x, 0, pos.y), Quaternion.identity, transform);
+            floor.layer = 0;
             SpawnFoliage(pos.x, pos.y, true);
         }
     }
@@ -52,7 +53,7 @@ public class SurroundingGenerator : MonoBehaviour
         for (int x = -22; x <= 22; x++)
             for (int y = -22; y <= 22; y++)
                 if (!Physics.Raycast(new Vector3(x, 10, y), Vector3.down, 20))
-                    Instantiate(surroundingCube, new Vector3(x, 0, y), Quaternion.identity);
+                    Instantiate(surroundingCube, new Vector3(x, 0, y), Quaternion.identity, transform);
 
         for (int x = -50; x <= 50; x++)
             for (int y = -50; y <= 50; y++)
@@ -78,6 +79,6 @@ public class SurroundingGenerator : MonoBehaviour
         if (treesOnly || id < trees.Length) foliage = trees[id];
         else foliage = grass[id - trees.Length];
 
-        Instantiate(foliage, new Vector3(x, 0, y), Quaternion.Euler(0, rotation, 0));
+        Instantiate(foliage, new Vector3(x, 0, y), Quaternion.Euler(0, rotation, 0), transform);
     }
 }

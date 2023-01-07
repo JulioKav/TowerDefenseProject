@@ -644,7 +644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362143687009349999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.968, z: 0}
   m_LocalScale: {x: 0.22213909, y: 0.22213909, z: 0.22213909}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 3
   attack_speed: 1
@@ -707,13 +708,10 @@ MonoBehaviour:
   speed: 4
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 857184500330418582}
 --- !u!114 &8665406827565643110
 MonoBehaviour:

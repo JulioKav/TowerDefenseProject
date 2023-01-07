@@ -9,7 +9,7 @@ public class Enemies : MonoBehaviour
     private MapManager mapManager;
     private Pathfinding pathFinding;
     // Enemy Attributes
-    public float speed = 4.0f;
+    public float speed;
     public float max_speed = 4.0f;
     public bool slowed = false;
     protected float _maxHealth;
@@ -125,6 +125,12 @@ public class Enemies : MonoBehaviour
             }
         }
 
+        if (transform.position.y < -10)
+        {
+            int spawnId = UnityEngine.Random.Range(0, PathGenerator.Instance.activeSpawnPoints.Count);
+            transform.position = PathGenerator.Instance.activeSpawnPoints[spawnId].position;
+        }
+
         // If enemy reaches a waypoint, move to next waypoint
         /*
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
@@ -174,7 +180,7 @@ public class Enemies : MonoBehaviour
         if (gameObject.GetComponent<Tags>().HasTag("Physical Enemy")) achievements.physkills += 1;
         if (gameObject.GetComponent<Tags>().HasTag("Imaginary Enemy")) achievements.imaginarykills += 1;
         Destroy(gameObject);
-        skillManager.AddSkillPoints(20);
+        skillManager.AddSkillPoints(Difficulty.skillpoints);
         achievements.kills += 1;
     }
 

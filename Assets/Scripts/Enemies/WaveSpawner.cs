@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class WaveSpawner : MonoBehaviour
 {
     public static int WaveNumber = 0;
+
+    public GameObject frogbossPrefab;
+    public GameObject batPrefab, broomPrefab, cauldronPrefab, evilbookPrefab, eyeballPrefab, spiderPrefab;
     public Transform[] enemyPrefab;
     // The game object enemies will be attached to
     public Transform enemiesParent;
@@ -13,52 +16,16 @@ public class WaveSpawner : MonoBehaviour
     public float individualSpawnDelay = 0.25f;
 
     // Variables for wave management
-    public List<Transform>[] waves;
-    Transform[] currentWave;
+    List<GameObject> currentWavePrefabs;
+    List<GameObject> currentWave;
+
+    WavesJSONParser.Wave[] waves;
 
     void Start()
     {
-        waves = new List<Transform>[4];
-        PopulateWave();
-        currentWave = null;
+        waves = WavesJSONParser.Instance.wavesJson.waves;
+        currentWavePrefabs = null;
         WaveNumber = 0;
-    }
-
-    // Populates the wave with enemy prefabs
-    void PopulateWave()
-    {
-        // Wave 1-4
-        for (int wave = 0; wave < 4; wave++)
-        {
-            // Adds 4, then 8, then 16, then 32 enemies in the waves 1-4, respectively
-            waves[wave] = new List<Transform>();
-            for (int i = 0; i < Mathf.Pow(2, wave + 2); i++)
-            {
-                if (i % 2 == 0)
-                {
-                    waves[wave].Add(enemyPrefab[0]);
-                    //waves[wave].Add(enemyPrefab[2]);
-                }
-                else
-                {
-                    waves[wave].Add(enemyPrefab[1]);
-                }
-            }
-        }
-        waves[0] = new List<Transform>();
-        for (int i = 0; i < 100; i++)
-        {
-            if (i % 2 == 0)
-            {
-                waves[0].Add(enemyPrefab[0]);
-                //waves[wave].Add(enemyPrefab[2]);
-            }
-            else
-            {
-                waves[0].Add(enemyPrefab[1]);
-            }
-        }
-
     }
 
     void OnEnable()
@@ -77,96 +44,63 @@ public class WaveSpawner : MonoBehaviour
 
     void StartRound()
     {
-        // Spawns waves depending on wave index
-        switch (WaveNumber)
-        {
-            // Handles wave logic based on wave number
-            case 0:
-                SpawnWave();
-                break;
-            case 1:
-                SpawnWave();
-                break;
-            case 2:
-                SpawnWave();
-                break;
-            case 3:
-                SpawnWave();
-                break;
-            // after wave index 3, just spawn this double wave
-            default:
-                SpawnWave();
-                SpawnWave();
-                break;
-
-        }
+        PopulateWave();
+        StartCoroutine(SpawnWave());
         StartCoroutine(CheckWaveComplete());
         WaveNumber++;
     }
 
-    void SpawnWave()
+    void PopulateWave()
     {
-        for (int i = 0; i < PathGenerator.Instance.activeSpawnPoints.Count; i++)
-        {
-            StartCoroutine(SpawnWave(i));
-        }
+        currentWavePrefabs = new List<GameObject>();
+
+        for (int i = 0; i < waves[WaveNumber].bat; i++) currentWavePrefabs.Add(batPrefab);
+        for (int i = 0; i < waves[WaveNumber].broom; i++) currentWavePrefabs.Add(broomPrefab);
+        for (int i = 0; i < waves[WaveNumber].cauldron; i++) currentWavePrefabs.Add(cauldronPrefab);
+        for (int i = 0; i < waves[WaveNumber].evilbook; i++) currentWavePrefabs.Add(evilbookPrefab);
+        for (int i = 0; i < waves[WaveNumber].eyeball; i++) currentWavePrefabs.Add(eyeballPrefab);
+        for (int i = 0; i < waves[WaveNumber].spider; i++) currentWavePrefabs.Add(spiderPrefab);
+        for (int i = 0; i < waves[WaveNumber].frogboss; i++) currentWavePrefabs.Add(frogbossPrefab);
     }
 
     // Starts spawning a wave in a coroutine with a delay between enemies
-    public IEnumerator SpawnWave(int spawnPointId)
+    public IEnumerator SpawnWave()
     {
-        // After wave 3, spwans the same wave over and over
-        int waveId = (WaveNumber > 3) ? 3 : WaveNumber;
-        currentWave = new Transform[waves[waveId].Count];
-        for (int i = 0; i < waves[waveId].Count; i++)
+        currentWave = new List<GameObject>();
+
+        List<Transform> spawnPoints = PathGenerator.Instance.activeSpawnPoints;
+        while (currentWavePrefabs.Count > 0)
         {
-            var enemy = SpawnEnemy(waves[waveId][i].gameObject, spawnPointId);
-            currentWave[i] = enemy.transform;
+            // Pick a random spawn point from active spawn points
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+
+            // Choose a random enemy from the current wave to spawn
+            int enemyId = Random.Range(0, currentWavePrefabs.Count);
+            GameObject enemyPrefab = currentWavePrefabs[enemyId];
+            currentWavePrefabs.RemoveAt(enemyId);
+
+            // Spawn the enemy
+            Vector3 enemyPos = spawnPoint.position + new Vector3(0, enemyPrefab.transform.position.y, 0);
+            var enemy = Instantiate(enemyPrefab, enemyPos, spawnPoint.rotation, enemiesParent);
+            currentWave.Add(enemy);
+
             yield return new WaitForSeconds(individualSpawnDelay);
         }
-    }
-
-    // Spawn an enemy game object at the spawnPoint, and return the instance
-    GameObject SpawnEnemy(GameObject enemyGO, int spawnPointId)
-    {
-        // Create enemy objects at designated spawnpoints 
-        var enemy = Instantiate(enemyGO,
-                                PathGenerator.Instance.activeSpawnPoints[spawnPointId].position,
-                                PathGenerator.Instance.activeSpawnPoints[spawnPointId].rotation, enemiesParent)
-                            .GetComponent<Enemies>();
-        return enemy.gameObject;
     }
 
     // Periodically checks whether the spawned wave has been defeated, then updates waveOnGoing
     // variable, and emits a RoundEndEvent.
     public IEnumerator CheckWaveComplete()
     {
-        bool waveOnGoing = true;
-        while (waveOnGoing)
+        while (currentWavePrefabs.Count > 0 && currentWave.Count > 0)
         {
-            waveOnGoing = false;
-            if (currentWave == null)
-            {
-                GameStateManager.Instance.EndRound();
-                yield return new WaitForEndOfFrame();
-                break;
-            }
-            foreach (var enemy in currentWave)
-            {
-                if (enemy != null)
-                {
-                    waveOnGoing = true;
-                    break;
-                }
-            }
-            if (!waveOnGoing)
-            {
-                currentWave = null;
-                GameStateManager.Instance.EndRound();
-                break;
-            }
-            // Check if wave is empty once a second
+            for (int i = currentWave.Count - 1; i >= 0; i--)
+                if (currentWave[i] == null) currentWave.RemoveAt(i);
+
             yield return new WaitForSeconds(1);
         }
+
+        if (WaveNumber == waves.Length - 1) GameStateManager.Instance.EndGame(SkillManager.Instance.finalSkillUnlocked);
+        else GameStateManager.Instance.EndRound();
     }
 }

@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
 
     public TextMeshProUGUI dialogueText;
 
+    public Button skipButton;
+
     private Queue<string> sentences;
 
     private DialoguesJSONParser.Dialogues dialogues;
@@ -20,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         dialogues = DialoguesJSONParser.Instance.dialoguesJson;
+        skipButton.onClick.AddListener(() => EndDialogue());
         QueueStartOfGameDialogue();
         TriggerDialogue();
     }
@@ -60,6 +63,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        skipButton.gameObject.SetActive(sentences.Count > 1);
+
         if (sentences.Count == 0)
         {
             EndDialogue();
@@ -72,6 +77,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        sentences.Clear();
         switch (GameStateManager.Instance.State)
         {
             case GameState.PRE_GAME:

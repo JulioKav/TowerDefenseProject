@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4637372779916342434}
   - component: {fileID: 6167103369653012489}
   - component: {fileID: 1370946211988204854}
+  - component: {fileID: -5908452721234003073}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Untagged
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8875824785813524639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4015ff2e39465f84e99db256c2b30734, type: 3}
   m_Name: 
@@ -113,5 +114,20 @@ MonoBehaviour:
   speed: 20
   explosion_radius: 1
   impact_effect: {fileID: 4825178348198417852, guid: 00560d0a4c891364c8060707de61070f, type: 3}
-  damage: 500
+  identity_of_shooter: {fileID: 0}
+--- !u!114 &-5908452721234003073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8875824785813524639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fad2a540d976947a7d71bbe236c50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  explosion_radius: 1
+  impact_effect: {fileID: 4825178348198417852, guid: 00560d0a4c891364c8060707de61070f, type: 3}
   identity_of_shooter: {fileID: 0}

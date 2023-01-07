@@ -18,6 +18,8 @@ public class SkillManager : MonoBehaviour
 
     public MageSpawner mageSpawner;
 
+    public bool finalSkillUnlocked { get; private set; } = false;
+
     public int startingSkillPoints = 50;
     public int skillPoints { get; private set; }
 
@@ -35,6 +37,7 @@ public class SkillManager : MonoBehaviour
         skillPoints = startingSkillPoints;
         unlockOrder = new LinkedList<Skill>();
         branchCompleted = new int[] { 0, 0, 0, 0 };
+        finalSkillUnlocked = false;
     }
 
     void InitMageClasses()
@@ -60,7 +63,7 @@ public class SkillManager : MonoBehaviour
             // Broadcast Event
             if (OnChangeSkill != null) OnChangeSkill(skill.mageClass, skill.gameObject.name, true);
             // Check for Game End
-            if (skill is FinalSkill) GameStateManager.Instance.EndGame(true);
+            if (skill is FinalSkill) finalSkillUnlocked = true;
             return true;
         }
         return false;
@@ -90,6 +93,7 @@ public class SkillManager : MonoBehaviour
                 lastUnlocked.LockSkill();
                 if (OnChangeSkill != null) OnChangeSkill(lastUnlocked.mageClass, lastUnlocked.gameObject.name, false);
                 unlockOrder.RemoveLast();
+                finalSkillUnlocked = false;
             }
             else
             // Lose the game
