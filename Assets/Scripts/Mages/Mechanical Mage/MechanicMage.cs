@@ -7,7 +7,7 @@ public class MechanicMage : Mage
     static string RAISE_TIME = "raise_time", SPLASH_DMG = "splash_damage", SPLASH_RANGE = "splash_range";
 
     static float[] RAISE_TIMES = new float[] { 2f, 3f, 4f, 5f };
-    static int[] SPLASH_DMGS = new int[] { 30, 50, 70, 100 };
+    static float[] SPLASH_DMGS = new float[] { 1f, 50f, 70f, 100f };
     static float[] SPLASH_RANGES = new float[] { 2f, 3f, 4f, 5f };
 
     public new void Start()

@@ -9,10 +9,13 @@ public class Type1 : Enemies
     {
         // Enemy Attributes
         base.Start();
-        _maxHealth = 100;
+        _maxHealth = Difficulty.modified_type_healths[0];
         _health = _maxHealth;
         _attack = 5;
-        _range = 10;
+        _range = Difficulty.modified_type_speed[0];
+
+        max_speed = Difficulty.modified_type_speed[0];
+        speed = max_speed;
     }
 
     new void Update()

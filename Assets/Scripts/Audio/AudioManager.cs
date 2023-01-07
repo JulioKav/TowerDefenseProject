@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-    
+
     bool boonSelection = false;
 
     public float MusicVolume { get { return _musicVolume; } set { _musicVolume = Math.Clamp(value, 0f, 1f); } }
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            
+
             return;
         }
 
@@ -92,7 +92,6 @@ public class AudioManager : MonoBehaviour
             case GameState.PRE_ROUND:
                 Idle = false;
                 break;
-            case GameState.PRE_GAME:
             case GameState.PRE_ROUND_DIALOGUE:
             case GameState.ROUND_ONGOING:
                 Attack = true;
@@ -103,6 +102,11 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void Start()
+    {
+        Attack = true;
     }
 
     public void Stop(string name, float fadeSeconds)

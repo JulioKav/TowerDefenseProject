@@ -13,7 +13,7 @@ public class GameStateManager : MonoBehaviour
     public static event StateChangeEvent OnStateChange;
 
     // State property that, when set, automatically triggers the OnStateChange event
-    private GameState _state = GameState.NONE;
+    private GameState _state = GameState.PRE_GAME;
     public GameState State
     {
         get { return _state; }
@@ -24,11 +24,6 @@ public class GameStateManager : MonoBehaviour
             _state = value;
             if (OnStateChange != null && oldState != value) OnStateChange(value);
         }
-    }
-
-    void Start()
-    {
-        State = GameState.PRE_GAME;
     }
 
     public int PreRoundTimeInSeconds = 3;
@@ -91,7 +86,6 @@ public class GameStateManager : MonoBehaviour
 
 public enum GameState
 {
-    NONE,               // Before start of game, to trigger transition
     PRE_GAME,           // Start of game for dialogue
     PRE_ROUND,          // Delay before wave spawns after pressing next wave button 
     PRE_ROUND_DIALOGUE, // One-line dialogue before the start of the wave

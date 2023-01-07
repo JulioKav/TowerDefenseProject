@@ -88,7 +88,14 @@ public class Turret : MonoBehaviour
             gameObject.GetComponent<Enemies>().speed = 4;
         }
         */
-        if (closest_enemy != null && smallest_distance <= attack_range)
+        if (closest_enemy != null && smallest_distance <= attack_range && gameObject.tag == "Tower")
+        {
+            if (wall_active == false)
+                target = closest_enemy.transform;
+
+        }
+
+        else if (closest_enemy != null && smallest_distance <= Difficulty.range && gameObject.tag == "Enemy")
         {
             if (wall_active == false)
                 target = closest_enemy.transform;
@@ -144,15 +151,30 @@ public class Turret : MonoBehaviour
     // turret shooting out a bullet, instantiating the bulletprefab, bullet chases target.
     void shoot()
     {
-
-        GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
-
-
-        if (bullet != null)
+        if (gameObject.tag == "Enemy")
         {
-            bullet.Chase(target);
+            GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
+            Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+
+            if (bullet != null)
+            {
+                bullet.Chase(target);
+            }
         }
+
+        if (gameObject.tag == "Tower")
+        {
+            GameObject bulletGO = (GameObject)Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
+            BulletTurrets bullet = bulletGO.GetComponent<BulletTurrets>();
+
+
+            if (bullet != null)
+            {
+                bullet.Chase(target);
+            }
+        }
+
 
 
     }
