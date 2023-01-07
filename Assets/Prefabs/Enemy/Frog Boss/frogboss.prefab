@@ -3527,8 +3527,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546ea23b948592c4faa83501dd5f0d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  max_speed: 4
+  speed: 0.5
+  max_speed: 1
   slowed: 0
   impact_effect: {fileID: 0}
   death_effect: {fileID: 8602254247146151172, guid: b8eabfb803f725040ae0273cdb893882, type: 3}
@@ -3553,10 +3553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   healthBar: {fileID: 0}
-  attack_range: 0
-  attack_speed: 0
-  _health: 100
-  _maxHealth: 100
   Enemy: Base
   turn_speed: 5
   part_to_rotate: {fileID: 7021734723234490662}

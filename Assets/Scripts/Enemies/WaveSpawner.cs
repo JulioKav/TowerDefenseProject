@@ -92,7 +92,7 @@ public class WaveSpawner : MonoBehaviour
     // variable, and emits a RoundEndEvent.
     public IEnumerator CheckWaveComplete()
     {
-        while (currentWavePrefabs.Count > 0 && currentWave.Count > 0)
+        while (currentWavePrefabs.Count > 0 || currentWave.Count > 0)
         {
             for (int i = currentWave.Count - 1; i >= 0; i--)
                 if (currentWave[i] == null) currentWave.RemoveAt(i);
@@ -100,7 +100,7 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        if (WaveNumber == waves.Length - 1) GameStateManager.Instance.EndGame(SkillManager.Instance.finalSkillUnlocked);
+        if (WaveNumber == waves.Length) GameStateManager.Instance.EndGame(SkillManager.Instance.finalSkillUnlocked);
         else GameStateManager.Instance.EndRound();
     }
 }

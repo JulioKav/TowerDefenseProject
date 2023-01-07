@@ -1707,7 +1707,7 @@ MonoBehaviour:
   isAttacking: 0
   healthBar: {fileID: 0}
   lineRenderer: {fileID: 4542697996813084936}
-  damage: 2
+  damage: 50
   attack_speed: 1
   _health: 100
   _maxHealth: 100

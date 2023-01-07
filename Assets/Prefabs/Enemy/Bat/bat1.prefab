@@ -137,7 +137,8 @@ GameObject:
   - component: {fileID: 333583798789744679}
   - component: {fileID: 333583798789744697}
   - component: {fileID: -1861673103726557804}
-  - component: {fileID: 1350119226818472072}
+  - component: {fileID: 6054211568531687052}
+  - component: {fileID: -7174806437638001552}
   m_Layer: 0
   m_Name: bat1
   m_TagString: Enemy
@@ -265,7 +266,23 @@ MonoBehaviour:
   isBackward: 0
   target: {fileID: 0}
   healthBar: {fileID: 8527143071308619869}
---- !u!135 &1350119226818472072
+--- !u!54 &6054211568531687052
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122047463683908864}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &-7174806437638001552
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,8 +293,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.4266897
+  m_Center: {x: 0, y: -0.43, z: -0.52}
 --- !u!1 &1248714550938870263
 GameObject:
   m_ObjectHideFlags: 0

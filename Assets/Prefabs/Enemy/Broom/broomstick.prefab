@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1041724836813607623}
   - component: {fileID: 400807269271261133}
-  - component: {fileID: 2628834418187946787}
   - component: {fileID: 6862558792765552721}
   - component: {fileID: 2069193688950276387}
+  - component: {fileID: -3863951644914031124}
+  - component: {fileID: 8028193464760635809}
   m_Layer: 0
   m_Name: broomstick
   m_TagString: Enemy
@@ -59,20 +60,6 @@ MonoBehaviour:
   isBackward: 0
   target: {fileID: 0}
   healthBar: {fileID: 1810891762613472010}
---- !u!136 &2628834418187946787
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378060015930067069}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 5
-  m_Direction: 1
-  m_Center: {x: -0.5, y: 1, z: 0}
 --- !u!114 &6862558792765552721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +96,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: []
+--- !u!54 &-3863951644914031124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378060015930067069}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &8028193464760635809
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378060015930067069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8933813
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4271490370435316524
 GameObject:
   m_ObjectHideFlags: 0

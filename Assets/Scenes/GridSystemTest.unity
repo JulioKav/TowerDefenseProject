@@ -2561,65 +2561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981501827}
   m_CullTransparentMesh: 1
---- !u!1001 &1044318776
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1399149076333568803, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_Name
-      value: Level5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4979714972894228714, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 955ab6ce3c47149aea04348efe886b94, type: 3}
 --- !u!1001 &1067621788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6996,6 +6937,14 @@ PrefabInstance:
       propertyPath: pauseUI
       value: 
       objectReference: {fileID: 1215095427}
+    - target: {fileID: 2281649222398374607, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+      propertyPath: numStartingTowers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281649222529604833, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+      propertyPath: numStartingTowers
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2281649222743998904, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7096,6 +7045,10 @@ PrefabInstance:
       propertyPath: mageSpawner
       value: 
       objectReference: {fileID: 171014296}
+    - target: {fileID: 9121907900005772748, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
+      propertyPath: numStartingTowers
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3085904127634191400, guid: 78c2448b3be4f46638e1cea8be7977f8, type: 3}
@@ -7172,7 +7125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 301431949555825123, guid: 6d39f7657c1d8b54cbc6356900ed14ef, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 301431949555825123, guid: 6d39f7657c1d8b54cbc6356900ed14ef, type: 3}
       propertyPath: sounds.Array.size
