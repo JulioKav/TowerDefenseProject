@@ -19,7 +19,7 @@ public class Enemies : MonoBehaviour
     public GameObject impact_effect;
     public GameObject death_effect;
 
-    public static float mech_airborne_time = 2;
+    public static float mech_airborne_time = 2f;
     public static float mech_explosion_radius = 5f;
     public static float mech_damage = 50f;
 
@@ -209,7 +209,7 @@ public class Enemies : MonoBehaviour
         {
             if (Enemy.transform.position.y >= 2)
             {
-                Enemy.transform.position = Enemy.transform.position - new Vector3(0, 2, 0);
+                Enemy.transform.position = Enemy.transform.position - new Vector3(0, 2f, 0);
 
                 Enemy.tag = "Enemy";
 
@@ -227,6 +227,7 @@ public class Enemies : MonoBehaviour
 
                 if (Enemy.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
+                    Enemy.transform.position = Enemy.transform.position - new Vector3(0, 0.5f, 0);
                     GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
                     Destroy(effect_instance, 5f);
                     StartCoroutine(ImpactDMGAfterTime(0.2f));

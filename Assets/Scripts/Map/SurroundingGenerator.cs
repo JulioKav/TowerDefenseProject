@@ -22,9 +22,10 @@ public class SurroundingGenerator : MonoBehaviour
 
     void GenerateMapBorder()
     {
-        for (int x = -21; x <= 21; x++)
-            for (int y = -21; y <= 21; y++)
+        for (int x = -22; x <= 22; x++)
+            for (int y = -22; y <= 22; y++)
             {
+                if ((x == -1 && y == -1) || (x == 1 && y == 1) || (x == 1 && y == -1) || (x == -1 && y == 1)) continue;
                 // If at any given cell there is an object (the map), check the four surrounding
                 // cells. If any of them don't have an object, it is one of the bordering cells
                 // of the map. In that case spawn a tree.
@@ -52,8 +53,11 @@ public class SurroundingGenerator : MonoBehaviour
     {
         for (int x = -22; x <= 22; x++)
             for (int y = -22; y <= 22; y++)
+            {
+                if ((x == -1 && y == -1) || (x == 1 && y == 1) || (x == 1 && y == -1) || (x == -1 && y == 1)) continue;
                 if (!Physics.Raycast(new Vector3(x, 10, y), Vector3.down, 20))
                     Instantiate(surroundingCube, new Vector3(x, 0, y), Quaternion.identity, transform);
+            }
 
         for (int x = -50; x <= 50; x++)
             for (int y = -50; y <= 50; y++)
