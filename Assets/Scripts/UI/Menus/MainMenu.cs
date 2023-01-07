@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
 
     public void StartGame()
     {
@@ -20,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void backToMain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2); //Intro is buildIndex - 1
     }
 
     public void level1()
