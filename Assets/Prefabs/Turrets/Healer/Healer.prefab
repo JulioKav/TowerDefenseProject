@@ -863,6 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rescaleUI: 1
 --- !u!1 &6691677720620747947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f3d20e4ad54c34db634d8b8cd1cfac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal_amount: 10
+  heal_amount: 100
   heal_range: 2
   heal_speed: 1
 --- !u!114 &8381060649876835432
@@ -1021,8 +1022,8 @@ MonoBehaviour:
   healthBar: {fileID: 8500099684777976354}
   attack_range: 0
   attack_speed: 1
-  _health: 100
-  _maxHealth: 100
+  _health: 1400
+  _maxHealth: 1400
   Enemy: Enemy
   turn_speed: 5
   bulletprefab: {fileID: 0}

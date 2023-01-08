@@ -79,7 +79,7 @@ public class Boon : MonoBehaviour
             else break;
         }
         // Add remaining skill points to boon
-        if (skillPointValue > 0) boon[BoonManager.spId] = new TowerInfo("Skill Points", skillPointValue);
+        if (skillPointValue > 0) boon[BoonManager.spId] = new TowerInfo("Skill Points", (int)(skillPointValue / 2));
         UpdateText();
     }
 

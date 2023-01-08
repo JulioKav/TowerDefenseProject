@@ -1,25 +1,20 @@
 {
   "startingValue": 100,
-  "valueIncrease": 25,
+  "valueIncrease": 10,
   "towers": [
     {
       "name": "Cannon",
       "id": "cannon",
-      "value": 50
+      "value": 100
     },
     {
       "name": "Healer",
       "id": "healer",
-      "value": 50
+      "value": 70
     },
     {
       "name": "Archer",
       "id": "archer",
-      "value": 50
-    },
-    {
-      "name": "Shield",
-      "id": "shield",
       "value": 50
     }
   ]

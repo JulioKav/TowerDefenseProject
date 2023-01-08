@@ -130,9 +130,9 @@ MonoBehaviour:
   isAttacking: 0
   healthBar: {fileID: 7770989253711730085}
   attack_range: 3.5
-  attack_speed: 2
-  _health: 300
-  _maxHealth: 300
+  attack_speed: 2.5
+  _health: 2000
+  _maxHealth: 2000
   Enemy: Enemy
   turn_speed: 5
   bulletprefab: {fileID: 7024553956718005705, guid: 03ae0fadb73617140b6c86c1b2a0881e, type: 3}

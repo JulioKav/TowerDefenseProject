@@ -618,10 +618,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   healthBar: {fileID: 1774421796}
-  attack_range: 7
-  attack_speed: 1
-  _health: 500
-  _maxHealth: 500
+  attack_range: 5
+  attack_speed: 0.5
+  _health: 3500
+  _maxHealth: 3500
   Enemy: Enemy
   turn_speed: 10
   bulletprefab: {fileID: 8875824785813524639, guid: 94d53962e702399469e3eddd6ca92676, type: 3}

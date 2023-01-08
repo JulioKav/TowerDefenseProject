@@ -14,7 +14,7 @@ public class BulletTurrets : MonoBehaviour
 
     public GameObject impact_effect;
 
-    private float damage = 50;
+    private float damage = 75;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)

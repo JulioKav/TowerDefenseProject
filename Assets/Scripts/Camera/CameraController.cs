@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float panSpeed = 50f;
+    public float panSpeed = 4f;
     public float panBorderThickness = 10f;
 
     bool cameraMovableByPlayer = false;

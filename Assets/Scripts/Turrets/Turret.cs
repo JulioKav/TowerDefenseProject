@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -213,9 +214,26 @@ public class Turret : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnEnable()
+    {
+        GameStateManager.OnStateChange += StateChangeHandler;
+    }
 
+    void OnDisable()
+    {
+        GameStateManager.OnStateChange -= StateChangeHandler;
+    }
 
-
+    private void StateChangeHandler(GameState newState)
+    {
+        switch (newState)
+        {
+            case GameState.IDLE:
+                _health = _maxHealth;
+                break;
+            default: break;
+        }
+    }
 }
 
 
