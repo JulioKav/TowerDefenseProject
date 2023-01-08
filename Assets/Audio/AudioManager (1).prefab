@@ -46,10 +46,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Impact
-    clip: {fileID: 8300000, guid: 4d1fbaa5d5c578d47b10d59e242aa39d, type: 3}
+    clip: {fileID: 8300000, guid: 060af7f2d421a48dfb490645ba53c62d, type: 3}
     group: {fileID: -6043797564930064841, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
     volume: 1
-    pitch: 0.83
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: cfeb98ee5b6884a86ba4729c0b34ab36, type: 3}
+    group: {fileID: -6043797564930064841, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Achievement
+    clip: {fileID: 8300000, guid: ee5a09a09a02b4c01a3ac27b0525f7f2, type: 3}
+    group: {fileID: -6043797564930064841, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Boon
+    clip: {fileID: 8300000, guid: 3332b1ce12d2142cfad83098e2b12f79, type: 3}
+    group: {fileID: -6043797564930064841, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Idle

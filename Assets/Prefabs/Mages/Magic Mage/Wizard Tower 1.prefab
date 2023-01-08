@@ -48,11 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad297b56f96af874a92801472596607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starDisplay: {fileID: 0}
+  mageClass: 0
   attack_range: 100
   attack_speed: 0.3
-  _health: 100
-  _maxHealth: 100
   Enemy: Enemy
   turn_speed: 5
   bulletprefab: {fileID: 8629515758716672970, guid: 572072f8d126fb448973a78cfa1c98c2, type: 3}

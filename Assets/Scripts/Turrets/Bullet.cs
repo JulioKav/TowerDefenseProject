@@ -58,6 +58,7 @@ public class Bullet : MonoBehaviour
     void hit_target()
     {
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+        AudioManager.instance.PlaySoundEffect("Impact");
 
         Destroy(effect_instance, 5f);
 
@@ -70,12 +71,10 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                FindObjectOfType<AudioManager>().Play("Impact");
                 Damage_enemy(target);
             }
             if (target.tag == "Tower")
             {
-                FindObjectOfType<AudioManager>().Play("Impact");
                 Damage_tower(target);
             }
         }

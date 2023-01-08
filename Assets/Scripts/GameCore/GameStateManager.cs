@@ -95,6 +95,7 @@ public class GameStateManager : MonoBehaviour
 
 public enum GameState
 {
+    NONE,               // No state
     PRE_GAME,           // Start of game for dialogue
     PRE_ROUND,          // Delay before wave spawns after pressing next wave button 
     PRE_ROUND_DIALOGUE, // [Optional] One-line dialogue before the start of the wave

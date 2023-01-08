@@ -3291,6 +3291,7 @@ GameObject:
   - component: {fileID: 1683534320}
   - component: {fileID: 1683534319}
   - component: {fileID: 1683534318}
+  - component: {fileID: 1683534321}
   m_Layer: 5
   m_Name: AchievePopUp (2)
   m_TagString: Untagged
@@ -3417,6 +3418,18 @@ RectTransform:
   m_AnchoredPosition: {x: -2.5, y: 44}
   m_SizeDelta: {x: 801.8235, y: 59.7068}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1683534321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683534317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f616ad672774bff94c653173266418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1683938638
 GameObject:
   m_ObjectHideFlags: 0
