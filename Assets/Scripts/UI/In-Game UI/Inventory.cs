@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public static Inventory Instance { get; private set; }
+    void Awake() { if (!Instance) Instance = this; }
+
     // Currently selected tower and button
     GameObject selectedTower;
     InventoryButton selectedButton;
@@ -30,7 +33,8 @@ public class Inventory : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Ray can only collide with terrain
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("PlacableTerrain")))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("PlacableTerrain")) &&
+                hit.transform.GetComponent<BuildingPlacable>().CanPlaceTurret())
             {
                 ghostTowerMat.color = new Color(40 / 255f, 40 / 255f, 40 / 255f, 185 / 255f);
 
@@ -101,5 +105,17 @@ public class Inventory : MonoBehaviour
         selectedButton.inventoryFrame.SetActive(false);
         selectedButton = null;
         Destroy(selectedTower);
+    }
+
+    public void ReturnToInventory(string name)
+    {
+        foreach (Transform child in transform)
+        {
+            if (name.StartsWith(child.name))
+            {
+                child.GetComponent<InventoryButton>().AddTowers(1);
+                return;
+            }
+        }
     }
 }

@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
                 break;
             case GameState.PATH_GENERATION:
                 PathGenerator.Instance.ActivateSpawnPoint();
-                UIStateManager.Instance.DisableDialogue();
+                UIStateManager.Instance.GeneratingPath();
                 break;
             default:
                 break;

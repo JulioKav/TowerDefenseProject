@@ -19,5 +19,6 @@ public class AlwaysFaceCamera : MonoBehaviour
     void Update()
     {
         transform.LookAt(mainCam, mainCam.up);
+        transform.Rotate(0, 180, 0);
     }
 }

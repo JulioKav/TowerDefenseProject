@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletTurrets : MonoBehaviour { 
+public class BulletTurrets : MonoBehaviour
+{
 
 
     public float speed = 50f;
@@ -56,7 +57,6 @@ public class BulletTurrets : MonoBehaviour {
     // on hit check if there is explosion radius or not, then check type of enemy and return a form of take damage or explode
     void hit_target()
     {
-        print(damage);
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
 
         Destroy(effect_instance, 5f);
