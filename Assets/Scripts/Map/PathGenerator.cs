@@ -13,7 +13,7 @@ public class PathGenerator : MonoBehaviour
 
     [HideInInspector] public List<Transform> activeSpawnPoints;
     [HideInInspector] public Transform startingSpawnPoint = null;
-    Queue<Transform> inactiveSpawnPoints;
+    public Queue<Transform> inactiveSpawnPoints;
     public bool allSpawnPointsActive() { return inactiveSpawnPoints.Count == 0; }
 
     // Specifies how much the path stays on route
@@ -25,6 +25,8 @@ public class PathGenerator : MonoBehaviour
     Queue<GameObject> TilesToDestroy;
 
     Vector3 direction;
+
+    Transform currentSpawnPoint = null;
 
     void GeneratePath(Vector3 _from, Vector3 _to)
     {
@@ -88,8 +90,13 @@ public class PathGenerator : MonoBehaviour
         while (TilesToDestroy.Count > 0)
         {
             GameObject grass = TilesToDestroy.Dequeue();
+            if (currentSpawnPoint != null)
+            {
+                currentSpawnPoint.GetComponent<PortalManager>().SetPathDirection(grass.transform.position);
+                currentSpawnPoint = null;
+            }
             if (grass == null) continue; // Since same gameobject can enter the queue multiple time
-            GameObject road = Instantiate(roadPrefab, grass.transform.position, Quaternion.identity);
+            GameObject road = Instantiate(roadPrefab, grass.transform.position, Quaternion.identity, transform);
             road.transform.position += 0.5f * Vector3.down;
             Destroy(grass);
             yield return new WaitForSeconds(0.025f);
@@ -129,6 +136,7 @@ public class PathGenerator : MonoBehaviour
     {
         if (inactiveSpawnPoints.Count == 0) return;
         Transform spawnPoint = inactiveSpawnPoints.Dequeue();
+        currentSpawnPoint = spawnPoint;
         if (startingSpawnPoint == null) startingSpawnPoint = spawnPoint;
         spawnPoint.GetComponent<PortalManager>().ActivatePortal();
         spawnPoint.GetComponent<MeshRenderer>().enabled = false;

@@ -17,10 +17,16 @@ public class PortalManager : MonoBehaviour
     public Texture2D[] activePortalFrames;
     int framesPerSecond = 10;
 
+    Transform portal;
+
+    Vector3 lookAt;
+
     // Start is called before the first frame update
     void Start()
     {
         pointLight.enabled = false;
+        portal = transform.GetChild(0);
+        FaceCamera();
     }
 
     // Update is called once per frame
@@ -37,5 +43,33 @@ public class PortalManager : MonoBehaviour
     {
         portalActive = true;
         pointLight.enabled = true;
+    }
+
+    void FaceCamera()
+    {
+        var go = Instantiate(front, transform.position, Quaternion.identity, transform);
+        go.transform.position += new Vector3(1, 0, 1);
+        portal.LookAt(go.transform, Vector3.up);
+        Destroy(go);
+    }
+
+    IEnumerator TurnToPath()
+    {
+        var go = Instantiate(new GameObject(), lookAt, Quaternion.identity);
+        go.transform.LookAt(portal);
+        while (true)
+        {
+            Vector3 rot = Vector3.RotateTowards(portal.rotation.eulerAngles, go.transform.rotation.eulerAngles, Mathf.PI / 15f, 10);
+            if (portal.rotation.eulerAngles == rot) break;
+            portal.rotation = Quaternion.Euler(rot);
+            yield return new WaitForSeconds(0.1f);
+        }
+        Destroy(go);
+    }
+
+    public void SetPathDirection(Vector3 pos)
+    {
+        lookAt = pos;
+        StartCoroutine(TurnToPath());
     }
 }

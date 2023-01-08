@@ -52,7 +52,7 @@ public class InventoryButton : MonoBehaviour
         {
             case GameState.PRE_ROUND:
             case GameState.IDLE:
-                CheckInteractability();
+                CheckInteractability(newState);
                 break;
             default:
                 break;
@@ -69,9 +69,10 @@ public class InventoryButton : MonoBehaviour
         if (inventoryText) inventoryText.text = "" + NumTowers;
     }
 
-    void CheckInteractability()
+    void CheckInteractability(GameState state = GameState.NONE)
     {
-        GetComponent<Button>().interactable = GameStateManager.Instance.State == GameState.IDLE && NumTowers > 0;
+        if (state == GameState.NONE) state = GameStateManager.Instance.State;
+        GetComponent<Button>().interactable = state == GameState.IDLE && NumTowers > 0;
     }
 
 }

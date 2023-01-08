@@ -1176,6 +1176,7 @@ GameObject:
   - component: {fileID: 193514709073376050}
   - component: {fileID: 8287518088395765567}
   - component: {fileID: 505650447954922364}
+  - component: {fileID: 2446678604006799080}
   m_Layer: 5
   m_Name: Red HP
   m_TagString: Untagged
@@ -1191,8 +1192,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6981217737795523428}
   m_LocalRotation: {x: 0.14644742, y: -0.85355264, z: 0.35355318, w: 0.3535552}
-  m_LocalPosition: {x: 0, y: 0, z: -0.066}
-  m_LocalScale: {x: 0.09209878, y: 0.09209879, z: 0.09209878}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.18419756, y: 0.1841976, z: 0.1841976}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6782386423091815851}
@@ -1201,7 +1202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 45, y: -135, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 3.63}
   m_SizeDelta: {x: 31.969, y: 15.7757}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &193514709073376050
@@ -1266,6 +1267,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2446678604006799080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981217737795523428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rescaleUI: 0
 --- !u!1 &7313161532267908660
 GameObject:
   m_ObjectHideFlags: 0

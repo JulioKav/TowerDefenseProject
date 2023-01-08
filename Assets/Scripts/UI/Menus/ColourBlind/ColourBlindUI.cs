@@ -19,7 +19,14 @@ public class ColourBlindUI : MonoBehaviour
         if (PlayerPrefs.GetInt("ToggleBool") == 1)
         {
 
-            image.material.color = blue;
+            try
+            {
+                image.material.color = blue;
+            }
+            catch
+            {
+
+            }
         }
         else
         {

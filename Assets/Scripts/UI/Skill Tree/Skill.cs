@@ -113,7 +113,7 @@ public class Skill : MonoBehaviour
         {
             case GameState.PRE_ROUND:
             case GameState.IDLE:
-                UpdateButtonAppearance();
+                UpdateButtonAppearance(newState);
                 break;
             default:
                 break;
@@ -148,12 +148,13 @@ public class Skill : MonoBehaviour
         if (completesBranch) FinalSkill.Instance.CheckUnlockable();
     }
 
-    void UpdateButtonAppearance()
+    void UpdateButtonAppearance(GameState state = GameState.NONE)
     {
+        if (state == GameState.NONE) state = GameStateManager.Instance.State;
         // Players can only update skills when no wave is ongoing
-        button.interactable = GameStateManager.Instance.State == GameState.IDLE;
+        button.interactable = state == GameState.IDLE;
         // Disable buttons based on state of the button, to only show the next available button in each branch
-        enabled = Unlockable && !Unlocked;
+        bool enabled = Unlockable && !Unlocked;
         GetComponent<Image>().enabled = enabled;
         // Match text enabled state to button, but keep text if its the final skill of the branch
         // and its unlocked, since the button disappears in that case, and we want to keep the text there

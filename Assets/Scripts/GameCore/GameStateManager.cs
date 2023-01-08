@@ -21,8 +21,8 @@ public class GameStateManager : MonoBehaviour
         {
             Debug.Log("Game State: " + _state + " -> " + value);
             var oldState = _state;
-            _state = value;
             if (OnStateChange != null && oldState != value) OnStateChange(value);
+            _state = value;
         }
     }
 
@@ -31,10 +31,20 @@ public class GameStateManager : MonoBehaviour
 
     int newSpawnPointEveryXWaves = 1;
 
+    void Start()
+    {
+        InitPathGenerationFrequency();
+    }
+
     public void StartRound()
     {
         if (State != GameState.IDLE) return;
         StartPreRound();
+    }
+
+    void InitPathGenerationFrequency()
+    {
+        newSpawnPointEveryXWaves = (int)(20 / PathGenerator.Instance.inactiveSpawnPoints.Count);
     }
 
     public void EndDialogue()
@@ -95,6 +105,7 @@ public class GameStateManager : MonoBehaviour
 
 public enum GameState
 {
+    NONE,               // No state
     PRE_GAME,           // Start of game for dialogue
     PRE_ROUND,          // Delay before wave spawns after pressing next wave button 
     PRE_ROUND_DIALOGUE, // [Optional] One-line dialogue before the start of the wave

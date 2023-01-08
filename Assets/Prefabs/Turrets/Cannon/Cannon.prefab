@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 272579257}
   - component: {fileID: 272579256}
   - component: {fileID: 272579255}
+  - component: {fileID: 5147021307422282455}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5147021307422282455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272579253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rescaleUI: 0
 --- !u!1 &1409964585
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,11 +616,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 1774421796}
-  attack_range: 7
-  attack_speed: 1
-  _health: 500
-  _maxHealth: 500
+  attack_range: 5
+  attack_speed: 0.5
+  _health: 3500
+  _maxHealth: 3500
   Enemy: Enemy
   turn_speed: 10
   bulletprefab: {fileID: 8875824785813524639, guid: 94d53962e702399469e3eddd6ca92676, type: 3}

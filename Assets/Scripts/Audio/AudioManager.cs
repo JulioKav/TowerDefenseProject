@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+
     public Sound[] sounds;
     public static AudioManager instance;
 
@@ -38,6 +39,14 @@ public class AudioManager : MonoBehaviour
             if (_idle) PlayAfterSeconds("Idle", 2.5f);
             else Stop("Idle", GameStateManager.Instance.PreRoundTimeInSeconds + 1);
         }
+    }
+
+    public void PlaySoundEffect(string name)
+    {
+        Sound s = FindSound(name);
+        if (s == null) return;
+        s.source.Stop();
+        s.source.Play();
     }
 
     // Start is called before the first frame update
@@ -109,25 +118,24 @@ public class AudioManager : MonoBehaviour
         Attack = true;
     }
 
-    public void Stop(string name, float fadeSeconds)
+    Sound FindSound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("sound" + name + "not found!");
-            return;
-        }
+        if (s == null) Debug.LogWarning("sound" + name + "not found!");
+        return s;
+    }
+
+    public void Stop(string name, float fadeSeconds)
+    {
+        Sound s = FindSound(name);
+        if (s == null) return;
         StartCoroutine(FadeSoundInSeconds(s, fadeSeconds));
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("sound" + name + "not found!");
-            return;
-        }
+        Sound s = FindSound(name);
+        if (s == null) return;
         s.source.Play();
     }
 

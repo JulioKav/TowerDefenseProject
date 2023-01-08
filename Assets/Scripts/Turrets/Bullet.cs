@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +59,7 @@ public class Bullet : MonoBehaviour
     void hit_target()
     {
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+        AudioManager.instance.PlaySoundEffect("Impact");
 
         Destroy(effect_instance, 5f);
 
@@ -70,12 +72,10 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                FindObjectOfType<AudioManager>().Play("Impact");
                 Damage_enemy(target);
             }
             if (target.tag == "Tower")
             {
-                FindObjectOfType<AudioManager>().Play("Impact");
                 Damage_tower(target);
             }
         }
@@ -99,15 +99,29 @@ public class Bullet : MonoBehaviour
 
             }
 
-
+            //if (collider.tag == "Shield")
+            //{
+            //    Damage_shield(collider.transform);
+            //}
 
             if (collider.tag == "Tower")
             {
                 Damage_tower(collider.transform);
             }
         }
-
     }
+
+    // private void Damage_shield(Transform Shield)
+    //{
+    //    Shield shield_component = Shield.GetComponent<Shield>();
+    //    Debug.Log("stuff");
+    //    if (shield_component != null)
+    //    {
+    //        
+    //        shield_component.TakeDamage(damage);
+    //    }
+    //}
+
     // updates enemy hp with dmg
     void Damage_enemy(Transform Enemy)
     {

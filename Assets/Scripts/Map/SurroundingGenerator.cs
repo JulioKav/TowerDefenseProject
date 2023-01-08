@@ -51,8 +51,8 @@ public class SurroundingGenerator : MonoBehaviour
 
     void GenerateSurrounding()
     {
-        for (int x = -22; x <= 22; x++)
-            for (int y = -22; y <= 22; y++)
+        for (int x = -23; x <= 23; x++)
+            for (int y = -23; y <= 23; y++)
             {
                 if ((x == -1 && y == -1) || (x == 1 && y == 1) || (x == 1 && y == -1) || (x == -1 && y == 1)) continue;
                 if (!Physics.Raycast(new Vector3(x, 10, y), Vector3.down, 20))
