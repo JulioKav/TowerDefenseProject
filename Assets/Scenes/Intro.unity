@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 86078230}
   - component: {fileID: 86078229}
   - component: {fileID: 86078232}
+  - component: {fileID: 86078233}
   m_Layer: 5
   m_Name: 1stSentence
   m_TagString: Untagged
@@ -266,7 +267,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -374,6 +375,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &86078233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86078228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 200
+            m_FloatArgument: 6
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &168211828
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +430,7 @@ GameObject:
   - component: {fileID: 168211831}
   - component: {fileID: 168211830}
   - component: {fileID: 168211829}
+  - component: {fileID: 168211833}
   m_Layer: 5
   m_Name: 5thSentence
   m_TagString: Untagged
@@ -442,7 +487,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -530,6 +575,49 @@ RectTransform:
   m_AnchoredPosition: {x: -13.0954, y: -230.9816}
   m_SizeDelta: {x: 700, y: 120.4122}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &168211833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168211828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 30
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &199452132
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +630,7 @@ GameObject:
   - component: {fileID: 199452134}
   - component: {fileID: 199452133}
   - component: {fileID: 199452136}
+  - component: {fileID: 199452137}
   m_Layer: 5
   m_Name: 3rdSentence
   m_TagString: Untagged
@@ -578,7 +667,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -686,6 +775,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &199452137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199452132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 17.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &268583696
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +830,7 @@ GameObject:
   - component: {fileID: 268583699}
   - component: {fileID: 268583698}
   - component: {fileID: 268583697}
+  - component: {fileID: 268583701}
   m_Layer: 5
   m_Name: 4thSentence
   m_TagString: Untagged
@@ -755,7 +888,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -843,6 +976,49 @@ RectTransform:
   m_AnchoredPosition: {x: -13.0954, y: -230.9816}
   m_SizeDelta: {x: 700, y: 120.4122}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &268583701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268583696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 24.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &433302610
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1125,7 @@ GameObject:
   - component: {fileID: 880242981}
   - component: {fileID: 880242980}
   - component: {fileID: 880242983}
+  - component: {fileID: 880242984}
   m_Layer: 5
   m_Name: 2ndSentence
   m_TagString: Untagged
@@ -985,7 +1162,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1093,6 +1270,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &880242984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880242979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 02a869ee34df44f43a5641e028902f1a, type: 2}
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 11.33
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &947767287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 947767289}
   - component: {fileID: 947767288}
+  - component: {fileID: 947767290}
   m_Layer: 0
   m_Name: NextSceneLoader
   m_TagString: Untagged
@@ -1137,6 +1361,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &947767290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947767287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 48.25
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &954937194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1594,7 @@ GameObject:
   - component: {fileID: 1233656274}
   - component: {fileID: 1233656273}
   - component: {fileID: 1233656272}
+  - component: {fileID: 1233656276}
   m_Layer: 5
   m_Name: 6thSentence
   m_TagString: Untagged
@@ -1384,7 +1652,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1472,6 +1740,49 @@ RectTransform:
   m_AnchoredPosition: {x: -13.0954, y: -230.9816}
   m_SizeDelta: {x: 700, y: 120.4122}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1233656276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233656271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 36.66667
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1255468466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2382,7 @@ GameObject:
   - component: {fileID: 2006665728}
   - component: {fileID: 2006665727}
   - component: {fileID: 2006665726}
+  - component: {fileID: 2006665729}
   m_Layer: 5
   m_Name: 7thSentence
   m_TagString: Untagged
@@ -2148,7 +2460,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 10551216
+    rgba: 4288741296
   m_fontColor: {r: 0.69139373, g: 1, b: 0.62830186, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -2216,6 +2528,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006665724}
   m_CullTransparentMesh: 1
+--- !u!114 &2006665729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006665724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 97df3b61f5536664a80235d1a87e6160, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetDirector
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2068583360}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Playables.PlayableDirector,
+              UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1820838133}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: GetSkipTime
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 43.66667
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2068583359
 GameObject:
   m_ObjectHideFlags: 0
