@@ -846,6 +846,7 @@ GameObject:
   - component: {fileID: 6113920450166316413}
   - component: {fileID: 6113920450166316412}
   - component: {fileID: 6113920450166316415}
+  - component: {fileID: 4223507125338642462}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -861,7 +862,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6113920450166316414}
   m_LocalRotation: {x: -0.01589983, y: -0.9948766, z: 0.026481325, w: 0.096262455}
-  m_LocalPosition: {x: 0, y: 0, z: -0.67000026}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.03, y: 0.030000001, z: 0.030000001}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -871,7 +872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 2.845, y: -168.894, z: 2.108}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.11, y: 4.18}
+  m_AnchoredPosition: {x: 0, y: 4.18}
   m_SizeDelta: {x: 31.969, y: 15.7757}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6113920450166316413
@@ -936,6 +937,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4223507125338642462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113920450166316414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6113920451268384961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,10 +1205,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7162681316764651314}
-  - component: {fileID: 1041889399155966589}
   - component: {fileID: 8794236229752259805}
   - component: {fileID: 3176215299799949274}
   - component: {fileID: 264821375675551463}
+  - component: {fileID: 2845521995690511774}
+  - component: {fileID: -7780333857264326823}
   m_Layer: 0
   m_Name: cauldron
   m_TagString: Enemy
@@ -1211,7 +1225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506695847441454472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 0.2639648, y: 0.2639648, z: 0.2639648}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1230,19 +1244,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1041889399155966589
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506695847441454472}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8794236229752259805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,13 +1259,10 @@ MonoBehaviour:
   speed: 2
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 20
   impact_effect: {fileID: 9175318103248289093, guid: 7c2ea24c30fea8f4992f39ca90052ee9, type: 3}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 4737799981558667476}
 --- !u!114 &3176215299799949274
 MonoBehaviour:
@@ -1278,6 +1276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 5
   attack_speed: 1
@@ -1301,4 +1300,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Magic Enemy
+  - Mechanical Enemy
+--- !u!54 &2845521995690511774
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506695847441454472}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &-7780333857264326823
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7506695847441454472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.92815405
+  m_Center: {x: 0, y: 1.09, z: 0}

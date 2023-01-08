@@ -45,7 +45,8 @@ GameObject:
   - component: {fileID: 163843019179005360}
   - component: {fileID: 163843019179005361}
   - component: {fileID: 163843019179005362}
-  - component: {fileID: 163843019179005363}
+  - component: {fileID: -6367206061585092355}
+  - component: {fileID: -7365329579382504770}
   m_Layer: 0
   m_Name: spider
   m_TagString: Enemy
@@ -61,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163843019179005372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.039048, y: 0.19838, z: -4.382}
+  m_LocalPosition: {x: -0.039048, y: 0.25, z: -4.382}
   m_LocalScale: {x: 0.10888337, y: 0.10888337, z: 0.10888337}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -104,7 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01082fc178f46441a5c0c85867c7b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: []
+  tags:
+  - Physical Enemy
 --- !u!114 &163843019179005361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 3
   attack_speed: 1
@@ -142,15 +145,28 @@ MonoBehaviour:
   speed: 4
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 1678928817683523203}
---- !u!135 &163843019179005363
+--- !u!54 &-6367206061585092355
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163843019179005372}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &-7365329579382504770
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,8 +177,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.32
+  m_Center: {x: 0, y: 0.68, z: 0}
 --- !u!1 &757229303137301629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1176,7 @@ GameObject:
   - component: {fileID: 193514709073376050}
   - component: {fileID: 8287518088395765567}
   - component: {fileID: 505650447954922364}
+  - component: {fileID: 2446678604006799080}
   m_Layer: 5
   m_Name: Red HP
   m_TagString: Untagged
@@ -1175,7 +1192,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6981217737795523428}
   m_LocalRotation: {x: 0.14644742, y: -0.85355264, z: 0.35355318, w: 0.3535552}
-  m_LocalPosition: {x: 0, y: 0, z: -0.066}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.09209878, y: 0.09209879, z: 0.09209878}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1250,6 +1267,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2446678604006799080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981217737795523428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7313161532267908660
 GameObject:
   m_ObjectHideFlags: 0

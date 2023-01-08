@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+
     public Sound[] sounds;
     public static AudioManager instance;
 
@@ -13,6 +14,40 @@ public class AudioManager : MonoBehaviour
 
     public float MusicVolume { get { return _musicVolume; } set { _musicVolume = Math.Clamp(value, 0f, 1f); } }
     private float _musicVolume = 1f;
+
+    private bool _attack = false;
+    public bool Attack
+    {
+        get { return _attack; }
+        set
+        {
+            if (_attack && _attack == value) return;
+            _attack = value;
+            if (_attack) Play("WaveOngoing");
+            else Stop("WaveOngoing", GameStateManager.Instance.PostRoundTimeInSeconds);
+        }
+    }
+
+    private bool _idle = false;
+    public bool Idle
+    {
+        get { return _idle; }
+        set
+        {
+            if (_idle && _idle == value) return;
+            _idle = value;
+            if (_idle) PlayAfterSeconds("Idle", 2.5f);
+            else Stop("Idle", GameStateManager.Instance.PreRoundTimeInSeconds + 1);
+        }
+    }
+
+    public void PlaySoundEffect(string name)
+    {
+        Sound s = FindSound(name);
+        if (s == null) return;
+        s.source.Stop();
+        s.source.Play();
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -23,11 +58,12 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+
             return;
         }
 
-
+        DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -45,11 +81,6 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        PlayAfterSeconds("Idle", 3);
-    }
-
     void OnEnable()
     {
         GameStateManager.OnStateChange += GameStateChangeHandler;
@@ -65,41 +96,46 @@ public class AudioManager : MonoBehaviour
         switch (newState)
         {
             case GameState.IDLE:
-                PlayAfterSeconds("Idle", 3);
+                Idle = true;
                 break;
             case GameState.PRE_ROUND:
-                Stop("Idle", GameStateManager.Instance.PreRoundTimeInSeconds + 1);
+                Idle = false;
                 break;
+            case GameState.PRE_ROUND_DIALOGUE:
             case GameState.ROUND_ONGOING:
-                Play("WaveOngoing");
+                Attack = true;
                 break;
             case GameState.POST_ROUND:
-                Stop("WaveOngoing", GameStateManager.Instance.PostRoundTimeInSeconds);
+                Attack = false;
                 break;
             default:
                 break;
         }
     }
 
-    public void Stop(string name, float fadeSeconds)
+    void Start()
+    {
+        Attack = true;
+    }
+
+    Sound FindSound(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("sound" + name + "not found!");
-            return;
-        }
+        if (s == null) Debug.LogWarning("sound" + name + "not found!");
+        return s;
+    }
+
+    public void Stop(string name, float fadeSeconds)
+    {
+        Sound s = FindSound(name);
+        if (s == null) return;
         StartCoroutine(FadeSoundInSeconds(s, fadeSeconds));
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("sound" + name + "not found!");
-            return;
-        }
+        Sound s = FindSound(name);
+        if (s == null) return;
         s.source.Play();
     }
 

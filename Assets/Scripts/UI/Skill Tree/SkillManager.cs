@@ -18,10 +18,12 @@ public class SkillManager : MonoBehaviour
 
     public MageSpawner mageSpawner;
 
+    public bool finalSkillUnlocked { get; private set; } = false;
+
     public int startingSkillPoints = 50;
     public int skillPoints { get; private set; }
 
-    [HideInInspector] public bool[] branchCompleted;
+    [HideInInspector] public int[] branchCompleted;
 
     void Awake()
     {
@@ -34,7 +36,8 @@ public class SkillManager : MonoBehaviour
     {
         skillPoints = startingSkillPoints;
         unlockOrder = new LinkedList<Skill>();
-        branchCompleted = new bool[] { false, false, false, false };
+        branchCompleted = new int[] { 0, 0, 0, 0 };
+        finalSkillUnlocked = false;
     }
 
     void InitMageClasses()
@@ -56,11 +59,11 @@ public class SkillManager : MonoBehaviour
         {
             skillPoints -= skill.cost;
             unlockOrder.AddLast(skill);
-            if (skill.completesBranch) branchCompleted[(int)skill.mageClass] = true;
+            if (skill.completesBranch) branchCompleted[(int)skill.mageClass]++;
             // Broadcast Event
             if (OnChangeSkill != null) OnChangeSkill(skill.mageClass, skill.gameObject.name, true);
             // Check for Game End
-            if (skill is FinalSkill) GameStateManager.Instance.EndGame(true);
+            if (skill is FinalSkill) finalSkillUnlocked = true;
             return true;
         }
         return false;
@@ -86,10 +89,11 @@ public class SkillManager : MonoBehaviour
                 this.skillPoints -= skillPoints;
                 // Lock the skill
                 if (lastUnlocked.isFirstSkill) mageSpawner.DespawnMage(lastUnlocked.mageClass);
-                if (lastUnlocked.completesBranch) branchCompleted[(int)lastUnlocked.mageClass] = false;
+                if (lastUnlocked.completesBranch) branchCompleted[(int)lastUnlocked.mageClass]--;
                 lastUnlocked.LockSkill();
                 if (OnChangeSkill != null) OnChangeSkill(lastUnlocked.mageClass, lastUnlocked.gameObject.name, false);
                 unlockOrder.RemoveLast();
+                finalSkillUnlocked = false;
             }
             else
             // Lose the game

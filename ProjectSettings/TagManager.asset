@@ -16,7 +16,11 @@ TagManager:
   - Tornado
   - Arrow
   - Base
-  - AirborneEnemy
+  - AirborneEnemyMagic
+  - AirborneEnemyMechanical
+  - Spike Road
+  - Grass
+  - User Interface
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - Water
   - UI
   - PlacableTerrain
-  - 
+  - Surrounding
   - 
   - 
   - 

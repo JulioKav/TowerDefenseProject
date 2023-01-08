@@ -13,7 +13,7 @@ public class UIStateManager : MonoBehaviour
     public static event StateChangeEvent OnStateChange;
 
     // State property that, when set, automatically triggers the OnStateChange event
-    private UIState _state = UIState.DEFAULT;
+    private UIState _state = UIState.DIALOGUE;
     public UIState State
     {
         get
@@ -39,25 +39,51 @@ public class UIStateManager : MonoBehaviour
 
     public void ToggleSkillTree()
     {
-        if (State == UIState.DEFAULT) State = UIState.SKILL_TREE;
-        else State = UIState.DEFAULT;
+        if (State == UIState.IDLE) State = UIState.SKILL_TREE;
+        else State = UIState.IDLE;
     }
 
     public void BoonSelected()
     {
         if (State != UIState.BOONS) return;
-        State = UIState.DEFAULT;
+        State = UIState.IDLE;
+    }
+
+    public void GeneratingPath()
+    {
+        if (State == UIState.DIALOGUE) State = UIState.INVENTORY;
     }
 
     void StateChangeHandler(GameState newState)
     {
-        if (newState == GameState.IDLE) State = UIState.BOONS;
+        switch (newState)
+        {
+            case GameState.PRE_GAME:
+            case GameState.PRE_ROUND_DIALOGUE:
+            case GameState.PATH_GENERATION:
+                State = UIState.DIALOGUE;
+                break;
+            case GameState.POST_ROUND:
+                State = UIState.DEFAULT;
+                break;
+            case GameState.ROUND_ONGOING:
+                if (State == UIState.DIALOGUE) State = UIState.IDLE;
+                break;
+            case GameState.IDLE:
+                State = UIState.BOONS;
+                break;
+            default:
+                break;
+        }
     }
 }
 
 public enum UIState
 {
-    DEFAULT,        // Inventory + next wave spawner button
+    DEFAULT,        // Nothing interactable
+    IDLE,           // Inventory + next wave button
     SKILL_TREE,     // Skill tree
-    BOONS           // End of wave boon selector screen
+    BOONS,          // End of wave boon selector screen
+    DIALOGUE,       // When dialogue is happening
+    INVENTORY,      // Only inventory
 }

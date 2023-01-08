@@ -8,20 +8,20 @@ public class Boss : Enemies
     public float explosion_radius = 3f;
     public float attack_speed_in_sec = 3f;
     public GameObject explosion_effect;
-    
+
     new void Start()
     {
-        
+
         // Enemy Attributes
         base.Start();
-        _maxHealth = 10000;
+        _maxHealth = 100000;
         _health = _maxHealth;
         _attack = 0;
         _range = 0;
 
-        
+
         InvokeRepeating("Explode", 1.0f, attack_speed_in_sec);
-        
+
     }
 
     new void Update()
@@ -29,6 +29,7 @@ public class Boss : Enemies
         base.Update();
         transform.LookAt(Vector3.zero * Time.deltaTime * turn_speed);
         transform.transform.Rotate(0, 90, 0);
+        speed = max_speed;
 
     }
 
@@ -54,7 +55,7 @@ public class Boss : Enemies
 
     }
 
-    
+
 
     private void OnDrawGizmosSelected()
     {
@@ -62,5 +63,5 @@ public class Boss : Enemies
         Gizmos.DrawWireSphere(transform.position, explosion_radius);
     }
 
-    
+
 }

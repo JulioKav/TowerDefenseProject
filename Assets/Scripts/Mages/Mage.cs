@@ -28,7 +28,6 @@ public abstract class Mage : MonoBehaviour
 
     public virtual void ChangeSkillHandler(MageClass mageClass, string id, bool unlocked)
     {
-        Debug.Log(this.mageClass);
         if (mageClass != this.mageClass) return;
         string name = id.TrimEnd('+');
         int level = id.Substring(name.Length).Length;

@@ -5142,7 +5142,7 @@ Transform:
   - {fileID: 9085918910622947796}
   - {fileID: 5501592865409952914}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5499342297403173776
 MeshFilter:
@@ -5250,11 +5250,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499342297403173779}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 6382167221458406436}
   attack_range: 0
   attack_speed: 1
@@ -5841,7 +5842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 623417facde98424690a034e150eb867, type: 3}
       propertyPath: m_TagString
-      value: Tower
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1541998606474349963, guid: 623417facde98424690a034e150eb867, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5902,7 +5903,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8456770199345890158}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 2
   m_Height: 15

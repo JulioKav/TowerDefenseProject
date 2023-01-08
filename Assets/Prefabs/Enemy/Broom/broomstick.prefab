@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1041724836813607623}
   - component: {fileID: 400807269271261133}
-  - component: {fileID: 2628834418187946787}
   - component: {fileID: 6862558792765552721}
   - component: {fileID: 2069193688950276387}
+  - component: {fileID: -3863951644914031124}
+  - component: {fileID: 8028193464760635809}
   m_Layer: 0
   m_Name: broomstick
   m_TagString: Enemy
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378060015930067069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 0.27423903, y: 0.27423903, z: 0.27423903}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -54,28 +55,11 @@ MonoBehaviour:
   speed: 4
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 1810891762613472010}
---- !u!136 &2628834418187946787
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378060015930067069}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 5
-  m_Direction: 1
-  m_Center: {x: -0.5, y: 1, z: 0}
 --- !u!114 &6862558792765552721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 5
   attack_speed: 1
@@ -111,6 +96,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: []
+--- !u!54 &-3863951644914031124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378060015930067069}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &8028193464760635809
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378060015930067069}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8933813
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4271490370435316524
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +415,7 @@ GameObject:
   - component: {fileID: 8344915407159999588}
   - component: {fileID: 8344915407159999589}
   - component: {fileID: 8344915407159999590}
+  - component: {fileID: 4434527729642931790}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -426,7 +441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 45, y: -135, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.7119999}
+  m_AnchoredPosition: {x: 0, y: 2.53}
   m_SizeDelta: {x: 31.969, y: 15.7757}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8344915407159999588
@@ -491,6 +506,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4434527729642931790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344915407159999591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8424170679117546849
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,74 @@
+{
+  "startOfGame": [
+    {
+      "option_1": [
+        "My minions! For centuries, the mages have held that fortress...",
+        "And as the frogs have taken over the world, we have conquered!",
+        "But this fortress... It has been out of our grasp, despite our long tongues",
+        "Today, that cha- *slurp*. Sorry, there was a fly...",
+        "Today, that changes! Prepare for the fight! That fortress is ours!",
+        "Muahahah-*croak*"
+      ],
+      "option_2": [
+        "Dear followers, we are gathered here today *croak* to storm this here fortress in toady ceremony.",
+        "My followers, do you take this quest to be your mission...",
+        "... to live for it, to love it, *croak* to honor it and to priorotize it over your own life...",
+        "... in sickness and in health, for as long as you shall live?",
+        "*croak*",
+        "And do you, fortress, accept these followers to be your downfall, to be utterly destroyed...",
+        "... to die today, to hate it, *croak* to betray your century long hosts...",
+        "... in sickness and in health, for as long as you still have stones left to stand on?",
+        "...",
+        "I now pronounce you...",
+        "... ETERNAL ENEMIES! Chaaaa-*croak* *cough*... Chaaaaaarge!"
+      ],
+      "option_3": [
+        "Eh, good morning!",
+        "Many of you are halfway through your first week here as my followers...",
+        "... and as your leader, *bows*, I thought I would share a few thoughts of wisdom and inspiration.",
+        "What is the frog dynasty? Well, you've heard all kind of things...",
+        "You've heard it's a loser dynasty, for remedial teens, 20-something drop outs, middle-aged divorcees...",
+        "... and old people, keeping their minds active, as they circle the drain of eternity.",
+        "That's what you've heard, however: ...",
+        "I WISH YOU LUCK!",
+        "...",
+        "*croak*",
+        "Okay, you know.. Uh-oh... Okay, there's more to this speech. There is actually a middle card that is missing.",
+        "Can we all look around our immediate areas?"
+      ]
+    }
+  ],
+  "finalWaveWithoutWeapon": "Can you withstand my power?",
+  "defeat": "The fortress is ours! *croaaaak*",
+  "finalWaveWithWeapon": "This is taking too long... Time to take charge myself!",
+  "victory": "I can't.. be-lieve.. it... ugh- *sad croak*",
+  "startOfRound": [
+    "Let's see how you like this...!",
+    "Muahahahahaha!",
+    "Muahahah-*croak*... I swallowed a fly!",
+    "Muahahah-*slurp*... I swallowed a fly! On purpose!",
+    "I will toad-ally destroy you!",
+    "Your pathetic mages stand no chance!",
+    "CHAAAAARGE!",
+    "*croak*",
+    "Ever heard the one about the magic frog? It's me!",
+    "At the dawn of time, there was just- *slurp*. Oh, that's delicious!",
+    "You stand no chance!",
+    "It's a real leap that you think you can defend your fortress!",
+    "Give up!",
+    "I have more where that came from!",
+    "My minions will do my bidding!",
+    "I eat your mages for breakfast!",
+    "I eat your mages for breakfast! With some flies as garnish!",
+    "Time flies are flies that can travel through time...",
+    "You should hire a professional!",
+    "*slurp*. This is a bad time, I'm eating!"
+  ],
+  "pathGeneration": [
+    "Let's see how you like this...!",
+    "I know! We should sneak a different way!",
+    "Oh! I toad-ally forgot I can just do this...",
+    "A mage walks into a bar... *croak* I'll just take a different path",
+    "*croak* on this!"
+  ]
+}

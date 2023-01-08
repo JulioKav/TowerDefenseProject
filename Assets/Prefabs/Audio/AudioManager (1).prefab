@@ -52,10 +52,17 @@ MonoBehaviour:
     pitch: 0.83
     loop: 0
     source: {fileID: 0}
-  - name: Theme
-    clip: {fileID: 8300000, guid: 4d1fbaa5d5c578d47b10d59e242aa39d, type: 3}
+  - name: Idle
+    clip: {fileID: 8300000, guid: 852a347126966436296ad11f8bd8c828, type: 3}
     group: {fileID: 6490762387701023137, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
-    volume: 1
-    pitch: 0.83
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: WaveOngoing
+    clip: {fileID: 8300000, guid: a2e1731820bf047e190c23900efd1ff6, type: 3}
+    group: {fileID: 6490762387701023137, guid: 0974fc02c7cf3f443a86ba2fc4f051bd, type: 2}
+    volume: 0.4
+    pitch: 1
     loop: 1
     source: {fileID: 0}

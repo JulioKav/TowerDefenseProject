@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
+
     public float speed = 50f;
 
     private Transform target;
@@ -13,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     public GameObject impact_effect;
 
-    public float damage = 50;
+    private float damage = Difficulty.bullet_dmg;
 
     public GameObject identity_of_shooter;
     public void Chase(Transform _target)
@@ -45,7 +47,7 @@ public class Bullet : MonoBehaviour
         if (gameObject.tag == "Arrow")
         {
             transform.transform.Rotate(0, 90, 0);
-        }    
+        }
 
 
 
@@ -57,6 +59,7 @@ public class Bullet : MonoBehaviour
     void hit_target()
     {
         GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
+        AudioManager.instance.PlaySoundEffect("Impact");
 
         Destroy(effect_instance, 5f);
 
@@ -69,12 +72,10 @@ public class Bullet : MonoBehaviour
         {
             if (target.tag == "Enemy")
             {
-                    FindObjectOfType<AudioManager>().Play("Impact");
-                    Damage_enemy(target);
+                Damage_enemy(target);
             }
             if (target.tag == "Tower")
             {
-                FindObjectOfType<AudioManager>().Play("Impact");
                 Damage_tower(target);
             }
         }
@@ -92,7 +93,10 @@ public class Bullet : MonoBehaviour
         {
             if (collider.tag == "Enemy")
             {
-                Damage_enemy(collider.transform);   
+
+                Damage_enemy(collider.transform);
+
+
             }
 
             //if (collider.tag == "Shield")
@@ -107,7 +111,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-   // private void Damage_shield(Transform Shield)
+    // private void Damage_shield(Transform Shield)
     //{
     //    Shield shield_component = Shield.GetComponent<Shield>();
     //    Debug.Log("stuff");
@@ -165,13 +169,13 @@ public class Bullet : MonoBehaviour
         // retrieves script aspect of enemy
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
 
-        
+
 
         if (enemy_component != null)
         {
 
             enemy_component.TakeDamage(damage * 3);
-            
+
         }
     }
     // specific type dmg
@@ -199,7 +203,7 @@ public class Bullet : MonoBehaviour
         if (enemy_component != null)
         {
 
-            enemy_component.TakeDamage(damage *2);
+            enemy_component.TakeDamage(damage * 2);
             //enemy_component.mechanical_lift(1);
         }
     }

@@ -1,0 +1,124 @@
+{
+  "waves": [
+    {
+      "broom": 5
+    },
+    {
+      "broom": 5,
+      "eyeball": 5
+    },
+    {
+      "eyeball": 5,
+      "spider": 2
+    },
+    {
+      "broom": 5,
+      "eyeball": 5,
+      "spider": 5
+    },
+    {
+      "cauldron": 5,
+      "eyeball": 5,
+      "spider": 5
+    },
+    {
+      "broom": 10,
+      "cauldron": 5,
+      "eyeball": 5,
+      "spider": 5
+    },
+    {
+      "cauldron": 10,
+      "evilbook": 3,
+      "eyeball": 5,
+      "spider": 10
+    },
+    {
+      "bat": 3,
+      "broom": 15,
+      "evilbook": 5,
+      "eyeball": 10
+    },
+    {
+      "bat": 5,
+      "cauldron": 5,
+      "evilbook": 5,
+      "spider": 5
+    },
+    {
+      "bat": 8,
+      "broom": 3,
+      "evilbook": 7,
+      "eyeball": 1,
+      "spider": 6
+    },
+    {
+      "bat": 5,
+      "broom": 7,
+      "cauldron": 5,
+      "evilbook": 5,
+      "spider": 5
+    },
+    {
+      "bat": 10,
+      "broom": 10,
+      "cauldron": 10,
+      "evilbook": 10,
+      "eyeball": 10,
+      "spider": 10
+    },
+    {
+      "bat": 10,
+      "broom": 10,
+      "cauldron": 25,
+      "evilbook": 10,
+      "eyeball": 10,
+      "spider": 10
+    },
+    {
+      "bat": 10,
+      "broom": 10,
+      "cauldron": 10,
+      "evilbook": 25,
+      "eyeball": 10,
+      "spider": 10
+    },
+    {
+      "bat": 10,
+      "broom": 10,
+      "cauldron": 10,
+      "evilbook": 10,
+      "eyeball": 10,
+      "spider": 25
+    },
+    {
+      "bat": 10,
+      "broom": 10,
+      "cauldron": 10,
+      "evilbook": 10,
+      "eyeball": 10,
+      "spider": 25
+    },
+    {
+      "bat": 50
+    },
+    {},
+    {
+      "bat": 20,
+      "cauldron": 20,
+      "evilbook": 20,
+      "spider": 20
+    },
+    {
+      "broom": 20,
+      "bat": 20,
+      "cauldron": 20,
+      "evilbook": 20,
+      "spider": 20,
+      "eyeball": 20
+    },
+    {
+      "frogboss": 1
+    }
+  ]
+}

@@ -7,7 +7,7 @@ public class MagicBullet : MonoBehaviour
     public float speed = 50f;
     private Transform target;
 
-    public float explosion_radius = 0f;
+    public float explosion_radius = 2f;
 
     public GameObject impact_effect;
     public GameObject tornadoprefab;
@@ -27,11 +27,13 @@ public class MagicBullet : MonoBehaviour
     {   // bullet destroyed if target dies, MAYBE CHANGE TO BULLET DROP?
         if (target == null || target.tag == "AirborneEnemyMagic")
         {
+
             Target_Search();
             if (target == null || target.tag == "AirborneEnemyMagic")
             {
                 Destroy(gameObject);
             }
+
 
             Destroy(gameObject);
             return;
@@ -189,13 +191,14 @@ public class MagicBullet : MonoBehaviour
 
         if (enemy_component != null && Enemy.tag == "Enemy")
         {
-            float saved_speed = enemy_component.speed;
+
+            float saved_speed = (float)enemy_component.speed;
             //enemy_component.speed = 0;
-            enemy_component.isBackward = !enemy_component.isBackward;
+            enemy_component.isBackward = true;
             if (Enemy.position.y < 2)
-                Enemy.position = Enemy.position + new Vector3(0, 2, 0);
+                Enemy.position = Enemy.position + new Vector3(0, 2f, 0);
             Enemy.tag = "AirborneEnemyMagic";
-            GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2, 0), Enemy.rotation);
+            GameObject tornado = (GameObject)Instantiate(tornadoprefab, Enemy.position - new Vector3(0, 2f, 0), Enemy.rotation);
             tornado.GetComponent<Tornado>().damage = damage_over_time;
 
 

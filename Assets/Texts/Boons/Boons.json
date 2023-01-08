@@ -8,13 +8,18 @@
       "value": 50
     },
     {
-      "name": "Healer Tower",
+      "name": "Healer",
       "id": "healer",
       "value": 50
     },
     {
       "name": "Archer",
       "id": "archer",
+      "value": 50
+    },
+    {
+      "name": "Shield",
+      "id": "shield",
       "value": 50
     }
   ]

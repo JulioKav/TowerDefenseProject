@@ -34,7 +34,6 @@ public class Shield : MonoBehaviour
         switch (newState)
         {
             case GameState.POST_ROUND:
-                // TODO: Reset shields here
                 material.SetColor("_Color", new Color(0, 1, 0, 0.25f));
                 StartCoroutine(RegenerateShield());
                 break;
@@ -47,7 +46,7 @@ public class Shield : MonoBehaviour
     {
         while (_health != _maxHealth)
         {
-            _health += _maxHealth/10;
+            _health += _maxHealth / 10;
             TakeDamage(0);
             yield return new WaitForSeconds(0.1f);
         }
@@ -56,14 +55,15 @@ public class Shield : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy Bullet")
+        if (other.gameObject.tag == "Enemy Bullet")
         {
             Destroy(other.gameObject);
             Debug.Log("Shield Hit!");
             material.SetColor("_Color", new Color(1, 0, 0, 0.25f));
             StartCoroutine(colorChange());
-            Debug.Log(other.gameObject.GetComponent<Bullet>().damage);
-            TakeDamage(other.gameObject.GetComponent<Bullet>().damage);
+            float damage = Difficulty.bullet_dmg;
+            Debug.Log(damage);
+            TakeDamage(damage);
         }
     }
 

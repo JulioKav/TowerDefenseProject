@@ -43,6 +43,9 @@ namespace MapEnums
 }
 public class MapManager : MonoBehaviour
 {
+    public static MapManager Instance { get; private set; }
+    void Awake() { if (!Instance) Instance = this; }
+
     public Transform MapContainer;
     public GameObject[] materialPrefab;
     public bool isPrototype = false;
@@ -61,14 +64,14 @@ public class MapManager : MonoBehaviour
     }
     public Vector2Int getLocOnGrid(Vector3 pos)
     {
-        Vector2Int v = new Vector2Int(0,0);
+        Vector2Int v = new Vector2Int(0, 0);
         v.x = -Mathf.RoundToInt(pos.x);
         v.y = -Mathf.RoundToInt(pos.z);
         return v;
     }
     public bool isPassable(int x, int y)
     {
-        if (getGameGrid(x,y, 0) == (int)mapMaterial.ROAD|| getGameGrid(x, y, 0) == (int)mapMaterial.BASE)
+        if (getGameGrid(x, y, 0) == (int)mapMaterial.ROAD || getGameGrid(x, y, 0) == (int)mapMaterial.BASE)
             return true;
         return false;
     }
@@ -132,16 +135,38 @@ public class MapManager : MonoBehaviour
 
     }
 
-    void Awake()
+    public void RefreshGameGrid()
     {
-        setGameGrid(0, 0, layer.TERRAIN, BASE);
+        gameGrid = new int[MAX_MAPSIZE, MAX_MAPSIZE, MAX_LAYERSIZE];
+        InitGameGrid();
+    }
 
-        spawnMapMaterial(mapMaterial.BASE, origin, origin);
-        if (isPrototype == true)
+    void InitGameGrid()
+    {
+        GameObject[] grass = GameObject.FindGameObjectsWithTag("Grass");
+        GameObject[] roads = GameObject.FindGameObjectsWithTag("Road");
+        GameObject fortress = GameObject.FindGameObjectsWithTag("Base")[0];
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        Vector2Int pos = getLocOnGrid(fortress.transform.position);
+        setGameGrid(pos.x, pos.y, layer.TERRAIN, mapMaterial.BASE);
+
+        foreach (GameObject g in grass)
         {
-            drawMap(MapGenerator.prototypeMap);
-            // initPrototype();
+            pos = getLocOnGrid(g.transform.position);
+            setGameGrid(pos.x, pos.y, layer.TERRAIN, mapMaterial.CUBE);
         }
-        //Debug.Log(gameGrid[origin, origin]);
+
+        foreach (GameObject r in roads)
+        {
+            pos = getLocOnGrid(r.transform.position);
+            setGameGrid(pos.x, pos.y, layer.TERRAIN, mapMaterial.ROAD);
+        }
+
+        foreach (GameObject sp in spawnPoints)
+        {
+            pos = getLocOnGrid(sp.transform.position);
+            setGameGrid(pos.x, pos.y, layer.TERRAIN, mapMaterial.SPAWNER);
+        }
     }
 }

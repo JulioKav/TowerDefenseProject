@@ -35,15 +35,18 @@ public class Tornado : MonoBehaviour
             if (collider.tag == "Enemy" || collider.tag == "AirborneEnemyMagic")
             {
 
-                if (collider.GetComponent<Tags>().HasTag("Imaginary Enemy"))
+                if (collider.GetComponent<Tags>().HasTag("Magic Enemy"))
                 {
-
+                    if (collider != null)
                     Magic_damage(collider.transform);
                 }
 
                 else
                 {
-                    Damage_enemy(collider.transform);
+                        if (collider != null)
+                        Damage_enemy(collider.transform);
+                    
+                    
                 }
 
 
@@ -72,10 +75,10 @@ public class Tornado : MonoBehaviour
         if (enemies_in_range.Count == 0)
         {
             //death animation here
-            m_Animator.SetTrigger("Death");
+            //m_Animator.SetTrigger("Death");
             //m_Animator.ResetTrigger("Death");
-            Debug.Log("anim");
-            //Destroy(gameObject);
+            //Debug.Log("anim");
+            Destroy(gameObject);
 
         }
         enemies_in_range.Clear();

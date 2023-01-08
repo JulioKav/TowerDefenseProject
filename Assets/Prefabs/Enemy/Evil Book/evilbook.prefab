@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 3235911910341660846}
   - component: {fileID: 5631561093101989960}
   - component: {fileID: 8926798533876199306}
+  - component: {fileID: 1029436672974742580}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -101,7 +102,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3177057307809148768}
   m_LocalRotation: {x: 0.05991006, y: -0.75810313, z: 0.03901844, w: 0.64820373}
-  m_LocalPosition: {x: 0, y: 0, z: 0.31}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.041831665, y: 0.04183167, z: 0.041831665}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -111,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 7.864, y: -99.097, z: -2.329}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.15, y: 0.97}
+  m_AnchoredPosition: {x: 0, y: 0.97}
   m_SizeDelta: {x: 31.969, y: 15.7757}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3235911910341660846
@@ -176,6 +177,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1029436672974742580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3177057307809148768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4106228337243864703
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,8 +571,8 @@ GameObject:
   - component: {fileID: -6692874703610559120}
   - component: {fileID: -2322910715696082789}
   - component: {fileID: 6181141549713275926}
-  - component: {fileID: 6535331023365185484}
   - component: {fileID: 3303719224162433006}
+  - component: {fileID: 143626866056114999}
   m_Layer: 0
   m_Name: evilbook
   m_TagString: Enemy
@@ -575,7 +588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8307290577064042553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.058334, y: -0.0000000084294, z: 0.11905}
+  m_LocalPosition: {x: 0.058334, y: 0.578, z: 0.11905}
   m_LocalScale: {x: 0.71716, y: 0.71716, z: 0.71716}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -601,7 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags:
-  - Enemy
+  - Magic Enemy
 --- !u!114 &-2322910715696082789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 4
   attack_speed: 2
@@ -639,16 +653,29 @@ MonoBehaviour:
   speed: 5
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
-  impact_effect: {fileID: 0}
+  impact_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 6747296693229803247}
---- !u!65 &6535331023365185484
-BoxCollider:
+--- !u!54 &3303719224162433006
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307290577064042553}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &143626866056114999
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -658,24 +685,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2}
-  m_Center: {x: 0, y: 0, z: 0.3}
---- !u!54 &3303719224162433006
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8307290577064042553}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  m_Radius: 0.3416253
+  m_Center: {x: 0.09, y: 0, z: 0.52}
 --- !u!1 &8359919619688181516
 GameObject:
   m_ObjectHideFlags: 0

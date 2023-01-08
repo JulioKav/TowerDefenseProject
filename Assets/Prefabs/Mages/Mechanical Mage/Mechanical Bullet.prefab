@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4426460816526197178}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion_radius: 1
-  impact_effect: {fileID: 0}
+  impact_effect: {fileID: 7854267722207592464, guid: aaff05ee52451ec438db5923b87700eb, type: 3}
   MechanicPrefab: {fileID: 7770223637609778096, guid: 45ecebdc75dea3d4b90b288cc5fa414e, type: 3}
   damage: 20
   Enemy: Enemy

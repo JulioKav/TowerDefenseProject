@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1860950467535526726}
   m_Layer: 0
   m_Name: cauldronbullet
-  m_TagString: Untagged
+  m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,5 +99,4 @@ MonoBehaviour:
   speed: 15
   explosion_radius: 0
   impact_effect: {fileID: 5793143773966844333, guid: 0a24167cb056a4c48b30d1f152bb8722, type: 3}
-  damage: 50
   identity_of_shooter: {fileID: 0}

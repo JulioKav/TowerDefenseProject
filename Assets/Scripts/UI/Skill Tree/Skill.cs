@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using UnityEngine.UI;
@@ -12,14 +13,20 @@ public class Skill : MonoBehaviour
     [HideInInspector] public List<Skill> nextSkills;
 
     [HideInInspector] public Button button;
-    public MageClass mageClass;
+    [HideInInspector] public MageClass mageClass;
     [HideInInspector] public int cost;
-
-    protected string skillName;
-    protected string skillDesc; // ...ription
 
     public bool isFirstSkill = false;
     public bool completesBranch = false;
+
+    public GameObject titleTMP;
+    public GameObject descriptionTMP;
+    public GameObject costTMP;
+
+    Dictionary<string, TextMeshProUGUI> texts = new Dictionary<string, TextMeshProUGUI>();
+
+    protected string skillName;
+    protected string skillDesc; // ...ription
 
     private bool _unlockable;
     public bool Unlockable { get { return _unlockable; } set { _unlockable = value; UpdateButtonAppearance(); } }
@@ -29,12 +36,19 @@ public class Skill : MonoBehaviour
     protected MagesJSONParser.Mage mageJson;
     protected SkillManager SM;
 
+
+    private Achievements achievements;
+    private Laser laser;
     public void Start()
     {
         InitButton();
         InitStats();
         InitNextSkills();
+        InitTexts();
         SM = SkillManager.Instance;
+        UpdateButtonAppearance();
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
+        laser = GameObject.FindObjectsOfType<Laser>()[0];
     }
 
     void InitButton()
@@ -54,9 +68,9 @@ public class Skill : MonoBehaviour
         }
         else foreach (var skillJson in mageJson.skills) if (gameObject.name.StartsWith(skillJson.id))
                 {
-                    string level = gameObject.name.Substring(skillJson.id.Length, gameObject.name.Length - skillJson.id.Length);
+                    string level = gameObject.name.Substring(skillJson.id.Length);
                     cost = COSTS[level.Length];
-                    skillName = skillJson.name + " " + level;
+                    skillName = skillJson.name;
                     skillDesc = skillJson.description;
                 }
         Unlockable = isFirstSkill;
@@ -71,6 +85,17 @@ public class Skill : MonoBehaviour
             Skill s;
             if (skillT.TryGetComponent<Skill>(out s)) nextSkills.Add(s);
         }
+    }
+
+    void InitTexts()
+    {
+        texts.Add("title", Instantiate(titleTMP, transform, false).GetComponent<TextMeshProUGUI>());
+        texts.Add("description", Instantiate(descriptionTMP, transform, false).GetComponent<TextMeshProUGUI>());
+        texts.Add("cost", Instantiate(costTMP, transform, false).GetComponent<TextMeshProUGUI>());
+
+        texts["title"].text = skillName;
+        texts["description"].text = skillDesc;
+        texts["cost"].text = "Cost: " + cost + " SP";
     }
 
     void OnEnable()
@@ -88,7 +113,7 @@ public class Skill : MonoBehaviour
         {
             case GameState.PRE_ROUND:
             case GameState.IDLE:
-                UpdateButtonAppearance();
+                UpdateButtonAppearance(newState);
                 break;
             default:
                 break;
@@ -102,7 +127,17 @@ public class Skill : MonoBehaviour
             Unlocked = true;
             if (completesBranch) FinalSkill.Instance.CheckUnlockable();
             foreach (Skill ns in nextSkills) ns.Unlockable = true;
-            if (isFirstSkill) SM.mageSpawner.SpawnMage(mageClass);
+            if (isFirstSkill)
+            {
+                SM.mageSpawner.SpawnMage(mageClass);
+                achievements.onemageunlock = true;
+            }
+            if (this is FinalSkill)
+            {
+
+                achievements.finalskillunlock = true;
+                laser.finalskillunlocked = true;
+            }
         }
     }
 
@@ -110,27 +145,20 @@ public class Skill : MonoBehaviour
     {
         foreach (Skill ns in nextSkills) ns.Unlockable = false;
         Unlocked = false;
+        if (completesBranch) FinalSkill.Instance.CheckUnlockable();
     }
 
-    void UpdateButtonAppearance()
+    void UpdateButtonAppearance(GameState state = GameState.NONE)
     {
-        // Udpate button based on if it is unlockable and/or unlocked
-        button.interactable = GameStateManager.Instance.State == GameState.IDLE && Unlockable && !Unlocked;
-        // Set color of disabled button
-        var colors = button.colors;
-        if (Unlocked) colors.disabledColor = new Color(0x52 / 255f, 0xE7 / 255f, 0x62 / 255f);
-        else if (!Unlockable) colors.disabledColor = new Color(226 / 255f, 82 / 255f, 82 / 255f, 1);
-        else colors.disabledColor = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1);
-        button.colors = colors;
-
-        if (!isFirstSkill)
-        {
-            // Disable buttons based on interactability, but always show either:
-            //      1. the first skill if no skill in that branch has been unlocked
-            //      2. the last skill if that branch has been completed
-            GetComponent<Image>().enabled = button.interactable;
-            if (completesBranch && Unlocked) button.GetComponent<Image>().enabled = true;
-            if (gameObject.name == "Final Skill") button.GetComponent<Image>().enabled = true;
-        }
+        if (state == GameState.NONE) state = GameStateManager.Instance.State;
+        // Players can only update skills when no wave is ongoing
+        button.interactable = state == GameState.IDLE;
+        // Disable buttons based on state of the button, to only show the next available button in each branch
+        bool enabled = Unlockable && !Unlocked;
+        GetComponent<Image>().enabled = enabled;
+        // Match text enabled state to button, but keep text if its the final skill of the branch
+        // and its unlocked, since the button disappears in that case, and we want to keep the text there
+        if (completesBranch && Unlocked) texts["cost"].enabled = enabled;
+        else foreach (TextMeshProUGUI tmp in texts.Values) tmp.enabled = enabled;
     }
 }

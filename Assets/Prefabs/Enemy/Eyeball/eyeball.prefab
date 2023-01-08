@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 6992921359380588280}
   - component: {fileID: 6992921359380588281}
   - component: {fileID: 6992921359380588282}
+  - component: {fileID: 4886830783020411923}
   m_Layer: 5
   m_Name: Canvas2
   m_TagString: Untagged
@@ -390,7 +391,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6992921359380588283}
   m_LocalRotation: {x: 0.14644745, y: -0.8535526, z: 0.3535532, w: 0.3535552}
-  m_LocalPosition: {x: 0, y: 0, z: -0.09}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.028524855, y: 0.028524853, z: 0.02852486}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -465,6 +466,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4886830783020411923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992921359380588283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2177dcb9dafb34251860b9e6123c2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6992921359724935819
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,11 +637,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7881376321415408597}
-  - component: {fileID: 219402176288706622}
   - component: {fileID: 7626336776999316213}
   - component: {fileID: 6490223797063970932}
   - component: {fileID: 8665406827565643110}
   - component: {fileID: 3571037146222663192}
+  - component: {fileID: 3272870279909408877}
+  - component: {fileID: 8949469012998852214}
   m_Layer: 0
   m_Name: eyeball
   m_TagString: Enemy
@@ -644,7 +658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362143687009349999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.968, z: 0}
   m_LocalScale: {x: 0.22213909, y: 0.22213909, z: 0.22213909}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -657,19 +671,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &219402176288706622
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7362143687009349999}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7626336776999316213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2283818a810dc1a46b85e647d30e3dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   healthBar: {fileID: 0}
   attack_range: 3
   attack_speed: 1
@@ -707,13 +709,10 @@ MonoBehaviour:
   speed: 4
   max_speed: 4
   slowed: 0
-  mech_explosion_radius: 5
-  mech_damage: 50
   impact_effect: {fileID: 0}
   death_effect: {fileID: 2615593490022313264, guid: 93ca7e88b3d5d864ea9f6ae82d0f00e0, type: 3}
   isBackward: 0
   target: {fileID: 0}
-  Waypoints: {fileID: 0}
   healthBar: {fileID: 857184500330418582}
 --- !u!114 &8665406827565643110
 MonoBehaviour:
@@ -741,3 +740,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 857184500330418582}
+--- !u!54 &3272870279909408877
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362143687009349999}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!135 &8949469012998852214
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362143687009349999}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1029125
+  m_Center: {x: 0, y: 0, z: 0}

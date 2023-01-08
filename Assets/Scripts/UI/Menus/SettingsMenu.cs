@@ -7,9 +7,15 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-
     public TMPro.TMP_Dropdown ResDropdown;
     public TMPro.TMP_Dropdown QualityDropdown;
+    public Toggle fullscreentoggle;
+    public Toggle cheats;
+
+    public GameObject achievepopup;
+
+
+
 
     Resolution[] resolutions;
 
@@ -24,11 +30,13 @@ public class SettingsMenu : MonoBehaviour
         musSlider.value = PlayerPrefs.GetFloat("musslidersavednumber");
         sfxSlider.value = PlayerPrefs.GetFloat("sfxslidersavednumber");
 
-        
+
     }
 
     void Start()
     {
+
+
         resolutions = Screen.resolutions;
         ResDropdown.ClearOptions();
 
@@ -52,6 +60,33 @@ public class SettingsMenu : MonoBehaviour
         audioMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("musslidersavednumber"));
         audioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("sfxslidersavednumber"));
 
+        int resolutionsaved = PlayerPrefs.GetInt("resIndex");
+        ResDropdown.value = resolutionsaved;
+
+        int qualitysaved = PlayerPrefs.GetInt("qualityIndex");
+        QualityDropdown.value = qualitysaved;
+
+        if (PlayerPrefs.GetInt("fullscreen") == 1)
+        {
+            fullscreentoggle.isOn = true;
+
+        }
+        else
+        {
+            fullscreentoggle.isOn = false;
+        }
+
+        if (PlayerPrefs.GetInt("cheats") == 1)
+        {
+            cheats.isOn = true;
+            cheats.enabled = false;
+            cheats.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            cheats.isOn = false;
+        }
     }
 
     void Update()
@@ -70,7 +105,45 @@ public class SettingsMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("fullscreen", 0);
         }
-        
+
+        if (cheats.isOn == true)
+        {
+            PlayerPrefs.SetInt("cheats", 1);
+            cheats.enabled = false;
+            cheats.gameObject.SetActive(false);
+            if (PlayerPrefs.GetInt("cheatspopupdone") == 0)
+            {
+                achievepopup.SetActive(true);
+                deleteAfterSeconds(2);
+                PlayerPrefs.SetInt("cheatspopupdone", 1);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("cheats", 0);
+        }
+
+        if (cheats.isOn == true && PlayerPrefs.GetInt("cheatspopupdone") == 1)
+        {
+            PlayerPrefs.SetInt("cheatspopupdone", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("cheatspopupdone", 0);
+        }
+
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void Volume(float volume)
+    {
+        audioMixer.SetFloat("MasterVolume", volume);
+
     }
 
     public void MusicVolume(float volume)
@@ -95,5 +168,17 @@ public class SettingsMenu : MonoBehaviour
         Screen.fullScreen = fullscreen;
     }
 
-
+    void DeletePopUp()
+    {
+        achievepopup.SetActive(false);
+    }
+    void deleteAfterSeconds(float seconds)
+    {
+        StartCoroutine(_PlayAfterSeconds(seconds));
+    }
+    IEnumerator _PlayAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DeletePopUp();
+    }
 }

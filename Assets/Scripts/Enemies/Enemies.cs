@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class Enemies : MonoBehaviour
     private MapManager mapManager;
     private Pathfinding pathFinding;
     // Enemy Attributes
-    public float speed = 4.0f;
+    public float speed;
     public float max_speed = 4.0f;
     public bool slowed = false;
     protected float _maxHealth;
@@ -18,7 +19,7 @@ public class Enemies : MonoBehaviour
     public GameObject impact_effect;
     public GameObject death_effect;
 
-    public static float mech_airborne_time = 2;
+    public static float mech_airborne_time = 2f;
     public static float mech_explosion_radius = 5f;
     public static float mech_damage = 50f;
 
@@ -32,13 +33,12 @@ public class Enemies : MonoBehaviour
     // Waypoint
     [HideInInspector]
     public Transform target;
-    [HideInInspector]
-    public Transform Waypoints;
-    private int wavepointIndex = 0;
 
     private SkillManager skillManager;
+    private Achievements achievements;
 
     private string Tornado = "Tornado";
+    Vector3 direction;
 
     [Header("Unity Stuff")]
     public Image healthBar;
@@ -54,53 +54,83 @@ public class Enemies : MonoBehaviour
     {
 
         skillManager = GameObject.FindObjectsOfType<SkillManager>()[0];
+        achievements = GameObject.FindObjectsOfType<Achievements>()[0];
         spawner = transform.position;
         mapManager = FindObjectOfType<MapManager>();
         pathFinding = FindObjectOfType<Pathfinding>();
         m_Animator = gameObject.GetComponent<Animator>();
+
+
     }
 
     protected void Update()
     {
 
         if (gameObject.tag == "AirborneEnemyMechanical")
-            StartCoroutine(LowerAfterTime(mech_airborne_time, gameObject.transform, speed));
+            StartCoroutine(LowerAfterTime(mech_airborne_time, gameObject.transform));
 
         if (gameObject.tag == "AirborneEnemyMagic")
-            StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform, speed));
+            StartCoroutine(LowerAfterTime(magic_airborne_time, gameObject.transform));
 
-        if (target == null) return;
+
         float xdiff = transform.position.x - Mathf.RoundToInt(transform.position.x), zdiff = transform.position.z - Mathf.RoundToInt(transform.position.z);
-        Vector3 direction;
-        if (isBackward != true)
+        if (gameObject.tag == "Enemy" && slowed == false)
         {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
-        }
-        else
-        {
-            direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+            speed = max_speed;
         }
 
-        // Softly snap the enemy into grid
-        if (direction.x == 0.0f)
-        {
-            direction.x -= 2.5f * xdiff;
-        }
-        else if (direction.z == 0.0f)
-        {
-            direction.z -= 2.5f * zdiff;
-        }
-        //target.position - transform.position;
-        //Debug.Log(direction);
+        Turret t;
+        bool isAttacking = TryGetComponent<Turret>(out t) && t.isAttacking;
 
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-
-        if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
+        if (!isAttacking)
         {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
+            try
+            {
+
+                if (!isBackward)
+                {
+                    direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, new Vector2Int(0, 0));
+                }
+                else
+                {
+                    direction = pathFinding.findDirection(mapManager.getLocOnGrid(transform.position), mapManager, mapManager.getLocOnGrid(spawner));
+                }
+
+                // Softly snap the enemy into grid
+                if (direction.x == 0.0f)
+                {
+                    direction.x -= 2.5f * xdiff;
+                }
+                else if (direction.z == 0.0f)
+                {
+                    direction.z -= 2.5f * zdiff;
+                }
+                //target.position - transform.position;
+                //Debug.Log(direction);
+
+                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+
+
+
+                if (mapManager.getLocOnGrid(transform.position) == new Vector2Int(0, 0))
+                {
+                    skillManager.SubtractSkillPoints(20);
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+            catch
+            {
+                Debug.Log("pathfinding error");
+            }
         }
+
+        if (transform.position.y < -10)
+        {
+            int spawnId = UnityEngine.Random.Range(0, PathGenerator.Instance.activeSpawnPoints.Count);
+            transform.position = PathGenerator.Instance.activeSpawnPoints[spawnId].position;
+        }
+
         // If enemy reaches a waypoint, move to next waypoint
         /*
         if (Vector3.Distance(transform.position, target.position) <= 0.2f)
@@ -116,18 +146,6 @@ public class Enemies : MonoBehaviour
 
 
 
-    }
-    void GetNextWaypoint()
-    {
-        // If enemies reach final base, subtract skill points and despawn enemy
-        if (wavepointIndex >= Waypoints.childCount - 1)
-        {
-            skillManager.SubtractSkillPoints(20);
-            Destroy(gameObject);
-            return;
-        }
-        wavepointIndex++;
-        target = Waypoints.GetChild(wavepointIndex);
     }
 
 
@@ -157,8 +175,13 @@ public class Enemies : MonoBehaviour
             GameObject effect_instance = (GameObject)Instantiate(death_effect, transform.position, transform.rotation);
             Destroy(effect_instance, 1f);
         }
+        if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy")) achievements.mechkills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Magic Enemy")) achievements.magickills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Physical Enemy")) achievements.physkills += 1;
+        if (gameObject.GetComponent<Tags>().HasTag("Imaginary Enemy")) achievements.imaginarykills += 1;
         Destroy(gameObject);
-        skillManager.AddSkillPoints(20);
+        skillManager.AddSkillPoints(Difficulty.skillpoints);
+        achievements.kills += 1;
     }
 
 
@@ -170,41 +193,49 @@ public class Enemies : MonoBehaviour
         Explode();
     }
 
-    IEnumerator LowerAfterTime(float time, Transform Enemy, float saved_speed)
+    IEnumerator LowerAfterTime(float time, Transform Enemy)
     {
 
         yield return new WaitForSeconds(time);
 
         // Code to execute after the delay
-        Lower(Enemy, saved_speed);
+        Lower(Enemy);
     }
-    void Lower(Transform Enemy, float saved_speed)
+    void Lower(Transform Enemy)
     {
         // retrieves script aspect of enemy
         Enemies enemy_component = Enemy.GetComponent<Enemies>();
         if (enemy_component != null)
         {
-            if (gameObject.transform.position.y >= 2)
+            if (Enemy.transform.position.y >= 2)
             {
+                Enemy.transform.position = Enemy.transform.position - new Vector3(0, 2f, 0);
 
-                gameObject.tag = "Enemy";
-                //speed = 2;
-                enemy_component.isBackward = !enemy_component.isBackward;
+                Enemy.tag = "Enemy";
+
+                if (Enemy.GetComponent<Tags>().HasTag("Magic Enemy"))
+                {
+                    enemy_component.isBackward = false;
+
+
+                }
+
                 Tornado_Search();
-                gameObject.transform.position = gameObject.transform.position - new Vector3(0, 2, 0);
+
                 GameObject effect_instance_1 = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
                 Destroy(effect_instance_1, 5f);
 
-                if (gameObject.GetComponent<Tags>().HasTag("Mechanical Enemy"))
+                if (Enemy.GetComponent<Tags>().HasTag("Mechanical Enemy"))
                 {
+                    Enemy.transform.position = Enemy.transform.position - new Vector3(0, 0.5f, 0);
                     GameObject effect_instance = (GameObject)Instantiate(impact_effect, transform.position, transform.rotation);
                     Destroy(effect_instance, 5f);
                     StartCoroutine(ImpactDMGAfterTime(0.2f));
 
                 }
 
-
             }
+
 
 
 
@@ -266,7 +297,6 @@ public class Enemies : MonoBehaviour
         }
 
     }
-
 
 
 

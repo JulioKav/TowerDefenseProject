@@ -8,10 +8,13 @@ public class Type3 : Enemies
     {
         // Enemy attributes
         base.Start();
-        _maxHealth = 150;
+        _maxHealth = Difficulty.modified_type_healths[2];
         _health = _maxHealth;
         _attack = 5;
-        _range = 10;
+        _range = Difficulty.modified_type_speed[2];
+
+        max_speed = Difficulty.modified_type_speed[2];
+        speed = max_speed;
     }
 
     new void Update()
