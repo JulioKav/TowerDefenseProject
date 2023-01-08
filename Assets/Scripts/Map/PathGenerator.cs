@@ -13,7 +13,7 @@ public class PathGenerator : MonoBehaviour
 
     [HideInInspector] public List<Transform> activeSpawnPoints;
     [HideInInspector] public Transform startingSpawnPoint = null;
-    Queue<Transform> inactiveSpawnPoints;
+    public Queue<Transform> inactiveSpawnPoints;
     public bool allSpawnPointsActive() { return inactiveSpawnPoints.Count == 0; }
 
     // Specifies how much the path stays on route

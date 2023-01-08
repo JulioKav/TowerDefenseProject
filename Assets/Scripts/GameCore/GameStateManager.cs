@@ -21,8 +21,8 @@ public class GameStateManager : MonoBehaviour
         {
             Debug.Log("Game State: " + _state + " -> " + value);
             var oldState = _state;
-            _state = value;
             if (OnStateChange != null && oldState != value) OnStateChange(value);
+            _state = value;
         }
     }
 
