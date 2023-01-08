@@ -89,7 +89,7 @@ public class Difficulty : MonoBehaviour
         for (int i = 0; i != modified_type_healths.Length; i++)
         {
             modified_type_healths[i] = (float)(type_healths[i] * modifier2[PlayerPrefs.GetInt("difficultyIndex")]);
-            modified_type_healths[i] *= 1 + (WaveSpawner.WaveNumber / 20f);
+            modified_type_healths[i] *= 2.5f * (1 + (WaveSpawner.WaveNumber / 20f));
         }
 
         //speed

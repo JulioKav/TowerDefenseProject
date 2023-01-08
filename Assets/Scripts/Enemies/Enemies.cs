@@ -121,7 +121,6 @@ public class Enemies : MonoBehaviour
             }
             catch
             {
-                Debug.Log("pathfinding error");
             }
         }
 
